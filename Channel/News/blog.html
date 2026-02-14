@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Noticias </title>
-    <meta name="description" content="Channel - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - News</title>
+    <meta name="description" content="News - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -18,16 +18,72 @@
         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
         header p { font-size: 1rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
         main { padding: 2rem 1rem; max-width: 1200px; width: 95%; margin: 2rem auto; background-color: rgba(0,0,0,0.65); border-radius: 15px; text-align: center; flex: 1 0 auto; }
-        h2 { font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #ff3333; display: inline-block; padding-bottom: 0.5rem; color: #ff3333; }
-        .channel-info { background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 1rem; margin: 1.5rem auto; max-width: 600px; width: 100%; }
-        .channel-info h3 { color: #ff3333; margin-bottom: 0.5rem; word-break: break-word; }
-        .channel-info p { word-break: break-word; }
-        .custom-card { margin: 2rem 0; padding: 2rem; background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 10px; display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .card-title { font-size: 1.8rem; font-weight: bold; color: #ff3333; margin-bottom: 1.5rem; text-transform: uppercase; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); word-break: break-word; width: 100%; }
-        .card-image { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1.5rem; border: 2px solid #ff3333; box-shadow: 0 4px 12px rgba(255,51,51,0.3); width: 100%; max-height: 400px; object-fit: contain; background: #000; }
-        .card-text { font-size: 1.2rem; color: #ddd; margin-bottom: 1.5rem; line-height: 1.6; max-width: 800px; text-align: center; word-break: break-word; width: 100%; }
-        .card-category { font-size: 1rem; color: #ff3333; border-top: 1px solid #ff3333; padding-top: 1rem; width: 100%; text-align: center; font-weight: bold; word-break: break-word; }
+        
+       
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            width: 100%;
+        }
+        
+        
+        .blog-post {
+            margin: 0;
+            padding: 2rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            word-break: break-word;
+            width: 100%;
+        }
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #ff3333;
+            box-shadow: 0 4px 12px rgba(255,51,51,0.3);
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            background: #000;
+        }
+        .post-text {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 800px;
+            text-align: center;
+            word-break: break-word;
+            width: 100%;
+        }
+        .post-category {
+            font-size: 1rem;
+            color: #ff3333;
+            border-top: 1px solid #ff3333;
+            padding-top: 1rem;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
         footer { text-align: center; padding: 1.5rem 1rem; border-top: 1px solid #fff; color: #ccc; font-size: 0.9rem; width: 100%; margin-top: auto; }
+        
         @media (max-width: 768px) {
             html, body { overflow-x: hidden; width: 100%; }
             body { padding: 0; margin: 0; }
@@ -37,38 +93,35 @@
             header p { font-size: 0.95rem; padding: 0; margin-top: 0.2rem; }
             .header-text { width: 100%; flex: none; }
             main { padding: 1.5rem 1rem; margin: 1.5rem auto; width: 92%; border-radius: 12px; }
-            h2 { font-size: 1.4rem; display: block; text-align: center; margin: 0 auto 1.2rem; padding: 0 0 0.5rem; width: 100%; word-break: break-word; line-height: 1.3; }
-            .custom-card { padding: 1.2rem; margin: 1.2rem 0; width: 100%; }
-            .card-title { font-size: 1.5rem; margin-bottom: 1.2rem; line-height: 1.3; }
-            .card-image { margin-bottom: 1.2rem; max-height: 300px; width: 100%; }
-            .card-text { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.5; padding: 0 0.3rem; }
-            .card-category { font-size: 0.95rem; padding-top: 0.8rem; }
-            .channel-info { padding: 0.8rem; margin: 1rem 0; width: 100%; }
-            .channel-info h3 { font-size: 1.1rem; }
-            .channel-info p { font-size: 0.9rem; }
-            footer { padding: 1.2rem 1rem; font-size: 0.85rem; }
+            
+            .blog-post { padding: 1.2rem; }
+            .post-title { font-size: 1.5rem; margin-bottom: 1.2rem; line-height: 1.3; }
+            .post-image { margin-bottom: 1.2rem; max-height: 300px; width: 100%; }
+            .post-text { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.5; padding: 0 0.3rem; }
+            .post-category { font-size: 0.95rem; padding-top: 0.8rem; }
         }
+        
         @media (max-width: 480px) {
             header { padding: 1.2rem 0.8rem; }
             header img { max-width: 60px; }
             header h1 { font-size: 1.3rem; }
             header p { font-size: 0.85rem; }
             main { padding: 1.2rem 0.8rem; width: 94%; margin: 1.2rem auto; }
-            h2 { font-size: 1.2rem; margin-bottom: 1rem; }
-            .custom-card { padding: 1rem; }
-            .card-title { font-size: 1.3rem; margin-bottom: 1rem; }
-            .card-image { max-height: 250px; }
-            .card-text { font-size: 0.95rem; }
-            .card-category { font-size: 0.9rem; }
-            .channel-info h3 { font-size: 1rem; }
-            footer { padding: 1rem 0.8rem; font-size: 0.8rem; }
+            
+            .blog-post { padding: 1rem; }
+            .post-title { font-size: 1.3rem; margin-bottom: 1rem; }
+            .post-image { max-height: 250px; }
+            .post-text { font-size: 0.95rem; }
+            .post-category { font-size: 0.9rem; }
+            
             p, h1, h2, h3, h4, span, a, div { overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; hyphens: auto !important; }
         }
+        
         @media (max-width: 320px) {
             header h1 { font-size: 1.1rem; }
-            .card-title { font-size: 1.1rem; }
-            .card-text { font-size: 0.85rem; }
-            .card-image { max-height: 200px; }
+            .post-title { font-size: 1.1rem; }
+            .post-text { font-size: 0.85rem; }
+            .post-image { max-height: 200px; }
         }
     </style>
 </head>
@@ -83,14 +136,32 @@
 </header>
 
 <main>
-    <div class="custom-card">
-        <div class="card-title">Todos Los Recursos Se Subiran Al Sitio Web</div>
-        <img class="card-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg" alt="Recursos de la comunidad">
-        <div class="card-text">
-            Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.
-        </div>
-        <div class="card-category">Categoria: Noticias</div>
-    </div>
+    <div class="posts-container">
+        
+        <!-- POST 1 -->
+        <article class="blog-post">
+            <h2 class="post-title">Todos Los Recursos Se Subiran Al Sitio Web</h2>
+            <img class="post-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg" alt="Recursos de la comunidad">
+            <p class="post-text">
+                Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.
+            </p>
+            <div class="post-category">Categoria: Noticias</div>
+        </article>
+        
+        <!-- POST 2 --> 
+        <article class="blog-post">
+            <h2 class="post-title">Ya tienes Disponible Nuestro Chat en Telegram</h2>
+            <img class="post-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album6.jpg" alt="Descripción">
+            <p class="post-text">
+                Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0
+            </p>
+            <div class="post-category">Categoria: Noticias</div>
+        </article>
+
+
+
+
+    </div> 
 </main>
 
 <footer>
@@ -115,6 +186,11 @@
     }
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
+        
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' 
+        });
     });
 </script>
 
