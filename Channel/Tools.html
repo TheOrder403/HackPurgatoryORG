@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Herramientas</title>
-    <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Menu</title>
+    <meta name="description" content="Menu - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
     <style>
         * {
@@ -136,176 +136,108 @@
             margin: 3rem auto;
             background-color: rgba(0,0,0,0.65);
             border-radius: 15px;
-            text-align: center;
         }
         
-        h2 {
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        section h2 {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border-bottom: 2px solid #ff3333;
             display: inline-block;
             padding-bottom: 0.5rem;
             color: #ff3333;
         }
         
-        .telegram-container {
-            margin: 2rem 0;
+        .exposed-people-section {
+            margin: 3rem 0;
             padding: 2rem;
-            background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
+            background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255,51,51,0.2);
-            position: relative;
-            overflow: hidden;
+            border-radius: 10px;
+            text-align: center;
         }
         
-        .telegram-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff3333, transparent, #ff3333, transparent, #ff3333);
-            border-radius: 22px;
-            z-index: -1;
-            animation: borderGlow 3s linear infinite;
-            opacity: 0.5;
+        .exposed-people-section h3 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.3);
         }
         
-        @keyframes borderGlow {
-            0% { filter: hue-rotate(0deg); opacity: 0.5; }
-            50% { filter: hue-rotate(20deg); opacity: 0.8; }
-            100% { filter: hue-rotate(0deg); opacity: 0.5; }
+        .exposed-people-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
         }
         
-        .iframe-wrapper {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(255,51,51,0.4);
-        }
-        
-        iframe {
-            width: 100%;
-            height: 800px;
-            border: none;
-            background: #fff;
-            display: block;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            z-index: 2;
-            filter: invert(0.9) hue-rotate(180deg) brightness(0.9) contrast(1.1);
-            margin: 0;
-            transform: translateY(0);
-        }
-        
-        iframe:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(255,51,51,0.6);
-        }
-        
-        iframe.loading {
-            opacity: 0.6;
-            filter: blur(2px) invert(0.9) hue-rotate(180deg) brightness(0.9) contrast(1.1);
-            transform: scale(0.98);
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,51,51,0.2);
-            border-radius: 2px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff3333, #ff6666, #ff3333);
-            border-radius: 2px;
-            transition: width 0.3s ease;
-            position: relative;
-            animation: progressPulse 2s infinite;
-        }
-        
-        @keyframes progressPulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-        
-        .navigation-controls {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0 1.5rem;
-            position: relative;
-            z-index: 3;
-        }
-        
-        .nav-button {
+        .exposed-person-btn {
             text-decoration: none;
             color: #fff;
-            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
-            padding: 1rem 0.5rem;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ff3333, #990000);
+            padding: 1rem 1.8rem;
+            border-radius: 8px;
             transition: all 0.3s ease;
+            border: 2px solid #ff3333;
+            min-width: 250px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(255,51,51,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .exposed-person-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #cc0000);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(255,51,51,0.5);
+            color: #000;
+        }
+        
+        .exposed-person-btn .person-name {
+            font-size: 1.2rem;
+            display: block;
+        }
+        
+        .exposed-person-btn .person-alias {
+            font-size: 0.9rem;
+            color: #ddd;
+            font-style: italic;
+        }
+        
+        .contact-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .contact-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #111;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border: 1px solid #ff3333;
-            font-size: 1rem;
-            cursor: pointer;
-            min-width: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(255,51,51,0.2);
         }
         
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,51,51,0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .nav-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .nav-button:hover {
-            background: #ff3333;
+        .contact-buttons a:hover {
+            background-color: #ff3333;
             color: #000;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(255,51,51,0.5);
-            border-color: #fff;
-        }
-        
-        .nav-button:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-        
-        .nav-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-            filter: grayscale(1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,51,51,0.5);
         }
         
         .icon-svg {
@@ -313,43 +245,11 @@
             height: 20px;
             fill: currentColor;
             filter: brightness(0) invert(1);
-            transition: filter 0.3s, transform 0.3s;
+            transition: filter 0.3s;
         }
         
-        .nav-button:hover .icon-svg {
+        .contact-buttons a:hover .icon-svg {
             filter: brightness(0) invert(0);
-            transform: scale(1.2);
-        }
-        
-        .post-counter {
-            margin: 1.5rem 0;
-            font-size: 1.2rem;
-            color: #ddd;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            background: rgba(0,0,0,0.3);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255,51,51,0.3);
-        }
-        
-        .post-counter p {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .post-counter span {
-            color: #ff3333;
-            font-weight: bold;
-            font-size: 1.4rem;
-            text-shadow: 0 0 10px rgba(255,51,51,0.5);
-            background: rgba(255,51,51,0.1);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,51,51,0.3);
         }
         
         footer {
@@ -360,116 +260,13 @@
             font-size: 0.9rem;
         }
         
-        .loading-indicator {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.95);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 2px solid #ff3333;
-            z-index: 10000;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(255,51,51,0.3);
-            backdrop-filter: blur(10px);
-            display: none;
-        }
-        
-        .loading-indicator.active {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #330000;
-            border-top: 3px solid #ff3333;
-            border-right: 3px solid #ff3333;
-            border-radius: 50%;
-            animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 0 20px #ff3333;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .quick-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
+        .warning-banner {
+            background: rgba(255,51,51,0.2);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1rem;
             margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .quick-nav-button {
-            background: rgba(255,51,51,0.1);
-            border: 1px solid #ff3333;
-            color: #fff;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .quick-nav-button:hover {
-            background: #ff3333;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,51,51,0.4);
-        }
-        
-        .quick-nav-input {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid #ff3333;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            width: 100px;
             text-align: center;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .quick-nav-input:focus {
-            outline: none;
-            border-color: #fff;
-            box-shadow: 0 0 20px #ff3333;
-            width: 150px;
-        }
-        
-        .error-message {
-            background: rgba(255,0,0,0.1);
-            border: 2px solid #ff3333;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 400px;
-            text-align: center;
-            animation: shake 0.5s;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        
-        .error-message button {
-            margin-top: 1rem;
-            padding: 0.8rem 2rem;
         }
         
         @media (max-width: 768px) {
@@ -480,6 +277,7 @@
                 position: relative;
             }
             
+           
             main {
                 padding: 1rem;
                 margin: 1rem auto;
@@ -488,6 +286,7 @@
                 overflow: hidden;
             }
             
+           
             .menu-toggle {
                 display: flex;
                 position: absolute;
@@ -531,6 +330,7 @@
                 box-sizing: border-box;
             }
             
+           
             header {
                 justify-content: center;
                 text-align: center;
@@ -557,7 +357,8 @@
                 padding: 0 10px;
             }
             
-            h2 {
+           
+            section h2 {
                 font-size: 1.3rem;
                 display: block;
                 text-align: center;
@@ -568,78 +369,110 @@
                 box-sizing: border-box;
             }
             
-            iframe {
-                height: 700px;
-            }
             
-            .telegram-container {
-                padding: 1rem;
-            }
-            
-            .navigation-controls {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-            
-            .nav-button {
+            .exposed-people-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
                 width: 100%;
-                padding: 0.8rem 0.3rem;
-                font-size: 0.9rem;
+                box-sizing: border-box;
             }
             
-            .post-counter {
+            .exposed-people-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .exposed-people-buttons {
                 flex-direction: column;
-                gap: 0.5rem;
-                padding: 1rem;
+                gap: 1rem;
             }
             
-            .post-counter p {
+            .exposed-person-btn {
+                min-width: 100%;
+                padding: 0.9rem 1.2rem;
+            }
+            
+            .exposed-person-btn .person-name {
+                font-size: 1.1rem;
+            }
+            
+            .exposed-person-btn .person-alias {
+                font-size: 0.85rem;
+            }
+         
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .contact-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                box-sizing: border-box;
+                display: flex;
                 justify-content: center;
             }
             
-            .post-counter span {
-                font-size: 1.2rem;
+         
+            .warning-banner {
+                padding: 0.8rem;
+                margin: 1rem 0;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+                word-wrap: break-word;
             }
             
-            .quick-nav {
-                flex-direction: column;
+           
+            .contact-buttons a,
+            nav ul li a,
+            .exposed-person-btn {
+                min-height: 44px;
+                display: flex;
                 align-items: center;
+                justify-content: center;
+                text-align: center;
+                box-sizing: border-box;
             }
             
-            .quick-nav-input:focus {
-                width: 120px;
+           
+            * {
+                max-width: 100%;
+            }
+            
+           
+            section {
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
         
+       
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.2rem;
                 padding: 0 5px;
             }
             
-            iframe {
-                height: 600px;
+            .exposed-people-section {
+                padding: 1rem;
             }
             
-            .nav-button {
-                padding: 0.7rem 0.2rem;
-                font-size: 0.8rem;
+            .exposed-people-section h3 {
+                font-size: 1.2rem;
             }
-            
-            .icon-svg {
-                width: 16px;
-                height: 16px;
-            }
-            
-            .post-counter {
-                font-size: 1rem;
-            }
-            
+          
             p, h1, h2, h3, h4, span, a, div {
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-                word-break: break-word;
-                hyphens: auto;
+                overflow-wrap: break-word !important;
+                word-wrap: break-word !important;
+                word-break: break-word !important;
+                hyphens: auto !important;
             }
         }
     </style>
@@ -654,57 +487,64 @@
     </div>
 </header>
 
-<main>    
-    <div class="telegram-container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+<nav>
+    <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul id="menu">
+	  <li><a href="https://hackpurgatory.es">Sobre Nosotros</a></li>
+	  <li><a href="https://hackpurgatory.es">Información</a></li>
+  	  <li><a href="https://hackpurgatory.es">Canales</a></li>
+  	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+  	  <li><a href="https://hackpurgatory.es">Free RDP/VPS</a></li>
+  	  <li><a href="https://hackpurgatory.es">Estadisticas</a></li>
+  	  <li><a href="https://hackpurgatory.es/Channel/Tools.html">Recursos</a></li>
+	  <li><a href="https://hackpurgatory.es/Exposed/Exposed.html">Expuestos</a></li>
+    </ul>
+</nav>
+
+<main>
+    
+    <section id="exposed-people">
+        <div class="exposed-people-section">
+            <div class="exposed-people-buttons">
+                <a href="https://hackpurgatory.org/Channel/News/blog.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Noticias</span>
+                    <span class="person-alias">News</span>
+                </a>
+                <a href="https://hackpurgatory.org/Channel/Censored/blog.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Censuras</span>
+                    <span class="person-alias">Censored</span>
+                </a>
+                <a href="https://hackpurgatory.org/Channel/Tools/Tools.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Herramientas</span>
+                    <span class="person-alias">Tools</span>
+                </a>
+            </div>
         </div>
-        
-        <iframe id="tgFrame"></iframe>
-        
-        <div class="navigation-controls">
-            <button class="nav-button" onclick="goFirst()" id="firstBtn" title="Primer post">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/>
-                </svg>
-            </button>
-            <button class="nav-button" onclick="goPrev()" id="prevBtn" title="Post anterior">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            <button class="nav-button" onclick="goNext()" id="nextBtn" title="Post siguiente">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                </svg>
-            </button>
-            <button class="nav-button" onclick="goLast()" id="lastBtn" title="Último post">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6v12h2V6z"/>
-                </svg>
-            </button>
-        </div>
-        
-        <div class="quick-nav">
-            <input type="number" id="quickPostInput" class="quick-nav-input" placeholder="Post #" min="2" max="1858">
-            <button class="quick-nav-button" onclick="goToPost()">Ir</button>
-        </div>
-        
-        <div class="post-counter">
-            <p>Post actual: <span id="postNumber">2</span></p>
-            <p>Total posts: <span id="totalPosts">1858</span></p>
-        </div>
+    </section>
+    
+    <div class="contact-buttons">
+        <a href="https://hackpurgatory.es">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Volver al Inicio
+        </a>
+        <a href="https://t.me/HackPurgatory" target="_blank">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+            </svg>
+            Reportar a La Unidad
+        </a>
     </div>
 </main>
 
 <footer>
     &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
 </footer>
-
-<div class="loading-indicator" id="loadingIndicator">
-    <div class="spinner"></div>
-    <p>Cargando...</p>
-</div>
 
 <script>
     function startTypingAnimation() {
@@ -728,187 +568,12 @@
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
     });
-    
-    const channel = "MyWebBackup";
-    const firstPost = 2;
-    const lastPost = 1858;
-
-    let currentPost = firstPost;
-    let isLoading = false;
-
-    const frame = document.getElementById("tgFrame");
-    const postNumber = document.getElementById("postNumber");
-    const totalPosts = document.getElementById("totalPosts");
-    const progressFill = document.getElementById("progressFill");
-    const loadingIndicator = document.getElementById("loadingIndicator");
-    
-    const firstBtn = document.getElementById("firstBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const lastBtn = document.getElementById("lastBtn");
-
-    function updateProgress() {
-        const percentage = ((currentPost - firstPost) / (lastPost - firstPost)) * 100;
-        progressFill.style.width = percentage + '%';
-    }
-
-    function updateButtons() {
-        firstBtn.disabled = currentPost === firstPost;
-        prevBtn.disabled = currentPost === firstPost;
-        nextBtn.disabled = currentPost === lastPost;
-        lastBtn.disabled = currentPost === lastPost;
-    }
-
-    function showLoading() {
-        isLoading = true;
-        frame.classList.add('loading');
-        loadingIndicator.classList.add('active');
-    }
-
-    function hideLoading() {
-        isLoading = false;
-        frame.classList.remove('loading');
-        loadingIndicator.classList.remove('active');
-    }
-
-    function loadPost() {
-        showLoading();
-        frame.src = `https://t.me/${channel}/${currentPost}?embed=1`;
-        postNumber.textContent = currentPost;
-        totalPosts.textContent = lastPost;
-        updateProgress();
-        updateButtons();
-        
-        if (currentPost < lastPost) {
-            const nextLink = document.createElement('link');
-            nextLink.rel = 'prefetch';
-            nextLink.href = `https://t.me/${channel}/${currentPost + 1}?embed=1`;
-            document.head.appendChild(nextLink);
-        }
-    }
-
-    function goFirst() {
-        if (!isLoading) {
-            currentPost = firstPost;
-            loadPost();
-        }
-    }
-
-    function goLast() {
-        if (!isLoading) {
-            currentPost = lastPost;
-            loadPost();
-        }
-    }
-
-    function goNext() {
-        if (!isLoading && currentPost < lastPost) {
-            currentPost++;
-            loadPost();
-        }
-    }
-
-    function goPrev() {
-        if (!isLoading && currentPost > firstPost) {
-            currentPost--;
-            loadPost();
-        }
-    }
-
-    function goToPost() {
-        const input = document.getElementById('quickPostInput');
-        let postNum = parseInt(input.value);
-        
-        if (!isNaN(postNum) && postNum >= firstPost && postNum <= lastPost) {
-            currentPost = postNum;
-            loadPost();
-            input.value = '';
-        } else {
-            alert(`Por favor ingresa un número entre ${firstPost} y ${lastPost}`);
-        }
-    }
-
-    frame.onload = function() {
-        hideLoading();
-        
-        try {
-            if (frame.contentWindow) {
-                const iframeDoc = frame.contentDocument || frame.contentWindow.document;
-                if (iframeDoc) {
-                    const style = iframeDoc.createElement('style');
-                    style.innerHTML = `
-                        body, html { 
-                            overflow: hidden !important; 
-                            height: auto !important;
-                            margin: 0 !important;
-                            padding: 0 !important;
-                        }
-                        .tgme_widget_message_wrap {
-                            max-height: none !important;
-                            overflow: visible !important;
-                        }
-                        .tgme_widget_message {
-                            max-height: none !important;
-                        }
-                    `;
-                    iframeDoc.head.appendChild(style);
-                }
-            }
-        } catch(e) {
-            console.log("No se pudo modificar el iframe por políticas de seguridad");
-        }
-    };
-
-    frame.onerror = function() {
-        hideLoading();
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.innerHTML = `
-            <p>Error al cargar el post ${currentPost}</p>
-            <button class="nav-button" onclick="loadPost(); this.parentElement.remove();">
-                Reintentar
-            </button>
-        `;
-        document.querySelector('.telegram-container').appendChild(errorDiv);
-        
-        setTimeout(() => {
-            if (errorDiv.parentElement) {
-                errorDiv.remove();
-            }
-        }, 5000);
-    };
-
-    document.addEventListener('keydown', function(event) {
-        if (event.target.tagName === 'INPUT') return;
-        
-        switch(event.key) {
-            case 'ArrowLeft':
-                event.preventDefault();
-                goPrev();
-                break;
-            case 'ArrowRight':
-                event.preventDefault();
-                goNext();
-                break;
-            case 'Home':
-                event.preventDefault();
-                goFirst();
-                break;
-            case 'End':
-                event.preventDefault();
-                goLast();
-                break;
-        }
-    });
-
-    
-    currentPost = lastPost;
-    loadPost();
-
-    document.getElementById('quickPostInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            goToPost();
-        }
+ 
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        toggle.classList.toggle('active');
     });
 </script>
 
