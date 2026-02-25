@@ -158,7 +158,7 @@
             <div class="info">
                 <p><strong>Uso:</strong> Añade el parámetro ?search=10.105.214-1 para buscar información</p>
                 <p><strong>Formato:</strong> RUT Chileno (ej: 10.105.214-1, 12.345.678-9, 11111111-1)</p>
-                <p><strong>Ejemplo:</strong> /tools/chile.html?search=10.105.214-1</p>
+                <p><strong>Ejemplo:</strong> /tools/chileid.html?search=10.105.214-1</p>
             </div>
         </div>
         
@@ -190,10 +190,6 @@
         return urlParams.get(name);
     }
     
-    function cleanRut(rut) {
-        return rut.replace(/[.\s-]/g, '');
-    }
-    
     function performRedirect(rutInput) {
         const trimmedRut = rutInput.trim();
         
@@ -202,8 +198,7 @@
             return false;
         }
         
-        const cleanedRut = cleanRut(trimmedRut);
-        const redirectUrl = `https://chile.hackpurgatory.org/chile?rut=${encodeURIComponent(cleanedRut)}`;
+        const redirectUrl = `https://chile.hackpurgatory.org/chile?rut=${encodeURIComponent(trimmedRut)}`;
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
