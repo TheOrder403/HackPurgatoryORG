@@ -7,6 +7,56 @@
     <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
+        
+        .ticker-wrapper {
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding: 8px 0;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,255,204,0.3);
+        }
+        .ticker-wrapper::before,
+        .ticker-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #000, transparent);
+        }
+        .ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #000, transparent);
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerMove 20s linear infinite;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff;
+            padding-left: 100%;
+        }
+        .ticker span {
+            display: inline-block;
+            padding-right: 50px;
+            color: #00ffcc;
+            text-shadow: 0 0 8px rgba(0,255,204,0.8);
+        }
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -662,6 +712,17 @@
     </div>
 </header>
 
+<nav>
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>ᛉ Aprende: Recursos 100% gratuitos y exclusivos para todos los que necesiten aprender o requieran de material.</span>
+            <span>ᛟ Únete: Unete y aporta la causa por mas material gratuito y totalmente accesible desde nuestro sitio.</span>
+            <span>♡ Aporta: Envia tu aporte para que otros usuarios puedan acceder y usarlos de forma sencilla y rapida.</span>
+            <span>𐰁 Defiende: Defiende el objetivo de nuestra comunidad y reporta cualquier tipo de venta ilegal que hagan con nuestros recursos.</span>
+        </div>
+    </div>
+</nav>
+
 <main>    
     <div class="telegram-container">
         <div class="search-container">
@@ -726,6 +787,10 @@
         setTimeout(startTypingAnimation, 300);
     });
     
+    
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click',()=>{menu.classList.toggle('show'); toggle.classList.toggle('active');});
    
     const channel = "MyWebBackup";
     const FIRST_POST = 2;
