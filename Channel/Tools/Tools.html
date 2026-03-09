@@ -228,87 +228,6 @@
             100% { filter: hue-rotate(0deg); opacity: 0.5; }
         }
         
-        /* Buscador */
-        .search-container {
-            margin: 20px 0 30px;
-            padding: 20px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 15px;
-            border: 1px solid #ff3333;
-            position: sticky;
-            top: 10px;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        
-        .search-box {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 15px 20px;
-            background: rgba(0,0,0,0.7);
-            border: 2px solid #ff3333;
-            border-radius: 50px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255,51,51,0.5);
-            transform: scale(1.02);
-        }
-        
-        .search-input::placeholder {
-            color: #999;
-        }
-        
-        .search-button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
-            border: 2px solid #ff3333;
-            color: #fff;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            min-width: 120px;
-        }
-        
-        .search-button:hover {
-            background: #ff3333;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,51,51,0.4);
-        }
-        
-        .search-results {
-            margin-top: 15px;
-            text-align: left;
-            color: #ff9999;
-            font-size: 0.95rem;
-            padding: 10px;
-            border-top: 1px solid rgba(255,51,51,0.3);
-        }
-        
-        .highlight {
-            background: #ff3333;
-            color: #000;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        
-        /* Feed de posts */
         .posts-feed {
             width: 100%;
             max-width: 600px;
@@ -329,12 +248,6 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(255,51,51,0.5);
             border-color: #ff3333;
-        }
-        
-        .post-item.highlighted {
-            border: 3px solid #ff3333;
-            box-shadow: 0 0 30px rgba(255,51,51,0.8);
-            transform: scale(1.02);
         }
         
         .post-header {
@@ -368,7 +281,6 @@
             filter: invert(0.85) hue-rotate(180deg) brightness(1) contrast(1.2);
         }
         
-        
         .post-placeholder {
             width: 100%;
             height: 600px;
@@ -390,7 +302,7 @@
             width: 100%;
             margin: 20px 0;
             position: sticky;
-            top: 120px;
+            top: 10px;
             z-index: 999;
             background: rgba(0,0,0,0.8);
             padding: 15px;
@@ -436,7 +348,7 @@
             border-radius: 50px;
             border: 1px solid rgba(255,51,51,0.3);
             position: sticky;
-            top: 190px;
+            top: 80px;
             z-index: 998;
             backdrop-filter: blur(10px);
         }
@@ -518,7 +430,7 @@
             color: #ff3333;
         }
         
-        .scroll-to-last-btn {
+        .scroll-to-first-btn {
             position: fixed;
             bottom: 90px;
             right: 30px;
@@ -537,7 +449,7 @@
             z-index: 1000;
         }
         
-        .scroll-to-last-btn:hover {
+        .scroll-to-first-btn:hover {
             background: #ff3333;
             color: #000;
             transform: scale(1.1);
@@ -592,16 +504,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        
-        .no-results {
-            padding: 50px;
-            text-align: center;
-            color: #ff9999;
-            font-size: 1.2rem;
-            border: 2px dashed #ff3333;
-            border-radius: 15px;
-            margin: 20px 0;
         }
         
         @media (max-width: 768px) {
@@ -660,27 +562,14 @@
                 font-size: 1.4rem;
             }
             
-            .search-container {
-                top: 5px;
-                padding: 15px;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .search-button {
-                width: 100%;
-            }
-            
             .progress-bar-container {
-                top: 150px;
+                top: 5px;
             }
             
             .post-counter {
                 flex-direction: column;
                 gap: 0.5rem;
-                top: 220px;
+                top: 70px;
             }
             
             .post-iframe {
@@ -691,12 +580,12 @@
                 height: 500px;
             }
             
-            .scroll-top-btn, .scroll-to-last-btn {
+            .scroll-top-btn, .scroll-to-first-btn {
                 bottom: 20px;
                 right: 20px;
             }
             
-            .scroll-to-last-btn {
+            .scroll-to-first-btn {
                 bottom: 80px;
             }
         }
@@ -716,31 +605,19 @@
     <div class="ticker-wrapper">
         <div class="ticker">
             <span>ᛉ Aprende: Recursos 100% gratuitos y exclusivos para todos los que necesiten aprender o requieran de material.</span>
-            <span>ᛟ Únete: Unete y aporta la causa por mas material gratuito y totalmente accesible desde nuestro sitio.</span>
-            <span>♡ Aporta: Envia tu aporte para que otros usuarios puedan acceder y usarlos de forma sencilla y rapida.</span>
-            <span>𐰁 Defiende: Defiende el objetivo de nuestra comunidad y reporta cualquier tipo de venta ilegal que hagan con nuestros recursos.</span>
+            <span>ᛟ Únete: Unete y aporta tu granito de arena para ser parte de algo mas grande que tu.</span>
         </div>
     </div>
 </nav>
 
 <main>    
     <div class="telegram-container">
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por número de post">
-                <button class="search-button" onclick="searchPost()">Buscar</button>
-                <button class="search-button" onclick="clearSearch()">Limpiar</button>
-            </div>
-            <div id="searchResults" class="search-results"></div>
-        </div>
-        
         <div class="progress-bar-container">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
         </div>
         
-       
         <div id="postsFeed" class="posts-feed"></div>
         
         <div class="post-counter">
@@ -748,7 +625,7 @@
             <p>Mostrando: <span id="showingFrom">1903</span> → <span id="showingTo">2</span></p>
         </div>
         
-        <button id="loadMoreBtn" class="load-more-btn">Cargar Mas Contenido</button>
+        <button id="loadMoreBtn" class="load-more-btn">CARGAR MÁS POSTS</button>
     </div>
 </main>
 
@@ -762,7 +639,7 @@
 </div>
 
 <div class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</div>
-<div class="scroll-to-last-btn" id="scrollToLastBtn" onclick="scrollToLast()">↓</div>
+<div class="scroll-to-first-btn" id="scrollToFirstBtn" onclick="scrollToFirst()">⇑</div>
 
 <script>
     function startTypingAnimation() {
@@ -787,26 +664,17 @@
         setTimeout(startTypingAnimation, 300);
     });
     
-    
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    toggle.addEventListener('click',()=>{menu.classList.toggle('show'); toggle.classList.toggle('active');});
-   
     const channel = "MyWebBackup";
     const FIRST_POST = 2;
     const LAST_POST = 2012;
-    const TOTAL_POSTS = LAST_POST - FIRST_POST + 1; 
-    
-    
+    const TOTAL_POSTS = LAST_POST - FIRST_POST + 1;
     const POSTS_PER_BATCH = 10;
     
-   
-    let currentPost = LAST_POST; 
+    let currentPost = LAST_POST;
     let loadedPosts = 0;
     let isLoading = false;
     let allPostsLoaded = false;
-    let posts = []; 
-    
+    let posts = [];
     
     const postsFeed = document.getElementById("postsFeed");
     const progressFill = document.getElementById("progressFill");
@@ -817,21 +685,16 @@
     const loadMoreBtn = document.getElementById("loadMoreBtn");
     const loadingIndicator = document.getElementById("loadingIndicator");
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-    const searchInput = document.getElementById("searchInput");
-    const searchResults = document.getElementById("searchResults");
-    
     
     totalPostsSpan.textContent = TOTAL_POSTS;
     showingFromSpan.textContent = LAST_POST;
     showingToSpan.textContent = FIRST_POST;
-    
     
     function updateProgress() {
         const percentage = (loadedPosts / TOTAL_POSTS) * 100;
         progressFill.style.width = percentage + '%';
         loadedCountSpan.textContent = loadedPosts;
     }
-    
     
     function setLoading(loading) {
         isLoading = loading;
@@ -844,45 +707,11 @@
         }
     }
     
-    
-    function setupIframe(iframe, postNumber) {
-        iframe.onload = function() {
-            try {
-                if (this.contentWindow) {
-                    const iframeDoc = this.contentDocument || this.contentWindow.document;
-                    if (iframeDoc) {
-                        const style = iframeDoc.createElement('style');
-                        style.innerHTML = `
-                            body, html { 
-                                overflow: hidden !important; 
-                                height: auto !important;
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-                            .tgme_widget_message_wrap {
-                                max-height: none !important;
-                                overflow: visible !important;
-                            }
-                            .tgme_widget_message {
-                                max-height: none !important;
-                            }
-                        `;
-                        iframeDoc.head.appendChild(style);
-                    }
-                }
-            } catch(e) {
-                console.log("Error");
-            }
-        };
-    }
-    
-    
     function createPostItem(postNumber) {
         const postDiv = document.createElement('div');
         postDiv.className = 'post-item';
         postDiv.id = `post-${postNumber}`;
         postDiv.setAttribute('data-post-number', postNumber);
-        
         
         const header = document.createElement('div');
         header.className = 'post-header';
@@ -891,20 +720,14 @@
             <span class="post-number">${channel}</span>
         `;
         
-      
         const placeholder = document.createElement('div');
         placeholder.className = 'post-placeholder';
-        placeholder.innerHTML = 'Cargando...';
-        
+        placeholder.innerHTML = 'Cargando post...';
         
         const iframe = document.createElement('iframe');
         iframe.className = 'post-iframe';
         iframe.src = `https://t.me/${channel}/${postNumber}?embed=1`;
         iframe.setAttribute('data-post', postNumber);
-        
-       
-        setupIframe(iframe, postNumber);
-        
         
         iframe.onload = function() {
             placeholder.remove();
@@ -913,52 +736,44 @@
         };
         
         iframe.onerror = function() {
-            placeholder.innerHTML = 'Error';
+            placeholder.innerHTML = 'Error al cargar el post';
             loadedPosts++;
             updateProgress();
         };
         
-       
         postDiv.appendChild(header);
         postDiv.appendChild(placeholder);
         postDiv.appendChild(iframe);
         
-       
         posts.push(postDiv);
         
         return postDiv;
     }
-    
     
     function loadNextBatch() {
         if (isLoading || allPostsLoaded) return;
         
         setLoading(true);
         
-       
         const postsLeft = currentPost - FIRST_POST + 1;
         const batchSize = Math.min(POSTS_PER_BATCH, postsLeft);
         
- 
         for (let i = 0; i < batchSize; i++) {
             const postNumber = currentPost - i;
             const postItem = createPostItem(postNumber);
             postsFeed.appendChild(postItem);
         }
         
-        
         currentPost -= batchSize;
         
-       
         if (currentPost >= FIRST_POST) {
             showingFromSpan.textContent = currentPost + batchSize;
             showingToSpan.textContent = currentPost + 1;
         }
         
-       
         if (currentPost < FIRST_POST) {
             allPostsLoaded = true;
-            loadMoreBtn.textContent = "Cargado Correctamente";
+            loadMoreBtn.textContent = "TODOS LOS POSTS CARGADOS";
             loadMoreBtn.disabled = true;
             showingToSpan.textContent = FIRST_POST;
         }
@@ -966,79 +781,23 @@
         setLoading(false);
     }
     
-    
-    function searchPost() {
-        const searchTerm = searchInput.value.trim();
-        
-        if (!searchTerm) {
-            searchResults.innerHTML = 'Ingresa el numero de Post';
-            return;
-        }
-        
-        const postNumber = parseInt(searchTerm);
-        
-        if (isNaN(postNumber) || postNumber < FIRST_POST || postNumber > LAST_POST) {
-            searchResults.innerHTML = `No es valido`;
-            return;
-        }
-        
-        
-        document.querySelectorAll('.post-item.highlighted').forEach(el => {
-            el.classList.remove('highlighted');
-        });
-        
-        
-        const existingPost = document.getElementById(`post-${postNumber}`);
-        
-        if (existingPost) {
-            
-            existingPost.classList.add('highlighted');
-            existingPost.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            searchResults.innerHTML = `Encontrado`;
-            
-            
-            setTimeout(() => {
-                existingPost.classList.remove('highlighted');
-            }, 3000);
-        } else {
-            
-            searchResults.innerHTML = `Espera a que se cargue automáticamente.`;
-        }
-    }
-    
-   
-    function clearSearch() {
-        searchInput.value = '';
-        searchResults.innerHTML = '';
-        document.querySelectorAll('.post-item.highlighted').forEach(el => {
-            el.classList.remove('highlighted');
-        });
-    }
-    
-    
     loadMoreBtn.addEventListener('click', loadNextBatch);
     
-
     window.addEventListener('scroll', () => {
-        
         if (window.scrollY > 300) {
             scrollTopBtn.classList.add('visible');
         } else {
             scrollTopBtn.classList.remove('visible');
         }
         
-        
         if (!isLoading && !allPostsLoaded) {
-            const scrollPosition = window.scrollY + window.innerHeight;
-            const pageHeight = document.documentElement.scrollHeight;
+            const scrollPosition = window.scrollY;
             
-          
-            if (pageHeight - scrollPosition < 500) {
+            if (scrollPosition < 300) {
                 loadNextBatch();
             }
         }
     });
-    
     
     function scrollToTop() {
         window.scrollTo({
@@ -1047,36 +806,17 @@
         });
     }
     
-    
-    function scrollToLast() {
-        const lastPostElement = document.getElementById(`post-${LAST_POST}`);
-        if (lastPostElement) {
-            lastPostElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-         
-            if (!allPostsLoaded) {
-                loadNextBatch();
-                setTimeout(scrollToLast, 500);
-            }
+    function scrollToFirst() {
+        const firstPostElement = document.getElementById(`post-${LAST_POST}`);
+        if (firstPostElement) {
+            firstPostElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
     
-    
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            searchPost();
-        }
-    });
-    
-    
     window.scrollToTop = scrollToTop;
-    window.scrollToLast = scrollToLast;
-    window.searchPost = searchPost;
-    window.clearSearch = clearSearch;
-    
+    window.scrollToFirst = scrollToFirst;
     
     loadNextBatch();
-    
 </script>
 
 </body>
