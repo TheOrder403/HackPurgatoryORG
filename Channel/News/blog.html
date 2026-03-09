@@ -3,154 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - News</title>
-    <meta name="description" content="News - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Calendario de Noticias</title>
+    <meta name="description" content="Calendario de noticias - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; display: flex; flex-direction: column; }
-        body { display: flex; flex-direction: column; }
-        header { background-color: rgba(0,0,0,0.5); padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; border-bottom: 2px solid #fff; justify-content: space-between; position: relative; width: 100%; }
-        header img { max-width: 80px; height: auto; }
-        .header-text { flex: 1 1 200px; }
-        header h1 { font-size: 2rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); min-height: 2.5rem; }
-        .typing-cursor { display: inline-block; color: #ff3333; animation: blink 1s infinite; }
-        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-        header p { font-size: 1rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-        
-       
-        .search-container {
-            margin: 1rem auto 2rem auto;
-            max-width: 600px;
-            width: 100%;
-            padding: 0 1rem;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid #ff3333;
-            border-radius: 30px;
-            background: rgba(0,0,0,0.7);
+        .ticker-wrapper {
+            background-color: #000;
             color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding: 8px 0;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,255,204,0.3);
+        }
+        .ticker-wrapper::before,
+        .ticker-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #000, transparent);
+        }
+        .ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #000, transparent);
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerMove 15s linear infinite;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #fff;
+            padding-left: 100%;
+        }
+        .ticker span {
+            display: inline-block;
+            padding-right: 30px;
+            color: #00ffcc;
+            text-shadow: 0 0 8px rgba(0,255,204,0.8);
+        }
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }
+        body { display: flex; flex-direction: column; }
+        
+        header { 
+            background-color: rgba(0,0,0,0.5); 
+            padding: 0.8rem 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.8rem; 
+            flex-wrap: wrap; 
+            border-bottom: 2px solid #fff; 
+            justify-content: center; 
+            position: relative; 
+            width: 100%; 
+        }
+        header img { 
+            max-width: 50px; 
+            height: auto; 
+        }
+        .header-text { 
+            flex: 1; 
+            min-width: 200px; 
+            text-align: center;
+        }
+        header h1 { 
+            font-size: 1.3rem; 
+            margin-bottom: 0.2rem; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7); 
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .typing-cursor { 
+            display: inline-block; 
+            color: #ff3333; 
+            animation: blink 1s infinite; 
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        header p { 
+            font-size: 0.8rem; 
+            color: #ddd; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
+        }
+        
+        nav { 
+            background-color: rgba(0,0,0,0.5); 
+            position: relative; 
+            width: 100%; 
+        }
+        
+        main { 
+            padding: 1rem; 
+            max-width: 1200px; 
+            width: 100%; 
+            margin: 1rem auto; 
+            background-color: rgba(0,0,0,0.65); 
+            border-radius: 12px; 
+            text-align: center; 
+            flex: 1 0 auto; 
+        }
+        
+        /* Estilos del calendario */
+        .calendar-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
+            border: 1px solid #ff3333;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255,51,51,0.2);
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
+        }
+        
+        .month-title {
+            font-size: 1.3rem;
+            color: #ff3333;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .month-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 2px solid #ff3333;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             font-size: 1rem;
-            outline: none;
             transition: all 0.3s;
         }
-        #searchInput:focus {
-            box-shadow: 0 0 10px rgba(255,51,51,0.5);
-            background: rgba(0,0,0,0.9);
-        }
-        #searchInput::placeholder {
-            color: #999;
-        }
         
-        main { padding: 2rem 1rem; max-width: 1200px; width: 95%; margin: 2rem auto; background-color: rgba(0,0,0,0.65); border-radius: 15px; text-align: center; flex: 1 0 auto; }
-        
-        .posts-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            width: 100%;
+        .nav-btn:hover {
+            background: #ff3333;
+            color: #000;
+            transform: scale(1.1);
         }
         
-        .blog-post {
-            margin: 0;
-            padding: 2rem;
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ff9999;
+            font-size: 0.7rem;
+        }
+        
+        .weekday {
+            padding: 5px 2px;
+            text-align: center;
             background: rgba(255,51,51,0.1);
-            border: 1px solid #ff3333;
-            border-radius: 10px;
+            border-radius: 3px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,51,51,0.3);
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 2px;
+            min-height: 40px;
+        }
+        
+        .calendar-day:hover {
+            background: rgba(255,51,51,0.2);
+            border-color: #ff3333;
+        }
+        
+        .calendar-day:active {
+            transform: scale(0.95);
+        }
+        
+        .calendar-day.empty {
+            background: transparent;
+            border: none;
+            cursor: default;
+        }
+        
+        .calendar-day.empty:hover {
+            transform: none;
+            background: transparent;
+        }
+        
+        .day-number {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .has-post {
+            background: rgba(255,51,51,0.2);
+            border: 2px solid #ff3333;
+        }
+        
+        .has-post .day-number {
+            color: #ff3333;
+            font-weight: bold;
+        }
+        
+        .post-indicator {
+            width: 4px;
+            height: 4px;
+            background: #ff3333;
+            border-radius: 50%;
+            margin-top: 2px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Estilos del visor de noticias */
+        .news-viewer {
+            padding: 1rem;
+            background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
+            border: 1px solid #ff3333;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255,51,51,0.2);
+        }
+        
+        .viewer-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .news-date {
+            font-size: 0.9rem;
+            color: #ff9999;
+            text-align: center;
+        }
+        
+        .news-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        
+        .news-nav-btn {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 2px solid #ff3333;
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex: 1;
+            justify-content: center;
+            max-width: 120px;
+        }
+        
+        .news-nav-btn:hover {
+            background: #ff3333;
+            color: #000;
+        }
+        
+        .news-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        .news-content {
+            min-height: 250px;
             transition: opacity 0.3s;
         }
-        .blog-post.hidden {
-            display: none;
+        
+        .news-content.fade-out {
+            opacity: 0;
         }
-        .post-title {
-            font-size: 1.8rem;
-            font-weight: bold;
+        
+        .news-content.fade-in {
+            opacity: 1;
+        }
+        
+        .featured-post {
+            padding: 0.8rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+        }
+        
+        .featured-title {
+            font-size: 1.1rem;
             color: #ff3333;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
             word-break: break-word;
-            width: 100%;
         }
-        .post-image {
+        
+        .featured-image {
             max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+            max-height: 200px;
+            border-radius: 6px;
+            margin: 0.5rem 0;
             border: 2px solid #ff3333;
-            box-shadow: 0 4px 12px rgba(255,51,51,0.3);
-            width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            background: #000;
+            object-fit: cover;
         }
-        .post-text {
-            font-size: 1.2rem;
+        
+        .featured-text {
+            font-size: 0.9rem;
             color: #ddd;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            max-width: 800px;
-            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            text-align: left;
             word-break: break-word;
-            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
-        .post-category {
-            font-size: 1rem;
-            color: #ff3333;
-            border-top: 1px solid #ff3333;
-            padding-top: 1rem;
-            width: 100%;
-            text-align: center;
+        
+        .featured-text::-webkit-scrollbar {
+            width: 3px;
+        }
+        
+        .featured-text::-webkit-scrollbar-track {
+            background: rgba(255,51,51,0.1);
+        }
+        
+        .featured-text::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 3px;
+        }
+        
+        .featured-category {
+            color: #ff9999;
             font-weight: bold;
-            word-break: break-word;
+            font-size: 0.8rem;
         }
         
-        footer { text-align: center; padding: 1.5rem 1rem; border-top: 1px solid #fff; color: #ccc; font-size: 0.9rem; width: 100%; margin-top: auto; }
-        
-        @media (max-width: 768px) {
-            html, body { overflow-x: hidden; width: 100%; }
-            body { padding: 0; margin: 0; }
-            header { justify-content: center; text-align: center; padding: 1.5rem 1rem; flex-direction: column; width: 100%; gap: 0.5rem; }
-            header img { max-width: 70px; margin-bottom: 0.5rem; }
-            header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; word-wrap: break-word; padding: 0; line-height: 1.3; }
-            header p { font-size: 0.95rem; padding: 0; margin-top: 0.2rem; }
-            .header-text { width: 100%; flex: none; }
-            main { padding: 1.5rem 1rem; margin: 1.5rem auto; width: 92%; border-radius: 12px; }
-            
-            .blog-post { padding: 1.2rem; }
-            .post-title { font-size: 1.5rem; margin-bottom: 1.2rem; line-height: 1.3; }
-            .post-image { margin-bottom: 1.2rem; max-height: 300px; width: 100%; }
-            .post-text { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.5; padding: 0 0.3rem; }
-            .post-category { font-size: 0.95rem; padding-top: 0.8rem; }
+        footer { 
+            text-align: center; 
+            padding: 1rem; 
+            border-top: 1px solid #fff; 
+            color: #ccc; 
+            font-size: 0.8rem; 
+            width: 100%; 
+            margin-top: auto; 
         }
         
-        @media (max-width: 480px) {
-            header { padding: 1.2rem 0.8rem; }
+        /* Media queries mejoradas */
+        @media (min-width: 480px) {
+            header h1 { font-size: 1.5rem; }
             header img { max-width: 60px; }
-            header h1 { font-size: 1.3rem; }
-            header p { font-size: 0.85rem; }
-            main { padding: 1.2rem 0.8rem; width: 94%; margin: 1.2rem auto; }
-            
-            .blog-post { padding: 1rem; }
-            .post-title { font-size: 1.3rem; margin-bottom: 1rem; }
-            .post-image { max-height: 250px; }
-            .post-text { font-size: 0.95rem; }
-            .post-category { font-size: 0.9rem; }
-            
-            p, h1, h2, h3, h4, span, a, div { overflow-wrap: break-word !important; word-wrap: break-word !important; word-break: break-word !important; hyphens: auto !important; }
+            .month-title { font-size: 1.5rem; }
+            .weekdays { font-size: 0.8rem; }
+            .day-number { font-size: 1rem; }
+            .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; }
+            .news-nav { justify-content: flex-end; }
+            .news-nav-btn { max-width: none; flex: none; }
         }
         
-        @media (max-width: 320px) {
+        @media (min-width: 768px) {
+            header { padding: 1rem 2rem; justify-content: space-between; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            .calendar-section { padding: 1.5rem; }
+            .month-title { font-size: 2rem; }
+            .calendar-day { min-height: 60px; }
+            .day-number { font-size: 1.2rem; }
+            .post-indicator { width: 6px; height: 6px; }
+            .featured-title { font-size: 1.5rem; }
+            .featured-text { font-size: 1rem; max-height: 200px; }
+        }
+        
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 360px) {
             header h1 { font-size: 1.1rem; }
-            .post-title { font-size: 1.1rem; }
-            .post-text { font-size: 0.85rem; }
-            .post-image { max-height: 200px; }
+            header img { max-width: 40px; }
+            .month-title { font-size: 1.1rem; }
+            .weekdays { font-size: 0.6rem; }
+            .day-number { font-size: 0.8rem; }
+            .calendar-day { min-height: 35px; }
+            .featured-title { font-size: 1rem; }
+            .featured-text { font-size: 0.8rem; max-height: 120px; }
+            .news-nav-btn { padding: 0.5rem 0.8rem; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -160,79 +435,63 @@
     <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
     <div class="header-text">
         <h1 id="typing-title"></h1>
-        <p>Canal De Recursos De La Comunidad.</p>
+        <p>Calendario de Noticias</p>
     </div>
 </header>
 
-<main>
-    
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar...">
+<nav>
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>ᛣ Noticias: Comunicados oficiales con noticias importantes de nuestra comunidad.</span>
+            <span>ᛟ Avisos: Avisos de cambios o actualizaciones importantes dentro de nuestra comunidad.</span>
+            <span>ᛉ Eventos: Comunicacion de eventos especiales de nuestra comunidad para poder participar.</span>
+        </div>
     </div>
+</nav>
 
-    <div class="posts-container">
+<main>
+    <div class="calendar-section">
+        <div class="calendar-header">
+            <div class="month-title" id="monthTitle">Marzo 2026</div>
+            <div class="month-nav">
+                <button class="nav-btn" onclick="changeMonth(-1)">←</button>
+                <button class="nav-btn" onclick="changeMonth(1)">→</button>
+            </div>
+        </div>
         
-        <!-- POST 1 -->
-        <article class="blog-post">
-            <h2 class="post-title">Todos Los Recursos Se Subiran Al Sitio Web</h2>
-            <img class="post-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg" alt="Recursos de la comunidad">
-            <p class="post-text">
-                Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
+        <div class="weekdays">
+            <div class="weekday">LUN</div>
+            <div class="weekday">MAR</div>
+            <div class="weekday">MIÉ</div>
+            <div class="weekday">JUE</div>
+            <div class="weekday">VIE</div>
+            <div class="weekday">SÁB</div>
+            <div class="weekday">DOM</div>
+        </div>
         
-        <!-- POST 2 --> 
-        <article class="blog-post">
-            <h2 class="post-title">Ya tienes Disponible Nuestro Chat en Telegram</h2>
-            <img class="post-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album6.jpg" alt="Descripción">
-            <p class="post-text">
-                Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+    
+    <div class="news-viewer">
+        <div class="viewer-header">
+            <div class="news-date" id="currentNewsDate">Última noticia - 15 Mar 2026</div>
+            <div class="news-nav">
+                <button class="news-nav-btn" onclick="changeNews(-1)" id="prevNewsBtn">← Anterior</button>
+                <button class="news-nav-btn" onclick="changeNews(1)" id="nextNewsBtn">Siguiente →</button>
+            </div>
+        </div>
         
-        <!-- POST 3 -->
-        <article class="blog-post">
-            <h2 class="post-title">Revisa Nuestros Recursos Desde el Sitio Web</h2>
-            <img class="post-image" src="https://github.com/TheOrder403/hackpurgatory/blob/main/Channel/photos/photo_41@14-09-2025_02-42-38_thumb.jpg?raw=true" alt="Descripción">
-            <p class="post-text">
-                Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque. 
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
-
-        <!-- POST 4 -->
-        <article class="blog-post">
-            <h2 class="post-title">Alianza de la Unión Federal del Orden</h2>
-            <img class="post-image" src="https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg" alt="Descripción">
-            <p class="post-text">
-                En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua. 
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
-
-        <!-- POST 5 -->
-        <article class="blog-post">
-            <h2 class="post-title">Limpieza Total sin Descanso</h2>
-            <img class="post-image" src="https://i.ibb.co/wF6rHxVs/defend.jpg" alt="Descripción">
-            <p class="post-text">
-                Toma medidas contra aquellos que venden y promueven la inestabilidad dentro del país, estafan y mienten o promueven contenido explicito. hoy La Unidad de HackPurgatory tomara cartas en el asunto respecto a estos temas ilegales y desenmascarara para despues reportar a las autoridades. Cerraremos canales y llevaremos a los propietarios a las autoridades exponiéndolos de la misma forma. Queremos asegurarnos de que todo esté tipo de cosas no sé repitan y para eso tú puedes reportar si crees haber visto alguna de estas cosas. 
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
-        
-        <!-- POST 5 -->
-        <article class="blog-post">
-            <h2 class="post-title">Actualizaciones y Noticias</h2>
-            <img class="post-image" src="https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg" alt="Descripción">
-            <p class="post-text">
-                Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente. 
-            </p>
-            <div class="post-category">Categoria: Noticias</div>
-        </article>
-
-    </div> 
+        <div class="news-content" id="newsContent">
+            <article class="featured-post">
+                <h2 class="featured-title">Todos Los Recursos Se Subiran Al Sitio Web</h2>
+                <img class="featured-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg" alt="Recursos">
+                <p class="featured-text">
+                    Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram...
+                </p>
+                <div class="featured-category">Categoria: Noticias · 15 Mar 2026</div>
+            </article>
+        </div>
+    </div>
 </main>
 
 <footer>
@@ -256,52 +515,188 @@
         typeWriter();
     }
     
-   
-    function setupSearch() {
-        const searchInput = document.getElementById('searchInput');
-        const posts = document.querySelectorAll('.blog-post');
+    
+    const newsDatabase = [
+        {
+            id: 1,
+            date: '2026-03-15',
+            title: 'Todos Los Recursos Se Subiran Al Sitio Web',
+            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg',
+            text: 'Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.',
+            category: 'Noticias'
+        },
+        {
+            id: 2,
+            date: '2026-03-10',
+            title: 'Ya tienes Disponible Nuestro Chat en Telegram',
+            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album6.jpg',
+            text: 'Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0',
+            category: 'Noticias'
+        },
+        {
+            id: 3,
+            date: '2026-03-05',
+            title: 'Revisa Nuestros Recursos Desde el Sitio Web',
+            image: 'https://github.com/TheOrder403/hackpurgatory/blob/main/Channel/photos/photo_41@14-09-2025_02-42-38_thumb.jpg?raw=true',
+            text: 'Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque.',
+            category: 'Noticias'
+        },
+        {
+            id: 4,
+            date: '2026-02-28',
+            title: 'Alianza de la Unión Federal del Orden',
+            image: 'https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg',
+            text: 'En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua.',
+            category: 'Noticias'
+        },
+        {
+            id: 5,
+            date: '2026-02-20',
+            title: 'Limpieza Total sin Descanso',
+            image: 'https://i.ibb.co/wF6rHxVs/defend.jpg',
+            text: 'Toma medidas contra aquellos que venden y promueven la inestabilidad dentro del país, estafan y mienten o promueven contenido explicito. hoy La Unidad de HackPurgatory tomara cartas en el asunto respecto a estos temas ilegales y desenmascarara para despues reportar a las autoridades. Cerraremos canales y llevaremos a los propietarios a las autoridades exponiéndolos de la misma forma. Queremos asegurarnos de que todo esté tipo de cosas no sé repitan y para eso tú puedes reportar si crees haber visto alguna de estas cosas.',
+            category: 'Noticias'
+        },
+        {
+            id: 6,
+            date: '2026-02-15',
+            title: 'Actualizaciones y Noticias',
+            image: 'https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg',
+            text: 'Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente.',
+            category: 'Noticias'
+        }
+    ];
+    
+        let currentDate = new Date(2026, 2, 15);
+    let currentNewsIndex = 0;
+    let newsByDate = {};
+    
+        newsDatabase.sort((a, b) => new Date(b.date) - new Date(a.date));
+    newsDatabase.forEach((news, index) => {
+        newsByDate[news.date] = news;
+    });
+    
+    function generateCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
         
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
+        const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        document.getElementById('monthTitle').textContent = `${monthNames[month]} ${year}`;
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        
+        let startDay = firstDay.getDay();
+        const totalDays = lastDay.getDate();
+        
+        
+        let startOffset = startDay === 0 ? 6 : startDay - 1;
+        
+        const calendarGrid = document.getElementById('calendarGrid');
+        calendarGrid.innerHTML = '';
+        
+        
+        for (let i = 0; i < startOffset; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            calendarGrid.appendChild(emptyDay);
+        }
+        
+        
+        for (let day = 1; day <= totalDays; day++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'calendar-day';
             
-            posts.forEach(post => {
-                if (searchTerm === '') {
-                    post.classList.remove('hidden');
-                    return;
-                }
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            
+            if (newsByDate[dateStr]) {
+                dayCell.classList.add('has-post');
+                dayCell.onclick = () => showNewsByDate(dateStr);
                 
-                const title = post.querySelector('.post-title').textContent.toLowerCase();
-                const text = post.querySelector('.post-text').textContent.toLowerCase();
-                const category = post.querySelector('.post-category').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || text.includes(searchTerm) || category.includes(searchTerm)) {
-                    post.classList.remove('hidden');
-                } else {
-                    post.classList.add('hidden');
-                }
-            });
-        });
+                const indicator = document.createElement('div');
+                indicator.className = 'post-indicator';
+                dayCell.appendChild(indicator);
+            }
+            
+            const dayNumber = document.createElement('span');
+            dayNumber.className = 'day-number';
+            dayNumber.textContent = day;
+            dayCell.appendChild(dayNumber);
+            
+            calendarGrid.appendChild(dayCell);
+        }
+    }
+    
+    function changeMonth(direction) {
+        currentDate.setMonth(currentDate.getMonth() + direction);
+        generateCalendar();
+    }
+    
+    function showNewsByDate(dateStr) {
+        const news = newsByDate[dateStr];
+        if (news) {
+            const index = newsDatabase.findIndex(n => n.date === dateStr);
+            if (index !== -1) {
+                currentNewsIndex = index;
+                displayNews(currentNewsIndex);
+            }
+        }
+    }
+    
+    function displayNews(index) {
+        const news = newsDatabase[index];
+        if (!news) return;
+        
+        const newsContent = document.getElementById('newsContent');
+        const currentNewsDate = document.getElementById('currentNewsDate');
+        
+        const dateObj = new Date(news.date);
+        const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        
+        currentNewsDate.textContent = `Noticia - ${formattedDate}`;
+        
+        newsContent.classList.add('fade-out');
+        
+        setTimeout(() => {
+            newsContent.innerHTML = `
+                <article class="featured-post">
+                    <h2 class="featured-title">${news.title}</h2>
+                    <img class="featured-image" src="${news.image}" alt="${news.title}" loading="lazy">
+                    <p class="featured-text">${news.text}</p>
+                    <div class="featured-category">Categoria: ${news.category} · ${formattedDate}</div>
+                </article>
+            `;
+            
+            newsContent.classList.remove('fade-out');
+            newsContent.classList.add('fade-in');
+            
+            setTimeout(() => {
+                newsContent.classList.remove('fade-in');
+            }, 300);
+        }, 300);
+        
+        document.getElementById('prevNewsBtn').disabled = index === 0;
+        document.getElementById('nextNewsBtn').disabled = index === newsDatabase.length - 1;
+    }
+    
+    function changeNews(direction) {
+        const newIndex = currentNewsIndex + direction;
+        if (newIndex >= 0 && newIndex < newsDatabase.length) {
+            currentNewsIndex = newIndex;
+            displayNews(currentNewsIndex);
+        }
     }
     
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
-        
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth' 
-        });
-        
-        setupSearch(); 
+        generateCalendar();
+        displayNews(0);
     });
+    
+    window.changeMonth = changeMonth;
+    window.changeNews = changeNews;
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
