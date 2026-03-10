@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Censored Map</title>
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Censored</title>
     <meta name="description" content="Mapa de censuras - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -47,32 +47,6 @@
             font-size: 1rem; 
             color: #ddd; 
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
-        }
-        
-        .search-container {
-            margin: 1rem auto 2rem auto;
-            max-width: 600px;
-            width: 100%;
-            padding: 0 1rem;
-        }
-        
-        #searchInput {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid #ff3333;
-            border-radius: 30px;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
-        }
-        #searchInput:focus {
-            box-shadow: 0 0 10px rgba(255,51,51,0.5);
-            background: rgba(0,0,0,0.9);
-        }
-        #searchInput::placeholder {
-            color: #999;
         }
         
         main { 
@@ -384,17 +358,13 @@
 </header>
 
 <main>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar por pais o palabra clave...">
-    </div>
-
     <div class="map-section">
         <div id="world-map"></div>
     </div>
     
     <div class="censor-viewer">
         <div class="viewer-header">
-            <div class="censor-info" id="censorInfo">Ultima censura - Colombia, 15 Mar 2026</div>
+            <div class="censor-info" id="censorInfo">Ultima censura - Colombia, 09 Mar 2026</div>
             <div class="censor-nav">
                 <button class="nav-btn" onclick="changeCensor(-1)" id="prevCensorBtn">← Anterior</button>
                 <button class="nav-btn" onclick="changeCensor(1)" id="nextCensorBtn">Siguiente →</button>
@@ -429,6 +399,18 @@
 
     const censorDatabase = [
         {
+            id: 22,
+            pais: "Colombia",
+            ciudad: "Bogotá",
+            coordenadas: [4.7110, -74.0721],
+            fecha: "2026-03-09",
+            titulo: "Cerrado Por La Unidad",
+            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "t.me/FabianMaldito7",
+            categoria: "Censuras"
+        },
+        {
             id: 1,
             pais: "Perú",
             ciudad: "Lima",
@@ -436,7 +418,7 @@
             fecha: "2026-03-15",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/ShieldgramPe",
             categoria: "Censuras"
         },
@@ -448,7 +430,7 @@
             fecha: "2026-03-12",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/leakssfree",
             categoria: "Censuras"
         },
@@ -460,7 +442,7 @@
             fecha: "2026-03-10",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/drsblackciphernet",
             categoria: "Censuras"
         },
@@ -472,7 +454,7 @@
             fecha: "2026-03-08",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/agoralatamc",
             categoria: "Censuras"
         },
@@ -484,19 +466,67 @@
             fecha: "2026-03-05",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/bankingspoof",
             categoria: "Censuras"
         },
         {
-            id:6,
+            id: 15,
+            pais: "Ecuador",
+            ciudad: "Quito",
+            coordenadas: [-0.1807, -78.4678],
+            fecha: "2026-03-05",
+            titulo: "Cerrado Por La Unidad",
+            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "t.me/Confesionehott",
+            categoria: "Censuras"
+        },
+        {
+            id: 12,
+            pais: "Colombia",
+            ciudad: "Bogotá",
+            coordenadas: [4.6910, -74.0921],
+            fecha: "2026-03-04",
+            titulo: "Cerrado Por La Unidad",
+            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "doxeozenkey.netlify.app",
+            categoria: "Censuras"
+        },
+        {
+            id: 13,
+            pais: "Colombia",
+            ciudad: "Bogotá",
+            coordenadas: [4.6710, -74.1021],
+            fecha: "2026-03-04",
+            titulo: "Cerrado Por La Unidad",
+            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "organizacionexponiendoratascolmbia.netlify.app",
+            categoria: "Censuras"
+        },
+        {
+            id: 14,
+            pais: "Colombia",
+            ciudad: "Bogotá",
+            coordenadas: [4.6510, -74.1121],
+            fecha: "2026-03-04",
+            titulo: "Cerrado Por La Unidad",
+            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "miweb-h-001.web.app/",
+            categoria: "Censuras"
+        },
+        {
+            id: 6,
             pais: "España",
             ciudad: "Barcelona",
-            coordenadas: [41.3851, 2.1734],
+            coordenadas: [41.3951, 2.1834],
             fecha: "2026-03-03",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/banking_es1",
             categoria: "Censuras"
         },
@@ -508,7 +538,7 @@
             fecha: "2026-03-01",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/legionnovaban",
             categoria: "Censuras"
         },
@@ -520,7 +550,7 @@
             fecha: "2026-02-28",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/Gimecomonunca",
             categoria: "Censuras"
         },
@@ -528,72 +558,12 @@
             id: 9,
             pais: "España",
             ciudad: "Barcelona",
-            coordenadas: [41.3851, 2.1734],
+            coordenadas: [41.3751, 2.1634],
             fecha: "2026-02-25",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/cheatioscrack",
-            categoria: "Censuras"
-        },
-        {
-            id: 10,
-            pais: "Ecuador",
-            ciudad: "Quito",
-            coordenadas: [-0.1807, -78.4678],
-            fecha: "2026-02-20",
-            titulo: "Cerrado Por La Unidad",
-            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "t.me/ioshacktutorials",
-            categoria: "Censuras"
-        },
-        {
-            id: 12,
-            pais: "Colombia",
-            ciudad: "Bogotá",
-            coordenadas: [4.7110, -74.0721],
-            fecha: "2026-03-04",
-            titulo: "Cerrado Por La Unidad",
-            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "doxeozenkey.netlify.app",
-            categoria: "Censuras"
-        },
-        {
-            id: 13,
-            pais: "Colombia",
-            ciudad: "Bogotá",
-            coordenadas: [4.7110, -74.0721],
-            fecha: "2026-03-04",
-            titulo: "Cerrado Por La Unidad",
-            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "organizacionexponiendoratascolmbia.netlify.app",
-            categoria: "Censuras"
-        },
-        {
-            id: 14,
-            pais: "Colombia",
-            ciudad: "Bogotá",
-            coordenadas: [4.7110, -74.0721],
-            fecha: "2026-03-04",
-            titulo: "Cerrado Por La Unidad",
-            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "miweb-h-001.web.app/",
-            categoria: "Censuras"
-        },
-        {
-            id: 15,
-            pais: "Ecuador",
-            ciudad: "Quito",
-            coordenadas: [-0.1807, -78.4678],
-            fecha: "2026-03-05",
-            titulo: "Cerrado Por La Unidad",
-            video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "t.me/Confesionehott",
             categoria: "Censuras"
         },
         {
@@ -604,7 +574,7 @@
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/+3fHDoApLE3UxNzAy (Buscador ULP Group)",
             categoria: "Censuras"
         },
@@ -612,11 +582,11 @@
             id: 17,
             pais: "Colombia",
             ciudad: "Medellín",
-            coordenadas: [6.2442, -75.5812],
+            coordenadas: [6.2642, -75.5712],
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/Onion_Sempai",
             categoria: "Censuras"
         },
@@ -628,7 +598,7 @@
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/hacking_enikop",
             categoria: "Censuras"
         },
@@ -636,11 +606,11 @@
             id: 19,
             pais: "República Dominicana",
             ciudad: "Santo Domingo",
-            coordenadas: [18.4861, -69.9312],
+            coordenadas: [18.4661, -69.9412],
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "instagram.com/enikop.security",
             categoria: "Censuras"
         },
@@ -648,11 +618,11 @@
             id: 20,
             pais: "República Dominicana",
             ciudad: "Santo Domingo",
-            coordenadas: [18.4861, -69.9312],
+            coordenadas: [18.5061, -69.9112],
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "instagram.com/enikop.security1",
             categoria: "Censuras"
         },
@@ -660,29 +630,27 @@
             id: 21,
             pais: "República Dominicana",
             ciudad: "Santo Domingo",
-            coordenadas: [18.4861, -69.9312],
+            coordenadas: [18.5261, -69.9212],
             fecha: "2026-02-23",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
             link: "t.me/hacking_enikop",
             categoria: "Censuras"
         },
         {
-            id: 22,
-            pais: "Colombia",
-            ciudad: "Bogotá",
-            coordenadas: [4.7110, -74.0721],
-            fecha: "2026-03-09",
+            id: 10,
+            pais: "Ecuador",
+            ciudad: "Quito",
+            coordenadas: [-0.2007, -78.4878],
+            fecha: "2026-02-20",
             titulo: "Cerrado Por La Unidad",
             video: "https://hackpurgatory.es/Channel/video_files/video_37@21-09-2025_23-57-01.mp4",
-            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente.",
-            link: "t.me/FabianMaldito7",
+            texto: "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+            link: "t.me/ioshacktutorials",
             categoria: "Censuras"
         }
     ];
-
-    censorDatabase.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
     let map;
     let markers = [];
@@ -777,40 +745,10 @@
         }
     }
 
-    function setupSearch() {
-        const searchInput = document.getElementById('searchInput');
-        
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                markers.forEach(marker => {
-                    marker.setOpacity(1);
-                    if (marker.getElement()) {
-                        marker.getElement().style.display = 'block';
-                    }
-                });
-                return;
-            }
-            
-            censorDatabase.forEach((censor, index) => {
-                const match = censor.pais.toLowerCase().includes(searchTerm) || 
-                             censor.ciudad.toLowerCase().includes(searchTerm) ||
-                             censor.link.toLowerCase().includes(searchTerm);
-                
-                markers[index].setOpacity(match ? 1 : 0.2);
-                if (markers[index].getElement()) {
-                    markers[index].getElement().style.display = match ? 'block' : 'none';
-                }
-            });
-        });
-    }
-
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
         initMap();
         displayCensor(0);
-        setupSearch();
     });
 
     window.changeCensor = changeCensor;
@@ -824,6 +762,3 @@
 
 </body>
 </html>
-
-
-
