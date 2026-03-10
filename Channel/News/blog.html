@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Calendario de Noticias</title>
-    <meta name="description" content="Calendario de noticias - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - News</title>
+    <meta name="description" content="Noticias - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         .ticker-wrapper {
@@ -117,7 +117,7 @@
             flex: 1 0 auto; 
         }
         
-        /* Estilos del calendario */
+       
         .calendar-section {
             margin-bottom: 1.5rem;
             padding: 1rem;
@@ -257,7 +257,7 @@
             100% { opacity: 1; transform: scale(1); }
         }
         
-        /* Estilos del visor de noticias */
+        
         .news-viewer {
             padding: 1rem;
             background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
@@ -390,7 +390,7 @@
             margin-top: auto; 
         }
         
-        /* Media queries mejoradas */
+      
         @media (min-width: 480px) {
             header h1 { font-size: 1.5rem; }
             header img { max-width: 60px; }
@@ -415,7 +415,7 @@
             .featured-text { font-size: 1rem; max-height: 200px; }
         }
         
-        /* Ajustes para pantallas muy pequeñas */
+        
         @media (max-width: 360px) {
             header h1 { font-size: 1.1rem; }
             header img { max-width: 40px; }
@@ -481,16 +481,7 @@
             </div>
         </div>
         
-        <div class="news-content" id="newsContent">
-            <article class="featured-post">
-                <h2 class="featured-title">Todos Los Recursos Se Subiran Al Sitio Web</h2>
-                <img class="featured-image" src="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg" alt="Recursos">
-                <p class="featured-text">
-                    Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram...
-                </p>
-                <div class="featured-category">Categoria: Noticias · 15 Mar 2026</div>
-            </article>
-        </div>
+        <div class="news-content" id="newsContent"></div>
     </div>
 </main>
 
@@ -515,63 +506,61 @@
         typeWriter();
     }
     
-    
     const newsDatabase = [
         {
-            id: 1,
-            date: '2026-03-15',
-            title: 'Todos Los Recursos Se Subiran Al Sitio Web',
-            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg',
-            text: 'Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.',
-            category: 'Noticias'
-        },
-        {
-            id: 2,
+            id: 6,
             date: '2026-03-10',
-            title: 'Ya tienes Disponible Nuestro Chat en Telegram',
-            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album6.jpg',
-            text: 'Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0',
-            category: 'Noticias'
-        },
-        {
-            id: 3,
-            date: '2026-03-05',
-            title: 'Revisa Nuestros Recursos Desde el Sitio Web',
-            image: 'https://github.com/TheOrder403/hackpurgatory/blob/main/Channel/photos/photo_41@14-09-2025_02-42-38_thumb.jpg?raw=true',
-            text: 'Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque.',
-            category: 'Noticias'
-        },
-        {
-            id: 4,
-            date: '2026-02-28',
-            title: 'Alianza de la Unión Federal del Orden',
-            image: 'https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg',
-            text: 'En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua.',
+            title: 'Actualizaciones y Noticias',
+            image: 'https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg',
+            text: 'Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente.',
             category: 'Noticias'
         },
         {
             id: 5,
-            date: '2026-02-20',
+            date: '2026-03-5',
             title: 'Limpieza Total sin Descanso',
             image: 'https://i.ibb.co/wF6rHxVs/defend.jpg',
             text: 'Toma medidas contra aquellos que venden y promueven la inestabilidad dentro del país, estafan y mienten o promueven contenido explicito. hoy La Unidad de HackPurgatory tomara cartas en el asunto respecto a estos temas ilegales y desenmascarara para despues reportar a las autoridades. Cerraremos canales y llevaremos a los propietarios a las autoridades exponiéndolos de la misma forma. Queremos asegurarnos de que todo esté tipo de cosas no sé repitan y para eso tú puedes reportar si crees haber visto alguna de estas cosas.',
             category: 'Noticias'
         },
         {
-            id: 6,
+            id: 4,
+            date: '2026-03-04',
+            title: 'Alianza de la Unión Federal del Orden',
+            image: 'https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg',
+            text: 'En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua.',
+            category: 'Noticias'
+        },
+        {
+            id: 3,
+            date: '2026-02-28',
+            title: 'Revisa Nuestros Recursos Desde el Sitio Web',
+            image: 'https://github.com/TheOrder403/hackpurgatory/blob/main/Channel/photos/photo_41@14-09-2025_02-42-38_thumb.jpg?raw=true',
+            text: 'Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque.',
+            category: 'Noticias'
+        },
+        {
+            id: 2,
+            date: '2026-02-20',
+            title: 'Ya tienes Disponible Nuestro Chat en Telegram',
+            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album6.jpg',
+            text: 'Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0',
+            category: 'Noticias'
+        },
+        {
+            id: 1,
             date: '2026-02-15',
-            title: 'Actualizaciones y Noticias',
-            image: 'https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg',
-            text: 'Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente.',
+            title: 'Todos Los Recursos Se Subiran Al Sitio Web',
+            image: 'https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/album2.jpg',
+            text: 'Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.',
             category: 'Noticias'
         }
     ];
     
-        let currentDate = new Date(2026, 2, 15);
+    let currentDate = new Date(2026, 2, 15);
     let currentNewsIndex = 0;
     let newsByDate = {};
     
-        newsDatabase.sort((a, b) => new Date(b.date) - new Date(a.date));
     newsDatabase.forEach((news, index) => {
         newsByDate[news.date] = news;
     });
@@ -589,19 +578,16 @@
         let startDay = firstDay.getDay();
         const totalDays = lastDay.getDate();
         
-        
         let startOffset = startDay === 0 ? 6 : startDay - 1;
         
         const calendarGrid = document.getElementById('calendarGrid');
         calendarGrid.innerHTML = '';
-        
         
         for (let i = 0; i < startOffset; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
             calendarGrid.appendChild(emptyDay);
         }
-        
         
         for (let day = 1; day <= totalDays; day++) {
             const dayCell = document.createElement('div');
