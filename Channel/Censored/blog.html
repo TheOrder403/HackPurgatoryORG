@@ -4,10 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Censored</title>
-    <meta name="description" content="Mapa de censuras - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <meta name="description" content="Censored - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
+        .ticker-wrapper {
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding: 8px 0;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,255,204,0.3);
+        }
+        .ticker-wrapper::before,
+        .ticker-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #000, transparent);
+        }
+        .ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #000, transparent);
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerMove 20s linear infinite;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff;
+            padding-left: 100%;
+        }
+        .ticker span {
+            display: inline-block;
+            padding-right: 50px;
+            color: #00ffcc;
+            text-shadow: 0 0 8px rgba(0,255,204,0.8);
+        }
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }
         body { display: flex; flex-direction: column; }
@@ -47,6 +96,12 @@
             font-size: 1rem; 
             color: #ddd; 
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
+        }
+        
+        nav { 
+            background-color: rgba(0,0,0,0.5); 
+            position: relative; 
+            width: 100%; 
         }
         
         main { 
@@ -353,9 +408,18 @@
     <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
     <div class="header-text">
         <h1 id="typing-title"></h1>
-        <p>Mapa de Censuras Global</p>
+        <p>Censuras Globales</p>
     </div>
 </header>
+
+<nav>
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>ᛟ Lucha: Mapa global de nuestras operaciones disponibles donde hemos eliminado contenido ilegal y hemos censurado.</span>
+            <span>ᛉ Elimina: Reporta a La Unidad y avisa de contenido sospechoso o que pueda infrigir las normativas de nuestra comunidad..</span>
+        </div>
+    </div>
+</nav>
 
 <main>
     <div class="map-section">
