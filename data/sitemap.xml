@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hackpurgatory.org/</loc>
-    <lastmod>2026-02-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/Channel/messages.html</loc>
-    <lastmod>2026-02-09</lastmod>
+    <loc>https://hackpurgatory.org/tools/tools.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/Exposed/Exposed.html</loc>
-    <lastmod>2026-02-09</lastmod>
+    <loc>https://hackpurgatory.org/Channel/Tools.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hackpurgatory.org/Channel/News/blog.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hackpurgatory.org/Channel/Censored/blog.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
