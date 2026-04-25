@@ -29,7 +29,7 @@
   "description": "Comunidad de ciberseguridad, educación abierta y lucha contra estafas en internet.",
   "sameAs": [
     "https://t.me/HackPurgatory",
-    "https://discord.gg/xhKHkCW3YG"
+    "https://discord.gg/8TxjGVHaf"
   ]
 }
 </script>
@@ -303,6 +303,132 @@
       100% {transform: translateX(calc(-250px * 6 - 1.5rem * 6));}
     }
   }
+
+  
+  .urgent-push-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .urgent-push-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .urgent-push-card {
+    max-width: 500px;
+    width: 90%;
+    background: linear-gradient(135deg, #0a0f1a, #0c0e1a);
+    border-radius: 28px;
+    border: 1px solid #ff4444;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,68,68,0.3);
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  .urgent-push-overlay.show .urgent-push-card {
+    transform: scale(1);
+  }
+  .push-header-urgent {
+    background: #cc2200;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+  }
+  .push-badge {
+    background: #ffcc00;
+    color: #000;
+    border-radius: 30px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .push-header-urgent h3 {
+    flex: 1;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .close-push-x {
+    background: rgba(0,0,0,0.3);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .close-push-x:hover {
+    background: rgba(0,0,0,0.7);
+    transform: scale(1.05);
+  }
+  .push-body-urgent {
+    padding: 1.8rem;
+    color: #eee;
+  }
+  .push-title-urgent {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #ff8866;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .push-message {
+    line-height: 1.5;
+    margin: 15px 0 20px;
+  }
+  .push-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .push-btn-dismiss {
+    background: #2a2a2a;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .push-btn-dismiss:hover {
+    background: #444;
+  }
+  .push-btn-action {
+    background: #cc2200;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .push-btn-action:hover {
+    background: #ff3311;
+    transform: scale(0.97);
+  }
 </style>
 </head>
 <body>
@@ -312,6 +438,31 @@
   <div class="loader-bar"><div class="progress"></div></div>
 </div>
 
+
+<div id="urgentPush" class="urgent-push-overlay">
+  <div class="urgent-push-card">
+    <div class="push-header-urgent">
+      <div class="push-badge">⚠️ URGENTE</div>
+      <h3></h3>
+      <button class="close-push-x" id="closePushUrgent">✕</button>
+    </div>
+    <div class="push-body-urgent">
+      <div class="push-title-urgent">
+        <span></span> ATENCION NAVEGANTE
+      </div>
+      <div class="push-message">
+        <strong>Aviso para visitantes o navegantes</strong> somos una comunidad colaborativa y de apoyo de recursos gratuitos. 
+        Recuerda que <strong>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</strong> no pedira dinero, tu informacion o cualquier tipo de acto que pueda ponerte en riesgo. 
+        Nos dedicamos a cazar estafadores, perversos o toxicos dentro de internet para crear un orden donde podamos respetarnos y ayudarnos sin toxicidad. 
+        Nuestros endpoints son automatizaciones legales por scrapping creadas con el objetivo de hacer consultas dedicadas en OSINT.
+	Nuestros recursos son gratuitos y para todo el mundo no vendemos ni mucho menos cometemos actos ilicitos dentro de internet.
+      </div>
+      <div class="push-buttons">
+        <button class="push-btn-dismiss" id="dismissPushUrgent">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="floating-notification">
   <a href="https://t.me/HackPurgatory" target="_blank">Join Telegram!</a>
@@ -426,7 +577,7 @@
         </svg>
         Telegram
       </a>
-      <a href="https://discord.gg/xhKHkCW3YG" target="_blank">
+      <a href="https://discord.gg/8TxjGVHaf" target="_blank">
         <svg class="icon-svg" viewBox="0 0 24 24">
           <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.872-1.295 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128c.125-.094.25-.188.372-.284a.076.076 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.076.076 0 0 1 .078.01c.12.096.245.19.37.284a.077.077 0 0 1-.006.127a12.3 12.3 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.77 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
@@ -481,9 +632,9 @@
   </section>
 
   <div class="stats" id="stats">
-    <div class="stat"><h3 class="counter" data-target="182">0</h3><p>Grupos/Canales Cerrados</p></div>
-    <div class="stat"><h3 class="counter" data-target="74">0</h3><p>Personas Expuestas</p></div>
-    <div class="stat"><h3 class="counter" data-target="69">0</h3><p>Webs Eliminadas</p></div>
+    <div class="stat"><h3 class="counter" data-target="268">0</h3><p>Grupos/Canales Cerrados</p></div>
+    <div class="stat"><h3 class="counter" data-target="143">0</h3><p>Personas Expuestas</p></div>
+    <div class="stat"><h3 class="counter" data-target="102">0</h3><p>Webs Eliminadas</p></div>
   </div>
 
 
@@ -563,8 +714,10 @@
   const guestAvatar=document.getElementById('guest-avatar');
   const guestName=document.getElementById('guest-name');
   const guestMenu=document.getElementById('guest-menu');
-  [guestAvatar,guestName].forEach(el=>el.addEventListener('click',()=>{guestMenu.style.display=guestMenu.style.display==='block'?'none':'block';}));
-  window.addEventListener('click',function(e){if(!guestAvatar.contains(e.target)&&!guestName.contains(e.target)&&!guestMenu.contains(e.target)){guestMenu.style.display='none';}});
+  if(guestAvatar && guestName && guestMenu) {
+    [guestAvatar,guestName].forEach(el=>el.addEventListener('click',()=>{guestMenu.style.display=guestMenu.style.display==='block'?'none':'block';}));
+    window.addEventListener('click',function(e){if(!guestAvatar.contains(e.target)&&!guestName.contains(e.target)&&!guestMenu.contains(e.target)){guestMenu.style.display='none';}});
+  }
 
  
   let galleryPaused = false;
@@ -598,6 +751,51 @@
     if (!galleryPaused) resumeGallery();
   });
 
+  
+  const pushOverlay = document.getElementById('urgentPush');
+  const closePushBtn = document.getElementById('closePushUrgent');
+  const dismissPushBtn = document.getElementById('dismissPushUrgent');
+  const moreInfoBtn = document.getElementById('moreInfoPush');
+
+  function showUrgentPush() {
+    if (pushOverlay) {
+      pushOverlay.classList.add('show');
+    }
+  }
+
+  function hideUrgentPush() {
+    if (pushOverlay) {
+      pushOverlay.classList.remove('show');
+    }
+  }
+
+  
+  if (closePushBtn) closePushBtn.addEventListener('click', hideUrgentPush);
+  if (dismissPushBtn) dismissPushBtn.addEventListener('click', hideUrgentPush);
+  
+  
+  if (moreInfoBtn) {
+    moreInfoBtn.addEventListener('click', function() {
+      alert(".");
+    });
+  }
+
+  
+  const preloaderCheck = setInterval(function() {
+    const preloaderDiv = document.getElementById('preloader');
+    if (preloaderDiv && (preloaderDiv.style.opacity === '0' || window.getComputedStyle(preloaderDiv).opacity === '0') && 
+        preloaderDiv.style.visibility === 'hidden') {
+      setTimeout(showUrgentPush, 200);
+      clearInterval(preloaderCheck);
+    }
+  }, 200);
+
+  
+  setTimeout(function() {
+    if (pushOverlay && !pushOverlay.classList.contains('show')) {
+      showUrgentPush();
+    }
+  }, 11000);
 </script>
 </body>
 </html>
