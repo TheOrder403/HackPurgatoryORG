@@ -54,6 +54,6 @@ Si quieres aportar, únete a nuestra comunidad:
  **𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™**  
  *Por un internet más libre, seguro y ético.*  
 
-© 2025 — Todos los derechos reservados.
+© 2026 — Todos los derechos reservados.
 
 </div>
