@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - EndPoints</title>
     <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
@@ -48,10 +48,6 @@
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
             min-height: 2.5rem;
-        }
-        
-        .typing-container {
-            display: inline-block;
         }
         
         .typing-cursor {
@@ -138,19 +134,6 @@
             border-radius: 15px;
         }
         
-        section {
-            margin-bottom: 3rem;
-        }
-        
-        section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #ff3333;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            color: #ff3333;
-        }
-        
         .tools-section {
             margin: 3rem 0;
             padding: 2rem;
@@ -167,29 +150,39 @@
             text-shadow: 0 0 10px rgba(255,51,51,0.3);
         }
         
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .tools-section > p {
+            margin-bottom: 1rem;
         }
         
-        .tool-card {
+       
+        .tools-container {
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        
+        .tool-item {
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 0.8rem 1.2rem;
             transition: all 0.3s;
-            text-align: center;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             position: relative;
             overflow: hidden;
+            margin-bottom: 0.8rem;
         }
         
-        .tool-card::before {
+        .tool-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tool-item::before {
             content: '';
             position: absolute;
             top: 0;
@@ -200,57 +193,80 @@
             transition: left 0.7s;
         }
         
-        .tool-card:hover::before {
+        
+        .tool-item.available:hover::before {
             left: 100%;
         }
         
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255,51,51,0.3);
+        .tool-item.available:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(255,51,51,0.3);
             background: rgba(255,51,51,0.15);
             border-color: #fff;
         }
         
+        
+        .tool-item.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        
+        .tool-item.unavailable {
+            cursor: not-allowed;
+        }
+        
+        
+        .tool-item.unavailable {
+            pointer-events: none;
+        }
+        
         .tool-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
-            padding: 10px;
+            padding: 8px;
         }
         
         .tool-icon svg {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             fill: #ff3333;
         }
         
-        .tool-card h4 {
+        .tool-info {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .tool-info h4 {
             color: #ff3333;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
             text-shadow: 0 0 5px rgba(255,51,51,0.2);
         }
         
-        .tool-card p {
+        .tool-info p {
             color: #ddd;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            line-height: 1.3;
         }
         
         .tool-status {
+            flex-shrink: 0;
             display: inline-block;
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            margin-top: 0.5rem;
+            white-space: nowrap;
         }
         
         .status-available {
@@ -259,17 +275,10 @@
             border: 1px solid #ff6666;
         }
         
-        .status-loading {
-            background: rgba(255,255,0,0.2);
-            color: #ffff00;
-            border: 1px solid #ffff00;
-        }
-        
         .status-unavailable {
             background: rgba(102,0,0,0.5);
             color: #990000;
             border: 1px solid #660000;
-            opacity: 0.7;
         }
         
         .loading-container {
@@ -341,22 +350,15 @@
             font-size: 0.9rem;
         }
         
+        
         @media (max-width: 768px) {
-            
-            html, body {
-                overflow-x: hidden;
-                width: 100%;
-                position: relative;
-            }
-           
             main {
                 padding: 1rem;
                 margin: 1rem auto;
                 width: calc(100% - 1rem);
                 max-width: 100%;
-                overflow: hidden;
             }
-           
+            
             .menu-toggle {
                 display: flex;
                 position: absolute;
@@ -397,16 +399,13 @@
                 padding: 15px 10px;
                 font-size: 1rem;
                 width: 100%;
-                box-sizing: border-box;
             }
-           
+            
             header {
                 justify-content: center;
                 text-align: center;
                 padding: 70px 15px 15px;
                 flex-direction: column;
-                width: 100%;
-                box-sizing: border-box;
             }
             
             header img {
@@ -416,129 +415,82 @@
             
             header h1 {
                 font-size: 1.4rem;
-                margin-bottom: 0.3rem;
-                word-wrap: break-word;
-                padding: 0 10px;
-            }
-            
-            header p {
-                font-size: 0.9rem;
-                padding: 0 10px;
-            }
-           
-            section h2 {
-                font-size: 1.3rem;
-                display: block;
-                text-align: center;
-                margin: 0 auto 1rem;
-                padding: 0 15px;
-                word-wrap: break-word;
-                width: 100%;
-                box-sizing: border-box;
             }
             
             .tools-section {
-                padding: 1.5rem;
-                margin: 2rem 0;
-                width: 100%;
-                box-sizing: border-box;
+                padding: 1rem;
             }
             
             .tools-section h3 {
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
+                font-size: 1.3rem;
             }
             
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .tool-item {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
             
-            .tool-card {
-                padding: 1rem;
-                min-height: 180px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+            .tool-icon {
+                width: 40px;
+                height: 40px;
             }
             
-            .tool-card h4 {
-                font-size: 1.1rem;
+            .tool-icon svg {
+                width: 20px;
+                height: 20px;
             }
             
-            .tool-card p {
-                font-size: 0.9rem;
+            .tool-info {
+                flex: 1;
+            }
+            
+            .tool-info h4 {
+                font-size: 0.95rem;
+            }
+            
+            .tool-info p {
+                font-size: 0.7rem;
+            }
+            
+            .tool-status {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.6rem;
+                white-space: nowrap;
             }
             
             .contact-buttons {
                 flex-direction: column;
-                width: 100%;
-                padding: 0;
-                box-sizing: border-box;
             }
             
             .contact-buttons a {
                 width: 100%;
-                text-align: center;
-                padding: 1rem;
-                margin-bottom: 0.5rem;
-                box-sizing: border-box;
-                display: flex;
                 justify-content: center;
-            }
-           
-            .contact-buttons a,
-            nav ul li a,
-            .tool-card {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                box-sizing: border-box;
-            }
-           
-            * {
-                max-width: 100%;
-            }
-           
-            section {
-                margin-bottom: 2rem;
-                padding: 0 0.5rem;
-                width: 100%;
-                box-sizing: border-box;
             }
         }
-       
+        
+        @media (max-width: 550px) {
+            .tool-item {
+                flex-wrap: wrap;
+            }
+            
+            .tool-status {
+                margin-left: auto;
+            }
+        }
+        
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.2rem;
-                padding: 0 5px;
             }
             
-            .tools-section {
-                padding: 1rem;
+            .tool-info h4 {
+                font-size: 0.85rem;
             }
             
-            .tools-section h3 {
-                font-size: 1.2rem;
-            }
-            
-            .tool-icon {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .tool-icon svg {
-                width: 25px;
-                height: 25px;
-            }
-          
-            p, h1, h2, h3, h4, span, a, div {
-                overflow-wrap: break-word !important;
-                word-wrap: break-word !important;
-                word-break: break-word !important;
-                hyphens: auto !important;
+            .tool-info p {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -560,14 +512,14 @@
         <div></div>
     </div>
     <ul id="menu">
-	  <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
-	  <li><a href="https://hackpurgatory.org">Información</a></li>
-  	  <li><a href="https://hackpurgatory.org">Canales</a></li>
-  	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
-  	  <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
-  	  <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
-  	  <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
-	  <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
+        <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
+        <li><a href="https://hackpurgatory.org">Información</a></li>
+        <li><a href="https://hackpurgatory.org">Canales</a></li>
+        <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+        <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
+        <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
+        <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
+        <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
     </ul>
 </nav>
 
@@ -582,9 +534,7 @@
                 <p>Actualizando...</p>
             </div>
             
-            <div id="toolsGrid" class="tools-grid" style="display: none;">
-               
-            </div>
+            <div id="toolsContainer" class="tools-container" style="display: none;"></div>
             
             <div id="noTools" style="display: none; text-align: center; padding: 2rem;">
                 <p>No se encontraron herramientas disponibles.</p>
@@ -632,328 +582,118 @@
     }
     
     const availableTools = [
-        {
-            name: "Email SEON",
-            description: "Busqueda en mas de 600 sitios para posibles registros por email",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "whereisemail.html",
-            status: "loading"
-        },
-        {
-            name: "Phone SEON",
-            description: "Busqueda en mas de 50 sitios para posibles registros por número de teléfono",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>`,
-            filename: "whereisphone.html",
-            status: "loading"
-        },
-        {
-            name: "Breach/Logs Search",
-            description: "Busqueda de informacion en base a brechas o logs ",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>`,
-            filename: "breach.html",
-            status: "loading"
-        },
-		{
-            name: "Colombia Phone",
-            description: "Busqueda de informacion en base a números Colombianos registrados en Nequi ",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>`,
-            filename: "phonecolombia.html",
-            status: "loading"
-        },
-	{
-            name: "Cuba Phone",
-            description: "Busqueda de informacion en base a números cubanos ",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>`,
-            filename: "cubaphone.html",
-            status: "loading"
-        },
-        {
-            name: "CallApp",
-            description: "Busqueda de información de números usando CallApp API",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/>
-            </svg>`,
-            filename: "callapp.html",
-            status: "loading"
-        },
-		{
-            name: "Colombia Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "colombiaid.html",
-            status: "loading"
-        },
-		{
-            name: "Chile RUT",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "chileid.html",
-            status: "loading"
-        },
-		{
-            name: "Peru DNI",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "peruid.html",
-            status: "loading"
-        },
-		{
-            name: "Venezuela ID",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "venezuelaid.html",
-            status: "loading"
-        },
-		{
-            name: "Argentina DNI",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "argentinaid.html",
-            status: "loading"
-        },
-		{
-            name: "Paraguay ID",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "paraguayid.html",
-            status: "loading"
-        },
-		{
-            name: "Ecuador Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "ecuadorid.html",
-            status: "loading"
-        },
-		{
-            name: "México CURP",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "mexicoid.html",
-            status: "loading"
-        },
-		{
-            name: "Republica Dominicana Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "dominicanid.html",
-            status: "loading"
-        },
-		{
-            name: "Bolivia Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "boliviaid.html",
-            status: "loading"
-        },
-        {
-            name: "Truecaller",
-            description: "Busqueda de información de números usando Truecaller API",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-            </svg>`,
-            filename: "truecaller.html",
-            status: "loading"
-        },
-		{
-            name: "EyeCon",
-            description: "Busqueda de información de números usando Truecaller API",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-            </svg>`,
-            filename: "eyecon.html",
-            status: "loading"
-        },
-		{
-            name: "ViewCaller",
-            description: "Busqueda de información de números usando Truecaller API",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-            </svg>`,
-            filename: "viewcaller.html",
-            status: "loading"
-        },
-		{
-            name: "Uruguay Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "uruguayid.html",
-            status: "loading"
-        },
-		{
-            name: "Nicaragua Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "nicaraguaid.html",
-            status: "loading"
-        },
-		{
-            name: "Honduras Cedula",
-            description: "Busqueda de informacion de una identificacion",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "hondurasid.html",
-            status: "loading"
-        },
-		{
-            name: "TeleFunStat API",
-            description: "Extraccion de Informacion basica de una cuenta de telegram",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "tele-funstat.html",
-            status: "loading"
-        },
-		{
-            name: "TeleToPhone API",
-            description: "Extraccion de Numero de telefono de una cuenta de Telegram",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "eyeofgod.html",
-            status: "loading"
-        },
-		{
-            name: "WhatsDevice API",
-            description: "Extraccion de dispositivos conectados en un numero de WhatsApp",
-            icon: `<svg viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>`,
-            filename: "wadevices.html",
-            status: "loading"
-        }
+        { name: "Email SEON", description: "Busqueda en mas de 600 sitios para posibles registros por email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "whereisemail.html" },
+        { name: "Phone SEON", description: "Busqueda en mas de 50 sitios para posibles registros por número de teléfono", icon: `<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`, filename: "whereisphone.html" },
+        { name: "Breach/Logs Search", description: "Busqueda de informacion en base a brechas o logs", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "breach.html" },
+        { name: "Colombia Phone", description: "Busqueda de informacion en base a números Colombianos registrados en Nequi", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "phonecolombia.html" },
+        { name: "Cuba Phone", description: "Busqueda de informacion en base a números cubanos", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "cubaphone.html" },
+        { name: "CallApp", description: "Busqueda de información de números usando CallApp API", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>`, filename: "callapp.html" },
+        { name: "Colombia Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "colombiaid.html" },
+        { name: "Chile RUT", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "chileid.html" },
+        { name: "Peru DNI", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "peruid.html" },
+        { name: "Venezuela ID", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "venezuelaid.html" },
+        { name: "Argentina DNI", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "argentinaid.html" },
+        { name: "Paraguay ID", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "paraguayid.html" },
+        { name: "Ecuador Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "ecuadorid.html" },
+        { name: "México CURP", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "mexicoid.html" },
+        { name: "Republica Dominicana Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "dominicanid.html" },
+        { name: "Bolivia Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "boliviaid.html" },
+        { name: "Truecaller", description: "Busqueda de información de números usando Truecaller API", icon: `<svg viewBox="0 0 24 24"><path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>`, filename: "truecaller.html" },
+        { name: "EyeCon", description: "Busqueda de información de números usando Truecaller API", icon: `<svg viewBox="0 0 24 24"><path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>`, filename: "eyecon.html" },
+        { name: "ViewCaller", description: "Busqueda de información de números usando Truecaller API", icon: `<svg viewBox="0 0 24 24"><path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>`, filename: "viewcaller.html" },
+        { name: "Uruguay Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "uruguayid.html" },
+        { name: "Nicaragua Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "nicaraguaid.html" },
+        { name: "Honduras Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "hondurasid.html" },
+        { name: "TeleFunStat API", description: "Extraccion de Informacion basica de una cuenta de telegram", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "tele-funstat.html" },
+        { name: "TeleToPhone API", description: "Extraccion de Numero de telefono de una cuenta de Telegram", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "eyeofgod.html" },
+        { name: "WhatsDevice API", description: "Extraccion de dispositivos conectados en un numero de WhatsApp", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "wadevices.html" }
     ];
     
     function checkToolAvailability(tool) {
         return new Promise((resolve) => {
-            const testUrl = `./${tool.filename}?test=1`;
+            const testUrl = `./${tool.filename}?test=${Date.now()}`;
             const xhr = new XMLHttpRequest();
-            
-            xhr.timeout = 3000;
-            
+            xhr.timeout = 3500;
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
-                    if (xhr.status === 200 || xhr.status === 0) {
+                    if (xhr.status === 200) {
                         resolve(true);
                     } else {
                         resolve(false);
                     }
                 }
             };
-            
-            xhr.onerror = function() {
-                resolve(false);
-            };
-            
-            xhr.ontimeout = function() {
-                resolve(false);
-            };
-            
+            xhr.onerror = function() { resolve(false); };
+            xhr.ontimeout = function() { resolve(false); };
             try {
                 xhr.open('HEAD', testUrl, true);
                 xhr.send();
-            } catch (e) {
-                resolve(false);
-            }
+            } catch (e) { resolve(false); }
         });
     }
     
     async function detectTools() {
         const loadingElement = document.getElementById('loadingTools');
-        const toolsGrid = document.getElementById('toolsGrid');
+        const toolsContainer = document.getElementById('toolsContainer');
         const noToolsElement = document.getElementById('noTools');
         
         let availableCount = 0;
         
         for (let tool of availableTools) {
             const isAvailable = await checkToolAvailability(tool);
-            tool.status = isAvailable ? 'available' : 'unavailable';
             tool.available = isAvailable;
-            
-            if (isAvailable) {
-                availableCount++;
-            }
+            if (isAvailable) availableCount++;
         }
         
         loadingElement.style.display = 'none';
         
-        if (availableCount > 0) {
-            toolsGrid.style.display = 'grid';
-            renderTools();
-        } else {
+        
+        toolsContainer.style.display = 'block';
+        renderTools();
+        
+        if (availableCount === 0) {
+            
             noToolsElement.style.display = 'block';
         }
     }
     
     function renderTools() {
-        const toolsGrid = document.getElementById('toolsGrid');
-        toolsGrid.innerHTML = '';
+        const toolsContainer = document.getElementById('toolsContainer');
+        toolsContainer.innerHTML = '';
         
         availableTools.forEach(tool => {
-            const toolCard = document.createElement(tool.available ? 'a' : 'div');
+            
+            const item = document.createElement(tool.available ? 'a' : 'div');
+            item.className = 'tool-item';
+            item.classList.add(tool.available ? 'available' : 'unavailable');
             
             if (tool.available) {
-                toolCard.href = `./${tool.filename}`;
-                toolCard.className = 'tool-card';
-            } else {
-                toolCard.className = 'tool-card';
-                toolCard.style.cursor = 'not-allowed';
-                toolCard.style.opacity = '0.7';
+                item.href = `./${tool.filename}`;
             }
             
-            toolCard.innerHTML = `
+            item.innerHTML = `
                 <div class="tool-icon">${tool.icon}</div>
-                <h4>${tool.name}</h4>
-                <p>${tool.description}</p>
-                <div class="tool-status status-${tool.status}">
-                    ${tool.status === 'available' ? 'Disponible' : 
-                      tool.status === 'loading' ? 'Verificando...' : 'No disponible'}
+                <div class="tool-info">
+                    <h4>${tool.name.replace(/[&<>]/g, function(m) {
+                        if (m === '&') return '&amp;';
+                        if (m === '<') return '&lt;';
+                        if (m === '>') return '&gt;';
+                        return m;
+                    })}</h4>
+                    <p>${tool.description.replace(/[&<>]/g, function(m) {
+                        if (m === '&') return '&amp;';
+                        if (m === '<') return '&lt;';
+                        if (m === '>') return '&gt;';
+                        return m;
+                    })}</p>
+                </div>
+                <div class="tool-status status-${tool.available ? 'available' : 'unavailable'}">
+                    ${tool.available ? 'Disponible' : 'No disponible'}
                 </div>
             `;
             
-            if (!tool.available) {
-                toolCard.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert(`La herramienta "${tool.name}" no está disponible actualmente.`);
-                });
-            }
             
-            toolsGrid.appendChild(toolCard);
+            toolsContainer.appendChild(item);
         });
     }
     
@@ -961,23 +701,15 @@
         setTimeout(startTypingAnimation, 300);
         detectTools();
     });
- 
+    
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('show');
-        toggle.classList.toggle('active');
-    });
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+            toggle.classList.toggle('active');
+        });
+    }
 </script>
-
 </body>
-
 </html>
-
-
-
-
-
-
-
-
