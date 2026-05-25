@@ -39,7 +39,8 @@ Conéctate con nosotros en nuestras plataformas principales:
 
 [![Telegram](https://img.shields.io/badge/Telegram-00AFF0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/HackPurgatory)  
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xhKHkCW3YG)  
-
+[![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/HackPurgatory)  
+[![Session](https://img.shields.io/badge/Session-3A3A3A?style=for-the-badge&logoColor=white)](#)
 
 ##  Contribuye
 Si quieres aportar, únete a nuestra comunidad:  
