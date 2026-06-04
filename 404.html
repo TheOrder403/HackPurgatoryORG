@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Error 404</title>
+    <meta name="description" content="Error 404 - Página no encontrada - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
+    <style>
+        .ticker-wrapper {
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+            padding: 8px 0;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,255,204,0.3);
+        }
+        .ticker-wrapper::before,
+        .ticker-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #000, transparent);
+        }
+        .ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #000, transparent);
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerMove 15s linear infinite;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #fff;
+            padding-left: 100%;
+        }
+        .ticker span {
+            display: inline-block;
+            padding-right: 30px;
+            color: #00ffcc;
+            text-shadow: 0 0 8px rgba(0,255,204,0.8);
+        }
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }
+        body { display: flex; flex-direction: column; }
+        
+        header { 
+            background-color: rgba(0,0,0,0.5); 
+            padding: 0.8rem 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.8rem; 
+            flex-wrap: wrap; 
+            border-bottom: 2px solid #fff; 
+            justify-content: center; 
+            position: relative; 
+            width: 100%; 
+        }
+        header img { 
+            max-width: 50px; 
+            height: auto; 
+        }
+        .header-text { 
+            flex: 1; 
+            min-width: 200px; 
+            text-align: center;
+        }
+        header h1 { 
+            font-size: 1.3rem; 
+            margin-bottom: 0.2rem; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7); 
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .typing-cursor { 
+            display: inline-block; 
+            color: #ff3333; 
+            animation: blink 1s infinite; 
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        header p { 
+            font-size: 0.8rem; 
+            color: #ddd; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
+        }
+        
+        nav { 
+            background-color: rgba(0,0,0,0.5); 
+            position: relative; 
+            width: 100%; 
+        }
+        
+        main { 
+            padding: 2rem 1rem; 
+            max-width: 800px; 
+            width: calc(100% - 2rem);
+            margin: 2rem auto; 
+            background-color: rgba(0,0,0,0.65); 
+            border-radius: 12px; 
+            text-align: center; 
+            flex: 1 0 auto; 
+            border: 1px solid #ff3333;
+            box-shadow: 0 5px 15px rgba(255,51,51,0.2);
+        }
+        
+        .error-code {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #ff3333;
+            text-shadow: 0 0 15px rgba(255,51,51,0.5);
+            letter-spacing: 5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .error-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        .error-title span {
+            color: #ff3333;
+        }
+        
+        .error-divider {
+            width: 80px;
+            height: 2px;
+            background: #ff3333;
+            margin: 0.8rem auto;
+        }
+        
+        .error-message {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+        
+        .home-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 2px solid #ff3333;
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        .home-btn:hover {
+            background: #ff3333;
+            color: #000;
+            transform: scale(1.05);
+        }
+        
+        footer { 
+            text-align: center; 
+            padding: 1rem; 
+            border-top: 1px solid #fff; 
+            color: #ccc; 
+            font-size: 0.8rem; 
+            width: 100%; 
+            margin-top: auto; 
+        }
+        
+        /* MÓVIL PEQUEÑO */
+        @media (max-width: 480px) {
+            main {
+                padding: 1.5rem 0.8rem;
+                width: calc(100% - 1.5rem);
+                margin: 1rem auto;
+            }
+            .error-code { 
+                font-size: 3.5rem; 
+                letter-spacing: 3px;
+            }
+            .error-title { 
+                font-size: 1.2rem; 
+            }
+            .error-divider {
+                width: 60px;
+                margin: 0.5rem auto;
+            }
+            .home-btn { 
+                padding: 0.6rem 1.3rem; 
+                font-size: 0.85rem; 
+            }
+            header h1 { 
+                font-size: 1.1rem; 
+            }
+            header img { 
+                max-width: 40px; 
+            }
+            .ticker span {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* MÓVIL MEDIANO */
+        @media (min-width: 481px) and (max-width: 767px) {
+            main {
+                width: calc(100% - 2rem);
+                margin: 1.5rem auto;
+            }
+            .error-code { 
+                font-size: 4.5rem; 
+            }
+            .error-title { 
+                font-size: 1.4rem; 
+            }
+        }
+        
+        /* TABLET Y PC */
+        @media (min-width: 768px) {
+            header { padding: 1rem 2rem; justify-content: space-between; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            header img { max-width: 70px; }
+            .error-code { font-size: 7rem; }
+            .error-title { font-size: 2rem; }
+            .error-message { font-size: 1.1rem; }
+            .home-btn { padding: 0.8rem 2rem; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
+    <div class="header-text">
+        <h1 id="typing-title"></h1>
+        <p>Error 404</p>
+    </div>
+</header>
+
+<nav>
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>⚠ ERROR 404 - Vuelve nuevamente atras ⚠</span>
+            <span>⚠ ERROR 404 - Vuelve nuevamente atras ⚠</span>
+            <span>⚠ ERROR 404 - Vuelve nuevamente atras ⚠</span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="error-code">404</div>
+    <div class="error-divider"></div>
+    
+    <div class="error-message">
+
+    </div>
+    <a href="https://hackpurgatory.org" class="home-btn">← VOLVER AL INICIO</a>
+</main>
+
+<footer>
+    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
+</footer>
+
+<script>
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        typeWriter();
+    }
+    
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+    });
+</script>
+
+</body>
+</html>
