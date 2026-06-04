@@ -108,7 +108,7 @@
         
         main { 
             padding: 1rem; 
-            max-width: 1200px; 
+            max-width: 1400px; 
             width: 100%; 
             margin: 1rem auto; 
             background-color: rgba(0,0,0,0.65); 
@@ -117,7 +117,7 @@
             flex: 1 0 auto; 
         }
         
-       
+        /* CALENDARIO MEJORADO PARA PC */
         .calendar-section {
             margin-bottom: 1.5rem;
             padding: 1rem;
@@ -125,6 +125,9 @@
             border: 1px solid #ff3333;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(255,51,51,0.2);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .calendar-header {
@@ -133,6 +136,8 @@
             align-items: center;
             margin-bottom: 1rem;
             padding: 0 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         
         .month-title {
@@ -171,48 +176,49 @@
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            margin-bottom: 5px;
+            gap: 4px;
+            margin-bottom: 8px;
             font-weight: bold;
             color: #ff9999;
             font-size: 0.7rem;
         }
         
         .weekday {
-            padding: 5px 2px;
+            padding: 8px 2px;
             text-align: center;
             background: rgba(255,51,51,0.1);
-            border-radius: 3px;
+            border-radius: 5px;
         }
         
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
+            gap: 4px;
         }
         
         .calendar-day {
-            aspect-ratio: 1;
+            aspect-ratio: 1 / 1;
             background: rgba(0,0,0,0.5);
             border: 1px solid rgba(255,51,51,0.3);
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s;
-            padding: 2px;
-            min-height: 40px;
+            padding: 4px;
+            min-height: 50px;
         }
         
         .calendar-day:hover {
             background: rgba(255,51,51,0.2);
             border-color: #ff3333;
+            transform: scale(1.02);
         }
         
         .calendar-day:active {
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
         
         .calendar-day.empty {
@@ -235,6 +241,7 @@
         .has-post {
             background: rgba(255,51,51,0.2);
             border: 2px solid #ff3333;
+            box-shadow: 0 0 8px rgba(255,51,51,0.3);
         }
         
         .has-post .day-number {
@@ -243,11 +250,11 @@
         }
         
         .post-indicator {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             background: #ff3333;
             border-radius: 50%;
-            margin-top: 2px;
+            margin-top: 3px;
             animation: pulse 1.5s infinite;
         }
         
@@ -257,13 +264,16 @@
             100% { opacity: 1; transform: scale(1); }
         }
         
-        
+        /* NEWS VIEWER MEJORADO */
         .news-viewer {
             padding: 1rem;
             background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
             border: 1px solid #ff3333;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(255,51,51,0.2);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .viewer-header {
@@ -327,7 +337,7 @@
         }
         
         .featured-post {
-            padding: 0.8rem;
+            padding: 1rem;
             background: rgba(0,0,0,0.5);
             border-radius: 10px;
         }
@@ -342,11 +352,13 @@
         
         .featured-image {
             max-width: 100%;
-            max-height: 200px;
+            max-height: 250px;
+            width: auto;
             border-radius: 6px;
             margin: 0.5rem 0;
             border: 2px solid #ff3333;
-            object-fit: cover;
+            object-fit: contain;
+            background: #000;
         }
         
         .featured-text {
@@ -356,13 +368,13 @@
             margin-bottom: 0.8rem;
             text-align: left;
             word-break: break-word;
-            max-height: 150px;
+            max-height: 200px;
             overflow-y: auto;
             padding-right: 5px;
         }
         
         .featured-text::-webkit-scrollbar {
-            width: 3px;
+            width: 4px;
         }
         
         .featured-text::-webkit-scrollbar-track {
@@ -390,39 +402,57 @@
             margin-top: auto; 
         }
         
-      
-        @media (min-width: 480px) {
-            header h1 { font-size: 1.5rem; }
-            header img { max-width: 60px; }
-            .month-title { font-size: 1.5rem; }
-            .weekdays { font-size: 0.8rem; }
-            .day-number { font-size: 1rem; }
-            .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; }
-            .news-nav { justify-content: flex-end; }
-            .news-nav-btn { max-width: none; flex: none; }
-        }
-        
+        /* RESPONSIVE PC */
         @media (min-width: 768px) {
             header { padding: 1rem 2rem; justify-content: space-between; }
             header h1 { font-size: 2rem; }
             header p { font-size: 1rem; }
-            .calendar-section { padding: 1.5rem; }
-            .month-title { font-size: 2rem; }
-            .calendar-day { min-height: 60px; }
-            .day-number { font-size: 1.2rem; }
+            header img { max-width: 70px; }
+            
+            .calendar-section { 
+                padding: 1.5rem; 
+                max-width: 800px;
+            }
+            .month-title { font-size: 1.8rem; }
+            .weekdays { font-size: 0.85rem; gap: 6px; }
+            .weekday { padding: 10px 2px; }
+            .calendar-grid { gap: 6px; }
+            .calendar-day { min-height: 70px; }
+            .day-number { font-size: 1.1rem; }
             .post-indicator { width: 6px; height: 6px; }
-            .featured-title { font-size: 1.5rem; }
-            .featured-text { font-size: 1rem; max-height: 200px; }
+            
+            .news-viewer { max-width: 900px; padding: 1.5rem; }
+            .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; }
+            .news-nav { justify-content: flex-end; }
+            .news-nav-btn { max-width: none; flex: none; padding: 0.6rem 1.5rem; }
+            .featured-title { font-size: 1.4rem; }
+            .featured-text { font-size: 1rem; max-height: 250px; }
+            .featured-image { max-height: 300px; }
         }
         
+        @media (min-width: 1024px) {
+            .calendar-section { max-width: 700px; }
+            .calendar-day { min-height: 80px; }
+            .day-number { font-size: 1.2rem; }
+            .news-viewer { max-width: 800px; }
+        }
+        
+        @media (max-width: 480px) {
+            .calendar-day { min-height: 45px; }
+            .day-number { font-size: 0.8rem; }
+            .weekdays { font-size: 0.6rem; gap: 2px; }
+            .weekday { padding: 5px 1px; }
+            .calendar-grid { gap: 2px; }
+            .featured-image { max-height: 180px; }
+            .featured-text { max-height: 150px; }
+        }
         
         @media (max-width: 360px) {
             header h1 { font-size: 1.1rem; }
             header img { max-width: 40px; }
             .month-title { font-size: 1.1rem; }
-            .weekdays { font-size: 0.6rem; }
-            .day-number { font-size: 0.8rem; }
-            .calendar-day { min-height: 35px; }
+            .calendar-day { min-height: 38px; }
+            .day-number { font-size: 0.7rem; }
             .featured-title { font-size: 1rem; }
             .featured-text { font-size: 0.8rem; max-height: 120px; }
             .news-nav-btn { padding: 0.5rem 0.8rem; font-size: 0.7rem; }
@@ -507,6 +537,15 @@
     }
     
     const newsDatabase = [
+	{
+            id: 16,
+            date: '2026-06-04',
+            title: 'Reformas y Actualizaciones',
+            image: 'https://i.ibb.co/Zp8Dg4RF/photo-2026-06-04-12-39-53.jpg',
+            text: 'Estamos reformando nuestro sitio web para que los navegantes puedan disfrutar de su maxima experiencia sin problema, dentro de las reformas estamos añadiendo nuevas actualizaciones totalmente diferentes. En estas nuevas actualizaciones tenemos pensado añadir varias cosas en nuestro sitio web. Agradecemos todo el apoyo por el cambio que estamos generando y ha futuro lo que podremos seguir cambiando dentro de internet. Tomaremos y expandiremos nuestra comunidad para que las demas puedan seguir nuestras raices.',
+            category: 'Noticias'
+        },
+
         {
             id: 15,
             date: '2026-05-25',
@@ -720,7 +759,7 @@
             newsContent.innerHTML = `
                 <article class="featured-post">
                     <h2 class="featured-title">${news.title}</h2>
-                    <img class="featured-image" src="${news.image}" alt="${news.title}" loading="lazy">
+                    <img class="featured-image" src="${news.image}" alt="${news.title}" loading="lazy" onerror="this.style.display='none'">
                     <p class="featured-text">${news.text}</p>
                     <div class="featured-category">Categoria: ${news.category} · ${formattedDate}</div>
                 </article>
@@ -758,4 +797,3 @@
 
 </body>
 </html>
-
