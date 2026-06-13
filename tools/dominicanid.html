@@ -157,8 +157,8 @@
             </div>
             <div class="info">
                 <p><strong>Uso:</strong> Añade el parámetro ?search=cedula|CIS</p>
-                <p><strong>Formato obligatorio:</strong> Cédula|CIS (ej: 00100088897|003-7102-1972756-3)</p>
-                <p><strong>Ejemplo:</strong> /tools/dominican.html?search=00100088897|003-7102-1972756-3</p>
+                <p><strong>Formato obligatorio:</strong> Cédula|CIS (ej: 00000000000|000-0000-0000000-0)</p>
+                <p><strong>Ejemplo:</strong> /tools/dominican.html?search=00000000000|000-0000-0000000-0</p>
             </div>
         </div>
         
@@ -180,7 +180,7 @@
         "service": "República Dominicana PGR API",
         "version": "1.0",
         "endpoints": [
-            "/cedula?cedula=00100088897&CIS=003-7102-1972756-3"
+            "/cedula?cedula=00000000000&CIS=000-0000-0000000-0"
         ],
         "source": "@RIPNetwork"
     };
@@ -194,7 +194,7 @@
         const trimmedInput = input.trim();
         
         if (trimmedInput === '') {
-            alert('Error: No se ingresó ningún dato.\n\nFormato requerido: CÉDULA|CIS\nEjemplo: 00100088897|003-7102-1972756-3');
+            alert('Error: No se ingresó ningún dato.\n\nFormato requerido: CÉDULA|CIS\nEjemplo: 00000000000|000-0000-0000000-0');
             return false;
         }
         
