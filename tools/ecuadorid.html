@@ -156,9 +156,9 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Añade el parámetro ?search=1712887155 para buscar información</p>
-                <p><strong>Formato:</strong> Cédula Ecuatoriana (10 dígitos, ej: 1712887155, 1234567890)</p>
-                <p><strong>Ejemplo:</strong> /tools/ecuador.html?search=1712887155</p>
+                <p><strong>Uso:</strong> Añade el parámetro ?search=0000000000 para buscar información</p>
+                <p><strong>Formato:</strong> Cédula Ecuatoriana (10 dígitos, ej: 0000000000, 1234567890)</p>
+                <p><strong>Ejemplo:</strong> /tools/ecuador.html?search=0000000000</p>
             </div>
         </div>
         
@@ -179,12 +179,12 @@
         "api": "Consulta Cédula Ecuador",
         "author": "SOURCE",
         "version": "1.0.0",
-        "uso": "/cedula?numero=1712887155 (GET) o POST con JSON",
+        "uso": "/cedula?numero=0000000000 (GET) o POST con JSON",
         "endpoints": [
             "/ - Información",
             "/health - Health check",
-            "/cedula?numero=1712887155 - Consultar por GET",
-            "/cedula - POST con JSON {cedula: '1712887155'}"
+            "/cedula?numero=0000000000 - Consultar por GET",
+            "/cedula - POST con JSON {cedula: '0000000000'}"
         ],
         "status": "online"
     };
