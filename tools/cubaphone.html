@@ -162,9 +162,9 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Añade el parámetro ?search=52734567 para buscar información</p>
-                <p><strong>Cuba:</strong> (ej: 52734567)</p>
-                <p><strong>Ejemplo:</strong> /tools/cubaphone.html?search=52734567</p>
+                <p><strong>Uso:</strong> Añade el parámetro ?search=52111111 para buscar información</p>
+                <p><strong>Cuba:</strong> (ej: 52111111)</p>
+                <p><strong>Ejemplo:</strong> /tools/cubaphone.html?search=52111111</p>
             </div>
         </div>
         
@@ -189,7 +189,7 @@
         "country": "Cuba",
         "endpoint": "/tools/cubaphone.html?search={phone}",
         "example": "https://hackpurgatory.org/tools/cubaphone.html?search=52734567",
-        "valid_examples": ["52734567", "52766547", "52774567"]
+        "valid_examples": ["52111111"]
     };
     
     function getQueryParam(name) {
@@ -210,7 +210,7 @@
         const cleanedPhone = cleanPhoneNumber(phoneInput);
         
         if (!isValidCubaPhone(cleanedPhone)) {
-            alert('Error: Número cubano no válido.\n\nFormato correcto: 8 dígitos\nEjemplo: 52734567\n\nSin espacios, guiones ni paréntesis.');
+            alert('Error: Número cubano no válido.\n\nFormato correcto: 8 dígitos\nEjemplo: 52111111\n\nSin espacios, guiones ni paréntesis.');
             return false;
         }
         
