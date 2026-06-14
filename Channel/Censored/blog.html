@@ -387,6 +387,37 @@
             .censor-link { font-size: 0.7rem; }
             #world-map { height: 200px; }
         }
+        
+        @media (max-width: 360px) {
+            header h1 { font-size: 1.1rem; }
+            header img { max-width: 40px; }
+            .censor-info { font-size: 0.8rem; padding: 0.4rem; }
+            .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; min-width: 70px; }
+            .censor-title { font-size: 1rem; }
+            .censor-text { font-size: 0.8rem; max-height: 120px; }
+            .censor-link { font-size: 0.7rem; }
+            #world-map { height: 200px; }
+        }
+
+        
+        .censor-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 0.5rem 0;
+        }
+
+        .censor-link-item {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 0.5rem;
+            word-break: break-all;
+        }
+
+        .censor-link-item:hover {
+            background: rgba(255,51,51,0.2);
+        }
     </style>
 </head>
 <body>
@@ -1543,50 +1574,78 @@ categoria: "Censuras"
     }
 
     function displayCensor(index) {
-        const censor = censorDatabase[index];
-        if (!censor) return;
-        
-        const censorContent = document.getElementById('censorContent');
-        const censorInfo = document.getElementById('censorInfo');
-        
-        const dateObj = new Date(censor.fecha);
-        const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-        const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-        
-        censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;
-        
-        censorContent.classList.add('fade-out');
-        
-        setTimeout(() => {
-            censorContent.innerHTML = `
-                <div class="censor-card">
-                    <h3 class="censor-title">${censor.titulo}</h3>
-                    <span class="censor-location">${censor.pais} - ${censor.ciudad}</span>
-                    <video class="censor-video" autoplay loop muted playsinline preload="metadata">
-                        <source src="${censor.video}" type="video/mp4">
-                        Tu navegador no soporta la reproduccion de video.
-                    </video>
-                    <p class="censor-text">${censor.texto}</p>
-                    <div class="censor-link-container">
-                        <a href="https://${censor.link}" target="_blank" rel="noopener noreferrer" class="censor-link">
-                            ${censor.link}
-                        </a>
-                    </div>
-                    <div class="censor-category">${censor.categoria} · ${formattedDate}</div>
+    const censor = censorDatabase[index];
+    if (!censor) return;
+
+    const censorContent = document.getElementById('censorContent');
+    const censorInfo = document.getElementById('censorInfo');
+
+    const dateObj = new Date(censor.fecha);
+    const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+
+    censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;
+
+    censorContent.classList.add('fade-out');
+
+    setTimeout(() => {
+        let linksHtml = '';
+
+        if (censor.link) {
+            let linkUrl = censor.link;
+            if (!linkUrl.startsWith('http://') && !linkUrl.startsWith('https://')) {
+                linkUrl = 'https://' + linkUrl;
+            }
+            linksHtml += `
+                <div class="censor-link-item">
+                    <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="censor-link">
+                        ${censor.link}
+                    </a>
                 </div>
             `;
-            
-            censorContent.classList.remove('fade-out');
-            censorContent.classList.add('fade-in');
-            
-            setTimeout(() => {
-                censorContent.classList.remove('fade-in');
-            }, 300);
+        }
+
+        if (censor.link2) {
+            let link2Url = censor.link2;
+            if (!link2Url.startsWith('http://') && !link2Url.startsWith('https://')) {
+                link2Url = 'https://' + link2Url;
+            }
+            linksHtml += `
+                <div class="censor-link-item">
+                    <a href="${link2Url}" target="_blank" rel="noopener noreferrer" class="censor-link">
+                        ${censor.link2}
+                    </a>
+                </div>
+            `;
+        }
+
+        censorContent.innerHTML = `
+            <div class="censor-card">
+                <h3 class="censor-title">${censor.titulo}</h3>
+                <span class="censor-location">${censor.pais} - ${censor.ciudad}</span>
+                <video class="censor-video" autoplay loop muted playsinline preload="metadata">
+                    <source src="${censor.video}" type="video/mp4">
+                    Tu navegador no soporta la reproduccion de video.
+                </video>
+                <p class="censor-text">${censor.texto}</p>
+                <div class="censor-links-container">
+                    ${linksHtml}
+                </div>
+                <div class="censor-category">${censor.categoria} · ${formattedDate}</div>
+            </div>
+        `;
+
+        censorContent.classList.remove('fade-out');
+        censorContent.classList.add('fade-in');
+
+        setTimeout(() => {
+            censorContent.classList.remove('fade-in');
         }, 300);
-        
-        document.getElementById('prevCensorBtn').disabled = index === 0;
-        document.getElementById('nextCensorBtn').disabled = index === censorDatabase.length - 1;
-    }
+    }, 300);
+
+    document.getElementById('prevCensorBtn').disabled = index === 0;
+    document.getElementById('nextCensorBtn').disabled = index === censorDatabase.length - 1;
+}
 
     function changeCensor(direction) {
         const newIndex = currentCensorIndex + direction;
