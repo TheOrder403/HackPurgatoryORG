@@ -42,6 +42,61 @@
             text-shadow: 0 0 10px rgba(255,51,51,0.5);
         }
         
+        .search-box {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #ff6666;
+            box-shadow: 0 0 15px rgba(255,51,51,0.3);
+        }
+        
+        .search-box input::placeholder {
+            color: #666;
+        }
+        
+        .search-box button {
+            padding: 0.8rem 2rem;
+            background: #ff3333;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .search-box button:hover {
+            background: #ff5555;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255,51,51,0.4);
+        }
+        
+        .search-box button:active {
+            transform: scale(0.98);
+        }
+        
         .json-container {
             background: rgba(0,0,0,0.9);
             border: 1px solid #ff3333;
@@ -125,12 +180,6 @@
             font-style: italic;
         }
         
-        .country-flag {
-            font-size: 1.5rem;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -151,6 +200,41 @@
             pre {
                 font-size: 0.9rem;
             }
+            
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .search-box input {
+                min-width: unset;
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.9rem 1rem;
+            }
+            
+            .search-box button {
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                white-space: normal;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .search-box input {
+                font-size: 0.9rem;
+                padding: 0.8rem 0.9rem;
+            }
+            
+            .search-box button {
+                font-size: 0.85rem;
+                padding: 0.8rem 0.9rem;
+            }
         }
     </style>
 </head>
@@ -158,13 +242,23 @@
     <div class="container">
         <div id="jsonDisplay">
             <h1>Colombia Nequi PSE Lookup</h1>
+            
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Ej: 573001234567"
+                    autocomplete="off"
+                >
+                <button id="searchBtn">Buscar</button>
+            </div>
+            
             <div class="json-container">
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Añade el parámetro ?search=573001234567 para buscar información</p>
-                <p><strong>Formato Colombia:</strong> 12 dígitos con 57 (ej: 573001234567)</p>
-                <p><strong>Ejemplo:</strong> /tools/phonecolombia.html?search=573001234567</p>
+                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=573001234567</p>
+                <p><strong>Formato:</strong> 12 digitos con 57 (ej: 573001234567)</p>
             </div>
         </div>
         
@@ -188,15 +282,52 @@
         "version": "1.0",
         "country": "Colombia",
         "country_code": "+57",
-        "phone_format": "12 dígitos (con prefijo 57)",
+        "phone_format": "12 digitos (con prefijo 57)",
         "endpoint": "/tools/phonecolombia.html?search={phone}",
         "example": "https://hackpurgatory.org/tools/phonecolombia.html?search=573001234567",
         "valid_examples": ["573001234567"]
     };
     
+    function performSearch(query) {
+        const trimmedQuery = query.trim();
+        if (trimmedQuery === '') {
+            alert('Error: No se ingreso ningun numero.');
+            return;
+        }
+        window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(this.value);
+            }
+        });
+        
+        searchBtn.addEventListener('click', function() {
+            performSearch(searchInput.value);
+        });
+        
+        const searchParam = getQueryParam('search');
+        if (searchParam) {
+            searchInput.value = searchParam;
+            performRedirect(searchParam);
+        }
+    });
+    
     function getQueryParam(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
+    }
+    
+    function cleanPhoneNumber(phone) {
+        return phone.replace(/\D/g, '');
     }
     
     function isValidColombiaPhone(phone) {
@@ -204,20 +335,15 @@
         return colombiaPhoneRegex.test(phone);
     }
     
-    function cleanPhoneNumber(phone) {
-        return phone.replace(/\D/g, '');
-    }
-    
     function performRedirect(phoneInput) {
         const cleanedPhone = cleanPhoneNumber(phoneInput);
         
         if (!isValidColombiaPhone(cleanedPhone)) {
-            alert('Error: Número colombiano no válido.\n\nFormato correcto: 12 dígitos con 57 (ej: 573001234567)\n\nSin espacios, guiones ni paréntesis.');
+            alert('Error: Numero colombiano no valido.\n\nFormato correcto: 12 digitos con 57 (ej: 573001234567)\n\nSin espacios, guiones ni parentesis.');
             return false;
         }
         
-        const encodedPhone = encodeURIComponent(cleanedPhone);
-        const redirectUrl = `https://nequi.hackpurgatory.org/nequi?number=${encodedPhone}&email=test@gmail.com`;
+        const redirectUrl = `https://nequi.hackpurgatory.org/nequi?number=${encodeURIComponent(cleanedPhone)}&email=test@gmail.com`;
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
@@ -229,18 +355,7 @@
         
         return true;
     }
-    
-    window.addEventListener("load", () => {
-        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
-        
-        const searchParam = getQueryParam('search');
-        
-        if (searchParam) {
-            performRedirect(searchParam);
-        }
-    });
 </script>
 
 </body>
-
 </html>
