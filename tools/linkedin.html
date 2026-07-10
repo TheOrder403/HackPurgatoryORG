@@ -42,6 +42,61 @@
             text-shadow: 0 0 10px rgba(255,51,51,0.5);
         }
         
+        .search-box {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #ff6666;
+            box-shadow: 0 0 15px rgba(255,51,51,0.3);
+        }
+        
+        .search-box input::placeholder {
+            color: #666;
+        }
+        
+        .search-box button {
+            padding: 0.8rem 2rem;
+            background: #ff3333;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .search-box button:hover {
+            background: #ff5555;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255,51,51,0.4);
+        }
+        
+        .search-box button:active {
+            transform: scale(0.98);
+        }
+        
         .json-container {
             background: rgba(0,0,0,0.9);
             border: 1px solid #ff3333;
@@ -145,6 +200,41 @@
             pre {
                 font-size: 0.9rem;
             }
+            
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .search-box input {
+                min-width: unset;
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.9rem 1rem;
+            }
+            
+            .search-box button {
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                white-space: normal;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .search-box input {
+                font-size: 0.9rem;
+                padding: 0.8rem 0.9rem;
+            }
+            
+            .search-box button {
+                font-size: 0.85rem;
+                padding: 0.8rem 0.9rem;
+            }
         }
     </style>
 </head>
@@ -152,13 +242,23 @@
     <div class="container">
         <div id="jsonDisplay">
             <h1>LinkFinder Email Lookup</h1>
+            
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Ej: example@gmail.com"
+                    autocomplete="off"
+                >
+                <button id="searchBtn">Buscar</button>
+            </div>
+            
             <div class="json-container">
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Añade el parámetro ?search=example@gmail.com para buscar información</p>
-                <p><strong>Formato:</strong> Correo electrónico (ej: usuario@gmail.com, contacto@dominio.com)</p>
-                <p><strong>Ejemplo:</strong> /tools/linkedin.html?search=example@gmail.com</p>
+                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=example@gmail.com</p>
+                <p><strong>Formato:</strong> Correo electronico (ej: usuario@gmail.com)</p>
             </div>
         </div>
         
@@ -184,6 +284,39 @@
         "source": "Created by @RIPNetwork"
     };
     
+    function performSearch(query) {
+        const trimmedQuery = query.trim();
+        if (trimmedQuery === '') {
+            alert('Error: No se ingreso ningun correo electronico.');
+            return;
+        }
+        window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(this.value);
+            }
+        });
+        
+        searchBtn.addEventListener('click', function() {
+            performSearch(searchInput.value);
+        });
+        
+        const searchParam = getQueryParam('search');
+        if (searchParam) {
+            searchInput.value = searchParam;
+            performRedirect(searchParam);
+        }
+    });
+    
     function getQueryParam(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
@@ -198,12 +331,12 @@
         const trimmedEmail = emailInput.trim();
         
         if (trimmedEmail === '') {
-            alert('Error: No se ingresó ningún correo electrónico.');
+            alert('Error: No se ingreso ningun correo electronico.');
             return false;
         }
         
         if (!isValidEmail(trimmedEmail)) {
-            alert('Error: Formato de correo electrónico inválido.\n\nFormato correcto: usuario@dominio.com\nEjemplo: example@gmail.com');
+            alert('Error: Formato de correo electronico invalido.\n\nFormato correcto: usuario@dominio.com\nEjemplo: example@gmail.com');
             return false;
         }
         
@@ -219,18 +352,7 @@
         
         return true;
     }
-    
-    window.addEventListener("load", () => {
-        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
-        
-        const searchParam = getQueryParam('search');
-        
-        if (searchParam) {
-            performRedirect(searchParam);
-        }
-    });
 </script>
 
 </body>
-
 </html>
