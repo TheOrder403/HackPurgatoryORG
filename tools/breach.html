@@ -42,6 +42,61 @@
             text-shadow: 0 0 10px rgba(255,51,51,0.5);
         }
         
+        .search-box {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #ff6666;
+            box-shadow: 0 0 15px rgba(255,51,51,0.3);
+        }
+        
+        .search-box input::placeholder {
+            color: #666;
+        }
+        
+        .search-box button {
+            padding: 0.8rem 2rem;
+            background: #ff3333;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .search-box button:hover {
+            background: #ff5555;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255,51,51,0.4);
+        }
+        
+        .search-box button:active {
+            transform: scale(0.98);
+        }
+        
         .json-container {
             background: rgba(0,0,0,0.9);
             border: 1px solid #ff3333;
@@ -145,6 +200,41 @@
             pre {
                 font-size: 0.9rem;
             }
+            
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .search-box input {
+                min-width: unset;
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.9rem 1rem;
+            }
+            
+            .search-box button {
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                white-space: normal;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .search-box input {
+                font-size: 0.9rem;
+                padding: 0.8rem 0.9rem;
+            }
+            
+            .search-box button {
+                font-size: 0.85rem;
+                padding: 0.8rem 0.9rem;
+            }
         }
     </style>
 </head>
@@ -152,13 +242,23 @@
     <div class="container">
         <div id="jsonDisplay">
             <h1>Breach/Steal Lookup</h1>
+            
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Ej: test@test.com"
+                    autocomplete="off"
+                >
+                <button id="searchBtn">Buscar</button>
+            </div>
+            
             <div class="json-container">
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Añade el parámetro ?search=test@test.com para buscar información</p>
-                <p><strong>Formatos:</strong> Email, Teléfono, IP, Usuario, Dominio</p>
-                <p><strong>Ejemplo:</strong> /tools/breach.html?search=test@test.com</p>
+                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=test@test.com</p>
+                <p><strong>Formatos:</strong> Email, Telefono, IP, Usuario, Dominio</p>
             </div>
         </div>
         
@@ -166,7 +266,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingPhone"></div>
+                <div class="phone-display" id="searchingQuery"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -189,34 +289,57 @@
         "services": ["stealer", "breach"]
     };
     
+    function performSearch(query) {
+        const trimmedQuery = query.trim();
+        if (trimmedQuery === '') {
+            alert('Error: No se ingreso ningun termino de busqueda.');
+            return;
+        }
+        window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(this.value);
+            }
+        });
+        
+        searchBtn.addEventListener('click', function() {
+            performSearch(searchInput.value);
+        });
+        
+        const searchParam = getQueryParam('search');
+        if (searchParam) {
+            searchInput.value = searchParam;
+            performRedirect(searchParam);
+        }
+    });
+    
     function getQueryParam(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
     
-    function isValidPhone(phone) {
-        const phoneRegex = /^\d{8,15}$/;
-        return phoneRegex.test(phone);
-    }
-    
-    function cleanPhoneNumber(phone) {
-        return phone.replace(/\D/g, '');
-    }
-    
     function performRedirect(queryInput) {
-        // Limpiar y codificar la consulta para la URL
         const trimmedQuery = queryInput.trim();
+        
         if (trimmedQuery === '') {
-            alert('Error: No se ingresó ningún término de búsqueda.');
+            alert('Error: No se ingreso ningun termino de busqueda.');
             return false;
         }
         
-        const encodedQuery = encodeURIComponent(trimmedQuery);
-        const redirectUrl = `https://breach.hackpurgatory.org/search?query=${encodedQuery}`;
+        const redirectUrl = `https://breach.hackpurgatory.org/search?query=${encodeURIComponent(trimmedQuery)}`;
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
-        document.getElementById('searchingPhone').textContent = trimmedQuery;
+        document.getElementById('searchingQuery').textContent = trimmedQuery;
         
         setTimeout(() => {
             window.location.href = redirectUrl;
@@ -224,18 +347,7 @@
         
         return true;
     }
-    
-    window.addEventListener("load", () => {
-        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
-        
-        const searchParam = getQueryParam('search');
-        
-        if (searchParam) {
-            performRedirect(searchParam);
-        }
-    });
 </script>
 
 </body>
-
 </html>
