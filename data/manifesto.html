@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifiesto - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+    <meta name="description" content="Manifiesto de HackPurgatory">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #ff3333;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 0 40px rgba(255,51,51,0.15);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #ff3333;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            color: #ff3333;
+            font-size: 2.8rem;
+            text-shadow: 0 0 30px rgba(255,51,51,0.3);
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            color: #ff6666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .manifesto-content {
+            line-height: 1.8;
+        }
+
+        .manifesto-content h2 {
+            color: #ff3333;
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+            border-left: 3px solid #ff3333;
+            padding-left: 1rem;
+        }
+
+        .manifesto-content h3 {
+            color: #ff6666;
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .manifesto-content p {
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .manifesto-content .highlight {
+            color: #ff3333;
+            font-weight: bold;
+        }
+
+        .manifesto-content .quote {
+            background: rgba(255,51,51,0.08);
+            border-left: 3px solid #ff3333;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #ff9999;
+        }
+
+        .manifesto-content .quote strong {
+            color: #ff3333;
+            font-style: normal;
+        }
+
+        .manifesto-content ul {
+            margin: 1rem 0 1.5rem 2rem;
+            list-style: none;
+        }
+
+        .manifesto-content ul li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #ccc;
+        }
+
+        .manifesto-content ul li::before {
+            content: "▸";
+            color: #ff3333;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .manifesto-content .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .manifesto-content .principle-item {
+            background: rgba(255,51,51,0.05);
+            border: 1px solid rgba(255,51,51,0.2);
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .manifesto-content .principle-item:hover {
+            background: rgba(255,51,51,0.12);
+            border-color: #ff3333;
+            transform: translateY(-3px);
+        }
+
+        .manifesto-content .principle-item .number {
+            color: #ff3333;
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .manifesto-content .principle-item .label {
+            color: #ff9999;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .manifesto-content .principle-item .desc {
+            color: #aaa;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .footer-manifesto {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .footer-manifesto .signature {
+            color: #ff3333;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .manifesto-content .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .manifesto-content h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .manifesto-content .principle-item {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MANIFIESTO</h1>
+            <div class="subtitle">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</div>
+        </div>
+
+        <div class="manifesto-content">
+            <p>
+                <span class="highlight">HackPurgatory</span> nace como una idea alternativa a cualquier tipo de comunidad existente dentro de internet el 27 de marzo de 2024 con unos valores tradicionales y nacionalistas respecto a internet. El usuario fundador RIPNetwork durante las primeras semanas de creacion de la comunidad le dio forma y estructuro una forma de funcionar diferente a muchas comunidades llegando a tener tanto un gran impacto como un odio por las demas.
+                Lo que consta como diferencia es su forma de administrar y funcionar donde los <span class="highlight">Sindicatos</span> toman un rol importante dentro de la comunidad para poder mantenerla correctamente. 
+            </p>
+
+            <h2>Principios de la Comunidad</h2>
+
+            <div class="principles-grid">
+                <div class="principle-item">
+                    <span class="number">01</span>
+                    <span class="label">Moderacion Digital</span>
+                    <div class="desc">Creemos en que dentro de internet existen muchos tipos de contenido que no deberia existir ya que sobrepasan las ilegalidades a otro nivel, Por eso debemos bloquear y censurar ese tipo de contenidos ilegales para poder mantener un orden y parar el avance de cualquiero tipo de acto que pueda poner en riesgo cualquier cosa o persona de bien.</div>
+                </div>
+                <div class="principle-item">
+                    <span class="number">02</span>
+                    <span class="label">Contenido Libre Controlado</span>
+                    <div class="desc">El contenido en internet (herramientas, metodos, cursos, programas y demas) debe ser gratuito y no tener ningun tipo de candado o precio para poder ser adquirido para aumentar el conocimiento propio mas bien debe de ser regulado y controlado por la autoridad de la comunidad para evitar malos usos o abusos que puedan ser inminentes.</div>
+                </div>
+                <div class="principle-item">
+                    <span class="number">03</span>
+                    <span class="label">Centralización</span>
+                    <div class="desc">Dentro de los miembros de la comunidad creemos que a todos los usuarios pertenecientes se les deben de aplicar las mismas medidas que a cualquier otro en caso de ser necesarias. De la misma forma que las autoridades mayores deban tomar las decisiones importantes entorno a la comunidad entera de la misma forma que la distribucion de recursos y material.</div>
+                </div>
+                <div class="principle-item">
+                    <span class="number">04</span>
+                    <span class="label">Sindicalismo Vertical</span>
+                    <div class="desc">Union unica de autoridades para poder dirigir o moderar una comunidad en forma decisiva e importante dandole cierta pequeña decision a los miembros de votar en base a varias propuestas o opciones ya decididas y aprovadas originalmente por las autoridades mayores de la comunidad.</div>
+                </div>
+                <div class="principle-item">
+                    <span class="number">05</span>
+                    <span class="label">Antipartidismo</span>
+                    <div class="desc">La creacion de diferentes posturas o ideas que vayan en contra de los principios tradicionales dentro de nuestra comunidad esta prohibida, esto para evitar divisiones o caos dentro de la comunidad y mantener un orden controlado e seguro.</div>
+                </div>
+                <div class="principle-item">
+                    <span class="number">06</span>
+                    <span class="label">Nacionalismo Expansionista</span>
+                    <div class="desc">Nuestra comunidad debe de ser ejemplo para las demas comunidades y poder crear variantes correctas de lo que estamos construyendo en internet para que asi de esta forma en un futuro podamos convivir de forma tranquila y correcta entre todos, debemos defender nuestros valores y principios para poder construir algo mejor entre todos.</div>
+                </div>
+            </div>
+
+            <h2>Nuestros Objetivos</h2>
+            <p>
+                Proveer herramientas de acceso a información pública y recursos digitales que empoderen a 
+                investigadores y miembros que quieran aprender de forma segura y sin ningun tipo de bloqueo. Mientras que <span class="highlight">censuramos cualquier tipo de venta</span> existente que intente generar un ingreso en base al desconocimiento de los navegantes.
+            </p>
+            <p>
+                En un mundo donde el acceso esta permitido para cualquiera en internet, 
+                <span class="highlight">censuraremos contenido ilegal</span> que pueda comprometer la seguridad legal y demas cosas en internet, esto con el fin de poder defender nuestros principios como comunidad.
+            </p>
+
+            <h2>Nuestro Compromiso</h2>
+            <ul>
+                <li><span class="highlight">No</span> permitiremos ventas o cualquier tipo de incitacion a ellas.</li>
+                <li><span class="highlight">No</span> permitiremos toxicidad o comportamiento que pueda ser inapropiado.</li>
+                <li><span class="highlight">No</span> permitiremos el acoso o persecucion a personas de bien.</li>
+                <li><span class="highlight">No</span> permitiremos ilegalidades dentro de internet que afecten a personas.</li>
+            </ul>
+
+            <h2>Nuestra Comunidad</h2>
+            <p>
+                HackPurgatory <span class="highlight">nunca</span> pedirá dinero por el acceso a sus herramientas. 
+                La información es un derecho, no un lujo. Nuestro trabajo es hacer que cualquier persona pueda aprender libremente sin necesidad de que tenga que gastar dinero por algo que existe en internet.
+                
+            </p>
+            <p>
+                Cualquier usuario podra preguntar dudas sin miedo o sin temor a que pueda pasarle algo ya que promovemos que el aprendizaje sea correcto y seguro.
+                No dejaremos que ningun tipo de acto toxico pueda manchar la comunidad.
+            </p>
+
+            <h2>Sobre Nuestras Herramientas</h2>
+            <p>
+                Las herramientas que ofrecemos no se deberan usar con ningun tipo de intencionalidad delictiva dentro de internet en el caso contrario se podra crear una busqueda y censura de dicha persona que haya roto la normativa. 
+                
+            </p>
+            <p>
+                Las automatizaciones y el uso indebido de nuestros modulos están <span class="highlight">terminantemente prohibidos</span>. 
+                Protegemos la informacion y no buscamos el abuso de ellas. Los modulos estan creados con el objetivo de ayudar en investigaciones no para la recoleccion ilegal de informacion.  
+                
+            </p>
+        </div>
+
+        <div class="footer-manifesto">
+            <p>Manifiesto de HackPurgatory</p>
+            <p>Redactado por RIPNetwork.</p>
+            <div class="signature">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</div>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #444;">
+            </p>
+        </div>
+    </div>
+</body>
+</html>
