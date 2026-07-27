@@ -13,6 +13,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hackpurgatory.org/data/manifesto.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hackpurgatory.org/Channel/Tools.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
