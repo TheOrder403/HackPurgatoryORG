@@ -241,13 +241,13 @@
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>TikTok Email Lookup</h1>
+            <h1>TikTok Lookup</h1>
             
             <div class="search-box">
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: david@gmail.com"
+                    placeholder="Ej: david@gmail.com o +34666666666"
                     autocomplete="off"
                 >
                 <button id="searchBtn">Buscar</button>
@@ -257,8 +257,8 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=john@gmail.com</p>
-                <p><strong>Formato:</strong> Correo electronico (ej: usuario@gmail.com)</p>
+                <p><strong>Uso:</strong> Escribe un email o número de teléfono</p>
+                <p><strong>Formatos:</strong> Email (ej: david@gmail.com) o Número con código país (ej: +34666666666)</p>
             </div>
         </div>
         
@@ -266,7 +266,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingEmail"></div>
+                <div class="phone-display" id="searchingData"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -277,11 +277,12 @@
 <script>
     const toolInfo = {
         "status": "online",
-        "service": "TikTok Email Lookup",
+        "service": "TikTok Lookup",
         "version": "4.1 (BETA)",
         "last update": "20/07/2026",
         "endpoints": [
-            "/tiktok?email=david@gmail.com"
+            "/tiktok?email=david@gmail.com",
+            "/tiktok?numero=+34666666666"
         ],
         "source": "Created by @RIPNetwork"
     };
@@ -289,7 +290,7 @@
     function performSearch(query) {
         const trimmedQuery = query.trim();
         if (trimmedQuery === '') {
-            alert('Error: No se ingreso ningun correo electronico.');
+            alert('Error: No se ingreso ningun dato.');
             return;
         }
         window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -329,24 +330,33 @@
         return emailRegex.test(email);
     }
     
-    function performRedirect(emailInput) {
-        const trimmedEmail = emailInput.trim();
+    function performRedirect(input) {
+        const trimmedInput = input.trim();
         
-        if (trimmedEmail === '') {
-            alert('Error: No se ingreso ningun correo electronico.');
+        if (trimmedInput === '') {
+            alert('Error: No se ingreso ningun dato.');
             return false;
         }
         
-        if (!isValidEmail(trimmedEmail)) {
-            alert('Error: Formato de correo electronico invalido.\n\nFormato correcto: usuario@dominio.com\nEjemplo: john@gmail.com');
-            return false;
-        }
+        let redirectUrl;
+        let displayText = trimmedInput;
         
-        const redirectUrl = `https://tiktok.hackpurgatory.org/tiktok?email=${encodeURIComponent(trimmedEmail)}`;
+        
+        if (isValidEmail(trimmedInput)) {
+            redirectUrl = `https://tiktok.hackpurgatory.org/tiktok?email=${encodeURIComponent(trimmedInput)}`;
+        } else {
+
+            let number = trimmedInput;
+            if (!number.startsWith('+')) {
+                number = '+' + number;
+            }
+            redirectUrl = `https://tiktok.hackpurgatory.org/tiktok?numero=${encodeURIComponent(number)}`;
+            displayText = number;
+        }
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
-        document.getElementById('searchingEmail').textContent = trimmedEmail;
+        document.getElementById('searchingData').textContent = displayText;
         
         setTimeout(() => {
             window.location.href = redirectUrl;
