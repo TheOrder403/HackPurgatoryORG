@@ -282,7 +282,7 @@
             "origin": "171.25.193.80"
         },
         "tor_status": "Funcionando",
-        "uso": "/cedula=5555555"
+        "uso": "/cedula?numero=5555555"
     };
     
     function performSearch(query) {
@@ -331,7 +331,7 @@
             return false;
         }
         
-        const redirectUrl = `https://paraguay.hackpurgatory.org/cedula=${encodeURIComponent(trimmedCi)}`;
+        const redirectUrl = `https://paraguay.hackpurgatory.org/cedula?numero=${encodeURIComponent(trimmedCi)}`;
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
