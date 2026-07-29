@@ -853,6 +853,10 @@
             const loadingElement = document.getElementById('loadingTools');
             const toolsContainer = document.getElementById('toolsContainer');
             const noToolsElement = document.getElementById('noTools');
+
+            loadingElement.style.display = 'block';
+            toolsContainer.style.display = 'none';
+            noToolsElement.style.display = 'none';
             
             let availableCount = 0;
             
