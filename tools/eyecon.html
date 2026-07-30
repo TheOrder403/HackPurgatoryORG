@@ -72,6 +72,11 @@
             color: #666;
         }
         
+        .search-box input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         .search-box button {
             padding: 0.8rem 2rem;
             background: #ff3333;
@@ -87,14 +92,22 @@
             white-space: nowrap;
         }
         
-        .search-box button:hover {
+        .search-box button:hover:not(:disabled) {
             background: #ff5555;
             transform: scale(1.02);
             box-shadow: 0 0 20px rgba(255,51,51,0.4);
         }
         
-        .search-box button:active {
+        .search-box button:active:not(:disabled) {
             transform: scale(0.98);
+        }
+        
+        .search-box button:disabled {
+            background: #442222;
+            color: #777;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
         .json-container {
@@ -179,6 +192,97 @@
             color: #ff6666;
             font-style: italic;
         }
+
+        .terms-toggle {
+            color: #ff3333;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .terms-toggle:hover {
+            color: #ff6666;
+        }
+
+        .terms-content {
+            display: none;
+            text-align: left;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0 1.5rem 0;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #ccc;
+        }
+
+        .terms-content.show {
+            display: block;
+        }
+
+        .terms-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terms-content::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+        .terms-content::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 8px;
+        }
+
+        .terms-content strong {
+            color: #ff6666;
+        }
+
+        .terms-content a {
+            color: #ff6666;
+            text-decoration: underline;
+        }
+
+        .terms-accept-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 0.8rem 0 1.2rem 0;
+            justify-content: center;
+        }
+
+        .terms-accept-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff3333;
+            cursor: pointer;
+        }
+
+        .terms-accept-row label {
+            color: #ddd;
+            font-size: 0.9rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .terms-accept-row label a {
+            color: #ff6666;
+            text-decoration: underline;
+        }
+
+        .terms-accept-row input[type="checkbox"]:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .terms-accept-row label.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
         
         @media (max-width: 768px) {
             body {
@@ -219,6 +323,12 @@
                 font-size: 0.95rem;
                 white-space: normal;
             }
+
+            .terms-content {
+                font-size: 0.75rem;
+                max-height: 200px;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -235,6 +345,12 @@
                 font-size: 0.85rem;
                 padding: 0.8rem 0.9rem;
             }
+
+            .terms-content {
+                font-size: 0.7rem;
+                max-height: 150px;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
@@ -242,6 +358,27 @@
     <div class="container">
         <div id="jsonDisplay">
             <h1>Eyecon Lookup</h1>
+
+            <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
+                <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
+            </div>
+
+            <div class="terms-content" id="termsContent">
+                <p><strong>1. Aceptacion de responsabilidad:</strong> El uso de estas herramientas es unicamente para investigaciones legales o entornos controlados. Si estas usandolas con propositos indebidos se te hara culpable de cualquier uso ilegal que le hayas podido sacar.</p>
+                <p><strong>2. Uso Legal:</strong> Estas herramientas están diseñadas para fines educativos y de investigación. No deben utilizarse para actividades ilegales o maliciosas, el uso de ellas es unicamente para propositos de aprendizaje o investigaciones OSINT.</p>
+                <p><strong>3. Privacidad:</strong> No almacenamos ni compartimos los datos ingresados en las herramientas. La informacion es procesada de forma temporal y eliminada, esto con el objetivo de no recolectar informacion privada o personal.</p>
+                <p><strong>4. Disponibilidad:</strong> Algunas herramientas pueden no estar disponibles en todo momento. Esto depende de servicios externos ya que funcionan por scrapping legales de sitios oficiales (no accedemos ni tenemos acceso a bases de datos leaks. Todas las consultas son de sitios oficiales autorizados a la misma consulta.).</p>
+                <p><strong>5. Automatizaciones:</strong> Estos endpoints cuentan con proteccion anti-bot, anti-scrapping y demas para evitar el uso indebido o ilegal de recoleccion de informacion de forma masiva. Evadir o hacerlo de igual forma podra ser sancionado por la comunidad.</p>
+                <p><strong>6. Venta Modulos:</strong> La venta de dichos endpoints es totalmente ilegal y se hace responsable al usuario de no venderla, en caso contrario seria considerado estafa y podra ser sancionado, HackPurgatory no vende ni ofrece modulos.</p>
+                <p><strong>7. Autoridades:</strong> En caso de que un uso indebido HackPurgatory podra colaborar con las autoridades locales para la presunta busqueda de dicho infractor llegando a ofrecer soporte en la investigacion legal.</p>
+                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: report@hackpurgatory.org.</p>
+                <p style="margin-top: 0.5rem; color: #ff6666;">Al aceptar, confirmas que has leido y entendido estos terminos.</p>
+            </div>
+
+            <div class="terms-accept-row">
+                <input type="checkbox" id="acceptCheck">
+                <label for="acceptCheck" id="acceptLabel">He leido y acepto los <a href="#" onclick="event.preventDefault();">terminos y condiciones</a>.</label>
+            </div>
             
             <div class="search-box">
                 <input 
@@ -249,8 +386,9 @@
                     id="searchInput" 
                     placeholder="Ej: +3466666666"
                     autocomplete="off"
+                    disabled
                 >
-                <button id="searchBtn">Buscar</button>
+                <button id="searchBtn" disabled>Buscar</button>
             </div>
             
             <div class="json-container">
@@ -274,81 +412,112 @@
         </div>
     </div>
 
-<script>
-    const toolInfo = {
-        "status": "online",
-        "service": "Eyecon Endpoint",
-        "version": "2.5",
-        "endpoints": [
-            "/eyecon?number=+3466666666"
-        ],
-        "source": "Created by @RIPNetwork"
-    };
-    
-    function performSearch(query) {
-        const trimmedQuery = query.trim();
-        if (trimmedQuery === '') {
-            alert('Error: No se ingreso ningun numero.');
-            return;
-        }
-        window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
-        
+    <script>
+        const toolInfo = {
+            "status": "online",
+            "service": "Eyecon Endpoint",
+            "version": "2.5",
+            "endpoints": [
+                "/eyecon?number=+3466666666"
+            ],
+            "source": "Created by @RIPNetwork"
+        };
+
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
-        
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performSearch(this.value);
+        const acceptCheck = document.getElementById('acceptCheck');
+        const acceptLabel = document.getElementById('acceptLabel');
+        const termsToggle = document.getElementById('termsToggle');
+        const termsContent = document.getElementById('termsContent');
+
+        termsToggle.addEventListener('click', function() {
+            termsContent.classList.toggle('show');
+            this.textContent = termsContent.classList.contains('show') ? 'Ocultar Terminos y Condiciones' : 'Terminos y Condiciones';
+        });
+
+        function updateControls() {
+            const accepted = acceptCheck.checked;
+            searchInput.disabled = !accepted;
+            searchBtn.disabled = !accepted;
+            
+            if (accepted) {
+                searchInput.style.opacity = '1';
+                searchBtn.style.opacity = '1';
+                acceptLabel.classList.remove('disabled');
+            } else {
+                searchInput.style.opacity = '0.5';
+                searchBtn.style.opacity = '0.5';
+                acceptLabel.classList.add('disabled');
+            }
+        }
+
+        acceptCheck.addEventListener('change', updateControls);
+        updateControls();
+    
+        function performSearch(query) {
+            const trimmedQuery = query.trim();
+            if (trimmedQuery === '') {
+                alert('Error: No se ingreso ningun numero.');
+                return;
+            }
+            window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+            
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!searchBtn.disabled) {
+                        performSearch(this.value);
+                    }
+                }
+            });
+            
+            searchBtn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    performSearch(searchInput.value);
+                }
+            });
+            
+            const searchParam = getQueryParam('search');
+            if (searchParam) {
+                searchInput.value = searchParam;
+                performRedirect(searchParam);
             }
         });
-        
-        searchBtn.addEventListener('click', function() {
-            performSearch(searchInput.value);
-        });
-        
-        const searchParam = getQueryParam('search');
-        if (searchParam) {
-            searchInput.value = searchParam;
-            performRedirect(searchParam);
-        }
-    });
     
-    function getQueryParam(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
     
-    function performRedirect(numberInput) {
-        let trimmedNumber = numberInput.trim();
-        
-        if (trimmedNumber === '') {
-            alert('Error: No se ingreso ningun numero.');
-            return false;
+        function performRedirect(numberInput) {
+            let trimmedNumber = numberInput.trim();
+            
+            if (trimmedNumber === '') {
+                alert('Error: No se ingreso ningun numero.');
+                return false;
+            }
+            
+            if (!trimmedNumber.startsWith('+')) {
+                alert('Error: El numero debe incluir el codigo pais con el simbolo "+".\n\nFormato correcto: +3466666666\nEjemplo: +3466666666');
+                return false;
+            }
+            
+            const redirectUrl = `https://eyecon.hackpurgatory.org/eyecon?number=${encodeURIComponent(trimmedNumber)}`;
+            
+            document.getElementById('jsonDisplay').style.display = 'none';
+            document.getElementById('redirectSection').style.display = 'block';
+            document.getElementById('searchingNumber').textContent = trimmedNumber;
+            
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000);
+            
+            return true;
         }
-        
-        if (!trimmedNumber.startsWith('+')) {
-            alert('Error: El numero debe incluir el codigo pais con el simbolo "+".\n\nFormato correcto: +3466666666\nEjemplo: +3466666666');
-            return false;
-        }
-        
-        const redirectUrl = `https://eyecon.hackpurgatory.org/eyecon?number=${encodeURIComponent(trimmedNumber)}`;
-        
-        document.getElementById('jsonDisplay').style.display = 'none';
-        document.getElementById('redirectSection').style.display = 'block';
-        document.getElementById('searchingNumber').textContent = trimmedNumber;
-        
-        setTimeout(() => {
-            window.location.href = redirectUrl;
-        }, 2000);
-        
-        return true;
-    }
-</script>
-
+    </script>
 </body>
 </html>
