@@ -166,6 +166,7 @@
             display: flex;
             justify-content: center;
             gap: 0.8rem;
+            flex-wrap: wrap;
         }
         
         .nav-btn {
@@ -180,9 +181,7 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            flex: 1;
             justify-content: center;
-            max-width: 120px;
         }
         
         .nav-btn:hover {
@@ -194,6 +193,68 @@
             opacity: 0.3;
             cursor: not-allowed;
             pointer-events: none;
+        }
+
+        .categoria-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #1a0000;
+            border: 2px solid #ff3333;
+            border-radius: 10px;
+            padding: 0.5rem;
+            min-width: 180px;
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+
+        .categoria-dropdown.show {
+            display: block;
+        }
+
+        .categoria-dropdown::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .categoria-dropdown::-webkit-scrollbar-track {
+            background: rgba(255,51,51,0.1);
+        }
+
+        .categoria-dropdown::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 3px;
+        }
+
+        .categoria-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .categoria-item:hover {
+            background: #ff3333;
+            color: #000;
+        }
+
+        .categoria-item.active {
+            background: #ff3333;
+            color: #000;
+        }
+
+        .categoria-btn-wrapper {
+            position: relative;
+            display: inline-block;
         }
         
         .censor-content {
@@ -208,11 +269,18 @@
         .censor-content.fade-in {
             opacity: 1;
         }
+
+        .censor-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
         
         .censor-card {
             padding: 0.8rem;
             background: rgba(0,0,0,0.5);
             border-radius: 10px;
+            text-align: center;
         }
         
         .censor-title {
@@ -221,6 +289,7 @@
             margin-bottom: 0.8rem;
             line-height: 1.4;
             word-break: break-word;
+            text-align: center;
         }
         
         .censor-location {
@@ -240,10 +309,11 @@
             width: 100%;
             max-height: 200px;
             border-radius: 6px;
-            margin: 0.5rem 0;
+            margin: 0.5rem auto;
             border: 2px solid #ff3333;
             object-fit: contain;
             background: #000;
+            display: block;
         }
         
         .censor-text {
@@ -251,7 +321,7 @@
             color: #ddd;
             line-height: 1.5;
             margin-bottom: 0.8rem;
-            text-align: left;
+            text-align: center;
             word-break: break-word;
             max-height: 150px;
             overflow-y: auto;
@@ -278,6 +348,7 @@
             padding: 0.5rem;
             margin: 0.5rem 0;
             word-break: break-all;
+            text-align: center;
         }
         
         .censor-link {
@@ -306,6 +377,36 @@
             padding-top: 0.8rem;
             margin-top: 0.8rem;
             word-break: break-word;
+            text-align: center;
+        }
+
+        .censor-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 0.5rem 0;
+            align-items: center;
+        }
+
+        .censor-link-item {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 0.5rem;
+            word-break: break-all;
+            width: 100%;
+            text-align: center;
+        }
+
+        .censor-link-item:hover {
+            background: rgba(255,51,51,0.2);
+        }
+
+        .sin-resultados {
+            color: #ff9999;
+            padding: 2rem;
+            font-size: 1.2rem;
+            text-align: center;
         }
         
         footer { 
@@ -357,6 +458,29 @@
             50% { box-shadow: 0 0 25px rgba(255,51,51,1); }
             100% { box-shadow: 0 0 15px rgba(255,51,51,0.8); }
         }
+
+        
+        @media (min-width: 768px) {
+            .censor-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .categoria-dropdown {
+                right: 0;
+                left: auto;
+            }
+        }
+
+        
+        @media (max-width: 767px) {
+            .censor-grid {
+                grid-template-columns: 1fr;
+            }
+            .categoria-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 150px;
+            }
+        }
         
         @media (min-width: 480px) {
             header h1 { font-size: 1.5rem; }
@@ -364,7 +488,6 @@
             .censor-info { font-size: 1rem; }
             .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; }
             .censor-nav { justify-content: flex-end; }
-            .nav-btn { max-width: none; flex: none; }
         }
         
         @media (min-width: 768px) {
@@ -381,42 +504,11 @@
             header h1 { font-size: 1.1rem; }
             header img { max-width: 40px; }
             .censor-info { font-size: 0.8rem; padding: 0.4rem; }
-            .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; min-width: 70px; }
+            .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; }
             .censor-title { font-size: 1rem; }
             .censor-text { font-size: 0.8rem; max-height: 120px; }
             .censor-link { font-size: 0.7rem; }
             #world-map { height: 200px; }
-        }
-        
-        @media (max-width: 360px) {
-            header h1 { font-size: 1.1rem; }
-            header img { max-width: 40px; }
-            .censor-info { font-size: 0.8rem; padding: 0.4rem; }
-            .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; min-width: 70px; }
-            .censor-title { font-size: 1rem; }
-            .censor-text { font-size: 0.8rem; max-height: 120px; }
-            .censor-link { font-size: 0.7rem; }
-            #world-map { height: 200px; }
-        }
-
-        
-        .censor-links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin: 0.5rem 0;
-        }
-
-        .censor-link-item {
-            background: rgba(255,51,51,0.1);
-            border: 1px solid #ff3333;
-            border-radius: 8px;
-            padding: 0.5rem;
-            word-break: break-all;
-        }
-
-        .censor-link-item:hover {
-            background: rgba(255,51,51,0.2);
         }
     </style>
 </head>
@@ -450,6 +542,10 @@
             <div class="censor-nav">
                 <button class="nav-btn" onclick="changeCensor(-1)" id="prevCensorBtn">← Anterior</button>
                 <button class="nav-btn" onclick="changeCensor(1)" id="nextCensorBtn">Siguiente →</button>
+                <div class="categoria-btn-wrapper">
+                    <button class="nav-btn" onclick="toggleCategoria()">Categoría</button>
+                    <div class="categoria-dropdown" id="categoriaDropdown"></div>
+                </div>
             </div>
         </div>
         
@@ -463,24 +559,9 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    function startTypingAnimation() {
-        const typingTitle = document.getElementById('typing-title');
-        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
-        let charIndex = 0;
-        function typeWriter() {
-            if (charIndex < titleText.length) {
-                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            } else {
-                typingTitle.innerHTML = titleText;
-            }
-        }
-        typeWriter();
-    }
 
     const censorDatabase = [
-{
+        {
   id: 135,
   pais: "Mexico",
   ciudad: "Chihuahua",
@@ -2100,9 +2181,56 @@ categoria: "Censuras"
         }
     ];
 
+    const categoriaMap = {
+        "Penal/3-44": [135, 134, 133, 132, 124],
+        "Wasabi Hub": [125, 126, 127, 128, 129],
+        "Enikop Security": [18, 19, 20, 21, 82, 44, 51, 52],
+	"Pablo Exodata": [87, 13, 12, 22, 65],
+	"Legion Nova": [7],
+	"Agora Latam": [4],
+	"ShieldGram": [1, 61],
+	"Rutify Chile": [59, 60, 62],
+	"Caos Hub": [74, 75, 76, 77, 79],
+	"OIHEC Security": [88, 89, 90],
+	"Guerrilla ELN": [91, 92, 93, 94, 95, 96, 97, 98, 99],
+	"Guerrilla FARC": [100]
+    };
+
+
     let map;
     let markers = [];
     let currentCensorIndex = 0;
+    let currentCategory = null;
+
+    function isMobile() {
+        return window.innerWidth < 768;
+    }
+
+    function getCategoriasDisponibles() {
+        return Object.keys(categoriaMap).filter(cat => categoriaMap[cat].length > 0);
+    }
+
+    function getFilteredData() {
+        if (!currentCategory) return censorDatabase;
+        const idsPermitidos = categoriaMap[currentCategory] || [];
+        return censorDatabase.filter(c => idsPermitidos.includes(c.id));
+    }
+
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        typeWriter();
+    }
 
     function initMap() {
         map = L.map('world-map', {
@@ -2119,7 +2247,12 @@ categoria: "Censuras"
             minZoom: 2
         }).addTo(map);
 
-        censorDatabase.forEach((censor, index) => {
+        markers.forEach(m => map.removeLayer(m));
+        markers = [];
+
+        const dataToShow = getFilteredData();
+
+        dataToShow.forEach((censor) => {
             const marker = L.marker(censor.coordenadas, {
                 icon: L.divIcon({
                     className: 'custom-marker',
@@ -2129,115 +2262,240 @@ categoria: "Censuras"
             }).addTo(map);
             
             marker.on('click', () => {
-                currentCensorIndex = index;
-                displayCensor(currentCensorIndex);
-                map.setView(censor.coordenadas, 5, { animate: true });
+                const globalIndex = censorDatabase.indexOf(censor);
+                if (globalIndex !== -1) {
+                    currentCensorIndex = globalIndex;
+                    displayCensor(currentCensorIndex);
+                    map.setView(censor.coordenadas, 5, { animate: true });
+                }
             });
             
             markers.push(marker);
         });
     }
 
+    function renderCategoriaDropdown() {
+        const dropdown = document.getElementById('categoriaDropdown');
+        const categorias = getCategoriasDisponibles();
+        
+        let html = '<button class="categoria-item active" onclick="setCategoria(null)">Todas</button>';
+        categorias.forEach(cat => {
+            const isActive = currentCategory === cat ? 'active' : '';
+            html += `<button class="categoria-item ${isActive}" onclick="setCategoria('${cat}')">${cat}</button>`;
+        });
+        dropdown.innerHTML = html;
+    }
+
+    function setCategoria(cat) {
+        currentCategory = cat;
+        renderCategoriaDropdown();
+        document.getElementById('categoriaDropdown').classList.remove('show');
+        
+        const filtered = getFilteredData();
+        if (filtered.length === 0) {
+            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;
+            document.getElementById('censorInfo').textContent = 'Sin resultados';
+            document.getElementById('prevCensorBtn').disabled = true;
+            document.getElementById('nextCensorBtn').disabled = true;
+            return;
+        }
+        
+        const firstMatch = censorDatabase.indexOf(filtered[0]);
+        currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;
+        displayCensor(currentCensorIndex);
+        updateMarkers();
+    }
+
+    function toggleCategoria() {
+        const dropdown = document.getElementById('categoriaDropdown');
+        dropdown.classList.toggle('show');
+        renderCategoriaDropdown();
+    }
+
+    function updateMarkers() {
+        const dataToShow = getFilteredData();
+        const idsSet = new Set(dataToShow.map(c => c.id));
+        
+        markers.forEach((marker, idx) => {
+            const censor = censorDatabase[idx];
+            if (censor && idsSet.has(censor.id)) {
+                if (!map.hasLayer(marker)) map.addLayer(marker);
+            } else {
+                if (map.hasLayer(marker)) map.removeLayer(marker);
+            }
+        });
+    }
+
     function displayCensor(index) {
-    const censor = censorDatabase[index];
-    if (!censor) return;
+        const censor = censorDatabase[index];
+        if (!censor) return;
 
-    const censorContent = document.getElementById('censorContent');
-    const censorInfo = document.getElementById('censorInfo');
-
-    const dateObj = new Date(censor.fecha);
-    const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-
-    censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;
-
-    censorContent.classList.add('fade-out');
-
-    setTimeout(() => {
-        let linksHtml = '';
-
-        if (censor.link) {
-            let linkUrl = censor.link;
-            if (!linkUrl.startsWith('http://') && !linkUrl.startsWith('https://')) {
-                linkUrl = 'https://' + linkUrl;
+        if (currentCategory) {
+            const idsPermitidos = categoriaMap[currentCategory] || [];
+            if (!idsPermitidos.includes(censor.id)) {
+                const filtered = getFilteredData();
+                if (filtered.length === 0) {
+                    document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;
+                    document.getElementById('censorInfo').textContent = 'Sin resultados';
+                    document.getElementById('prevCensorBtn').disabled = true;
+                    document.getElementById('nextCensorBtn').disabled = true;
+                    return;
+                }
+                const firstMatch = censorDatabase.indexOf(filtered[0]);
+                currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;
+                displayCensor(currentCensorIndex);
+                return;
             }
-            linksHtml += `
-                <div class="censor-link-item">
-                    <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="censor-link">
-                        ${censor.link}
-                    </a>
-                </div>
-            `;
         }
 
-        if (censor.link2) {
-            let link2Url = censor.link2;
-            if (!link2Url.startsWith('http://') && !link2Url.startsWith('https://')) {
-                link2Url = 'https://' + link2Url;
-            }
-            linksHtml += `
-                <div class="censor-link-item">
-                    <a href="${link2Url}" target="_blank" rel="noopener noreferrer" class="censor-link">
-                        ${censor.link2}
-                    </a>
-                </div>
-            `;
-        }
+        const censorContent = document.getElementById('censorContent');
+        const censorInfo = document.getElementById('censorInfo');
 
-        censorContent.innerHTML = `
-            <div class="censor-card">
-                <h3 class="censor-title">${censor.titulo}</h3>
-                <span class="censor-location">${censor.pais} - ${censor.ciudad}</span>
-                <video class="censor-video" autoplay loop muted playsinline preload="metadata">
-                    <source src="${censor.video}" type="video/mp4">
-                    Tu navegador no soporta la reproduccion de video.
-                </video>
-                <p class="censor-text">${censor.texto}</p>
-                <div class="censor-links-container">
-                    ${linksHtml}
-                </div>
-                <div class="censor-category">${censor.categoria} · ${formattedDate}</div>
-            </div>
-        `;
+        const dateObj = new Date(censor.fecha);
+        const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
 
-        censorContent.classList.remove('fade-out');
-        censorContent.classList.add('fade-in');
+        censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;
+
+        censorContent.classList.add('fade-out');
 
         setTimeout(() => {
-            censorContent.classList.remove('fade-in');
-        }, 300);
-    }, 300);
+            const filtered = getFilteredData();
+            const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);
+            
+            let itemsToShow = [];
+            if (currentIdxInFilter !== -1) {
+                // En móvil: solo 1 item. En ordenador: 2 items
+                if (isMobile()) {
+                    itemsToShow.push(filtered[currentIdxInFilter]);
+                } else {
+                    itemsToShow.push(filtered[currentIdxInFilter]);
+                    if (currentIdxInFilter + 1 < filtered.length) {
+                        itemsToShow.push(filtered[currentIdxInFilter + 1]);
+                    }
+                }
+            } else {
+                itemsToShow = [censor];
+            }
 
-    document.getElementById('prevCensorBtn').disabled = index === 0;
-    document.getElementById('nextCensorBtn').disabled = index === censorDatabase.length - 1;
-}
+            let gridHtml = '';
+            itemsToShow.forEach((c) => {
+                let linksHtml = '';
+                if (c.link) {
+                    let linkUrl = c.link;
+                    if (!linkUrl.startsWith('http://') && !linkUrl.startsWith('https://')) {
+                        linkUrl = 'https://' + linkUrl;
+                    }
+                    linksHtml += `
+                        <div class="censor-link-item">
+                            <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="censor-link">
+                                ${c.link}
+                            </a>
+                        </div>
+                    `;
+                }
+                if (c.link2) {
+                    let link2Url = c.link2;
+                    if (!link2Url.startsWith('http://') && !link2Url.startsWith('https://')) {
+                        link2Url = 'https://' + link2Url;
+                    }
+                    linksHtml += `
+                        <div class="censor-link-item">
+                            <a href="${link2Url}" target="_blank" rel="noopener noreferrer" class="censor-link">
+                                ${c.link2}
+                            </a>
+                        </div>
+                    `;
+                }
+
+                gridHtml += `
+                    <div class="censor-card">
+                        <h3 class="censor-title">${c.titulo}</h3>
+                        <span class="censor-location">${c.pais} - ${c.ciudad}</span>
+                        <video class="censor-video" autoplay loop muted playsinline preload="metadata">
+                            <source src="${c.video}" type="video/mp4">
+                            Tu navegador no soporta la reproduccion de video.
+                        </video>
+                        <p class="censor-text">${c.texto}</p>
+                        <div class="censor-links-container">
+                            ${linksHtml}
+                        </div>
+                        <div class="censor-category">${c.categoria} · ${formattedDate}</div>
+                    </div>
+                `;
+            });
+
+            censorContent.innerHTML = `<div class="censor-grid">${gridHtml}</div>`;
+            censorContent.classList.remove('fade-out');
+            censorContent.classList.add('fade-in');
+
+            setTimeout(() => {
+                censorContent.classList.remove('fade-in');
+            }, 300);
+        }, 300);
+
+        const filtered = getFilteredData();
+        const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);
+        document.getElementById('prevCensorBtn').disabled = currentIdxInFilter <= 0 || filtered.length === 0;
+        document.getElementById('nextCensorBtn').disabled = currentIdxInFilter >= filtered.length - 1 || filtered.length === 0;
+    }
 
     function changeCensor(direction) {
-        const newIndex = currentCensorIndex + direction;
-        if (newIndex >= 0 && newIndex < censorDatabase.length) {
-            currentCensorIndex = newIndex;
+        const filtered = getFilteredData();
+        if (filtered.length === 0) return;
+
+        const currentCensor = censorDatabase[currentCensorIndex];
+        const currentIdxInFilter = filtered.findIndex(c => c.id === currentCensor.id);
+        let newIdxInFilter = currentIdxInFilter + direction;
+        
+        if (newIdxInFilter < 0) newIdxInFilter = 0;
+        if (newIdxInFilter >= filtered.length) newIdxInFilter = filtered.length - 1;
+
+        const targetCensor = filtered[newIdxInFilter];
+        const globalIndex = censorDatabase.indexOf(targetCensor);
+        if (globalIndex !== -1) {
+            currentCensorIndex = globalIndex;
             displayCensor(currentCensorIndex);
-            map.setView(censorDatabase[newIndex].coordenadas, 5, { animate: true });
+            map.setView(targetCensor.coordenadas, 5, { animate: true });
         }
     }
 
-    window.addEventListener("load", () => {
-        setTimeout(startTypingAnimation, 300);
-        initMap();
-        displayCensor(0);
-    });
-
-    window.changeCensor = changeCensor;
-
+    // Escuchar cambios de tamaño para refrescar la vista si es necesario
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', function() {
         if (map) {
             map.invalidateSize();
         }
+        // Si cambia de móvil a escritorio o viceversa, refrescar la vista
+        const currentWidth = window.innerWidth;
+        if ((lastWidth < 768 && currentWidth >= 768) || (lastWidth >= 768 && currentWidth < 768)) {
+            if (censorDatabase.length > 0) {
+                displayCensor(currentCensorIndex);
+            }
+        }
+        lastWidth = currentWidth;
     });
+
+    document.addEventListener('click', function(e) {
+        const wrapper = document.querySelector('.categoria-btn-wrapper');
+        if (wrapper && !wrapper.contains(e.target)) {
+            document.getElementById('categoriaDropdown').classList.remove('show');
+        }
+    });
+
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+        initMap();
+        renderCategoriaDropdown();
+        if (censorDatabase.length > 0) {
+            displayCensor(0);
+        }
+    });
+
+    window.changeCensor = changeCensor;
+    window.toggleCategoria = toggleCategoria;
+    window.setCategoria = setCategoria;
 </script>
 
 </body>
 </html>
-
-
-
