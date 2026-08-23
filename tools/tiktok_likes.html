@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -349,6 +354,11 @@
             .terms-content {
                 font-size: 0.7rem;
                 max-height: 150px;
+                padding: 0.6rem;
+            }
+
+            .info {
+                font-size: 0.7rem;
                 padding: 0.6rem;
             }
         }
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="URL del post o perfil de TikTok"
+                    placeholder="URL del video de TikTok"
                     autocomplete="off"
                     disabled
                 >
@@ -395,9 +405,10 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Pega la URL del post o perfil de TikTok</p>
+                <p><strong>Uso:</strong> Pega la URL del video de TikTok</p>
+                <p><strong>Formato correcto:</strong> https://www.tiktok.com/@usuario/video/123456789</p>
+                <p><strong>No uses URLs acortadas</strong> como vt.tiktok.com</p>
                 <p><strong>Límite:</strong> 20 consultas por día</p>
-                <p><strong>Ejemplo:</strong> https://www.tiktok.com/@usuario/video/123456789</p>
             </div>
         </div>
         
@@ -498,11 +509,25 @@
             return urlParams.get(name);
         }
     
+        function isValidTikTokUrl(url) {
+            return url.includes('tiktok.com') && !url.includes('vt.tiktok.com');
+        }
+    
         function performRedirect(urlInput) {
-            const trimmedUrl = urlInput.trim();
+            let trimmedUrl = urlInput.trim();
             
             if (trimmedUrl === '') {
                 alert('Error: No se ingreso ninguna URL.');
+                return false;
+            }
+            
+            if (trimmedUrl.includes('vt.tiktok.com')) {
+                alert('Error: No uses URLs acortadas de TikTok.\n\nFormato correcto:\nhttps://www.tiktok.com/@usuario/video/123456789\n\nPor favor, copia la URL completa del video desde TikTok.');
+                return false;
+            }
+            
+            if (!isValidTikTokUrl(trimmedUrl)) {
+                alert('Error: URL no valida.\n\nFormato correcto:\nhttps://www.tiktok.com/@usuario/video/123456789\n\nAsegurate de que la URL sea de TikTok y no este acortada.');
                 return false;
             }
             
