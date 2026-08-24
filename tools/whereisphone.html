@@ -384,7 +384,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: 34666666666"
+                    placeholder="Ej: +34666666666"
                     autocomplete="off"
                     disabled
                 >
@@ -499,12 +499,12 @@
     
         function performRedirect(phone) {
             if (!isValidPhone(phone)) {
-                alert('Error: Numero no valido. Formato correcto: 34666666666');
+                alert('Error: Numero no valido. Formato correcto: +34666666666');
                 return false;
             }
             
             const encodedPhone = encodeURIComponent(phone);
-            const redirectUrl = `https://seon.hackpurgatory.org/search/sync?value=${encodedPhone}`;
+            const redirectUrl = `https://seon.hackpurgatory.org/raw?value=${encodedPhone}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
