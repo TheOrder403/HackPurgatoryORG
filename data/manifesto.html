@@ -7,6 +7,7 @@
     <meta name="description" content="Manifiesto de HackPurgatory">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
+     
         * {
             margin: 0;
             padding: 0;
@@ -191,7 +192,201 @@
             margin-top: 0.3rem;
         }
 
-        /* Mejoras para móviles - grid de 2 columnas */
+        /* ===== NUEVOS ESTILOS PARA EL REPRODUCTOR ===== */
+        .player-wrapper {
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #222;
+        }
+
+        .player-container {
+            background: rgba(255,51,51,0.04);
+            border: 1px solid rgba(255,51,51,0.2);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .player-container:hover {
+            border-color: rgba(255,51,51,0.5);
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .player-title {
+            color: #ff3333;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .player-title span {
+            color: #ff6666;
+            font-weight: 300;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .player-status {
+            color: #666;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .player-status.playing {
+            color: #ff3333;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .player-btn {
+            background: none;
+            border: 1px solid rgba(255,51,51,0.3);
+            color: #ff3333;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .player-btn:hover {
+            background: rgba(255,51,51,0.12);
+            border-color: #ff3333;
+            transform: scale(1.05);
+        }
+
+        .player-btn:active {
+            transform: scale(0.95);
+        }
+
+        .player-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .player-progress-wrap {
+            flex: 1;
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .player-time {
+            color: #888;
+            font-size: 0.7rem;
+            font-variant-numeric: tabular-nums;
+            min-width: 38px;
+        }
+
+        .player-progress {
+            flex: 1;
+            height: 4px;
+            background: #222;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: height 0.2s ease;
+        }
+
+        .player-progress:hover {
+            height: 6px;
+        }
+
+        .player-progress-fill {
+            height: 100%;
+            background: #ff3333;
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 12px rgba(255,51,51,0.25);
+        }
+
+        .player-volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .player-volume-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.2rem;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .player-volume-btn:hover {
+            color: #ff3333;
+        }
+
+        .player-volume-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .player-volume-slider {
+            width: 56px;
+            height: 4px;
+            background: #222;
+            border-radius: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            transition: height 0.2s ease;
+        }
+
+        .player-volume-slider:hover {
+            height: 6px;
+        }
+
+        .player-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff3333;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255,51,51,0.3);
+        }
+
+        .player-volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff3333;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px rgba(255,51,51,0.3);
+        }
+
+        /* ===== MEDIA QUERIES EXISTENTES (ampliadas) ===== */
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem 0.3rem;
@@ -220,7 +415,6 @@
                 font-size: 0.85rem;
             }
             
-            /* Grid de 2 columnas en móvil */
             .manifesto-content .principles-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.5rem;
@@ -257,9 +451,45 @@
                 padding: 0.8rem 0.8rem;
                 font-size: 0.85rem;
             }
+
+            /* Reproductor en móvil */
+            .player-container {
+                padding: 0.8rem 0.8rem;
+            }
+
+            .player-controls {
+                gap: 0.6rem;
+            }
+
+            .player-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
+            }
+
+            .player-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .player-volume-slider {
+                width: 40px;
+            }
+
+            .player-title {
+                font-size: 0.7rem;
+            }
+
+            .player-progress-wrap {
+                min-width: 60px;
+            }
+
+            .player-time {
+                font-size: 0.6rem;
+                min-width: 30px;
+            }
         }
 
-        /* Para pantallas muy pequeñas (menos de 360px) */
         @media (max-width: 360px) {
             .manifesto-content .principles-grid {
                 gap: 0.4rem;
@@ -279,6 +509,15 @@
             
             .manifesto-content .principle-item .desc {
                 font-size: 0.6rem;
+            }
+
+            .player-volume-slider {
+                width: 30px;
+            }
+
+            .player-btn {
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -314,6 +553,10 @@
             .manifesto-content .principle-item .desc {
                 font-size: 0.8rem;
             }
+
+            .player-container {
+                padding: 1.5rem 2rem;
+            }
         }
 
         @media (min-width: 769px) {
@@ -327,6 +570,10 @@
             
             .manifesto-content .principle-item {
                 padding: 1.2rem;
+            }
+
+            .player-container {
+                padding: 1.8rem 2.5rem;
             }
         }
     </style>
@@ -420,13 +667,247 @@
             </p>
         </div>
 
+        
+        <div class="player-wrapper">
+            <div class="player-container">
+                <div class="player-header">
+                    <div class="player-title">♫ HIMNO OFICIAL <span>· We Will Rise</span></div>
+                    <div class="player-status" id="playerStatus">▌▌ EN ESPERA</div>
+                </div>
+
+                <div class="player-controls">
+                   
+                    <button class="player-btn" id="playBtn" aria-label="Reproducir / Pausar">
+                        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </button>
+
+                
+                    <div class="player-progress-wrap">
+                        <span class="player-time" id="currentTime">0:00</span>
+                        <div class="player-progress" id="progressBar">
+                            <div class="player-progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="player-time" id="totalTime">0:00</span>
+                    </div>
+
+                  
+                    <div class="player-volume-wrap">
+                        <button class="player-volume-btn" id="volumeBtn" aria-label="Silenciar / Activar sonido">
+                            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        </button>
+                        <input type="range" class="player-volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer-manifesto">
             <p>Manifiesto de HackPurgatory</p>
             <p>Redactado por RIPNetwork.</p>
             <div class="signature">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</div>
-            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #444;">
-            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #444;"></p>
         </div>
     </div>
+
+   
+    <script>
+        (function() {
+            const audio = new Audio('WeWillRise.mp3');
+            audio.volume = 0.8;
+
+            const playBtn = document.getElementById('playBtn');
+            const progressFill = document.getElementById('progressFill');
+            const progressBar = document.getElementById('progressBar');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeBtn = document.getElementById('volumeBtn');
+            const statusEl = document.getElementById('playerStatus');
+
+            let isPlaying = false;
+            let isDragging = false;
+
+          
+            function formatTime(seconds) {
+                if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return mins + ':' + (secs < 10 ? '0' : '') + secs;
+            }
+
+           
+            function updateProgress() {
+                if (!isDragging) {
+                    const percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+                    progressFill.style.width = percent + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            }
+
+            function updateTotalTime() {
+                totalTimeEl.textContent = formatTime(audio.duration);
+            }
+
+            function updateStatus(playing) {
+                if (playing) {
+                    statusEl.textContent = '▶ REPRODUCIENDO';
+                    statusEl.className = 'player-status playing';
+                } else {
+                    statusEl.textContent = '▌▌ PAUSADO';
+                    statusEl.className = 'player-status';
+                }
+            }
+
+            function updatePlayButton(playing) {
+                if (playing) {
+                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+                } else {
+                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+                }
+            }
+
+            
+            audio.addEventListener('loadedmetadata', updateTotalTime);
+            audio.addEventListener('timeupdate', updateProgress);
+
+            audio.addEventListener('play', function() {
+                isPlaying = true;
+                updateStatus(true);
+                updatePlayButton(true);
+            });
+
+            audio.addEventListener('pause', function() {
+                isPlaying = false;
+                updateStatus(false);
+                updatePlayButton(false);
+            });
+
+            audio.addEventListener('ended', function() {
+                isPlaying = false;
+                updateStatus(false);
+                updatePlayButton(false);
+                progressFill.style.width = '0%';
+                currentTimeEl.textContent = '0:00';
+                audio.currentTime = 0;
+            });
+
+            audio.addEventListener('error', function(e) {
+                console.warn('Error al cargar el audio:', e);
+                statusEl.textContent = '⚠ ERROR';
+                statusEl.className = 'player-status';
+            });
+
+            
+            playBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play().catch(function(err) {
+                        console.warn('No se pudo reproducir:', err);
+                        statusEl.textContent = '⚠ ERROR';
+                    });
+                } else {
+                    audio.pause();
+                }
+            });
+
+            
+            progressBar.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                const rect = progressBar.getBoundingClientRect();
+                const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+                if (audio.duration) {
+                    audio.currentTime = percent * audio.duration;
+                    progressFill.style.width = (percent * 100) + '%';
+                }
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                const rect = progressBar.getBoundingClientRect();
+                const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+                if (audio.duration) {
+                    audio.currentTime = percent * audio.duration;
+                    progressFill.style.width = (percent * 100) + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    if (audio.duration) {
+                        
+                        updateProgress();
+                    }
+                }
+            });
+
+           
+            progressBar.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                isDragging = true;
+                const rect = progressBar.getBoundingClientRect();
+                const touch = e.touches[0];
+                const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
+                if (audio.duration) {
+                    audio.currentTime = percent * audio.duration;
+                    progressFill.style.width = (percent * 100) + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            }, { passive: false });
+
+            progressBar.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                if (!isDragging) return;
+                const rect = progressBar.getBoundingClientRect();
+                const touch = e.touches[0];
+                const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
+                if (audio.duration) {
+                    audio.currentTime = percent * audio.duration;
+                    progressFill.style.width = (percent * 100) + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            }, { passive: false });
+
+            progressBar.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                isDragging = false;
+                if (audio.duration) {
+                    updateProgress();
+                }
+            }, { passive: false });
+
+          
+            volumeSlider.addEventListener('input', function() {
+                const val = parseFloat(this.value);
+                audio.volume = val;
+                if (val === 0) {
+                    volumeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                } else {
+                    volumeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                }
+            });
+
+            volumeBtn.addEventListener('click', function() {
+                if (audio.volume > 0) {
+                    audio.volume = 0;
+                    volumeSlider.value = 0;
+                    this.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                } else {
+                    audio.volume = 0.8;
+                    volumeSlider.value = 0.8;
+                    this.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                }
+            });
+
+           
+            updateStatus(false);
+            updatePlayButton(false);
+            currentTimeEl.textContent = '0:00';
+            totalTimeEl.textContent = '0:00';
+            volumeSlider.value = 0.8;
+
+ 
+        })();
+    </script>
 </body>
 </html>
