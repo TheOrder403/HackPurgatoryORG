@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Manifiesto - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+    <title>Manifiesto - HACK [PURGATORY]</title>
     <meta name="description" content="Manifiesto de HackPurgatory">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
-        
         * {
             margin: 0;
             padding: 0;
@@ -121,7 +120,7 @@
         }
 
         .manifesto-content ul li::before {
-            content: "▸";
+            content: ">";
             color: #ff3333;
             position: absolute;
             left: 0;
@@ -192,7 +191,6 @@
             margin-top: 0.3rem;
         }
 
-       
         .player-wrapper {
             margin-top: 2.5rem;
             padding-top: 1.8rem;
@@ -247,6 +245,10 @@
 
         .player-status.error {
             color: #ff6600;
+        }
+
+        .player-status.loading {
+            color: #ffaa00;
         }
 
         .player-controls {
@@ -390,7 +392,6 @@
             box-shadow: 0 0 10px rgba(255,51,51,0.3);
         }
 
-        
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem 0.3rem;
@@ -585,7 +586,7 @@
     <div class="container">
         <div class="header">
             <h1>MANIFIESTO</h1>
-            <div class="subtitle">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</div>
+            <div class="subtitle">HACK [PURGATORY]</div>
         </div>
 
         <div class="manifesto-content">
@@ -609,7 +610,7 @@
                 </div>
                 <div class="principle-item">
                     <span class="number">03</span>
-                    <span class="label">Centralización</span>
+                    <span class="label">Centralizacion</span>
                     <div class="desc">Dentro de los miembros de la comunidad creemos que a todos los usuarios pertenecientes se les deben de aplicar las mismas medidas que a cualquier otro en caso de ser necesarias. De la misma forma que las autoridades mayores deban tomar las decisiones importantes entorno a la comunidad entera de la misma forma que la distribucion de recursos y material.</div>
                 </div>
                 <div class="principle-item">
@@ -631,7 +632,7 @@
 
             <h2>Nuestros Objetivos</h2>
             <p>
-                Proveer herramientas de acceso a información pública y recursos digitales que empoderen a 
+                Proveer herramientas de acceso a informacion publica y recursos digitales que empoderen a 
                 investigadores y miembros que quieran aprender de forma segura y sin ningun tipo de bloqueo. Mientras que <span class="highlight">censuramos cualquier tipo de venta</span> existente que intente generar un ingreso en base al desconocimiento de los navegantes.
             </p>
             <p>
@@ -649,8 +650,8 @@
 
             <h2>Nuestra Comunidad</h2>
             <p>
-                HackPurgatory <span class="highlight">nunca</span> pedirá dinero por el acceso a sus herramientas. 
-                La información es un derecho, no un lujo. Nuestro trabajo es hacer que cualquier persona pueda aprender libremente sin necesidad de que tenga que gastar dinero por algo que existe en internet.
+                HackPurgatory <span class="highlight">nunca</span> pedira dinero por el acceso a sus herramientas. 
+                La informacion es un derecho, no un lujo. Nuestro trabajo es hacer que cualquier persona pueda aprender libremente sin necesidad de que tenga que gastar dinero por algo que existe en internet.
                 
             </p>
             <p>
@@ -664,18 +665,17 @@
                 
             </p>
             <p>
-                Las automatizaciones y el uso indebido de nuestros modulos están <span class="highlight">terminantemente prohibidos</span>. 
+                Las automatizaciones y el uso indebido de nuestros modulos estan <span class="highlight">terminantemente prohibidos</span>. 
                 Protegemos la informacion y no buscamos el abuso de ellas. Los modulos estan creados con el objetivo de ayudar en investigaciones no para la recoleccion ilegal de informacion.  
                 
             </p>
         </div>
 
-        
         <div class="player-wrapper">
             <div class="player-container">
                 <div class="player-header">
-                    <div class="player-title">♫ HIMNO OFICIAL <span>· We Will Rise</span></div>
-                    <div class="player-status" id="playerStatus">▌▌ EN ESPERA</div>
+                    <div class="player-title">HIMNO OFICIAL <span>· We Will Rise</span></div>
+                    <div class="player-status" id="playerStatus">EN ESPERA</div>
                 </div>
 
                 <div class="player-controls">
@@ -704,46 +704,79 @@
         <div class="footer-manifesto">
             <p>Manifiesto de HackPurgatory</p>
             <p>Redactado por RIPNetwork.</p>
-            <div class="signature">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</div>
+            <div class="signature">HACK [PURGATORY]</div>
             <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #444;"></p>
         </div>
     </div>
 
-   
     <script>
         (function() {
-           
-            const audio = new Audio();
-            audio.src = 'WeWillRise.mp3';
-            audio.preload = 'auto';
+            var basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            if (basePath === '') basePath = './';
+            
+            var rutasPosibles = [
+                'WeWillRise.mp3',
+                basePath + 'WeWillRise.mp3',
+                './WeWillRise.mp3',
+                '/WeWillRise.mp3'
+            ];
+
+            console.log('Intentando cargar el himno desde:', rutasPosibles);
+
+            var audio = new Audio();
             audio.volume = 0.8;
             audio.loop = false;
+            audio.preload = 'auto';
 
-            const playBtn = document.getElementById('playBtn');
-            const progressFill = document.getElementById('progressFill');
-            const progressBar = document.getElementById('progressBar');
-            const currentTimeEl = document.getElementById('currentTime');
-            const totalTimeEl = document.getElementById('totalTime');
-            const volumeSlider = document.getElementById('volumeSlider');
-            const volumeBtn = document.getElementById('volumeBtn');
-            const statusEl = document.getElementById('playerStatus');
+            var rutaActual = 0;
+            audio.src = rutasPosibles[0];
 
-            let isPlaying = false;
-            let isDragging = false;
-            let isAudioLoaded = false;
+            audio.addEventListener('error', function onError() {
+                rutaActual++;
+                if (rutaActual < rutasPosibles.length) {
+                    console.log('Probando ruta alternativa:', rutasPosibles[rutaActual]);
+                    audio.src = rutasPosibles[rutaActual];
+                    audio.load();
+                } else {
+                    console.error('No se pudo cargar el archivo en ninguna ruta');
+                    setErrorStatus('Archivo no encontrado');
+                    audio.removeEventListener('error', onError);
+                }
+            });
 
-            
+            audio.addEventListener('loadedmetadata', function() {
+                console.log('Audio cargado correctamente desde:', audio.src);
+                if (audio.duration > 0) {
+                    isAudioLoaded = true;
+                    statusEl.textContent = 'LISTO';
+                    statusEl.className = 'player-status';
+                    totalTimeEl.textContent = formatTime(audio.duration);
+                }
+            });
+
+            var playBtn = document.getElementById('playBtn');
+            var progressFill = document.getElementById('progressFill');
+            var progressBar = document.getElementById('progressBar');
+            var currentTimeEl = document.getElementById('currentTime');
+            var totalTimeEl = document.getElementById('totalTime');
+            var volumeSlider = document.getElementById('volumeSlider');
+            var volumeBtn = document.getElementById('volumeBtn');
+            var statusEl = document.getElementById('playerStatus');
+
+            var isPlaying = false;
+            var isDragging = false;
+            var isAudioLoaded = false;
+
             function formatTime(seconds) {
                 if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
-                const mins = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
+                var mins = Math.floor(seconds / 60);
+                var secs = Math.floor(seconds % 60);
                 return mins + ':' + (secs < 10 ? '0' : '') + secs;
             }
 
-            
             function updateProgress() {
                 if (!isDragging && audio.duration) {
-                    const percent = (audio.currentTime / audio.duration) * 100;
+                    var percent = (audio.currentTime / audio.duration) * 100;
                     progressFill.style.width = Math.min(100, percent) + '%';
                     currentTimeEl.textContent = formatTime(audio.currentTime);
                 }
@@ -760,16 +793,16 @@
 
             function updateStatus(playing) {
                 if (playing) {
-                    statusEl.textContent = '▶ REPRODUCIENDO';
+                    statusEl.textContent = 'REPRODUCIENDO';
                     statusEl.className = 'player-status playing';
                 } else {
-                    statusEl.textContent = '▌▌ PAUSADO';
+                    statusEl.textContent = 'PAUSADO';
                     statusEl.className = 'player-status';
                 }
             }
 
             function setErrorStatus(msg) {
-                statusEl.textContent = '⚠ ' + msg;
+                statusEl.textContent = 'ERROR: ' + msg;
                 statusEl.className = 'player-status error';
             }
 
@@ -781,14 +814,12 @@
                 }
             }
 
-            
             function playAudio() {
                 if (!audio.src || audio.src === '') {
-                    setErrorStatus('No se encontró el archivo');
+                    setErrorStatus('No hay archivo');
                     return;
                 }
 
-                
                 if (audio.readyState >= 2 || audio.duration > 0) {
                     audio.play().catch(function(err) {
                         console.warn('Error al reproducir:', err);
@@ -797,47 +828,24 @@
                     return;
                 }
 
-               
                 setErrorStatus('Cargando...');
+                statusEl.className = 'player-status loading';
                 audio.load();
                 
-              
                 audio.addEventListener('canplaythrough', function onCanPlay() {
                     audio.removeEventListener('canplaythrough', onCanPlay);
                     audio.play().catch(function(err) {
-                        console.warn('Error al reproducir después de cargar:', err);
+                        console.warn('Error al reproducir despues de cargar:', err);
                         setErrorStatus('Error al reproducir');
                     });
                 }, { once: true });
 
-              
                 setTimeout(function() {
                     if (audio.readyState < 2 && !isPlaying) {
-                        setErrorStatus('El archivo no se pudo cargar');
+                        setErrorStatus('No se pudo cargar');
                     }
-                }, 8000);
+                }, 10000);
             }
-
-           
-            audio.addEventListener('loadedmetadata', function() {
-                updateTotalTime();
-                if (audio.duration > 0) {
-                    isAudioLoaded = true;
-                    statusEl.textContent = '▌▌ LISTO';
-                    statusEl.className = 'player-status';
-                }
-            });
-
-            audio.addEventListener('canplay', function() {
-                updateTotalTime();
-                if (audio.duration > 0) {
-                    isAudioLoaded = true;
-                    if (statusEl.textContent.includes('Cargando')) {
-                        statusEl.textContent = '▌▌ LISTO';
-                        statusEl.className = 'player-status';
-                    }
-                }
-            });
 
             audio.addEventListener('timeupdate', updateProgress);
 
@@ -845,7 +853,6 @@
                 isPlaying = true;
                 updateStatus(true);
                 updatePlayButton(true);
-                statusEl.className = 'player-status playing';
             });
 
             audio.addEventListener('pause', function() {
@@ -863,23 +870,6 @@
                 audio.currentTime = 0;
             });
 
-            audio.addEventListener('error', function(e) {
-                console.warn('Error en audio:', e);
-                let msg = 'Error al cargar';
-                if (audio.error) {
-                    switch(audio.error.code) {
-                        case 1: msg = 'Archivo no encontrado'; break;
-                        case 2: msg = 'Formato no soportado'; break;
-                        case 3: msg = 'Error al decodificar'; break;
-                        case 4: msg = 'No se pudo cargar el archivo'; break;
-                    }
-                }
-                setErrorStatus(msg);
-                updatePlayButton(false);
-                isPlaying = false;
-            });
-
-            
             playBtn.addEventListener('click', function() {
                 if (audio.paused) {
                     playAudio();
@@ -888,12 +878,11 @@
                 }
             });
 
-           
             progressBar.addEventListener('mousedown', function(e) {
                 if (!audio.duration || audio.duration === 0) return;
                 isDragging = true;
-                const rect = progressBar.getBoundingClientRect();
-                const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+                var rect = progressBar.getBoundingClientRect();
+                var percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
                 audio.currentTime = percent * audio.duration;
                 progressFill.style.width = (percent * 100) + '%';
                 currentTimeEl.textContent = formatTime(audio.currentTime);
@@ -901,8 +890,8 @@
 
             document.addEventListener('mousemove', function(e) {
                 if (!isDragging || !audio.duration) return;
-                const rect = progressBar.getBoundingClientRect();
-                const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+                var rect = progressBar.getBoundingClientRect();
+                var percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
                 audio.currentTime = percent * audio.duration;
                 progressFill.style.width = (percent * 100) + '%';
                 currentTimeEl.textContent = formatTime(audio.currentTime);
@@ -915,14 +904,13 @@
                 }
             });
 
-            
             progressBar.addEventListener('touchstart', function(e) {
                 if (!audio.duration || audio.duration === 0) return;
                 e.preventDefault();
                 isDragging = true;
-                const rect = progressBar.getBoundingClientRect();
-                const touch = e.touches[0];
-                const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
+                var rect = progressBar.getBoundingClientRect();
+                var touch = e.touches[0];
+                var percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
                 audio.currentTime = percent * audio.duration;
                 progressFill.style.width = (percent * 100) + '%';
                 currentTimeEl.textContent = formatTime(audio.currentTime);
@@ -931,9 +919,9 @@
             progressBar.addEventListener('touchmove', function(e) {
                 if (!isDragging || !audio.duration) return;
                 e.preventDefault();
-                const rect = progressBar.getBoundingClientRect();
-                const touch = e.touches[0];
-                const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
+                var rect = progressBar.getBoundingClientRect();
+                var touch = e.touches[0];
+                var percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
                 audio.currentTime = percent * audio.duration;
                 progressFill.style.width = (percent * 100) + '%';
                 currentTimeEl.textContent = formatTime(audio.currentTime);
@@ -945,9 +933,8 @@
                 updateProgress();
             }, { passive: false });
 
-           
             volumeSlider.addEventListener('input', function() {
-                const val = parseFloat(this.value);
+                var val = parseFloat(this.value);
                 audio.volume = val;
                 if (val === 0) {
                     volumeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
@@ -968,14 +955,12 @@
                 }
             });
 
-           
             updateStatus(false);
             updatePlayButton(false);
             currentTimeEl.textContent = '0:00';
             totalTimeEl.textContent = '0:00';
             volumeSlider.value = 0.8;
 
-            
             audio.load();
 
             console.log('Reproductor listo. Archivo esperado: WeWillRise.mp3 en la misma carpeta.');
