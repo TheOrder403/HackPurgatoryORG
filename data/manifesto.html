@@ -7,7 +7,7 @@
     <meta name="description" content="Manifiesto de HackPurgatory">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
-     
+        
         * {
             margin: 0;
             padding: 0;
@@ -192,7 +192,7 @@
             margin-top: 0.3rem;
         }
 
-        /* ===== NUEVOS ESTILOS PARA EL REPRODUCTOR ===== */
+       
         .player-wrapper {
             margin-top: 2.5rem;
             padding-top: 1.8rem;
@@ -243,6 +243,10 @@
 
         .player-status.playing {
             color: #ff3333;
+        }
+
+        .player-status.error {
+            color: #ff6600;
         }
 
         .player-controls {
@@ -386,7 +390,7 @@
             box-shadow: 0 0 10px rgba(255,51,51,0.3);
         }
 
-        /* ===== MEDIA QUERIES EXISTENTES (ampliadas) ===== */
+        
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem 0.3rem;
@@ -452,7 +456,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Reproductor en móvil */
             .player-container {
                 padding: 0.8rem 0.8rem;
             }
@@ -676,12 +679,10 @@
                 </div>
 
                 <div class="player-controls">
-                   
                     <button class="player-btn" id="playBtn" aria-label="Reproducir / Pausar">
                         <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                     </button>
 
-                
                     <div class="player-progress-wrap">
                         <span class="player-time" id="currentTime">0:00</span>
                         <div class="player-progress" id="progressBar">
@@ -690,7 +691,6 @@
                         <span class="player-time" id="totalTime">0:00</span>
                     </div>
 
-                  
                     <div class="player-volume-wrap">
                         <button class="player-volume-btn" id="volumeBtn" aria-label="Silenciar / Activar sonido">
                             <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
@@ -712,8 +712,12 @@
    
     <script>
         (function() {
-            const audio = new Audio('WeWillRise.mp3');
+           
+            const audio = new Audio();
+            audio.src = 'WeWillRise.mp3';
+            audio.preload = 'auto';
             audio.volume = 0.8;
+            audio.loop = false;
 
             const playBtn = document.getElementById('playBtn');
             const progressFill = document.getElementById('progressFill');
@@ -726,26 +730,32 @@
 
             let isPlaying = false;
             let isDragging = false;
+            let isAudioLoaded = false;
 
-          
+            
             function formatTime(seconds) {
-                if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
+                if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
                 const mins = Math.floor(seconds / 60);
                 const secs = Math.floor(seconds % 60);
                 return mins + ':' + (secs < 10 ? '0' : '') + secs;
             }
 
-           
+            
             function updateProgress() {
-                if (!isDragging) {
-                    const percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-                    progressFill.style.width = percent + '%';
+                if (!isDragging && audio.duration) {
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    progressFill.style.width = Math.min(100, percent) + '%';
                     currentTimeEl.textContent = formatTime(audio.currentTime);
                 }
             }
 
             function updateTotalTime() {
-                totalTimeEl.textContent = formatTime(audio.duration);
+                if (audio.duration && isFinite(audio.duration)) {
+                    totalTimeEl.textContent = formatTime(audio.duration);
+                    isAudioLoaded = true;
+                } else {
+                    totalTimeEl.textContent = '0:00';
+                }
             }
 
             function updateStatus(playing) {
@@ -758,6 +768,11 @@
                 }
             }
 
+            function setErrorStatus(msg) {
+                statusEl.textContent = '⚠ ' + msg;
+                statusEl.className = 'player-status error';
+            }
+
             function updatePlayButton(playing) {
                 if (playing) {
                     playBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
@@ -767,13 +782,70 @@
             }
 
             
-            audio.addEventListener('loadedmetadata', updateTotalTime);
+            function playAudio() {
+                if (!audio.src || audio.src === '') {
+                    setErrorStatus('No se encontró el archivo');
+                    return;
+                }
+
+                
+                if (audio.readyState >= 2 || audio.duration > 0) {
+                    audio.play().catch(function(err) {
+                        console.warn('Error al reproducir:', err);
+                        setErrorStatus('Error al reproducir');
+                    });
+                    return;
+                }
+
+               
+                setErrorStatus('Cargando...');
+                audio.load();
+                
+              
+                audio.addEventListener('canplaythrough', function onCanPlay() {
+                    audio.removeEventListener('canplaythrough', onCanPlay);
+                    audio.play().catch(function(err) {
+                        console.warn('Error al reproducir después de cargar:', err);
+                        setErrorStatus('Error al reproducir');
+                    });
+                }, { once: true });
+
+              
+                setTimeout(function() {
+                    if (audio.readyState < 2 && !isPlaying) {
+                        setErrorStatus('El archivo no se pudo cargar');
+                    }
+                }, 8000);
+            }
+
+           
+            audio.addEventListener('loadedmetadata', function() {
+                updateTotalTime();
+                if (audio.duration > 0) {
+                    isAudioLoaded = true;
+                    statusEl.textContent = '▌▌ LISTO';
+                    statusEl.className = 'player-status';
+                }
+            });
+
+            audio.addEventListener('canplay', function() {
+                updateTotalTime();
+                if (audio.duration > 0) {
+                    isAudioLoaded = true;
+                    if (statusEl.textContent.includes('Cargando')) {
+                        statusEl.textContent = '▌▌ LISTO';
+                        statusEl.className = 'player-status';
+                    }
+                }
+            });
+
             audio.addEventListener('timeupdate', updateProgress);
 
             audio.addEventListener('play', function() {
                 isPlaying = true;
                 updateStatus(true);
                 updatePlayButton(true);
+                statusEl.className = 'player-status playing';
             });
 
             audio.addEventListener('pause', function() {
@@ -792,91 +864,88 @@
             });
 
             audio.addEventListener('error', function(e) {
-                console.warn('Error al cargar el audio:', e);
-                statusEl.textContent = '⚠ ERROR';
-                statusEl.className = 'player-status';
+                console.warn('Error en audio:', e);
+                let msg = 'Error al cargar';
+                if (audio.error) {
+                    switch(audio.error.code) {
+                        case 1: msg = 'Archivo no encontrado'; break;
+                        case 2: msg = 'Formato no soportado'; break;
+                        case 3: msg = 'Error al decodificar'; break;
+                        case 4: msg = 'No se pudo cargar el archivo'; break;
+                    }
+                }
+                setErrorStatus(msg);
+                updatePlayButton(false);
+                isPlaying = false;
             });
 
             
             playBtn.addEventListener('click', function() {
                 if (audio.paused) {
-                    audio.play().catch(function(err) {
-                        console.warn('No se pudo reproducir:', err);
-                        statusEl.textContent = '⚠ ERROR';
-                    });
+                    playAudio();
                 } else {
                     audio.pause();
                 }
             });
 
-            
+           
             progressBar.addEventListener('mousedown', function(e) {
+                if (!audio.duration || audio.duration === 0) return;
                 isDragging = true;
                 const rect = progressBar.getBoundingClientRect();
                 const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-                if (audio.duration) {
-                    audio.currentTime = percent * audio.duration;
-                    progressFill.style.width = (percent * 100) + '%';
-                }
+                audio.currentTime = percent * audio.duration;
+                progressFill.style.width = (percent * 100) + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
             });
 
             document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
+                if (!isDragging || !audio.duration) return;
                 const rect = progressBar.getBoundingClientRect();
                 const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-                if (audio.duration) {
-                    audio.currentTime = percent * audio.duration;
-                    progressFill.style.width = (percent * 100) + '%';
-                    currentTimeEl.textContent = formatTime(audio.currentTime);
-                }
+                audio.currentTime = percent * audio.duration;
+                progressFill.style.width = (percent * 100) + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
             });
 
             document.addEventListener('mouseup', function() {
                 if (isDragging) {
                     isDragging = false;
-                    if (audio.duration) {
-                        
-                        updateProgress();
-                    }
+                    updateProgress();
                 }
             });
 
-           
+            
             progressBar.addEventListener('touchstart', function(e) {
+                if (!audio.duration || audio.duration === 0) return;
                 e.preventDefault();
                 isDragging = true;
                 const rect = progressBar.getBoundingClientRect();
                 const touch = e.touches[0];
                 const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
-                if (audio.duration) {
-                    audio.currentTime = percent * audio.duration;
-                    progressFill.style.width = (percent * 100) + '%';
-                    currentTimeEl.textContent = formatTime(audio.currentTime);
-                }
+                audio.currentTime = percent * audio.duration;
+                progressFill.style.width = (percent * 100) + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
             }, { passive: false });
 
             progressBar.addEventListener('touchmove', function(e) {
+                if (!isDragging || !audio.duration) return;
                 e.preventDefault();
-                if (!isDragging) return;
                 const rect = progressBar.getBoundingClientRect();
                 const touch = e.touches[0];
                 const percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
-                if (audio.duration) {
-                    audio.currentTime = percent * audio.duration;
-                    progressFill.style.width = (percent * 100) + '%';
-                    currentTimeEl.textContent = formatTime(audio.currentTime);
-                }
+                audio.currentTime = percent * audio.duration;
+                progressFill.style.width = (percent * 100) + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
             }, { passive: false });
 
             progressBar.addEventListener('touchend', function(e) {
                 e.preventDefault();
                 isDragging = false;
-                if (audio.duration) {
-                    updateProgress();
-                }
+                updateProgress();
             }, { passive: false });
 
-          
+           
             volumeSlider.addEventListener('input', function() {
                 const val = parseFloat(this.value);
                 audio.volume = val;
@@ -906,7 +975,10 @@
             totalTimeEl.textContent = '0:00';
             volumeSlider.value = 0.8;
 
- 
+            
+            audio.load();
+
+            console.log('Reproductor listo. Archivo esperado: WeWillRise.mp3 en la misma carpeta.');
         })();
     </script>
 </body>
