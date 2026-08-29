@@ -475,110 +475,213 @@
                 hyphens: auto !important;
             }
         }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        header, nav, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        body {
+            background: #000;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
-    <div class="header-text">
-        <h1 id="typing-title"></h1>
-        <p>Bienvenido a Nuestra Comunidad.</p>
-    </div>
-</header>
+    <canvas id="particles-canvas"></canvas>
 
-<nav>
-    <div class="menu-toggle" id="menu-toggle">
-        <div></div>
-        <div></div>
-    </div>
-    <ul id="menu">
-	  <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
-	  <li><a href="https://hackpurgatory.org">Información</a></li>
-  	  <li><a href="https://hackpurgatory.org">Canales</a></li>
-  	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
-  	  <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
-  	  <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
-  	  <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
-	  <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
-    </ul>
-</nav>
-
-<main>
-    
-    <section id="exposed-people">
-        <div class="exposed-people-section">
-            <div class="exposed-people-buttons">
-                <a href="https://hackpurgatory.org/Channel/News/blog.html" class="exposed-person-btn" target="_blank">
-                    <span class="person-name">Noticias</span>
-                    <span class="person-alias">News</span>
-                </a>
-                <a href="https://hackpurgatory.org/Channel/Censored/blog.html" class="exposed-person-btn" target="_blank">
-                    <span class="person-name">Censuras</span>
-                    <span class="person-alias">Censored</span>
-                </a>
-                <a href="https://hackpurgatory.org/Channel/Tools/Tools.html" class="exposed-person-btn" target="_blank">
-                    <span class="person-name">Herramientas</span>
-                    <span class="person-alias">Tools</span>
-                </a>
-				<a href="https://hackpurgatory.org/data/manifesto.html" class="exposed-person-btn" target="_blank">
-                    <span class="person-name">Manifiesto</span>
-                    <span class="person-alias">Manifesto</span>
-                </a>
-            </div>
+    <header>
+        <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
+        <div class="header-text">
+            <h1 id="typing-title"></h1>
+            <p>Bienvenido a Nuestra Comunidad.</p>
         </div>
-    </section>
-    
-    <div class="contact-buttons">
-        <a href="https://hackpurgatory.org">
-            <svg class="icon-svg" viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-            Volver al Inicio
-        </a>
-        <a href="https://t.me/HackPurgatory" target="_blank">
-            <svg class="icon-svg" viewBox="0 0 24 24">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
-            </svg>
-            Reportar a La Unidad
-        </a>
-    </div>
-</main>
+    </header>
 
-<footer>
-    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
-</footer>
+    <nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="menu">
+          <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
+          <li><a href="https://hackpurgatory.org">Información</a></li>
+          <li><a href="https://hackpurgatory.org">Canales</a></li>
+          <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+          <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
+          <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
+          <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
+          <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
+        </ul>
+    </nav>
 
-<script>
-    function startTypingAnimation() {
-        const typingTitle = document.getElementById('typing-title');
-        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
-        let charIndex = 0;
+    <main>
+        <section id="exposed-people">
+            <div class="exposed-people-section">
+                <div class="exposed-people-buttons">
+                    <a href="https://hackpurgatory.org/Channel/News/blog.html" class="exposed-person-btn" target="_blank">
+                        <span class="person-name">Noticias</span>
+                        <span class="person-alias">News</span>
+                    </a>
+                    <a href="https://hackpurgatory.org/Channel/Censored/blog.html" class="exposed-person-btn" target="_blank">
+                        <span class="person-name">Censuras</span>
+                        <span class="person-alias">Censored</span>
+                    </a>
+                    <a href="https://hackpurgatory.org/Channel/Tools/Tools.html" class="exposed-person-btn" target="_blank">
+                        <span class="person-name">Herramientas</span>
+                        <span class="person-alias">Tools</span>
+                    </a>
+                    <a href="https://hackpurgatory.org/data/manifesto.html" class="exposed-person-btn" target="_blank">
+                        <span class="person-name">Manifiesto</span>
+                        <span class="person-alias">Manifesto</span>
+                    </a>
+                </div>
+            </div>
+        </section>
         
-        function typeWriter() {
-            if (charIndex < titleText.length) {
-                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            } else {
-                typingTitle.innerHTML = titleText;
+        <div class="contact-buttons">
+            <a href="https://hackpurgatory.org">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Volver al Inicio
+            </a>
+            <a href="https://t.me/HackPurgatory" target="_blank">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+                </svg>
+                Reportar a La Unidad
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        function startTypingAnimation() {
+            const typingTitle = document.getElementById('typing-title');
+            const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+            let charIndex = 0;
+            
+            function typeWriter() {
+                if (charIndex < titleText.length) {
+                    typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                    charIndex++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    typingTitle.innerHTML = titleText;
+                }
             }
+            
+            typeWriter();
         }
         
-        typeWriter();
-    }
-    
-    window.addEventListener("load", () => {
-        setTimeout(startTypingAnimation, 300);
-    });
- 
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('show');
-        toggle.classList.toggle('active');
-    });
-</script>
+        window.addEventListener("load", () => {
+            setTimeout(startTypingAnimation, 300);
+        });
+     
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+            toggle.classList.toggle('active');
+        });
+
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const PARTICLE_COUNT = 80;
+            const MAX_SPEED = 2.0;
+            const MIN_SPEED = 0.6;
+            const SIZE_MIN = 2;
+            const SIZE_MAX = 5;
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height - height;
+                    this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
+                    this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
+                    this.opacity = Math.random() * 0.7 + 0.3;
+                    this.drift = (Math.random() - 0.5) * 0.4;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.drift;
+
+                    if (this.y > height + 20) {
+                        this.reset();
+                        this.y = -10;
+                    }
+                    if (this.x < -20) this.x = width + 20;
+                    if (this.x > width + 20) this.x = -20;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
+                    ctx.fill();
+
+                    ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';
+                    ctx.shadowBlur = 10;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const p = new Particle();
+                p.y = Math.random() * height;
+                particles.push(p);
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let p of particles) {
+                    p.update();
+                    p.draw();
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        })();
+
+    </script>
 
 </body>
 </html>
