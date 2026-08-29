@@ -715,7 +715,7 @@
       if (charIndex < titleText.length) {
         typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
         charIndex++;
-        setTimeout(typeWriter, 100);
+        setTimeout(typeWriter, 35);
       } else {
         typingTitle.innerHTML = titleText;
       }
@@ -743,7 +743,7 @@
     
     setTimeout(() => {
       startTypingAnimation();
-    }, 11000);
+    }, 3500);
   });
  
   const toggle = document.getElementById('menu-toggle');
@@ -762,7 +762,7 @@
   counters.forEach(counter=>{const target=+counter.getAttribute('data-target'); let count=0; const increment=Math.ceil(target/100); const updateCounter=()=>{count+=increment;if(count>=target){counter.textContent=target;}else{counter.textContent=count;setTimeout(updateCounter,30);}}; updateCounter();});
 
   
-  window.addEventListener("load",()=>{const preloader=document.getElementById("preloader"); setTimeout(()=>{preloader.style.opacity="0"; preloader.style.visibility="hidden";},10000);});
+  window.addEventListener("load",()=>{const preloader=document.getElementById("preloader"); setTimeout(()=>{preloader.style.opacity="0"; preloader.style.visibility="hidden";},3000);});
 
   
   const guestAvatar=document.getElementById('guest-avatar');
@@ -849,7 +849,7 @@
     if (pushOverlay && !pushOverlay.classList.contains('show')) {
       showUrgentPush();
     }
-  }, 11000);
+  }, 4000);
 </script>
 </body>
 </html>
