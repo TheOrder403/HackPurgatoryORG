@@ -238,9 +238,10 @@
         }
 
         nav {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.85);
             position: relative;
-            z-index: 1;
+            z-index: 100;
+            width: 100%;
         }
 
         .menu-toggle {
@@ -273,7 +274,10 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            transition: max-height 0.3s;
+            transition: max-height 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.92);
+            margin: 0;
+            padding: 0;
         }
 
         nav ul li {
@@ -615,38 +619,59 @@
             }
 
             nav {
-                padding-top: 50px;
+                background-color: rgba(0, 0, 0, 0.95);
+                padding-top: 0;
+                position: relative;
+                width: 100%;
             }
 
             nav ul {
                 flex-direction: column;
                 max-height: 0;
                 overflow: hidden;
-                background-color: rgba(0, 0, 0, 0.95);
+                background-color: rgba(0, 0, 0, 0.98);
                 position: absolute;
                 width: 100%;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 z-index: 999;
                 padding: 0;
+                margin: 0;
+                transition: max-height 0.4s ease;
+                border-top: 1px solid #333;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.9);
             }
 
             nav ul.show {
                 max-height: 500px;
-                padding-bottom: 10px;
+                padding: 0.5rem 0;
+                border-bottom: 2px solid #ff3333;
             }
 
             nav ul li {
                 margin: 0;
                 text-align: center;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                 width: 100%;
             }
 
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
             nav ul li a {
-                padding: 12px 10px;
+                padding: 14px 10px;
                 font-size: 0.9rem;
                 width: 100%;
+                display: block;
+                transition: background 0.2s;
+            }
+
+            nav ul li a:hover {
+                background-color: #ff3333;
+                color: #000;
+                border-radius: 0;
+                transform: none;
             }
 
             .contact-buttons {
@@ -754,7 +779,7 @@
                 <p><strong>5. Automatizaciones:</strong> Estos endpoints cuentan con proteccion anti-bot, anti-scrapping y demas para evitar el uso indebido o ilegal de recoleccion de informacion de forma masiva. Evadir o hacerlo de igual forma podra ser sancionado por la comunidad.</p>
                 <p><strong>6. Venta Modulos:</strong> La venta de dichos endpoints es totalmente ilegal y se hace responsable al usuario de no venderla, en caso contrario seria considerado estafa y podra ser sancionado, HackPurgatory no vende ni ofrece modulos.</p>
                 <p><strong>7. Autoridades:</strong> En caso de que un uso indebido HackPurgatory podra colaborar con las autoridades locales para la presunta busqueda de dicho infractor llegando a ofrecer soporte en la investigacion legal.</p>
-                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: <a href="report@hackpurgatory.org"><span class="__cf_email__" data-cfemail="334156435c4147735b5250584346415452475c414a1d5c4154">[email&#160;protected]</span></a>.</p>
+                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: <a href="report@hackpurgatory.org"><span class="__cf_email__" data-cfemail="403225302f3234002821232b3035322721342f32396e2f3227">[email&#160;protected]</span></a>.</p>
                 <p style="margin-top: 0.5rem; color: #ff6666;">Al aceptar, confirmas que has leído y entendido estos términos.</p>
             </div>
 
@@ -775,6 +800,29 @@
             <p>Herramientas Disponibles</p>
         </div>
     </header>
+
+    
+    <nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="menu">
+            <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
+            <li><a href="https://hackpurgatory.org">Información</a></li>
+            <li><a href="https://hackpurgatory.org">Canales</a></li>
+            <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+            <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
+            <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
+            <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
+            <li><a href="https://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
+        </ul>
+            <div></div>
+            <div></div>
+            <div></div>
+    </nav>
+
     
     <main>
         <section id="tools">
@@ -1056,18 +1104,21 @@
 
         const toggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
-        toggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            menu.classList.toggle('show');
-            toggle.classList.toggle('active');
-        });
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menu.classList.toggle('show');
+                toggle.classList.toggle('active');
+            });
 
-        document.addEventListener('click', function(e) {
-            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-                menu.classList.remove('show');
-                toggle.classList.remove('active');
-            }
-        });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav')) {
+                    menu.classList.remove('show');
+                    toggle.classList.remove('active');
+                }
+            });
+        }
 
         (function() {
             const canvas = document.getElementById('particles-canvas');
@@ -1149,8 +1200,6 @@
 
             animate();
         })();
-
     </script>
-
 </body>
 </html>
