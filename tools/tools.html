@@ -607,57 +607,68 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-                position: absolute;
-                right: 15px;
-                top: 15px;
-            }
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 1001;
+    }
 
-            nav {
-                padding-top: 50px;
-            }
+    nav {
+        position: relative;
+        padding-top: 60px;
+    }
 
-            nav ul {
-                flex-direction: column;
-                max-height: 0;
-                overflow: hidden;
-                background-color: rgba(0, 0, 0, 0.95);
-                position: absolute;
-                width: 100%;
-                top: 70px;
-                left: 0;
-                z-index: 999;
-                padding: 0;
-            }
+    nav ul {
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        width: 100%;
+        top: 60px;
+        left: 0;
+        z-index: 1000;
+        padding: 0;
+        margin: 0;
+        transition: max-height 0.3s ease;
+        border-bottom: 2px solid #ff3333;
+        border-radius: 0 0 10px 10px;
+    }
 
-            nav ul.show {
-                max-height: 500px;
-                padding-bottom: 10px;
-            }
+    nav ul.show {
+        max-height: 500px;
+        padding: 5px 0 10px 0;
+    }
 
-            nav ul li {
-                margin: 0;
-                text-align: center;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                width: 100%;
-            }
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        width: 100%;
+    }
 
-            nav ul li a {
-                padding: 12px 10px;
-                font-size: 0.9rem;
-                width: 100%;
-            }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
 
-            .contact-buttons {
-                flex-direction: column;
-            }
+    nav ul li a {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+        width: 100%;
+        display: block;
+    }
 
-            .contact-buttons a {
-                width: 100%;
-                justify-content: center;
-            }
-        }
+    .contact-buttons {
+        flex-direction: column;
+    }
+
+    .contact-buttons a {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
         @media (max-width: 480px) {
             header {
