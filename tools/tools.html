@@ -1076,12 +1076,18 @@
 
         const toggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
-        if (toggle) {
-            toggle.addEventListener('click', () => {
-                menu.classList.toggle('show');
-                toggle.classList.toggle('active');
-            });
-        }
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            menu.classList.toggle('show');
+            toggle.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('show');
+                toggle.classList.remove('active');
+            }
+        });
 
         (function() {
             const canvas = document.getElementById('particles-canvas');
@@ -1163,6 +1169,8 @@
 
             animate();
         })();
+
     </script>
+
 </body>
 </html>
