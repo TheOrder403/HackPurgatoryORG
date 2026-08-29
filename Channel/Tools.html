@@ -33,6 +33,7 @@
             border-bottom: 2px solid #fff;
             justify-content: space-between;
             position: relative;
+            z-index: 1001;
         }
         
         header img {
@@ -48,10 +49,6 @@
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
             min-height: 2.5rem;
-        }
-        
-        .typing-container {
-            display: inline-block;
         }
         
         .typing-cursor {
@@ -74,22 +71,27 @@
         nav {
             background-color: rgba(0,0,0,0.5);
             position: relative;
+            z-index: 1000;
         }
         
         .menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 1rem;
-            z-index: 1000;
+            padding: 0.8rem 1rem;
+            z-index: 1002;
+            position: absolute;
+            right: 15px;
+            top: 8px;
         }
         
         .menu-toggle div {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background-color: #fff;
-            margin: 5px 0;
+            margin: 4px 0;
             transition: 0.4s;
+            border-radius: 2px;
         }
         
         .menu-toggle.active div:nth-child(1) {
@@ -108,19 +110,23 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            transition: max-height 0.3s;
+            transition: max-height 0.4s ease-in-out;
+            margin: 0;
+            padding: 0;
         }
         
         nav ul li {
-            margin: 0 1rem;
+            margin: 0 0.5rem;
         }
         
         nav ul li a {
             color: #fff;
             text-decoration: none;
-            padding: 1rem;
+            padding: 1rem 1.2rem;
             display: block;
             transition: color 0.3s, background 0.3s, transform 0.3s;
+            font-size: 0.95rem;
+            white-space: nowrap;
         }
         
         nav ul li a:hover {
@@ -136,6 +142,8 @@
             margin: 3rem auto;
             background-color: rgba(0,0,0,0.65);
             border-radius: 15px;
+            position: relative;
+            z-index: 1;
         }
         
         section {
@@ -258,6 +266,8 @@
             border-top: 1px solid #fff;
             color: #ccc;
             font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
         }
         
         .warning-banner {
@@ -268,34 +278,30 @@
             margin: 1.5rem 0;
             text-align: center;
         }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        body {
+            background: #000;
+        }
         
         @media (max-width: 768px) {
-            
-            html, body {
-                overflow-x: hidden;
-                width: 100%;
-                position: relative;
-            }
-            
-           
-            main {
-                padding: 1rem;
-                margin: 1rem auto;
-                width: calc(100% - 1rem);
-                max-width: 100%;
-                overflow: hidden;
-            }
-            
-           
             .menu-toggle {
                 display: flex;
-                position: absolute;
-                right: 15px;
-                top: 15px;
             }
             
             nav {
-                padding-top: 50px;
+                padding-top: 0;
+                background-color: transparent;
             }
             
             nav ul {
@@ -305,32 +311,50 @@
                 background-color: rgba(0,0,0,0.95);
                 position: absolute;
                 width: 100%;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 z-index: 999;
                 padding: 0;
+                margin: 0;
+                border-top: none;
+                border-bottom: none;
             }
             
             nav ul.show {
-                max-height: 500px;
-                padding-bottom: 10px;
+                max-height: 600px;
+                padding: 0.5rem 0;
+                overflow-y: auto;
             }
             
             nav ul li {
                 margin: 0;
                 text-align: center;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255,255,255,0.08);
                 width: 100%;
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
             }
             
             nav ul li a {
-                padding: 15px 10px;
+                padding: 14px 20px;
                 font-size: 1rem;
                 width: 100%;
                 box-sizing: border-box;
+                white-space: normal;
+                text-align: center;
+                border-left: none;
+                transition: all 0.3s;
             }
             
-           
+            nav ul li a:hover {
+                background-color: rgba(255,51,51,0.15);
+                color: #ff3333;
+                border-radius: 0;
+                transform: none;
+            }
+            
             header {
                 justify-content: center;
                 text-align: center;
@@ -357,7 +381,14 @@
                 padding: 0 10px;
             }
             
-           
+            main {
+                padding: 1rem;
+                margin: 1rem auto;
+                width: calc(100% - 1rem);
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
             section h2 {
                 font-size: 1.3rem;
                 display: block;
@@ -368,7 +399,6 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-            
             
             .exposed-people-section {
                 padding: 1.5rem;
@@ -399,7 +429,7 @@
             .exposed-person-btn .person-alias {
                 font-size: 0.85rem;
             }
-         
+            
             .contact-buttons {
                 flex-direction: column;
                 width: 100%;
@@ -417,7 +447,6 @@
                 justify-content: center;
             }
             
-         
             .warning-banner {
                 padding: 0.8rem;
                 margin: 1rem 0;
@@ -427,7 +456,6 @@
                 word-wrap: break-word;
             }
             
-           
             .contact-buttons a,
             nav ul li a,
             .exposed-person-btn {
@@ -439,12 +467,10 @@
                 box-sizing: border-box;
             }
             
-           
             * {
                 max-width: 100%;
             }
             
-           
             section {
                 margin-bottom: 2rem;
                 padding: 0 0.5rem;
@@ -453,7 +479,6 @@
             }
         }
         
-       
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.2rem;
@@ -467,33 +492,25 @@
             .exposed-people-section h3 {
                 font-size: 1.2rem;
             }
-          
+            
             p, h1, h2, h3, h4, span, a, div {
                 overflow-wrap: break-word !important;
                 word-wrap: break-word !important;
                 word-break: break-word !important;
                 hyphens: auto !important;
             }
-        }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: transparent;
-        }
-
-        header, nav, main, footer {
-            position: relative;
-            z-index: 1;
-        }
-
-        body {
-            background: #000;
+            
+            .menu-toggle {
+                padding: 0.6rem 0.8rem;
+                right: 10px;
+                top: 5px;
+            }
+            
+            .menu-toggle div {
+                width: 24px;
+                height: 2.5px;
+                margin: 3.5px 0;
+            }
         }
     </style>
 </head>
@@ -508,6 +525,25 @@
             <p>Bienvenido a Nuestra Comunidad.</p>
         </div>
     </header>
+
+    <nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="menu">
+            <li><a href="https://hackpurgatory.org">Sobre Nosotros</a></li>
+            <li><a href="https://hackpurgatory.org">Información</a></li>
+            <li><a href="https://hackpurgatory.org">Canales</a></li>
+            <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+            <li><a href="https://hackpurgatory.org">Free RDP/VPS</a></li>
+            <li><a href="https://hackpurgatory.org">Estadisticas</a></li>
+            <li><a href="https://hackpurgatory.org/Channel/Tools.html">Recursos</a></li>
+            <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
+        </ul>
+    </nav>
+
     <main>
         <section id="exposed-people">
             <div class="exposed-people-section">
@@ -577,9 +613,17 @@
      
         const toggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
-        toggle.addEventListener('click', () => {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             menu.classList.toggle('show');
             toggle.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('show');
+                toggle.classList.remove('active');
+            }
         });
 
         (function() {
