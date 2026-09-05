@@ -384,7 +384,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: +34666666666"
+                    placeholder="Ej: +34666666666 o usuario@dominio.com"
                     autocomplete="off"
                     disabled
                 >
@@ -395,8 +395,8 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=+34666666666</p>
-                <p><strong>Formato:</strong> Numero con codigo pais (ej: +34666666666)</p>
+                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=+34666666666 o ?search=usuario@dominio.com</p>
+                <p><strong>Formatos:</strong> Numero con codigo pais (ej: +34666666666) o Email (ej: usuario@dominio.com)</p>
             </div>
         </div>
         
@@ -404,7 +404,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingNumber"></div>
+                <div class="phone-display" id="searchingData"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -418,7 +418,8 @@
             "service": "Life360 Endpoint",
             "version": "1.0",
             "endpoints": [
-                "/life360?numero=+34666666666"
+                "/life360?numero=+34666666666",
+                "/life360?email=usuario@dominio.com"
             ],
             "source": "Created by @RIPNetwork"
         };
@@ -457,7 +458,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun numero.');
+                alert('Error: No se ingreso ningun dato.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -493,24 +494,35 @@
             return urlParams.get(name);
         }
     
-        function performRedirect(numberInput) {
-            let trimmedNumber = numberInput.trim();
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    
+        function performRedirect(input) {
+            let trimmedInput = input.trim();
             
-            if (trimmedNumber === '') {
-                alert('Error: No se ingreso ningun numero.');
+            if (trimmedInput === '') {
+                alert('Error: No se ingreso ningun dato.');
                 return false;
             }
             
-            if (!trimmedNumber.startsWith('+')) {
-                alert('Error: El numero debe incluir el codigo pais con el simbolo "+".\n\nFormato correcto: +34666666666\nEjemplo: +34666666666');
-                return false;
-            }
+            let redirectUrl;
+            let displayText = trimmedInput;
             
-            const redirectUrl = `https://life360.hackpurgatory.org/life360?numero=${encodeURIComponent(trimmedNumber)}`;
+            if (isValidEmail(trimmedInput)) {
+                redirectUrl = `https://life360.hackpurgatory.org/life360?email=${encodeURIComponent(trimmedInput)}`;
+            } else {
+                if (!trimmedInput.startsWith('+')) {
+                    alert('Error: El numero debe incluir el codigo pais con el simbolo "+".\n\nFormato correcto: +34666666666\nEjemplo: +34666666666');
+                    return false;
+                }
+                redirectUrl = `https://life360.hackpurgatory.org/life360?numero=${encodeURIComponent(trimmedInput)}`;
+            }
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingNumber').textContent = trimmedNumber;
+            document.getElementById('searchingData').textContent = displayText;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
