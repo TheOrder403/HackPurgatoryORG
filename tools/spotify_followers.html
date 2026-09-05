@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+    <meta name="description" content="HackPurgatory Tools - Spotify Followers">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            background: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 0 20px rgba(255,51,51,0.2);
+        }
+        
+        h1 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .search-box {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: #ff6666;
+            box-shadow: 0 0 15px rgba(255,51,51,0.3);
+        }
+        
+        .search-box input::placeholder {
+            color: #666;
+        }
+        
+        .search-box input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .search-box button {
+            padding: 0.8rem 2rem;
+            background: #ff3333;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        
+        .search-box button:hover:not(:disabled) {
+            background: #ff5555;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255,51,51,0.4);
+        }
+        
+        .search-box button:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        
+        .search-box button:disabled {
+            background: #442222;
+            color: #777;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .json-container {
+            background: rgba(0,0,0,0.9);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: left;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        pre {
+            color: #ff3333;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #ff9999;
+        }
+        
+        .info strong {
+            color: #ff3333;
+        }
+        
+        .redirect-message {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+        }
+        
+        .redirect-message h2 {
+            color: #ff3333;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,51,51,0.3);
+            border-top: 4px solid #ff3333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .url-display {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+            color: #ff9999;
+        }
+        
+        .warning {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: rgba(255,51,51,0.2);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #ff6666;
+            font-style: italic;
+        }
+
+        .terms-toggle {
+            color: #ff3333;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .terms-toggle:hover {
+            color: #ff6666;
+        }
+
+        .terms-content {
+            display: none;
+            text-align: left;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0 1.5rem 0;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #ccc;
+        }
+
+        .terms-content.show {
+            display: block;
+        }
+
+        .terms-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terms-content::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 8px;
+        }
+        .terms-content::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 8px;
+        }
+
+        .terms-content strong {
+            color: #ff6666;
+        }
+
+        .terms-content a {
+            color: #ff6666;
+            text-decoration: underline;
+        }
+
+        .terms-accept-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 0.8rem 0 1.2rem 0;
+            justify-content: center;
+        }
+
+        .terms-accept-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff3333;
+            cursor: pointer;
+        }
+
+        .terms-accept-row label {
+            color: #ddd;
+            font-size: 0.9rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .terms-accept-row label a {
+            color: #ff6666;
+            text-decoration: underline;
+        }
+
+        .terms-accept-row input[type="checkbox"]:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .terms-accept-row label.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .json-container {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.9rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .search-box input {
+                min-width: unset;
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.9rem 1rem;
+            }
+            
+            .search-box button {
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                white-space: normal;
+            }
+
+            .terms-content {
+                font-size: 0.75rem;
+                max-height: 200px;
+                padding: 0.8rem;
+            }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .search-box input {
+                font-size: 0.9rem;
+                padding: 0.8rem 0.9rem;
+            }
+            
+            .search-box button {
+                font-size: 0.85rem;
+                padding: 0.8rem 0.9rem;
+            }
+
+            .terms-content {
+                font-size: 0.7rem;
+                max-height: 150px;
+                padding: 0.6rem;
+            }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="jsonDisplay">
+            <h1>Spotify Followers</h1>
+
+            <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
+                <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
+            </div>
+
+            <div class="terms-content" id="termsContent">
+                <p><strong>1. Aceptacion de responsabilidad:</strong> El uso de estas herramientas es unicamente para investigaciones legales o entornos controlados. Si estas usandolas con propositos indebidos se te hara culpable de cualquier uso ilegal que le hayas podido sacar.</p>
+                <p><strong>2. Uso Legal:</strong> Estas herramientas están diseñadas para fines educativos y de investigación. No deben utilizarse para actividades ilegales o maliciosas, el uso de ellas es unicamente para propositos de aprendizaje o investigaciones OSINT.</p>
+                <p><strong>3. Privacidad:</strong> No almacenamos ni compartimos los datos ingresados en las herramientas. La informacion es procesada de forma temporal y eliminada, esto con el objetivo de no recolectar informacion privada o personal.</p>
+                <p><strong>4. Disponibilidad:</strong> Algunas herramientas pueden no estar disponibles en todo momento. Esto depende de servicios externos ya que funcionan por scrapping legales de sitios oficiales (no accedemos ni tenemos acceso a bases de datos leaks. Todas las consultas son de sitios oficiales autorizados a la misma consulta.).</p>
+                <p><strong>5. Automatizaciones:</strong> Estos endpoints cuentan con proteccion anti-bot, anti-scrapping y demas para evitar el uso indebido o ilegal de recoleccion de informacion de forma masiva. Evadir o hacerlo de igual forma podra ser sancionado por la comunidad.</p>
+                <p><strong>6. Venta Modulos:</strong> La venta de dichos endpoints es totalmente ilegal y se hace responsable al usuario de no venderla, en caso contrario seria considerado estafa y podra ser sancionado, HackPurgatory no vende ni ofrece modulos.</p>
+                <p><strong>7. Autoridades:</strong> En caso de que un uso indebido HackPurgatory podra colaborar con las autoridades locales para la presunta busqueda de dicho infractor llegando a ofrecer soporte en la investigacion legal.</p>
+                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: report@hackpurgatory.org.</p>
+                <p style="margin-top: 0.5rem; color: #ff6666;">Al aceptar, confirmas que has leido y entendido estos terminos.</p>
+            </div>
+
+            <div class="terms-accept-row">
+                <input type="checkbox" id="acceptCheck">
+                <label for="acceptCheck" id="acceptLabel">He leido y acepto los <a href="#" onclick="event.preventDefault();">terminos y condiciones</a>.</label>
+            </div>
+            
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="URL del artista de Spotify"
+                    autocomplete="off"
+                    disabled
+                >
+                <button id="searchBtn" disabled>Buscar</button>
+            </div>
+            
+            <div class="json-container">
+                <pre id="jsonContent"></pre>
+            </div>
+            <div class="info">
+                <p><strong>Uso:</strong> Pega la URL del artista de Spotify</p>
+                <p><strong>Formato:</strong> https://open.spotify.com/artist/ID</p>
+                <p><strong>Ejemplo:</strong> https://open.spotify.com/artist/3h7oBEJ45rK7s8k0ea6J1X</p>
+                <p><strong>Límite:</strong> 20 consultas por día</p>
+            </div>
+        </div>
+        
+        <div id="redirectSection" style="display: none;">
+            <div class="redirect-message">
+                <div class="loading-spinner"></div>
+                <h2>Procesando...</h2>
+                <div class="url-display" id="searchingUrl"></div>
+                <div class="warning">
+                    Recuerda, HackPurgatory nunca te pedira dinero.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toolInfo = {
+            "status": "online",
+            "service": "SMM Panel API",
+            "version": "2.2",
+            "endpoints": [
+                "/spotify/followers?url=URL"
+            ],
+            "limits": {
+                "max_uses_per_day": 20,
+                "reset_time": "24 horas"
+            },
+            "source": "@RIPNetwork"
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const acceptCheck = document.getElementById('acceptCheck');
+        const acceptLabel = document.getElementById('acceptLabel');
+        const termsToggle = document.getElementById('termsToggle');
+        const termsContent = document.getElementById('termsContent');
+
+        termsToggle.addEventListener('click', function() {
+            termsContent.classList.toggle('show');
+            this.textContent = termsContent.classList.contains('show') ? 'Ocultar Terminos y Condiciones' : 'Terminos y Condiciones';
+        });
+
+        function updateControls() {
+            const accepted = acceptCheck.checked;
+            searchInput.disabled = !accepted;
+            searchBtn.disabled = !accepted;
+            
+            if (accepted) {
+                searchInput.style.opacity = '1';
+                searchBtn.style.opacity = '1';
+                acceptLabel.classList.remove('disabled');
+            } else {
+                searchInput.style.opacity = '0.5';
+                searchBtn.style.opacity = '0.5';
+                acceptLabel.classList.add('disabled');
+            }
+        }
+
+        acceptCheck.addEventListener('change', updateControls);
+        updateControls();
+    
+        function performSearch(query) {
+            const trimmedQuery = query.trim();
+            if (trimmedQuery === '') {
+                alert('Error: No se ingreso ninguna URL.');
+                return;
+            }
+            window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+            
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!searchBtn.disabled) {
+                        performSearch(this.value);
+                    }
+                }
+            });
+            
+            searchBtn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    performSearch(searchInput.value);
+                }
+            });
+            
+            const searchParam = getQueryParam('search');
+            if (searchParam) {
+                searchInput.value = searchParam;
+                performRedirect(searchParam);
+            }
+        });
+    
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+    
+        function isValidSpotifyUrl(url) {
+            const urlPattern = /^https?:\/\/(open\.)?spotify\.com\/artist\/[a-zA-Z0-9]{1,30}$/;
+            return urlPattern.test(url);
+        }
+    
+        function performRedirect(urlInput) {
+            let trimmedUrl = urlInput.trim();
+            
+            if (trimmedUrl === '') {
+                alert('Error: No se ingreso ninguna URL.');
+                return false;
+            }
+            
+            if (!isValidSpotifyUrl(trimmedUrl)) {
+                alert('Error: URL de Spotify no valida.\n\nSolo se acepta el formato de artista:\nhttps://open.spotify.com/artist/ID\n\nEjemplo: https://open.spotify.com/artist/3h7oBEJ45rK7s8k0ea6J1X\n\nNo uses URLs de canciones, álbumes, playlists o perfiles de usuario.');
+                return false;
+            }
+            
+            const redirectUrl = `https://smm.hackpurgatory.org/spotify/followers?url=${encodeURIComponent(trimmedUrl)}`;
+            
+            document.getElementById('jsonDisplay').style.display = 'none';
+            document.getElementById('redirectSection').style.display = 'block';
+            document.getElementById('searchingUrl').textContent = trimmedUrl;
+            
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000);
+            
+            return true;
+        }
+    </script>
+</body>
+</html>
