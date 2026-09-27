@@ -92,25 +92,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #0a0a0a;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 99999;
     transition: opacity 0.8s ease, visibility 0.8s ease;
+    gap: 2rem;
   }
   #preloader.hidden {
     opacity: 0;
     visibility: hidden;
-  }
-  #preloader canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
   }
   .loader-logo {
     position: relative;
@@ -125,8 +118,27 @@
     50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(0, 255, 204, 0.6)); }
     100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.2)); }
   }
+  .runes-container {
+    display: flex;
+    gap: 0.8rem;
+    z-index: 2;
+  }
+  .rune {
+    font-size: 1.8rem;
+    color: #fff;
+    opacity: 0;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00ffcc, 0 0 80px #00ffcc;
+    transition: opacity 0.6s ease, text-shadow 0.6s ease, transform 0.6s ease;
+    transform: translateY(10px);
+  }
+  .rune.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   @media(max-width:768px) {
     .loader-logo { width: 100px; }
+    .rune { font-size: 1.3rem; }
+    .runes-container { gap: 0.5rem; }
   }
 
   .floating-notification {
@@ -484,8 +496,17 @@
 <body>
 
 <div id="preloader">
-  <canvas id="loaderCanvas"></canvas>
   <img src="data/logo.png" alt="Logo" class="loader-logo">
+  <div class="runes-container" id="runes-container">
+    <span class="rune">ᛃ</span>
+    <span class="rune">ᚢ</span>
+    <span class="rune">ᛊ</span>
+    <span class="rune">ᛏ</span>
+    <span class="rune">ᛁ</span>
+    <span class="rune">ᚲ</span>
+    <span class="rune">ᛁ</span>
+    <span class="rune">ᚨ</span>
+  </div>
 </div>
 
 <div id="urgentPush" class="urgent-push-overlay">
@@ -778,7 +799,7 @@
     setTimeout(() => {
       preloader.classList.add('hidden');
       setTimeout(startTypingAnimation, 300);
-    }, 3000);
+    }, 3200);
   });
  
   const toggle = document.getElementById('menu-toggle');
@@ -883,105 +904,16 @@
     }
   }, 4000);
 
+
 (function() {
-    const canvas = document.getElementById('loaderCanvas');
-    const ctx = canvas.getContext('2d');
-    let W, H;
-
-    function resizeCanvas() {
-        const rect = canvas.parentElement.getBoundingClientRect();
-        W = canvas.width = rect.width;
-        H = canvas.height = rect.height;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const continents = [
-        [[-130,55],[-125,50],[-120,48],[-115,45],[-110,42],[-105,40],[-100,38],[-95,35],[-90,32],[-85,30],[-80,28],[-75,30],[-70,35],[-65,40],[-60,45],[-65,50],[-70,55],[-75,58],[-80,60],[-90,62],[-100,62],[-110,60],[-120,58],[-130,55]],
-        [[-80,10],[-75,5],[-70,0],[-65,-5],[-60,-10],[-55,-15],[-50,-20],[-45,-25],[-50,-30],[-55,-35],[-60,-40],[-65,-45],[-70,-50],[-75,-48],[-80,-45],[-75,-40],[-70,-35],[-65,-30],[-60,-25],[-65,-20],[-70,-15],[-75,-10],[-80,-5],[-80,0],[-80,5],[-80,10]],
-        [[-10,36],[0,38],[5,40],[10,42],[15,44],[20,46],[25,48],[30,50],[35,52],[30,55],[25,58],[20,60],[15,62],[10,60],[5,58],[0,56],[-5,54],[-10,52],[-10,48],[-10,44],[-10,40],[-10,36]],
-        [[-15,35],[-10,30],[-5,25],[0,20],[5,15],[10,10],[15,5],[20,0],[25,-5],[30,-10],[35,-15],[40,-20],[45,-25],[40,-30],[35,-35],[30,-30],[25,-25],[20,-20],[15,-15],[10,-10],[5,-5],[0,0],[-5,5],[-10,10],[-15,15],[-15,20],[-15,25],[-15,30],[-15,35]],
-        [[30,50],[35,52],[40,54],[45,56],[50,58],[55,60],[60,62],[65,64],[70,66],[75,68],[80,70],[85,72],[90,74],[95,76],[100,78],[105,80],[110,78],[115,76],[120,74],[125,72],[130,70],[135,68],[140,66],[145,64],[150,62],[155,60],[160,58],[165,56],[170,54],[175,52],[180,50],[175,48],[170,46],[165,44],[160,42],[155,40],[150,38],[145,36],[140,34],[135,32],[130,30],[125,28],[120,26],[115,24],[110,22],[105,20],[100,18],[95,16],[90,14],[85,12],[80,10],[75,8],[70,6],[65,4],[60,2],[55,0],[50,2],[45,4],[40,6],[35,8],[30,10],[25,12],[20,14],[25,16],[30,18],[35,20],[40,22],[45,24],[50,26],[55,28],[60,30],[65,32],[70,34],[75,36],[80,38],[85,40],[90,42],[95,44],[100,46],[105,48],[110,50],[115,52],[120,54],[125,56],[130,58],[135,60],[140,62],[145,64],[150,66],[155,68],[160,70],[165,72],[170,74],[175,76],[180,78]],
-        [[115,-12],[120,-15],[125,-18],[130,-20],[135,-22],[140,-24],[145,-26],[150,-28],[155,-30],[160,-32],[165,-34],[170,-36],[175,-38],[180,-40],[175,-42],[170,-44],[165,-42],[160,-40],[155,-38],[150,-36],[145,-34],[140,-32],[135,-30],[130,-28],[125,-26],[120,-24],[115,-22],[110,-20],[115,-18],[115,-12]]
-    ];
-
-    function geoToPixel(lon, lat, w, h) {
-        const scale = 2.2;
-        const x = lon * (w / 360) * scale + w/2;
-        const y = -lat * (h / 180) * scale + h/2;
-        return { x, y };
-    }
-
-    const particles = [];
-    const numParticles = 200;
-
-    for (let i = 0; i < numParticles; i++) {
-        const continent = continents[Math.floor(Math.random() * continents.length)];
-        const point = continent[Math.floor(Math.random() * continent.length)];
-        const pos = geoToPixel(point[0], point[1], W, H);
-        particles.push({
-            x: pos.x,
-            y: pos.y,
-            origX: pos.x,
-            origY: pos.y,
-            radius: 2 + Math.random() * 3,
-            speed: 0.005 + Math.random() * 0.01,
-            orbitRadius: 10 + Math.random() * 30,
-            phase: Math.random() * Math.PI * 2,
-            lon: point[0],
-            lat: point[1]
-        });
-    }
-
-    let time = 0;
-
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        time += 0.01;
-
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0, 255, 204, ${0.15 * (1 - dist/120)})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        for (const p of particles) {
-            p.x = p.origX + Math.cos(time * p.speed * 10 + p.phase) * p.orbitRadius;
-            p.y = p.origY + Math.sin(time * p.speed * 10 + p.phase) * p.orbitRadius * 0.5;
-
-            const glow = 0.6 + Math.sin(time * 2 + p.phase) * 0.4;
-            ctx.shadowColor = '#00ffcc';
-            ctx.shadowBlur = 15 * glow;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius * glow, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 255, 204, ${glow})`;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-        }
-
-        requestAnimationFrame(draw);
-    }
-
-    draw();
-
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        for (const p of particles) {
-            const pos = geoToPixel(p.lon, p.lat, W, H);
-            p.origX = pos.x;
-            p.origY = pos.y;
-        }
-    });
+  const runes = document.querySelectorAll('#runes-container .rune');
+  const runeOrder = [3, 1, 5, 2, 7, 0, 6, 4];
+  
+  runeOrder.forEach((idx, i) => {
+    setTimeout(() => {
+      if (runes[idx]) runes[idx].classList.add('visible');
+    }, 200 + i * 280);
+  });
 })();
 
 </script>
