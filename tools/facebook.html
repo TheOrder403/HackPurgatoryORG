@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools">
+    <meta name="description" content="HackPurgatory Tools - Facebook Private OSINT">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -351,13 +356,18 @@
                 max-height: 150px;
                 padding: 0.6rem;
             }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>Eyecon Lookup</h1>
+            <h1>Facebook Private OSINT</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: +3466666666"
+                    placeholder="Ej: 34666666666"
                     autocomplete="off"
                     disabled
                 >
@@ -395,8 +405,9 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=+3466666666</p>
-                <p><strong>Formato:</strong> Numero con codigo pais (ej: +3466666666)</p>
+                <p><strong>Uso:</strong> Escribe el número de teléfono con código país sin +</p>
+                <p><strong>Formato 1:</strong> Numero con código país (ej: 34666666666)</p>
+                <p><strong>Formato 2:</strong> Numero local + país por separado (ej: 612345678 | 34)</p>
             </div>
         </div>
         
@@ -404,7 +415,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingNumber"></div>
+                <div class="phone-display" id="searchingPhone"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -415,10 +426,11 @@
     <script>
         const toolInfo = {
             "status": "online",
-            "service": "Eyecon Endpoint",
-            "version": "2.5",
+            "service": "Facebook Private OSINT",
+            "version": "2.8",
             "endpoints": [
-                "/eyecon?number=+3466666666"
+                "/phone?phone=34666666666",
+                "/phone?phone=612345678&country=34"
             ],
             "source": "Created by @RIPNetwork"
         };
@@ -493,24 +505,54 @@
             return urlParams.get(name);
         }
     
-        function performRedirect(numberInput) {
-            let trimmedNumber = numberInput.trim();
+        function cleanPhoneNumber(phone) {
+            return phone.replace(/\D/g, '');
+        }
+    
+        function isValidPhone(phone) {
+            const phoneRegex = /^\d{8,15}$/;
+            return phoneRegex.test(phone);
+        }
+    
+        function performRedirect(phoneInput) {
+            let input = phoneInput.trim();
+            let redirectUrl;
+            let displayText;
             
-            if (trimmedNumber === '') {
+            if (input === '') {
                 alert('Error: No se ingreso ningun numero.');
                 return false;
             }
             
-            if (!trimmedNumber.startsWith('+')) {
-                alert('Error: El numero debe incluir el codigo pais con el simbolo "+".\n\nFormato correcto: +3466666666\nEjemplo: +3466666666');
-                return false;
+            // Formato 2: numero|pais (ej: 612345678|34)
+            if (input.includes('|')) {
+                const parts = input.split('|');
+                const localNumber = cleanPhoneNumber(parts[0].trim());
+                const countryCode = cleanPhoneNumber(parts[1].trim());
+                
+                if (localNumber === '' || countryCode === '') {
+                    alert('Error: Tanto el numero como el codigo de pais son obligatorios.\n\nFormato: numero|pais\nEjemplo: 612345678|34');
+                    return false;
+                }
+                
+                redirectUrl = `https://facebook.hackpurgatory.org/phone?phone=${encodeURIComponent(localNumber)}&country=${encodeURIComponent(countryCode)}`;
+                displayText = `${localNumber} (+${countryCode})`;
+            } else {
+                
+                const cleanedPhone = cleanPhoneNumber(input);
+                
+                if (!isValidPhone(cleanedPhone)) {
+                    alert('Error: Numero no valido.\n\nFormato correcto:\n- Numero con codigo pais: 34666666666\n- Numero local + pais: 612345678|34\n\nSin +, espacios, guiones ni parentesis.');
+                    return false;
+                }
+                
+                redirectUrl = `https://facebook.hackpurgatory.org/phone?phone=${encodeURIComponent(cleanedPhone)}`;
+                displayText = cleanedPhone;
             }
-            
-            const redirectUrl = `https://eyecon.hackpurgatory.org/eyecon?number=${encodeURIComponent(trimmedNumber)}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingNumber').textContent = trimmedNumber;
+            document.getElementById('searchingPhone').textContent = displayText;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
