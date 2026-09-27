@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools">
+    <meta name="description" content="HackPurgatory Tools - Duolingo OSINT Private">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -351,13 +356,18 @@
                 max-height: 150px;
                 padding: 0.6rem;
             }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>TikTok Lookup</h1>
+            <h1>Duolingo OSINT Private</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: david@gmail.com o +34666666666"
+                    placeholder="Ej: 34666666666"
                     autocomplete="off"
                     disabled
                 >
@@ -395,8 +405,8 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe un email o número de teléfono</p>
-                <p><strong>Formatos:</strong> Email (ej: david@gmail.com) o Número con código país (ej: +34666666666)</p>
+                <p><strong>Uso:</strong> Escribe el número de teléfono sin +</p>
+                <p><strong>Formato:</strong> Numero con codigo pais sin + (ej: 34666666666)</p>
             </div>
         </div>
         
@@ -404,7 +414,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingData"></div>
+                <div class="phone-display" id="searchingPhone"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -415,12 +425,10 @@
     <script>
         const toolInfo = {
             "status": "online",
-            "service": "TikTok Lookup",
-            "version": "4.1 (BETA)",
-            "last update": "20/07/2026",
+            "service": "Duolingo Private OSINT",
+            "version": "8.2",
             "endpoints": [
-                "/tiktok?email=david@gmail.com",
-                "/tiktok?numero=+34666666666"
+                "/phone?phone=34666666666"
             ],
             "source": "Created by @RIPNetwork"
         };
@@ -459,7 +467,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun dato.');
+                alert('Error: No se ingreso ningun numero.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -495,36 +503,28 @@
             return urlParams.get(name);
         }
     
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+        function cleanPhoneNumber(phone) {
+            return phone.replace(/\D/g, '');
         }
     
-        function performRedirect(input) {
-            const trimmedInput = input.trim();
+        function isValidPhone(phone) {
+            const phoneRegex = /^\d{8,15}$/;
+            return phoneRegex.test(phone);
+        }
+    
+        function performRedirect(phoneInput) {
+            const cleanedPhone = cleanPhoneNumber(phoneInput);
             
-            if (trimmedInput === '') {
-                alert('Error: No se ingreso ningun dato.');
+            if (!isValidPhone(cleanedPhone)) {
+                alert('Error: Numero no valido.\n\nFormato correcto: Minimo 8 digitos, maximo 15 digitos\nEjemplo: 34666666666\n\nSin +, espacios, guiones ni parentesis.');
                 return false;
             }
             
-            let redirectUrl;
-            let displayText = trimmedInput;
-            
-            if (isValidEmail(trimmedInput)) {
-                redirectUrl = `https://tiktok.hackpurgatory.org/tiktok?email=${encodeURIComponent(trimmedInput)}`;
-            } else {
-                let number = trimmedInput;
-                if (!number.startsWith('+')) {
-                    number = '+' + number;
-                }
-                redirectUrl = `https://tiktok.hackpurgatory.org/tiktok?numero=${encodeURIComponent(number)}`;
-                displayText = number;
-            }
+            const redirectUrl = `https://duolingo.hackpurgatory.org/phone?phone=${encodeURIComponent(cleanedPhone)}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingData').textContent = displayText;
+            document.getElementById('searchingPhone').textContent = cleanedPhone;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
