@@ -394,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: 34666666666"
+                    placeholder="Ej: 34666666666 o david@gmail.com"
                     autocomplete="off"
                     disabled
                 >
@@ -405,9 +405,9 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe el número de teléfono con código país sin +</p>
-                <p><strong>Formato 1:</strong> Numero con código país (ej: 34666666666)</p>
-                <p><strong>Formato 2:</strong> Numero local + país por separado (ej: 612345678 | 34)</p>
+                <p><strong>Uso:</strong> Escribe un número de teléfono o email</p>
+                <p><strong>Teléfono:</strong> Numero con codigo pais sin + (ej: 34666666666)</p>
+                <p><strong>Email:</strong> Correo electronico (ej: david@gmail.com)</p>
             </div>
         </div>
         
@@ -415,7 +415,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingPhone"></div>
+                <div class="phone-display" id="searchingData"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -427,10 +427,10 @@
         const toolInfo = {
             "status": "online",
             "service": "Facebook Private OSINT",
-            "version": "2.8",
+            "version": "4.3",
             "endpoints": [
                 "/phone?phone=34666666666",
-                "/phone?phone=612345678&country=34"
+                "/email?email=david@gmail.com"
             ],
             "source": "Created by @RIPNetwork"
         };
@@ -469,7 +469,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun numero.');
+                alert('Error: No se ingreso ningun dato.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -505,6 +505,11 @@
             return urlParams.get(name);
         }
     
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    
         function cleanPhoneNumber(phone) {
             return phone.replace(/\D/g, '');
         }
@@ -514,35 +519,24 @@
             return phoneRegex.test(phone);
         }
     
-        function performRedirect(phoneInput) {
-            let input = phoneInput.trim();
-            let redirectUrl;
-            let displayText;
+        function performRedirect(input) {
+            const trimmedInput = input.trim();
             
-            if (input === '') {
-                alert('Error: No se ingreso ningun numero.');
+            if (trimmedInput === '') {
+                alert('Error: No se ingreso ningun dato.');
                 return false;
             }
             
-            // Formato 2: numero|pais (ej: 612345678|34)
-            if (input.includes('|')) {
-                const parts = input.split('|');
-                const localNumber = cleanPhoneNumber(parts[0].trim());
-                const countryCode = cleanPhoneNumber(parts[1].trim());
-                
-                if (localNumber === '' || countryCode === '') {
-                    alert('Error: Tanto el numero como el codigo de pais son obligatorios.\n\nFormato: numero|pais\nEjemplo: 612345678|34');
-                    return false;
-                }
-                
-                redirectUrl = `https://facebook.hackpurgatory.org/phone?phone=${encodeURIComponent(localNumber)}&country=${encodeURIComponent(countryCode)}`;
-                displayText = `${localNumber} (+${countryCode})`;
+            let redirectUrl;
+            let displayText = trimmedInput;
+            
+            if (isValidEmail(trimmedInput)) {
+                redirectUrl = `https://facebook.hackpurgatory.org/email?email=${encodeURIComponent(trimmedInput)}`;
             } else {
-                
-                const cleanedPhone = cleanPhoneNumber(input);
+                const cleanedPhone = cleanPhoneNumber(trimmedInput);
                 
                 if (!isValidPhone(cleanedPhone)) {
-                    alert('Error: Numero no valido.\n\nFormato correcto:\n- Numero con codigo pais: 34666666666\n- Numero local + pais: 612345678|34\n\nSin +, espacios, guiones ni parentesis.');
+                    alert('Error: Numero no valido.\n\nFormato correcto: Minimo 8 digitos, maximo 15 digitos\nEjemplo: 34666666666\n\nSin +, espacios, guiones ni parentesis.');
                     return false;
                 }
                 
@@ -552,7 +546,7 @@
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingPhone').textContent = displayText;
+            document.getElementById('searchingData').textContent = displayText;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
