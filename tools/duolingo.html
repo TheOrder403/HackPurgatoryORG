@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools - Duolingo OSINT Private">
+    <meta name="description" content="HackPurgatory Tools - Duolingo Private OSINT">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -367,7 +367,7 @@
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>Duolingo OSINT Private</h1>
+            <h1>Duolingo Private OSINT</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -394,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: 34666666666"
+                    placeholder="Ej: 34666666666 o david@gmail.com"
                     autocomplete="off"
                     disabled
                 >
@@ -405,8 +405,9 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe el número de teléfono sin +</p>
-                <p><strong>Formato:</strong> Numero con codigo pais sin + (ej: 34666666666)</p>
+                <p><strong>Uso:</strong> Escribe un número de teléfono o email</p>
+                <p><strong>Teléfono:</strong> Numero con codigo pais sin + (ej: 34666666666)</p>
+                <p><strong>Email:</strong> Correo electronico (ej: david@gmail.com)</p>
             </div>
         </div>
         
@@ -414,7 +415,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingPhone"></div>
+                <div class="phone-display" id="searchingData"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -426,9 +427,10 @@
         const toolInfo = {
             "status": "online",
             "service": "Duolingo Private OSINT",
-            "version": "8.2",
+            "version": "9.5",
             "endpoints": [
-                "/phone?phone=34666666666"
+                "/phone?phone=34666666666",
+                "/email?email=david@gmail.com"
             ],
             "source": "Created by @RIPNetwork"
         };
@@ -467,7 +469,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun numero.');
+                alert('Error: No se ingreso ningun dato.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -503,6 +505,11 @@
             return urlParams.get(name);
         }
     
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    
         function cleanPhoneNumber(phone) {
             return phone.replace(/\D/g, '');
         }
@@ -512,19 +519,34 @@
             return phoneRegex.test(phone);
         }
     
-        function performRedirect(phoneInput) {
-            const cleanedPhone = cleanPhoneNumber(phoneInput);
+        function performRedirect(input) {
+            const trimmedInput = input.trim();
             
-            if (!isValidPhone(cleanedPhone)) {
-                alert('Error: Numero no valido.\n\nFormato correcto: Minimo 8 digitos, maximo 15 digitos\nEjemplo: 34666666666\n\nSin +, espacios, guiones ni parentesis.');
+            if (trimmedInput === '') {
+                alert('Error: No se ingreso ningun dato.');
                 return false;
             }
             
-            const redirectUrl = `https://duolingo.hackpurgatory.org/phone?phone=${encodeURIComponent(cleanedPhone)}`;
+            let redirectUrl;
+            let displayText = trimmedInput;
+            
+            if (isValidEmail(trimmedInput)) {
+                redirectUrl = `https://duolingo.hackpurgatory.org/email?email=${encodeURIComponent(trimmedInput)}`;
+            } else {
+                const cleanedPhone = cleanPhoneNumber(trimmedInput);
+                
+                if (!isValidPhone(cleanedPhone)) {
+                    alert('Error: Numero no valido.\n\nFormato correcto: Minimo 8 digitos, maximo 15 digitos\nEjemplo: 34666666666\n\nSin +, espacios, guiones ni parentesis.');
+                    return false;
+                }
+                
+                redirectUrl = `https://duolingo.hackpurgatory.org/phone?phone=${encodeURIComponent(cleanedPhone)}`;
+                displayText = cleanedPhone;
+            }
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingPhone').textContent = cleanedPhone;
+            document.getElementById('searchingData').textContent = displayText;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
