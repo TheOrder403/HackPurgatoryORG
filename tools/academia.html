@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools">
+    <meta name="description" content="HackPurgatory Tools - Academia.edu OSINT">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -170,7 +170,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        .phone-display {
+        .email-display {
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
             border-radius: 6px;
@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -351,13 +356,18 @@
                 max-height: 150px;
                 padding: 0.6rem;
             }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>ViewCaller Lookup</h1>
+            <h1>Academia.edu OSINT</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: 9876696478|91"
+                    placeholder="Ej: xd@gmail.com"
                     autocomplete="off"
                     disabled
                 >
@@ -395,8 +405,8 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=9876696478|91</p>
-                <p><strong>Formato:</strong> numero|code (ej: 9876696478|91)</p>
+                <p><strong>Uso:</strong> Escribe el correo electrónico a consultar</p>
+                <p><strong>Formato:</strong> Correo electronico (ej: xd@gmail.com)</p>
             </div>
         </div>
         
@@ -404,7 +414,7 @@
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
                 <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingData"></div>
+                <div class="email-display" id="searchingEmail"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -415,12 +425,12 @@
     <script>
         const toolInfo = {
             "status": "online",
-            "service": "ViewCaller Endpoint",
-            "version": "2.5",
+            "service": "Academia.edu OSINT",
+            "version": "2.1",
             "endpoints": [
-                "/viewcaller?number=9876696478&code=91"
+                "/email?email=xd@gmail.com"
             ],
-            "source": "Created by @RIPNetwork"
+            "source": "Created By @RIPNetwork"
         };
 
         const searchInput = document.getElementById('searchInput');
@@ -457,7 +467,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun dato.\n\nFormato requerido: NUMERO|CODE');
+                alert('Error: No se ingreso ningun correo electronico.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -493,38 +503,29 @@
             return urlParams.get(name);
         }
     
-        function performRedirect(input) {
-            const trimmedInput = input.trim();
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    
+        function performRedirect(emailInput) {
+            const trimmedEmail = emailInput.trim();
             
-            if (trimmedInput === '') {
-                alert('Error: No se ingreso ningun dato.\n\nFormato requerido: NUMERO|CODE');
+            if (trimmedEmail === '') {
+                alert('Error: No se ingreso ningun correo electronico.');
                 return false;
             }
             
-            if (!trimmedInput.includes('|')) {
-                alert('Error: Formato incorrecto.\n\nDebes proporcionar NUMERO y CODE separados por "|"\n\nFormato: NUMERO|CODE\nEjemplo: 9876696478|91');
+            if (!isValidEmail(trimmedEmail)) {
+                alert('Error: Formato de correo electronico invalido.\n\nFormato correcto: usuario@dominio.com\nEjemplo: xd@gmail.com');
                 return false;
             }
             
-            const parts = trimmedInput.split('|');
-            if (parts.length !== 2) {
-                alert('Error: Formato incorrecto.\n\nUsa un solo "|" para separar numero y codigo\n\nFormato: NUMERO|CODE');
-                return false;
-            }
-            
-            const number = parts[0].trim();
-            const code = parts[1].trim();
-            
-            if (number === '' || code === '') {
-                alert('Error: Tanto el numero como el codigo son obligatorios.\n\nFormato: NUMERO|CODE');
-                return false;
-            }
-            
-            const redirectUrl = `https://viewcaller.hackpurgatory.org/viewcaller?number=${encodeURIComponent(number)}&code=${encodeURIComponent(code)}`;
+            const redirectUrl = `https://academia.hackpurgatory.org/email?email=${encodeURIComponent(trimmedEmail)}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingData').textContent = `Numero: ${number} | Codigo: ${code}`;
+            document.getElementById('searchingEmail').textContent = trimmedEmail;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
