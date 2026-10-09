@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools">
+    <meta name="description" content="HackPurgatory Tools - Telegram Views">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -170,7 +170,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        .phone-display {
+        .url-display {
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
             border-radius: 6px;
@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -351,13 +356,18 @@
                 max-height: 150px;
                 padding: 0.6rem;
             }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>República Dominicana PGR Lookup</h1>
+            <h1>Telegram Views</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: 00100088897|003-7102-1972756-3"
+                    placeholder="URL del canal o mensaje de Telegram"
                     autocomplete="off"
                     disabled
                 >
@@ -395,16 +405,18 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=cedula|CIS</p>
-                <p><strong>Formato:</strong> Cedula|CIS (ej: 00100088897|003-7102-1972756-3)</p>
+                <p><strong>Uso:</strong> Pega la URL del canal o mensaje de Telegram</p>
+                <p><strong>Formato:</strong> https://t.me/canal</p>
+                <p><strong>Ejemplo:</strong> https://t.me/channel</p>
+                <p><strong>Límite:</strong> 20 consultas por día</p>
             </div>
         </div>
         
         <div id="redirectSection" style="display: none;">
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
-                <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingData"></div>
+                <h2>Procesando...</h2>
+                <div class="url-display" id="searchingUrl"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -415,11 +427,15 @@
     <script>
         const toolInfo = {
             "status": "online",
-            "service": "República Dominicana PGR API",
-            "version": "1.0",
+            "service": "SMM Panel API",
+            "version": "2.2",
             "endpoints": [
-                "/cedula?cedula=00100088897&CIS=003-7102-1972756-3"
+                "/telegram/visitas?url=URL"
             ],
+            "limits": {
+                "max_uses_per_day": 20,
+                "reset_time": "24 horas"
+            },
             "source": "@RIPNetwork"
         };
 
@@ -457,7 +473,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun dato.\n\nFormato requerido: CEDULA|CIS');
+                alert('Error: No se ingreso ninguna URL.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -493,38 +509,29 @@
             return urlParams.get(name);
         }
     
-        function performRedirect(input) {
-            const trimmedInput = input.trim();
+        function isValidTelegramUrl(url) {
+            const urlPattern = /^https?:\/\/t\.me\/[a-zA-Z0-9_]{1,50}(\/\d+)?$/;
+            return urlPattern.test(url);
+        }
+    
+        function performRedirect(urlInput) {
+            let trimmedUrl = urlInput.trim();
             
-            if (trimmedInput === '') {
-                alert('Error: No se ingreso ningun dato.\n\nFormato requerido: CEDULA|CIS');
+            if (trimmedUrl === '') {
+                alert('Error: No se ingreso ninguna URL.');
                 return false;
             }
             
-            if (!trimmedInput.includes('|')) {
-                alert('Error: Formato incorrecto.\n\nDebes proporcionar CEDULA y CIS separados por "|"\n\nFormato: CEDULA|CIS\nEjemplo: 00100088897|003-7102-1972756-3');
+            if (!isValidTelegramUrl(trimmedUrl)) {
+                alert('Error: URL de Telegram no valida.\n\nSolo se acepta el formato:\nhttps://t.me/canal\nhttps://t.me/canal/123\n\nEjemplo: https://t.me/channel');
                 return false;
             }
             
-            const parts = trimmedInput.split('|');
-            if (parts.length !== 2) {
-                alert('Error: Formato incorrecto.\n\nUsa un solo "|" para separar cedula y CIS\n\nFormato: CEDULA|CIS');
-                return false;
-            }
-            
-            const cedula = parts[0].trim();
-            const cis = parts[1].trim();
-            
-            if (cedula === '' || cis === '') {
-                alert('Error: Tanto la cedula como el CIS son obligatorios.\n\nFormato: CEDULA|CIS');
-                return false;
-            }
-            
-            const redirectUrl = `https://dominican.hackpurgatory.org/cedula?cedula=${encodeURIComponent(cedula)}&CIS=${encodeURIComponent(cis)}`;
+            const redirectUrl = `https://smm.hackpurgatory.org/telegram/visitas?url=${encodeURIComponent(trimmedUrl)}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingData').textContent = `Cedula: ${cedula} | CIS: ${cis}`;
+            document.getElementById('searchingUrl').textContent = trimmedUrl;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
