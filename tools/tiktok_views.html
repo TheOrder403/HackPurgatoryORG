@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-    <meta name="description" content="HackPurgatory Tools">
+    <meta name="description" content="HackPurgatory Tools - TikTok Views">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
         * {
@@ -170,7 +170,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        .phone-display {
+        .url-display {
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
             border-radius: 6px;
@@ -329,6 +329,11 @@
                 max-height: 200px;
                 padding: 0.8rem;
             }
+
+            .info {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -351,13 +356,18 @@
                 max-height: 150px;
                 padding: 0.6rem;
             }
+
+            .info {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="jsonDisplay">
-            <h1>Telegram FunStat Lookup</h1>
+            <h1>TikTok Views</h1>
 
             <div style="margin: 1rem 0 0.5rem 0; text-align: center;">
                 <span class="terms-toggle" id="termsToggle">Terminos y Condiciones</span>
@@ -384,7 +394,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Ej: @RIPNetwork"
+                    placeholder="URL del video de TikTok"
                     autocomplete="off"
                     disabled
                 >
@@ -395,16 +405,18 @@
                 <pre id="jsonContent"></pre>
             </div>
             <div class="info">
-                <p><strong>Uso:</strong> Escribe en el buscador o usa ?search=@RIPNetwork</p>
-                <p><strong>Formato:</strong> Usuario de Telegram (ej: @RIPNetwork)</p>
+                <p><strong>Uso:</strong> Pega la URL del video de TikTok</p>
+                <p><strong>Formato:</strong> https://www.tiktok.com/@usuario/video/123456789</p>
+                <p><strong>Ejemplo:</strong> https://www.tiktok.com/@good_football96/video/7189756321556745515</p>
+                <p><strong>Límite:</strong> 20 consultas por día</p>
             </div>
         </div>
         
         <div id="redirectSection" style="display: none;">
             <div class="redirect-message">
                 <div class="loading-spinner"></div>
-                <h2>Buscando...</h2>
-                <div class="phone-display" id="searchingUser"></div>
+                <h2>Procesando...</h2>
+                <div class="url-display" id="searchingUrl"></div>
                 <div class="warning">
                     Recuerda, HackPurgatory nunca te pedira dinero.
                 </div>
@@ -414,11 +426,17 @@
 
     <script>
         const toolInfo = {
-            "service": "Telegram FunStat API",
-            "module": "telegram-funstat",
-            "created_by": "@RIPNetwork",
             "status": "online",
-            "endpoint": "/tguser?user=@Username"
+            "service": "SMM Panel API",
+            "version": "2.2",
+            "endpoints": [
+                "/tiktok/visitas?url=URL"
+            ],
+            "limits": {
+                "max_uses_per_day": 20,
+                "reset_time": "24 horas"
+            },
+            "source": "@RIPNetwork"
         };
 
         const searchInput = document.getElementById('searchInput');
@@ -455,7 +473,7 @@
         function performSearch(query) {
             const trimmedQuery = query.trim();
             if (trimmedQuery === '') {
-                alert('Error: No se ingreso ningun usuario.');
+                alert('Error: No se ingreso ninguna URL.');
                 return;
             }
             window.location.href = window.location.pathname + '?search=' + encodeURIComponent(trimmedQuery);
@@ -491,24 +509,34 @@
             return urlParams.get(name);
         }
     
-        function performRedirect(userInput) {
-            let trimmedUser = userInput.trim();
+        function isValidTikTokVideoUrl(url) {
+            const urlPattern = /^https?:\/\/(www\.)?tiktok\.com\/@[a-zA-Z0-9_.]{1,30}\/video\/\d+$/;
+            return urlPattern.test(url);
+        }
+    
+        function performRedirect(urlInput) {
+            let trimmedUrl = urlInput.trim();
             
-            if (trimmedUser === '') {
-                alert('Error: No se ingreso ningun usuario.');
+            if (trimmedUrl === '') {
+                alert('Error: No se ingreso ninguna URL.');
                 return false;
             }
             
-            if (!trimmedUser.startsWith('@')) {
-                alert('Error: El usuario debe comenzar con "@".\n\nFormato correcto: @username\nEjemplo: @RIPNetwork');
+            if (trimmedUrl.includes('vt.tiktok.com')) {
+                alert('Error: No uses URLs acortadas de TikTok.\n\nFormato correcto:\nhttps://www.tiktok.com/@usuario/video/123456789\n\nPor favor, copia la URL completa del video desde TikTok.');
                 return false;
             }
             
-            const redirectUrl = `https://funstat.hackpurgatory.org/tguser?user=${encodeURIComponent(trimmedUser)}`;
+            if (!isValidTikTokVideoUrl(trimmedUrl)) {
+                alert('Error: URL de TikTok no valida.\n\nSolo se acepta el formato de video:\nhttps://www.tiktok.com/@usuario/video/123456789\n\nEjemplo:\nhttps://www.tiktok.com/@good_football96/video/7189756321556745515\n\nNo uses URLs de perfiles o acortadas.');
+                return false;
+            }
+            
+            const redirectUrl = `https://smm.hackpurgatory.org/tiktok/visitas?url=${encodeURIComponent(trimmedUrl)}`;
             
             document.getElementById('jsonDisplay').style.display = 'none';
             document.getElementById('redirectSection').style.display = 'block';
-            document.getElementById('searchingUser').textContent = trimmedUser;
+            document.getElementById('searchingUrl').textContent = trimmedUrl;
             
             setTimeout(() => {
                 window.location.href = redirectUrl;
