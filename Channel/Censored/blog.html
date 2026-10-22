@@ -2858,7 +2858,6 @@ categoria: "Censuras"
             
             let itemsToShow = [];
             if (currentIdxInFilter !== -1) {
-                // En móvil: solo 1 item. En ordenador: 2 items
                 if (isMobile()) {
                     itemsToShow.push(filtered[currentIdxInFilter]);
                 } else {
@@ -2953,13 +2952,13 @@ categoria: "Censuras"
         }
     }
 
-    // Escuchar cambios de tamaño para refrescar la vista si es necesario
+    
     let lastWidth = window.innerWidth;
     window.addEventListener('resize', function() {
         if (map) {
             map.invalidateSize();
         }
-        // Si cambia de móvil a escritorio o viceversa, refrescar la vista
+        
         const currentWidth = window.innerWidth;
         if ((lastWidth < 768 && currentWidth >= 768) || (lastWidth >= 768 && currentWidth < 768)) {
             if (censorDatabase.length > 0) {
