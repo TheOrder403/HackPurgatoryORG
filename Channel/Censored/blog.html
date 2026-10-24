@@ -560,7 +560,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 
-    // ===== DATOS: se cargan desde deleted.json =====
     let censorDatabase = [];
 
     const categoriaMap = {
@@ -613,9 +612,8 @@
         typeWriter();
     }
 
-    // ===== CREA SOLO EL MAPA BASE (sin marcadores) =====
     function initMap() {
-        if (map) return; // si ya existe, no lo recreamos
+        if (map) return;
         map = L.map('world-map', {
             zoomControl: true,
             scrollWheelZoom: true,
@@ -631,7 +629,6 @@
         }).addTo(map);
     }
 
-    // ===== DIBUJA LOS MARCADORES ROJOS =====
     function renderMarkers() {
         if (!map) return;
 
@@ -757,6 +754,10 @@
 
             let gridHtml = '';
             itemsToShow.forEach((c) => {
+                const dateObjCard = new Date(c.fecha);
+                const monthNamesCard = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                const formattedDateCard = `${dateObjCard.getDate()} ${monthNamesCard[dateObjCard.getMonth()]} ${dateObjCard.getFullYear()}`;
+
                 let linksHtml = '';
                 if (c.link) {
                     let linkUrl = c.link;
@@ -797,7 +798,7 @@
                         <div class="censor-links-container">
                             ${linksHtml}
                         </div>
-                        <div class="censor-category">${c.categoria} · ${formattedDate}</div>
+                        <div class="censor-category">${c.categoria} · ${formattedDateCard}</div>
                     </div>
                 `;
             });
@@ -837,7 +838,6 @@
         }
     }
 
-    
     let lastWidth = window.innerWidth;
     window.addEventListener('resize', function() {
         if (map) {
@@ -860,13 +860,11 @@
         }
     });
 
-    // ===== CARGA deleted.json Y DEVUELVE true/false =====
     async function cargarDatos() {
         try {
             const response = await fetch('deleted.json');
             if (!response.ok) throw new Error('No se pudo cargar deleted.json (HTTP ' + response.status + ')');
             censorDatabase = await response.json();
-            console.log('deleted.json cargado:', censorDatabase.length, 'registros');
             return true;
         } catch (err) {
             console.error('Error cargando deleted.json:', err);
@@ -885,7 +883,7 @@
 
         if (ok && censorDatabase.length > 0) {
             displayCensor(0);
-            renderMarkers();   // ← ahora los marcadores se dibujan DESPUÉS de tener los datos
+            renderMarkers();
         } else if (ok) {
             document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay datos disponibles</div>`;
             document.getElementById('censorInfo').textContent = 'Sin datos';
