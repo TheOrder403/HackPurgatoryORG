@@ -613,7 +613,9 @@
         typeWriter();
     }
 
+    // ===== CREA SOLO EL MAPA BASE (sin marcadores) =====
     function initMap() {
+        if (map) return; // si ya existe, no lo recreamos
         map = L.map('world-map', {
             zoomControl: true,
             scrollWheelZoom: true,
@@ -627,6 +629,11 @@
             maxZoom: 19,
             minZoom: 2
         }).addTo(map);
+    }
+
+    // ===== DIBUJA LOS MARCADORES ROJOS =====
+    function renderMarkers() {
+        if (!map) return;
 
         markers.forEach(m => map.removeLayer(m));
         markers = [];
@@ -684,7 +691,7 @@
         const firstMatch = censorDatabase.indexOf(filtered[0]);
         currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;
         displayCensor(currentCensorIndex);
-        updateMarkers();
+        renderMarkers();
     }
 
     function toggleCategoria() {
@@ -694,17 +701,7 @@
     }
 
     function updateMarkers() {
-        const dataToShow = getFilteredData();
-        const idsSet = new Set(dataToShow.map(c => c.id));
-        
-        markers.forEach((marker, idx) => {
-            const censor = censorDatabase[idx];
-            if (censor && idsSet.has(censor.id)) {
-                if (!map.hasLayer(marker)) map.addLayer(marker);
-            } else {
-                if (map.hasLayer(marker)) map.removeLayer(marker);
-            }
-        });
+        renderMarkers();
     }
 
     function displayCensor(index) {
@@ -863,15 +860,19 @@
         }
     });
 
+    // ===== CARGA deleted.json Y DEVUELVE true/false =====
     async function cargarDatos() {
         try {
             const response = await fetch('deleted.json');
-            if (!response.ok) throw new Error('No se pudo cargar deleted.json');
+            if (!response.ok) throw new Error('No se pudo cargar deleted.json (HTTP ' + response.status + ')');
             censorDatabase = await response.json();
+            console.log('deleted.json cargado:', censorDatabase.length, 'registros');
+            return true;
         } catch (err) {
             console.error('Error cargando deleted.json:', err);
-            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">Error al cargar los datos. Verifica que deleted.json exista en la misma carpeta.</div>`;
+            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">Error al cargar los datos: ${err.message}. Verifica que deleted.json exista en la misma carpeta y sea JSON válido.</div>`;
             document.getElementById('censorInfo').textContent = 'Error de carga';
+            return false;
         }
     }
 
@@ -879,11 +880,13 @@
         setTimeout(startTypingAnimation, 300);
         initMap();
         renderCategoriaDropdown();
-        await cargarDatos();
-        if (censorDatabase.length > 0) {
+
+        const ok = await cargarDatos();
+
+        if (ok && censorDatabase.length > 0) {
             displayCensor(0);
-            initMap();   
-        } else {
+            renderMarkers();   // ← ahora los marcadores se dibujan DESPUÉS de tener los datos
+        } else if (ok) {
             document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay datos disponibles</div>`;
             document.getElementById('censorInfo').textContent = 'Sin datos';
         }
