@@ -882,6 +882,7 @@
         await cargarDatos();
         if (censorDatabase.length > 0) {
             displayCensor(0);
+            initMap();   
         } else {
             document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay datos disponibles</div>`;
             document.getElementById('censorInfo').textContent = 'Sin datos';
