@@ -1,5 +1,29 @@
 [
   {
+    "id": 180,
+    "pais": "Francia",
+    "ciudad": "Burdeos",
+    "coordenadas": [44.8378, -0.5792],
+    "fecha": "2026-10-28",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/blocusbellevue31",
+    "categoria": "Censuras"
+  },  
+  {
+    "id": 179,
+    "pais": "Francia",
+    "ciudad": "Toulouse",
+    "coordenadas": [43.6047, 1.4442],
+    "fecha": "2026-10-28",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/blocusenfrance",
+    "categoria": "Censuras"
+  },
+  {
     "id": 178,
     "pais": "Argentina",
     "ciudad": "Tasma",
