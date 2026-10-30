@@ -29,14 +29,8 @@
             z-index: 2;
             pointer-events: none;
         }
-        .ticker-wrapper::before {
-            left: 0;
-            background: linear-gradient(to right, #000, transparent);
-        }
-        .ticker-wrapper::after {
-            right: 0;
-            background: linear-gradient(to left, #000, transparent);
-        }
+        .ticker-wrapper::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+        .ticker-wrapper::after { right: 0; background: linear-gradient(to left, #000, transparent); }
         .ticker {
             display: inline-block;
             animation: tickerMove 15s linear infinite;
@@ -51,15 +45,25 @@
             color: #00ffcc;
             text-shadow: 0 0 8px rgba(0,255,204,0.8);
         }
-        @keyframes tickerMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
+        @keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }
-        body { display: flex; flex-direction: column; }
-        
+        body { display: flex; flex-direction: column; position: relative; }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        header, nav, main, footer { position: relative; z-index: 1; }
+
         header { 
             background-color: rgba(0,0,0,0.5); 
             padding: 0.8rem 1rem; 
@@ -72,52 +76,23 @@
             position: relative; 
             width: 100%; 
         }
-        header img { 
-            max-width: 50px; 
-            height: auto; 
-        }
-        .header-text { 
-            flex: 1; 
-            min-width: 200px; 
-            text-align: center;
-        }
+        header img { max-width: 50px; height: auto; }
+        .header-text { flex: 1; min-width: 200px; text-align: center; }
         header h1 { 
-            font-size: 1.3rem; 
-            margin-bottom: 0.2rem; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.7); 
-            line-height: 1.3;
-            word-break: break-word;
+            font-size: 1.3rem; margin-bottom: 0.2rem; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7); line-height: 1.3; word-break: break-word;
         }
-        .typing-cursor { 
-            display: inline-block; 
-            color: #ff3333; 
-            animation: blink 1s infinite; 
-        }
+        .typing-cursor { display: inline-block; color: #ff3333; animation: blink 1s infinite; }
         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-        header p { 
-            font-size: 0.8rem; 
-            color: #ddd; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5); 
-        }
-        
-        nav { 
-            background-color: rgba(0,0,0,0.5); 
-            position: relative; 
-            width: 100%; 
-        }
-        
+        header p { font-size: 0.8rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+
+        nav { background-color: rgba(0,0,0,0.5); position: relative; width: 100%; }
+
         main { 
-            padding: 1rem; 
-            max-width: 1400px; 
-            width: 100%; 
-            margin: 1rem auto; 
-            background-color: rgba(0,0,0,0.65); 
-            border-radius: 12px; 
-            text-align: center; 
-            flex: 1 0 auto; 
+            padding: 1rem; max-width: 1400px; width: 100%; margin: 1rem auto; 
+            background-color: rgba(0,0,0,0.65); border-radius: 12px; text-align: center; flex: 1 0 auto; 
         }
-        
-        
+
         .calendar-section {
             margin-bottom: 1.5rem;
             padding: 1rem;
@@ -128,8 +103,9 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            width: 100%;
         }
-        
+
         .calendar-header {
             display: flex;
             justify-content: space-between;
@@ -139,19 +115,16 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        
+
         .month-title {
             font-size: 1.3rem;
             color: #ff3333;
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(255,51,51,0.5);
         }
-        
-        .month-nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
+
+        .month-nav { display: flex; gap: 0.5rem; }
+
         .nav-btn {
             background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
             border: 2px solid #ff3333;
@@ -166,13 +139,8 @@
             font-size: 1rem;
             transition: all 0.3s;
         }
-        
-        .nav-btn:hover {
-            background: #ff3333;
-            color: #000;
-            transform: scale(1.1);
-        }
-        
+        .nav-btn:hover { background: #ff3333; color: #000; transform: scale(1.1); }
+
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -182,20 +150,10 @@
             color: #ff9999;
             font-size: 0.7rem;
         }
-        
-        .weekday {
-            padding: 8px 2px;
-            text-align: center;
-            background: rgba(255,51,51,0.1);
-            border-radius: 5px;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-        }
-        
+        .weekday { padding: 8px 2px; text-align: center; background: rgba(255,51,51,0.1); border-radius: 5px; }
+
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+
         .calendar-day {
             aspect-ratio: 1 / 1;
             background: rgba(0,0,0,0.5);
@@ -210,45 +168,20 @@
             padding: 4px;
             min-height: 50px;
         }
-        
-        .calendar-day:hover {
-            background: rgba(255,51,51,0.2);
-            border-color: #ff3333;
-            transform: scale(1.02);
-        }
-        
-        .calendar-day:active {
-            transform: scale(0.98);
-        }
-        
-        .calendar-day.empty {
-            background: transparent;
-            border: none;
-            cursor: default;
-        }
-        
-        .calendar-day.empty:hover {
-            transform: none;
-            background: transparent;
-        }
-        
-        .day-number {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #fff;
-        }
-        
+        .calendar-day:hover { background: rgba(255,51,51,0.2); border-color: #ff3333; transform: scale(1.02); }
+        .calendar-day:active { transform: scale(0.98); }
+        .calendar-day.empty { background: transparent; border: none; cursor: default; }
+        .calendar-day.empty:hover { transform: none; background: transparent; }
+
+        .day-number { font-size: 0.9rem; font-weight: bold; color: #fff; }
+
         .has-post {
             background: rgba(255,51,51,0.2);
             border: 2px solid #ff3333;
             box-shadow: 0 0 8px rgba(255,51,51,0.3);
         }
-        
-        .has-post .day-number {
-            color: #ff3333;
-            font-weight: bold;
-        }
-        
+        .has-post .day-number { color: #ff3333; font-weight: bold; }
+
         .post-indicator {
             width: 5px;
             height: 5px;
@@ -257,44 +190,28 @@
             margin-top: 3px;
             animation: pulse 1.5s infinite;
         }
-        
         @keyframes pulse {
             0% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.2); }
             100% { opacity: 1; transform: scale(1); }
         }
-        
-        
+
         .news-viewer {
             padding: 1rem;
             background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
             border: 1px solid #ff3333;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(255,51,51,0.2);
-            max-width: 1000px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            width: 100%;
         }
-        
-        .viewer-header {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .news-date {
-            font-size: 0.9rem;
-            color: #ff9999;
-            text-align: center;
-        }
-        
-        .news-nav {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-        
+
+        .viewer-header { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
+        .news-date { font-size: 0.9rem; color: #ff9999; text-align: center; }
+        .news-nav { display: flex; justify-content: center; gap: 0.8rem; }
+
         .news-nav-btn {
             background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
             border: 2px solid #ff3333;
@@ -311,108 +228,43 @@
             justify-content: center;
             max-width: 120px;
         }
-        
-        .news-nav-btn:hover {
-            background: #ff3333;
-            color: #000;
-        }
-        
-        .news-nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        
-        .news-content {
-            min-height: 250px;
-            transition: opacity 0.3s;
-        }
-        
-        .news-content.fade-out {
-            opacity: 0;
-        }
-        
-        .news-content.fade-in {
-            opacity: 1;
-        }
-        
-        .featured-post {
-            padding: 1rem;
-            background: rgba(0,0,0,0.5);
-            border-radius: 10px;
-        }
-        
-        .featured-title {
-            font-size: 1.1rem;
-            color: #ff3333;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-            word-break: break-word;
-        }
-        
+        .news-nav-btn:hover { background: #ff3333; color: #000; }
+        .news-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+
+        .news-content { min-height: 250px; transition: opacity 0.3s; }
+        .news-content.fade-out { opacity: 0; }
+        .news-content.fade-in { opacity: 1; }
+
+        .featured-post { padding: 1rem; background: rgba(0,0,0,0.5); border-radius: 10px; }
+        .featured-title { font-size: 1.1rem; color: #ff3333; margin-bottom: 0.8rem; line-height: 1.4; word-break: break-word; }
         .featured-image {
-            max-width: 100%;
-            max-height: 250px;
-            width: auto;
-            border-radius: 6px;
-            margin: 0.5rem 0;
-            border: 2px solid #ff3333;
-            object-fit: contain;
-            background: #000;
+            max-width: 100%; max-height: 250px; width: auto;
+            border-radius: 6px; margin: 0.5rem 0;
+            border: 2px solid #ff3333; object-fit: contain; background: #000;
         }
-        
         .featured-text {
-            font-size: 0.9rem;
-            color: #ddd;
-            line-height: 1.5;
-            margin-bottom: 0.8rem;
-            text-align: left;
-            word-break: break-word;
-            max-height: 200px;
-            overflow-y: auto;
-            padding-right: 5px;
+            font-size: 0.9rem; color: #ddd; line-height: 1.5; margin-bottom: 0.8rem;
+            text-align: left; word-break: break-word; max-height: 200px;
+            overflow-y: auto; padding-right: 5px;
         }
-        
-        .featured-text::-webkit-scrollbar {
-            width: 4px;
-        }
-        
-        .featured-text::-webkit-scrollbar-track {
-            background: rgba(255,51,51,0.1);
-        }
-        
-        .featured-text::-webkit-scrollbar-thumb {
-            background: #ff3333;
-            border-radius: 3px;
-        }
-        
-        .featured-category {
-            color: #ff9999;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-        
+        .featured-text::-webkit-scrollbar { width: 4px; }
+        .featured-text::-webkit-scrollbar-track { background: rgba(255,51,51,0.1); }
+        .featured-text::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 3px; }
+
+        .featured-category { color: #ff9999; font-weight: bold; font-size: 0.8rem; }
+
         footer { 
-            text-align: center; 
-            padding: 1rem; 
-            border-top: 1px solid #fff; 
-            color: #ccc; 
-            font-size: 0.8rem; 
-            width: 100%; 
-            margin-top: auto; 
+            text-align: center; padding: 1rem; border-top: 1px solid #fff;
+            color: #ccc; font-size: 0.8rem; width: 100%; margin-top: auto; 
         }
-        
-       
+
         @media (min-width: 768px) {
             header { padding: 1rem 2rem; justify-content: space-between; }
             header h1 { font-size: 2rem; }
             header p { font-size: 1rem; }
             header img { max-width: 70px; }
-            
-            .calendar-section { 
-                padding: 1.5rem; 
-                max-width: 800px;
-            }
+
+            .calendar-section { padding: 1.5rem; max-width: 800px; }
             .month-title { font-size: 1.8rem; }
             .weekdays { font-size: 0.85rem; gap: 6px; }
             .weekday { padding: 10px 2px; }
@@ -420,8 +272,8 @@
             .calendar-day { min-height: 70px; }
             .day-number { font-size: 1.1rem; }
             .post-indicator { width: 6px; height: 6px; }
-            
-            .news-viewer { max-width: 900px; padding: 1.5rem; }
+
+            .news-viewer { max-width: 800px; padding: 1.5rem; }
             .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; }
             .news-nav { justify-content: flex-end; }
             .news-nav-btn { max-width: none; flex: none; padding: 0.6rem 1.5rem; }
@@ -429,14 +281,28 @@
             .featured-text { font-size: 1rem; max-height: 250px; }
             .featured-image { max-height: 300px; }
         }
-        
+
         @media (min-width: 1024px) {
-            .calendar-section { max-width: 700px; }
+            main {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                align-items: start;
+                max-width: 1400px;
+            }
+            .calendar-section,
+            .news-viewer {
+                max-width: 100%;
+                margin: 0;
+            }
+            .news-viewer {
+                position: sticky;
+                top: 1rem;
+            }
             .calendar-day { min-height: 80px; }
             .day-number { font-size: 1.2rem; }
-            .news-viewer { max-width: 800px; }
         }
-        
+
         @media (max-width: 480px) {
             .calendar-day { min-height: 45px; }
             .day-number { font-size: 0.8rem; }
@@ -446,7 +312,7 @@
             .featured-image { max-height: 180px; }
             .featured-text { max-height: 150px; }
         }
-        
+
         @media (max-width: 360px) {
             header h1 { font-size: 1.1rem; }
             header img { max-width: 40px; }
@@ -460,6 +326,8 @@
     </style>
 </head>
 <body>
+
+<canvas id="particles-canvas"></canvas>
 
 <header>
     <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
@@ -488,7 +356,7 @@
                 <button class="nav-btn" onclick="changeMonth(1)">→</button>
             </div>
         </div>
-        
+
         <div class="weekdays">
             <div class="weekday">LUN</div>
             <div class="weekday">MAR</div>
@@ -498,10 +366,10 @@
             <div class="weekday">SÁB</div>
             <div class="weekday">DOM</div>
         </div>
-        
+
         <div class="calendar-grid" id="calendarGrid"></div>
     </div>
-    
+
     <div class="news-viewer">
         <div class="viewer-header">
             <div class="news-date" id="currentNewsDate">Última noticia - 15 Mar 2026</div>
@@ -510,7 +378,7 @@
                 <button class="news-nav-btn" onclick="changeNews(1)" id="nextNewsBtn">Siguiente →</button>
             </div>
         </div>
-        
+
         <div class="news-content" id="newsContent"></div>
     </div>
 </main>
@@ -535,345 +403,101 @@
         }
         typeWriter();
     }
-    
+
     const newsDatabase = [
-	{
-            id: 34,
-            date: '2026-10-30',
-            title: 'Eliminacion de grupos Blocus',
-            image: 'https://i.ibb.co/hJ2Vr4H8/france.png',
-            text: 'Teniendo en consciencia la cantidad de grupos con el nombre "Blocus" en Telegram con el proposito de alterar la paz en las calles de Francia no nos quedaremos mirando y eliminaremos dichos grupos que quieran aterrar o coordinar ataques en contra de las autoridades y estructuras. Ayudaremos a destruir dichos grupos de telegram para evitar nuevos tipos de ataque. Debemos aportar aunque sea un pequeños grano de arena para poder parar y bloquear nuevos tipos de cosas, hagamos lo que tengamos en nuestras manos para evitar futuros desastres a gente inocente.', 
-            category: 'Noticias'
-    },
-	{
-            id: 33,
-            date: '2026-10-18',
-            title: 'Operación Hunter contra OIHEC',
-            image: 'https://i.ibb.co/Cp0Rh0pV/photo-2026-10-17-19-25-39-1.jpg',
-            text: 'La toxicidad entre comunidades hispanas es una infección que se propaga lentamente y esto por culpa de desarrolladores de contenido con mucho ego como puede ser OIHEC, por eso mismo hoy limpiaremos y erradicaremos varios de sus grupos para liberarlos de dicha plaga. Cumple el deber de limpiar internet o reportar actividad sospechosa para poder crear un nuevo comienzo limpio y seguro, tú aporte cuenta al igual que cualquier otro que desee apoyar esta causa. Juntos podremos erradicar esta plaga y despues de dichas cenizas renaceran nuevos tipos de comunidades limpias y ordenadas de dicha plaga.', 
-            category: 'Noticias'
-    },
-	{
-            id: 32,
-            date: '2026-10-12',
-            title: 'Dia De La Hispanidad 2026',
-            image: 'https://i.ibb.co/tMxQmZvX/Estandartes-entre-la-niebla-de-batalla.png',
-            text: 'Hoy 12 de octubre de 2026 HackPurgatory desea feliz día de la hispanidad a todos los españoles y latinoamericanos del mundo. Hoy se celebra el día de nuestra unión de sangre e historia la cual llegamos a formar un día, unión de razas, unión de sangre, unión de culturas, unión de historia. Este día recordamos que por ser latinos o españoles no debemos odiarnos y que debemos volvernos a unir para volver a formar un nuevo imperio resurgido de las cenizas y evadir a los divisores o independentistas. Somos hermanos, tenemos la misma sangre y la misma historia no debemos dividirnos ni pelear entre nosotros mucho menos olvidar nuestra historia.', 
-            category: 'Noticias'
-    },
-	{
-            id: 31,
-            date: '2026-10-09',
-            title: 'Campañas de Propaganda',
-            image: 'https://i.ibb.co/PzMXyF8f/photo-2026-10-09-23-04-45.jpg',
-            text: 'Nuestra comunidad debe de hacerse a conocer y para ello y hacer llegar nuestro mensaje craeremos campañas de propaganda para que mas gente nos llegue a conocer y pueda pertenecer a nosotros. Debemos propagar el conocimiento de que es posible aprender de forma segura y sin miedo alguno. Nuestra comunidad no se quedara quieta ante la amenaza de estafas o toxicidad. Lucharemos contra ellos hasta el ultimo que persista.', 
-            category: 'Noticias'
-    },
-	{
-            id: 30,
-            date: '2026-10-07',
-            title: 'Proyecto Expansionista',
-            image: 'https://i.ibb.co/V04tNtts/Melzer-Final-Web-1.jpg',
-            text: 'La expansion es clave para que nuestra comunidad avance y se expanda. Por esto HackPurgatory oficialmente estara disponbile en Instagram y Signal. Desde nuestro Instagram podras leer nuestra filosofia y desde Signal podras chatear con mas gente y conocer o aprender nuevas cosas. Defendemos el derecho al aprendizaje y luchamos contra los que atenten dicha libertad. Seguiremos adelante en cada una de nuestras operaciones sin dejar descanso al enemigo.', 
-            category: 'Noticias'
-    },
-	{
-            id: 29,
-            date: '2026-09-20',
-            title: 'Operacion False Prophet Contra Enikop Security',
-            image: 'https://i.ibb.co/0VcRCNTj/photo-2026-09-20-01-02-08.jpg',
-            text: 'Cuando hablamos de falsos profetas ya sabemos a quien nos referimos. No dejaremos que tenga paz en ningun momento mientras el aguila de HackPurgatory siga volando. Hoy La Unidad ha cerrado uno de los focos mas importantes contra la lucha de estafas en Telegram, la comunidad de Enikop Security dirigida por el estafador mrban01 ha sido erradicada con exito en una operacion por el subgrupo de la comunidad.', 
-            category: 'Noticias'
-    },
-
-	{
-            id: 28,
-            date: '2026-09-19',
-            title: 'Operacion Blitzkrieg Contra Cegados/3-44',
-            image: 'https://i.ibb.co/ns8yjgrx/photo-2026-09-19-06-39-49.jpg',
-            text: 'Hoy se ha llevado a cabo una operacion por parte de nuestra comunidad para erradicar de forma definitiva el grupo de cegados cuya plaga permanecia dentro. Blitzkrieg fue el nombre en clave de la operacion contra los estafadores. La Unidad espero a horario nocturno en Colombia para proceder con el ataque dejando el grupo eliminado completando la operacion satisfactoriamente. HackPurgatory no permitira de ninguna forma que plagas de este tipo se sientan seguras en sus madrigeras, iremos hasta ellas y las quemaremos desde dentro para defender nuestra comunidad.', 
-            category: 'Noticias'
-	},
-	{
-            id: 27,
-            date: '2026-09-15',
-            title: 'Nuevas Campañas de Propaganda',
-            image: 'https://i.ibb.co/rChJpjr/IMG-20260915-130140.jpg',
-            text: 'Se programaran nuevos cambios dentro de la comunidad para expandir y mejorar nuestros recursos para eso hemos hecho varios cambios dentro de nuestros modulos eliminando los que no se utilizan y agregando nuevos modulos. Dentro de esos cambios se crearan campañas para propagar nuestro mensaje de crear un nuevo tipo de comunidad dentro de internet.', 
-            category: 'Noticias'
-	},
-	{
-            id: 26,
-            date: '2026-09-08',
-            title: 'Renovación Importante',
-            image: 'https://i.ibb.co/MD3rnJ6y/IMG-20260908-152914.jpg',
-            text: 'Renovaremos nuestro dominio eliminando el que desde un inicio se pensó utilizar dejando únicamente nuestro dominio ORG y eliminando los demás emparejamientos. Después de dicha actualización se mejorará la estética del sitio web tanto para ordenadores como para móviles para que los usuarios y navegantes puedan disfrutar sin atrasos o problemas. Dentro de dicha actualización se arreglaran y se implementaron módulos.', 
-            category: 'Noticias'
-	},
-	{
-            id: 25,
-            date: '2026-08-23',
-            title: 'Nueva Actualizacion de Paneles SMM',
-            image: 'https://i.ibb.co/9H7mqyLL/Shot-2026-08-23-161504.png',
-            text: 'Nuestra comunidad crece y florece como una gran nacion de la misma forma que arrebasa sus enemigos, hoy HackPurgatory estrena sus nuevos endpoints para el apoyo gratuito de cuentas sociales pequeñas y la implementacion e arreglos de sus endpoints de OSINT. El sol esta saliendo y nosotros estaremos presentes para presenciar el cambio y formarlo para que todas las comunidades consigan unirse para proteger las tradiciones de internet y destruir los verdaderos moustruos y enfermos que se esconden dentro de ella.', 
-            category: 'Noticias'
-	},
-	{
-            id: 24,
-            date: '2026-08-15',
-            title: 'JXLL y Iron Atlas Anexados a HackPurgatory',
-            image: 'https://i.ibb.co/Y454whHr/Chat-GPT-Image-15-ago-2026-04-50-40.png',
-            text: 'Anexacion de JXLL y Iron Atlas, Hoy a las 4:34 horario UTC se ha firmado un tratado oficial en el que JXLL y Iron Atlas acepta las normativas y las leyes de HackPurgatory haciendose una rama o subcomunidad de nuestra gran comunidad. Este hecho tendra replesalias ante las personas inhadecuadas y se crearan purgas para eliminar e purificar las subcomunidades, este proceso llevara su tiempo de liberacion pero juntos crearemos un nuevo tipo de comunidad grande.', 
-            category: 'Noticias'
-	},
-	{
-            id: 23,
-            date: '2026-08-13',
-            title: 'Lucha Contra las Estafas y Toxicos',
-            image: 'https://i.ibb.co/B2PN1YX3/unnamed.jpg',
-            text: 'No debemos dejar que comunidades toxicas e invasoras se acerquen a nuestras puertas de ninguna manera. Hoy HackPurgatory habria expuesto a varios miembros de la CGD/3-44, una comunidad estafadora y toxica que reside dentro de internet vendiendo para alimentar sus sucios bolsillos, no dejaremos que este tipo de gente se aproveche de la gente de bien. Erradicaremos cualquier comunidad que sea un peligro para las demas comunidades de bien aunque nos manchen y falsifiquen sus pruebas. Gente que pide formulas gratis y las revenden deberian estar en el primer peloton de fusilaje. Recuerda HackPurgatory no te pedira dinero por tu aprendizaje.', 
-            category: 'Noticias'
-	},
-	{
-            id: 22,
-            date: '2026-08-10',
-            title: 'Frena las Ventas Aprovechadoras',
-            image: 'https://i.ibb.co/7xcbVVb2/Nuevo-proyecto-110-207158-A.png',
-            text: 'Hoy el subgrupo de HackPurgatory, La Unidad, ha realizado con éxito una operación de filtración en contra de un administrador de una comunidad dedicada a abusar ilegalmente de nuestros endpoints. Recordamos a todos que estamos en contra de las ventas y del abuso de automatizaciones de nuestros endpoints. La Unidad se ha encargado de ofrecer la información a las autoridades locales de dicho infractor y cerrar los canales de venta. Estamos en contra de cualquier tipo de venta, recuerda que el contenido es gratuito para todos.', 
-            category: 'Noticias'
-	},
-		{
-            id: 21,
-            date: '2026-08-02',
-            title: 'Operacion Pequeño Angel Oscuro',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9p5hLAW5ReNvWjUxUXG0hOc1oIGrG0bMhnpotaPaHrX42w_sNlgWPyoY&s=10',
-            text: 'Recordaremos el objetivo principal y la causa que defendemos luchando contra gente enferma que cree tener todo bajo control mientras destruye vidas y propaga contenido ilícito. Durante esta semana comienza la operación "Pequeño Ángel Oscuro" una operación dedicada a destruir contenido pederasta en internet y a destruir cualquier tipo de comunidad que pueda llegar a ser una amenaza para cualquier individuo o integridad. No dejaremos libre este tipo de actos en internet, vamos a erradicar esta enfermedad para que no se pueda propagar de ninguna forma.',	
-			category: 'Noticias'
-    },
-	{
-            id: 20,
-            date: '2026-07-23',
-            title: 'Nuestro Foro ya esta Disponible',
-            image: 'https://i.ibb.co/DDVZFw29/fotopng.png',
-            text: 'Nuestro foro ya esta disponible para cualquiera que quiera probarlo de forma gratuita. Este foro se ha creado para ayudar y apoyar a las personas que quieran aprender dentro de internet buscando asi de esta forma una manera mas sencilla y creativa de aprender. Las reglas son exactamente las mismas que en nuestra comunidad, no permitiremos ningun tipo de acto ilegal, este foro esta creado para el apoyo mutuo entre todos dentro de nuestra comunidad.',
-			category: 'Noticias'
-    },
-	{
-            id: 19,
-            date: '2026-07-08',
-            title: 'Bloqueo y Lucha Contra la Guerrilla FARC',
-            image: 'https://i.postimg.cc/XJKYpSzm/descarga.webp',
-            text: 'Tomaremos medidas contra la FARC y lucharemos contra su legado del terror que de igual manera que la ELN ha estado aterrorizando el pueblo Colombiano. Esto es una lucha contra el terror marxista que estan causando estas dos guerrillas terroristas dentro de la nacion de Colombia. Hoy comunicamos que tambien añadiremos ha nuestra lista la FARC con el objetivo de que podamos borrarlos dentro de internet. Estamos en contra de este tipo de actos ilegales y no nos quedaremos con las manos cruzadas mientras sigan existiendo.',
-			category: 'Noticias'
-    },
-	{
-            id: 18,
-            date: '2026-06-29',
-            title: 'Paralización de la Guerrilla ELN',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6mVG72oROOm2_Xb4qdUl6P1IYP5UuQmd5MCgFR9mgGw&s=10',
-            text: 'Las Naciones como Colombia y Venezuela han estado sufriendo durante largo tiempo el cáncer del comunismo leninista de la guerrilla ELN. Hoy le daremos un golpe al gigante rojo para detener o paralizar sus movimientos de extremo terror dentro de los pueblos y los ciudadanos de bien. Buscaremos cualquier forma de parar esta enfermedad que sufren hoy nuestras patrias aunque nos lleve largo tiempo. Un grano de arena es mejor que ver morir un precioso país por el terror marxista. HackPurgatory no permitirá estos actos en contra de la integridad ciudadana. Dejaremos inhabilitado su sitio web y expondremos toda la información de sus miembros. Este es un mensaje en contra de sus actos.',
-			category: 'Noticias'
-    },
-	{
-            id: 17,
-            date: '2026-06-14',
-            title: 'Lucha Contra la Serpiente',
-            image: 'https://i.ibb.co/j9xC8zLd/photo-2026-06-14-02-33-50.jpg',
-            text: 'Recuerda que seguiremos luchando ante cualquier tipo de acto que ponga en riesgo la integridad de la comunidad. Hoy la serpiente que se mantiene debil pero sigue robando y rogando por conseguir la confianza de la gente, vamos a parar el avance y cortarle la cabeza para que no pueda seguir propagandose, durante años se han ido adaptando recuerda quienes son realmente nuestro enemigos. No caigas en las mentiras y mantente atento ante cualquier tipo de acto ilegal que pueda llegar a hacer. Reporta y Protege. No nos quedaremos de manos cruzadas ante ninguna situacion que dañe la integridad de nuestra comunidad.',
-            category: 'Noticias'
-    },
-	{
-            id: 16,
-            date: '2026-06-04',
-            title: 'Reformas y Actualizaciones',
-            image: 'https://i.ibb.co/Zp8Dg4RF/photo-2026-06-04-12-39-53.jpg',
-            text: 'Estamos reformando nuestro sitio web para que los navegantes puedan disfrutar de su maxima experiencia sin problema, dentro de las reformas estamos añadiendo nuevas actualizaciones totalmente diferentes. En estas nuevas actualizaciones tenemos pensado añadir varias cosas en nuestro sitio web. Agradecemos todo el apoyo por el cambio que estamos generando y ha futuro lo que podremos seguir cambiando dentro de internet. Tomaremos y expandiremos nuestra comunidad para que las demas puedan seguir nuestras raices.',
-            category: 'Noticias'
-        },
-
-        {
-            id: 15,
-            date: '2026-05-25',
-            title: 'Sigue Nuestras Grandes Operaciones',
-            image: 'https://i.ibb.co/mC9BmkYP/Captura-de-pantalla-2026-05-25-133540.png',
-            text: 'Durante bastante tiempo nos hemos dedicado ha eliminar contenido. Ahora puedes tambien seguirnos en Twitter donde podras estar al dia de nuestras operaciones a gran escala, en dicha cuenta subiremos informes detallados y dando razones sobre nuestros actos dentro de internet. De la misma forma podremos luchar contra la desinformacion en dicha red social, mantente al dia siguenos de forma gratuita y apoya el cambio que estamos promoviendo.',
-            category: 'Noticias'
-        },
-        {
-            id: 14,
-            date: '2026-05-20',
-            title: 'Caza de enfermos en Imperio Caotico',
-            image: 'https://i.ibb.co/DP4r1jd5/default-2.jpg',
-            text: 'La lucha comienza desde el final hasta la raíz. Hoy Imperio Caotico una comunidad de enfermos dedicados a compartir contenido sobre menores y la distribución de ellos ha sido altamente castigada y expuesta por nuestra comunidad. Desde su sitio web hasta sus grupos o canales de Telegram. No dejaremos ningún tipo de descanso contra este tipo de gente mientras sigan vivos. La Unidad de la comunidad se ha ocupado de comenzar una investigación para su debido reporte y eliminación de cualquier tipo de rastro que puedan llegar a tener dentro de internet. Defenderemos nuestra idea y lucharemos eternamente contra este tipo de actos.',
-            category: 'Noticias'
-        },
-         {
-            id: 13,
-            date: '2026-05-08',
-            title: 'Limpieza en Chile contra Rutify',
-            image: 'https://i.ibb.co/SD23LQ6S/IMG-20260508-163027.jpg',
-            text: 'Hoy limpiamos a chile de los supuestos fintradores de bases de datos. Después de una investigación y una operación, hemos cerrado sus canales y grupos mientras que entregamos información de los administradores a las autoridades locales para ayudar en su captura. No dejaremos que se escodan estas escorias ni les ofreceremos tiempo, elimiaremos cualquier tipo de acto en contra de inocentes.',
-            category: 'Noticias'
-        },
-        {
-            id: 12,
-            date: '2026-04-29',
-            title: 'Reporta Actividad Sospechosa',
-            image: 'https://i.ibb.co/4ZNhN0Hy/IMG-20260429-210319-381.jpg',
-            text: 'Colaborá enviando a nuestro correo oficial cualquier tipo de actividad ilícita que se pueda estar cometiendo con sus respectivas pruebas para que podamos eliminar y defender los valores que nos conforman. La limpieza de este tipo de contenido es importante para un avance y un objetivo mayor a largo plazo, recuerda que estamos para proteger la libertad del conocimiento libre de cualquier candado que se le pueda poner y luchar contra cualquier tipo de actividad ilegal o aberrante.',
-            category: 'Noticias'
-        },
-        {
-            id: 11,
-            date: '2026-04-16',
-            title: 'Restricciones y Operaciones',
-            image: 'https://i.ibb.co/Hfzrjg1g/Captura-de-pantalla-2026-04-16-090852.png',
-            text: 'Nuestra comunidad ha mantenido un orden dentro de varios sitios y ha compartido recursos que muchas comunidades han querido bloquear o restringir pero no solo eso hoy en dia existe gente que juzga nuestras acciones lo que no permitiremos es que esto ocurra. Hemos y estamos operado en muchos lugares luchando contra tipo de gente que se esconde en sus actos delictivos vendiendo programas y creando comunidades toxicas hoy mismo lideramos un cambio que deseamos todos y defenderemos este objetivo a toda costa. No luchamos contra gobiernos, no luchamos contra empresas y mucho menos gente apartada de todo esto. Estamos para cambiar las comunidades y foros con el simple objetivo de algo nuevo donde podamos evitar la toxicidad.',
-            category: 'Noticias'
-        },
-        {
-            id: 10,
-            date: '2026-04-10',
-            title: 'Victoria y Bloqueo',
-            image: 'https://i.ibb.co/4RV6pncP/Nuevo-proyecto-92-D8-C6-CBB.png',
-            text: 'Hemos acabado con uno de los mayores estafadores y su gran carrera aprovechandose de la gente, mrban ha perdido más que mucho y hoy liberamos y unificamos una vez más internet contra este tipo de gente. Nos llega cada vez más información de gente que usa nuestros endpoints de scrapping para su beneficio malicioso. Hemos decidido no tolerar más estos fines e implementar un bloqueo de scrapping para evitar abusos. Está decisión se ha tomado con efecto inmediato lo cual hará que únicamente se pueda usar desde nuestro sitio web. No toleraremos que vendan ni mucho menos usen de forma maliciosa nuestros endpoints.',
-            category: 'Noticias'
-        },
-        {
-            id: 9,
-            date: '2026-04-01',
-            title: 'Aviso Comunitario',
-            image: 'https://i.ibb.co/k27vyTL0/photo-2026-04-01-11-36-13.jpg',
-            text: 'Recordamos a toda persona que somos una comunidad dedicada ha erradicar las organizaciones ilegales y compartir conocimiento totalmente gratuito no nos vinculamos a ningun tipo de organizacion no caigas en la propaganda falsa. Recuerda que defenderemos los valores de todo aquel que necesite ayuda para aprender y eliminaremos comunidades toxicas o de contenido ilegal a toda costa recuerda que debemos limpiar la basura que se lleva acumulando mucho tiempo, hoy luchamos contra los estafadores que han robado tanto dinero y contra los que han abusado de su poder.',
-            category: 'Noticias'
-        },
-        {
-            id: 8,
-            date: '2026-03-19',
-            title: 'Justicia y Union',
-            image: 'https://i.ibb.co/kVxfCvzN/Picsart-26-03-19-11-26-24-899.jpg',
-            text: 'La desinformación puede ser una guerra psicológica. Usuario no caigas en las mentiras que puedan desinformar nuestra comunidad recuerda que no vendemos, no nos beneficiamos y mucho menos engañamos. Lucharemos contra la desinformación y seguiremos ayudando a los usuarios que necesiten ayuda para avanzar en la informática, buscamos una comunidad sin toxicidad y libre de ventas. Recuerda usuario el conocimiento es libre de quien lo busca no dejaremos que lo vendan y mucho menos que manchen nuestra comunidad de mentiras delictivas. Luchamos contra estafas y reportamos a las autoridades redes de cualquier tipo ilegales estamos aquí para crear un nuevo tipo de comunidad unida y libre de comportamientos contagiosos.',
-            category: 'Noticias'
-        },
-        {
-            id: 7,
-            date: '2026-03-12',
-            title: 'Eventos y sorteos semanales',
-            image: 'https://i.ibb.co/3mSjRtLR/IMG-20260312-095746.jpg',
-            text: 'Próximamente eventos y sorteos semanales para los usuarios activos de la comunidad. Se estarán preparando preparativos y más cosas nuevas para todos los usuarios de bien que puedan disfrutar de las ventajas de ser un miembro activo dentro de nuestra comunidad. Recuerda defendemos la libertad de aprender o ayudar sin precio o costo si crees ver algo sospechoso no dudes en reportar a nuestro equipo asignado. Pronto nuevas actualizaciones más constantes.',
-            category: 'Noticias'
-        },
-        {
-            id: 6,
-            date: '2026-03-10',
-            title: 'Actualizaciones y Noticias',
-            image: 'https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg',
-            text: 'Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente.',
-            category: 'Noticias'
-        },
-        {
-            id: 5,
-            date: '2026-03-5',
-            title: 'Limpieza Total sin Descanso',
-            image: 'https://i.ibb.co/wF6rHxVs/defend.jpg',
-            text: 'Toma medidas contra aquellos que venden y promueven la inestabilidad dentro del país, estafan y mienten o promueven contenido explicito. hoy La Unidad de HackPurgatory tomara cartas en el asunto respecto a estos temas ilegales y desenmascarara para despues reportar a las autoridades. Cerraremos canales y llevaremos a los propietarios a las autoridades exponiéndolos de la misma forma. Queremos asegurarnos de que todo esté tipo de cosas no sé repitan y para eso tú puedes reportar si crees haber visto alguna de estas cosas.',
-            category: 'Noticias'
-        },
-        {
-            id: 4,
-            date: '2026-03-04',
-            title: 'Alianza de la Unión Federal del Orden',
-            image: 'https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg',
-            text: 'En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua.',
-            category: 'Noticias'
-        },
-        {
-            id: 3,
-            date: '2026-02-28',
-            title: 'Revisa Nuestros Recursos Desde el Sitio Web',
-            image: 'https://i.ibb.co/NBTFrcx/Captura-de-pantalla-2026-07-14-144155.png',
-            text: 'Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque.',
-            category: 'Noticias'
-        },
-        {
-            id: 2,
-            date: '2026-02-20',
-            title: 'Ya tienes Disponible Nuestro Chat en Telegram',
-            image: 'https://www.zdfheute.de/assets/die-neue-terror-gefahr--terrorgram-vom-gruppenchat-zum-attentaeter-102~1280x720?cb=1757944842901',
-            text: 'Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0',
-            category: 'Noticias'
-        },
-        {
-            id: 1,
-            date: '2026-02-15',
-            title: 'Todos Los Recursos Se Subiran Al Sitio Web',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnYRCZZPTwTfPwIRb4eE4v4oQeWacvZo1aMYziGPwELA&s=10',
-            text: 'Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.',
-            category: 'Noticias'
-        }
+		{ id: 34, date: '2026-10-30', title: 'Eliminacion de grupos Blocus', image: 'https://i.ibb.co/hJ2Vr4H8/france.png', text: 'Teniendo en consciencia la cantidad de grupos con el nombre "Blocus" en Telegram con el proposito de alterar la paz en las calles de Francia no nos quedaremos mirando y eliminaremos dichos grupos que quieran aterrar o coordinar ataques en contra de las autoridades y estructuras. Ayudaremos a destruir dichos grupos de telegram para evitar nuevos tipos de ataque. Debemos aportar aunque sea un pequeños grano de arena para poder parar y bloquear nuevos tipos de cosas, hagamos lo que tengamos en nuestras manos para evitar futuros desastres a gente inocente.', category: 'Noticias'},
+        { id: 33, date: '2026-10-18', title: 'Operación Hunter contra OIHEC', image: 'https://i.ibb.co/Cp0Rh0pV/photo-2026-10-17-19-25-39-1.jpg', text: 'La toxicidad entre comunidades hispanas es una infección que se propaga lentamente y esto por culpa de desarrolladores de contenido con mucho ego como puede ser OIHEC, por eso mismo hoy limpiaremos y erradicaremos varios de sus grupos para liberarlos de dicha plaga. Cumple el deber de limpiar internet o reportar actividad sospechosa para poder crear un nuevo comienzo limpio y seguro, tú aporte cuenta al igual que cualquier otro que desee apoyar esta causa. Juntos podremos erradicar esta plaga y despues de dichas cenizas renaceran nuevos tipos de comunidades limpias y ordenadas de dicha plaga.', category: 'Noticias' },
+        { id: 32, date: '2026-10-12', title: 'Dia De La Hispanidad 2026', image: 'https://i.ibb.co/tMxQmZvX/Estandartes-entre-la-niebla-de-batalla.png', text: 'Hoy 12 de octubre de 2026 HackPurgatory desea feliz día de la hispanidad a todos los españoles y latinoamericanos del mundo. Hoy se celebra el día de nuestra unión de sangre e historia la cual llegamos a formar un día, unión de razas, unión de sangre, unión de culturas, unión de historia. Este día recordamos que por ser latinos o españoles no debemos odiarnos y que debemos volvernos a unir para volver a formar un nuevo imperio resurgido de las cenizas y evadir a los divisores o independentistas. Somos hermanos, tenemos la misma sangre y la misma historia no debemos dividirnos ni pelear entre nosotros mucho menos olvidar nuestra historia.', category: 'Noticias' },
+        { id: 31, date: '2026-10-09', title: 'Campañas de Propaganda', image: 'https://i.ibb.co/PzMXyF8f/photo-2026-10-09-23-04-45.jpg', text: 'Nuestra comunidad debe de hacerse a conocer y para ello y hacer llegar nuestro mensaje craeremos campañas de propaganda para que mas gente nos llegue a conocer y pueda pertenecer a nosotros. Debemos propagar el conocimiento de que es posible aprender de forma segura y sin miedo alguno. Nuestra comunidad no se quedara quieta ante la amenaza de estafas o toxicidad. Lucharemos contra ellos hasta el ultimo que persista.', category: 'Noticias' },
+        { id: 30, date: '2026-10-07', title: 'Proyecto Expansionista', image: 'https://i.ibb.co/V04tNtts/Melzer-Final-Web-1.jpg', text: 'La expansion es clave para que nuestra comunidad avance y se expanda. Por esto HackPurgatory oficialmente estara disponbile en Instagram y Signal. Desde nuestro Instagram podras leer nuestra filosofia y desde Signal podras chatear con mas gente y conocer o aprender nuevas cosas. Defendemos el derecho al aprendizaje y luchamos contra los que atenten dicha libertad. Seguiremos adelante en cada una de nuestras operaciones sin dejar descanso al enemigo.', category: 'Noticias' },
+        { id: 29, date: '2026-09-20', title: 'Operacion False Prophet Contra Enikop Security', image: 'https://i.ibb.co/0VcRCNTj/photo-2026-09-20-01-02-08.jpg', text: 'Cuando hablamos de falsos profetas ya sabemos a quien nos referimos. No dejaremos que tenga paz en ningun momento mientras el aguila de HackPurgatory siga volando. Hoy La Unidad ha cerrado uno de los focos mas importantes contra la lucha de estafas en Telegram, la comunidad de Enikop Security dirigida por el estafador mrban01 ha sido erradicada con exito en una operacion por el subgrupo de la comunidad.', category: 'Noticias' },
+        { id: 28, date: '2026-09-19', title: 'Operacion Blitzkrieg Contra Cegados/3-44', image: 'https://i.ibb.co/ns8yjgrx/photo-2026-09-19-06-39-49.jpg', text: 'Hoy se ha llevado a cabo una operacion por parte de nuestra comunidad para erradicar de forma definitiva el grupo de cegados cuya plaga permanecia dentro. Blitzkrieg fue el nombre en clave de la operacion contra los estafadores. La Unidad espero a horario nocturno en Colombia para proceder con el ataque dejando el grupo eliminado completando la operacion satisfactoriamente. HackPurgatory no permitira de ninguna forma que plagas de este tipo se sientan seguras en sus madrigeras, iremos hasta ellas y las quemaremos desde dentro para defender nuestra comunidad.', category: 'Noticias' },
+        { id: 27, date: '2026-09-15', title: 'Nuevas Campañas de Propaganda', image: 'https://i.ibb.co/rChJpjr/IMG-20260915-130140.jpg', text: 'Se programaran nuevos cambios dentro de la comunidad para expandir y mejorar nuestros recursos para eso hemos hecho varios cambios dentro de nuestros modulos eliminando los que no se utilizan y agregando nuevos modulos. Dentro de esos cambios se crearan campañas para propagar nuestro mensaje de crear un nuevo tipo de comunidad dentro de internet.', category: 'Noticias' },
+        { id: 26, date: '2026-09-08', title: 'Renovación Importante', image: 'https://i.ibb.co/MD3rnJ6y/IMG-20260908-152914.jpg', text: 'Renovaremos nuestro dominio eliminando el que desde un inicio se pensó utilizar dejando únicamente nuestro dominio ORG y eliminando los demás emparejamientos. Después de dicha actualización se mejorará la estética del sitio web tanto para ordenadores como para móviles para que los usuarios y navegantes puedan disfrutar sin atrasos o problemas. Dentro de dicha actualización se arreglaran y se implementaron módulos.', category: 'Noticias' },
+        { id: 25, date: '2026-08-23', title: 'Nueva Actualizacion de Paneles SMM', image: 'https://i.ibb.co/9H7mqyLL/Shot-2026-08-23-161504.png', text: 'Nuestra comunidad crece y florece como una gran nacion de la misma forma que arrebasa sus enemigos, hoy HackPurgatory estrena sus nuevos endpoints para el apoyo gratuito de cuentas sociales pequeñas y la implementacion e arreglos de sus endpoints de OSINT. El sol esta saliendo y nosotros estaremos presentes para presenciar el cambio y formarlo para que todas las comunidades consigan unirse para proteger las tradiciones de internet y destruir los verdaderos moustruos y enfermos que se esconden dentro de ella.', category: 'Noticias' },
+        { id: 24, date: '2026-08-15', title: 'JXLL y Iron Atlas Anexados a HackPurgatory', image: 'https://i.ibb.co/Y454whHr/Chat-GPT-Image-15-ago-2026-04-50-40.png', text: 'Anexacion de JXLL y Iron Atlas, Hoy a las 4:34 horario UTC se ha firmado un tratado oficial en el que JXLL y Iron Atlas acepta las normativas y las leyes de HackPurgatory haciendose una rama o subcomunidad de nuestra gran comunidad. Este hecho tendra replesalias ante las personas inhadecuadas y se crearan purgas para eliminar e purificar las subcomunidades, este proceso llevara su tiempo de liberacion pero juntos crearemos un nuevo tipo de comunidad grande.', category: 'Noticias' },
+        { id: 23, date: '2026-08-13', title: 'Lucha Contra las Estafas y Toxicos', image: 'https://i.ibb.co/B2PN1YX3/unnamed.jpg', text: 'No debemos dejar que comunidades toxicas e invasoras se acerquen a nuestras puertas de ninguna manera. Hoy HackPurgatory habria expuesto a varios miembros de la CGD/3-44, una comunidad estafadora y toxica que reside dentro de internet vendiendo para alimentar sus sucios bolsillos, no dejaremos que este tipo de gente se aproveche de la gente de bien. Erradicaremos cualquier comunidad que sea un peligro para las demas comunidades de bien aunque nos manchen y falsifiquen sus pruebas. Gente que pide formulas gratis y las revenden deberian estar en el primer peloton de fusilaje. Recuerda HackPurgatory no te pedira dinero por tu aprendizaje.', category: 'Noticias' },
+        { id: 22, date: '2026-08-10', title: 'Frena las Ventas Aprovechadoras', image: 'https://i.ibb.co/7xcbVVb2/Nuevo-proyecto-110-207158-A.png', text: 'Hoy el subgrupo de HackPurgatory, La Unidad, ha realizado con éxito una operación de filtración en contra de un administrador de una comunidad dedicada a abusar ilegalmente de nuestros endpoints. Recordamos a todos que estamos en contra de las ventas y del abuso de automatizaciones de nuestros endpoints. La Unidad se ha encargado de ofrecer la información a las autoridades locales de dicho infractor y cerrar los canales de venta. Estamos en contra de cualquier tipo de venta, recuerda que el contenido es gratuito para todos.', category: 'Noticias' },
+        { id: 21, date: '2026-08-02', title: 'Operacion Pequeño Angel Oscuro', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9p5hLAW5ReNvWjUxUXG0hOc1oIGrG0bMhnpotaPaHrX42w_sNlgWPyoY&s=10', text: 'Recordaremos el objetivo principal y la causa que defendemos luchando contra gente enferma que cree tener todo bajo control mientras destruye vidas y propaga contenido ilícito. Durante esta semana comienza la operación "Pequeño Ángel Oscuro" una operación dedicada a destruir contenido pederasta en internet y a destruir cualquier tipo de comunidad que pueda llegar a ser una amenaza para cualquier individuo o integridad. No dejaremos libre este tipo de actos en internet, vamos a erradicar esta enfermedad para que no se pueda propagar de ninguna forma.', category: 'Noticias' },
+        { id: 20, date: '2026-07-23', title: 'Nuestro Foro ya esta Disponible', image: 'https://i.ibb.co/DDVZFw29/fotopng.png', text: 'Nuestro foro ya esta disponible para cualquiera que quiera probarlo de forma gratuita. Este foro se ha creado para ayudar y apoyar a las personas que quieran aprender dentro de internet buscando asi de esta forma una manera mas sencilla y creativa de aprender. Las reglas son exactamente las mismas que en nuestra comunidad, no permitiremos ningun tipo de acto ilegal, este foro esta creado para el apoyo mutuo entre todos dentro de nuestra comunidad.', category: 'Noticias' },
+        { id: 19, date: '2026-07-08', title: 'Bloqueo y Lucha Contra la Guerrilla FARC', image: 'https://i.postimg.cc/XJKYpSzm/descarga.webp', text: 'Tomaremos medidas contra la FARC y lucharemos contra su legado del terror que de igual manera que la ELN ha estado aterrorizando el pueblo Colombiano. Esto es una lucha contra el terror marxista que estan causando estas dos guerrillas terroristas dentro de la nacion de Colombia. Hoy comunicamos que tambien añadiremos ha nuestra lista la FARC con el objetivo de que podamos borrarlos dentro de internet. Estamos en contra de este tipo de actos ilegales y no nos quedaremos con las manos cruzadas mientras sigan existiendo.', category: 'Noticias' },
+        { id: 18, date: '2026-06-29', title: 'Paralización de la Guerrilla ELN', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6mVG72oROOm2_Xb4qdUl6P1IYP5UuQmd5MCgFR9mgGw&s=10', text: 'Las Naciones como Colombia y Venezuela han estado sufriendo durante largo tiempo el cáncer del comunismo leninista de la guerrilla ELN. Hoy le daremos un golpe al gigante rojo para detener o paralizar sus movimientos de extremo terror dentro de los pueblos y los ciudadanos de bien. Buscaremos cualquier forma de parar esta enfermedad que sufren hoy nuestras patrias aunque nos lleve largo tiempo. Un grano de arena es mejor que ver morir un precioso país por el terror marxista. HackPurgatory no permitirá estos actos en contra de la integridad ciudadana. Dejaremos inhabilitado su sitio web y expondremos toda la información de sus miembros. Este es un mensaje en contra de sus actos.', category: 'Noticias' },
+        { id: 17, date: '2026-06-14', title: 'Lucha Contra la Serpiente', image: 'https://i.ibb.co/j9xC8zLd/photo-2026-06-14-02-33-50.jpg', text: 'Recuerda que seguiremos luchando ante cualquier tipo de acto que ponga en riesgo la integridad de la comunidad. Hoy la serpiente que se mantiene debil pero sigue robando y rogando por conseguir la confianza de la gente, vamos a parar el avance y cortarle la cabeza para que no pueda seguir propagandose, durante años se han ido adaptando recuerda quienes son realmente nuestro enemigos. No caigas en las mentiras y mantente atento ante cualquier tipo de acto ilegal que pueda llegar a hacer. Reporta y Protege. No nos quedaremos de manos cruzadas ante ninguna situacion que dañe la integridad de nuestra comunidad.', category: 'Noticias' },
+        { id: 16, date: '2026-06-04', title: 'Reformas y Actualizaciones', image: 'https://i.ibb.co/Zp8Dg4RF/photo-2026-06-04-12-39-53.jpg', text: 'Estamos reformando nuestro sitio web para que los navegantes puedan disfrutar de su maxima experiencia sin problema, dentro de las reformas estamos añadiendo nuevas actualizaciones totalmente diferentes. En estas nuevas actualizaciones tenemos pensado añadir varias cosas en nuestro sitio web. Agradecemos todo el apoyo por el cambio que estamos generando y ha futuro lo que podremos seguir cambiando dentro de internet. Tomaremos y expandiremos nuestra comunidad para que las demas puedan seguir nuestras raices.', category: 'Noticias' },
+        { id: 15, date: '2026-05-25', title: 'Sigue Nuestras Grandes Operaciones', image: 'https://i.ibb.co/mC9BmkYP/Captura-de-pantalla-2026-05-25-133540.png', text: 'Durante bastante tiempo nos hemos dedicado ha eliminar contenido. Ahora puedes tambien seguirnos en Twitter donde podras estar al dia de nuestras operaciones a gran escala, en dicha cuenta subiremos informes detallados y dando razones sobre nuestros actos dentro de internet. De la misma forma podremos luchar contra la desinformacion en dicha red social, mantente al dia siguenos de forma gratuita y apoya el cambio que estamos promoviendo.', category: 'Noticias' },
+        { id: 14, date: '2026-05-20', title: 'Caza de enfermos en Imperio Caotico', image: 'https://i.ibb.co/DP4r1jd5/default-2.jpg', text: 'La lucha comienza desde el final hasta la raíz. Hoy Imperio Caotico una comunidad de enfermos dedicados a compartir contenido sobre menores y la distribución de ellos ha sido altamente castigada y expuesta por nuestra comunidad. Desde su sitio web hasta sus grupos o canales de Telegram. No dejaremos ningún tipo de descanso contra este tipo de gente mientras sigan vivos. La Unidad de la comunidad se ha ocupado de comenzar una investigación para su debido reporte y eliminación de cualquier tipo de rastro que puedan llegar a tener dentro de internet. Defenderemos nuestra idea y lucharemos eternamente contra este tipo de actos.', category: 'Noticias' },
+        { id: 13, date: '2026-05-08', title: 'Limpieza en Chile contra Rutify', image: 'https://i.ibb.co/SD23LQ6S/IMG-20260508-163027.jpg', text: 'Hoy limpiamos a chile de los supuestos fintradores de bases de datos. Después de una investigación y una operación, hemos cerrado sus canales y grupos mientras que entregamos información de los administradores a las autoridades locales para ayudar en su captura. No dejaremos que se escodan estas escorias ni les ofreceremos tiempo, elimiaremos cualquier tipo de acto en contra de inocentes.', category: 'Noticias' },
+        { id: 12, date: '2026-04-29', title: 'Reporta Actividad Sospechosa', image: 'https://i.ibb.co/4ZNhN0Hy/IMG-20260429-210319-381.jpg', text: 'Colaborá enviando a nuestro correo oficial cualquier tipo de actividad ilícita que se pueda estar cometiendo con sus respectivas pruebas para que podamos eliminar y defender los valores que nos conforman. La limpieza de este tipo de contenido es importante para un avance y un objetivo mayor a largo plazo, recuerda que estamos para proteger la libertad del conocimiento libre de cualquier candado que se le pueda poner y luchar contra cualquier tipo de actividad ilegal o aberrante.', category: 'Noticias' },
+        { id: 11, date: '2026-04-16', title: 'Restricciones y Operaciones', image: 'https://i.ibb.co/Hfzrjg1g/Captura-de-pantalla-2026-04-16-090852.png', text: 'Nuestra comunidad ha mantenido un orden dentro de varios sitios y ha compartido recursos que muchas comunidades han querido bloquear o restringir pero no solo eso hoy en dia existe gente que juzga nuestras acciones lo que no permitiremos es que esto ocurra. Hemos y estamos operado en muchos lugares luchando contra tipo de gente que se esconde en sus actos delictivos vendiendo programas y creando comunidades toxicas hoy mismo lideramos un cambio que deseamos todos y defenderemos este objetivo a toda costa. No luchamos contra gobiernos, no luchamos contra empresas y mucho menos gente apartada de todo esto. Estamos para cambiar las comunidades y foros con el simple objetivo de algo nuevo donde podamos evitar la toxicidad.', category: 'Noticias' },
+        { id: 10, date: '2026-04-10', title: 'Victoria y Bloqueo', image: 'https://i.ibb.co/4RV6pncP/Nuevo-proyecto-92-D8-C6-CBB.png', text: 'Hemos acabado con uno de los mayores estafadores y su gran carrera aprovechandose de la gente, mrban ha perdido más que mucho y hoy liberamos y unificamos una vez más internet contra este tipo de gente. Nos llega cada vez más información de gente que usa nuestros endpoints de scrapping para su beneficio malicioso. Hemos decidido no tolerar más estos fines e implementar un bloqueo de scrapping para evitar abusos. Está decisión se ha tomado con efecto inmediato lo cual hará que únicamente se pueda usar desde nuestro sitio web. No toleraremos que vendan ni mucho menos usen de forma maliciosa nuestros endpoints.', category: 'Noticias' },
+        { id: 9, date: '2026-04-01', title: 'Aviso Comunitario', image: 'https://i.ibb.co/k27vyTL0/photo-2026-04-01-11-36-13.jpg', text: 'Recordamos a toda persona que somos una comunidad dedicada ha erradicar las organizaciones ilegales y compartir conocimiento totalmente gratuito no nos vinculamos a ningun tipo de organizacion no caigas en la propaganda falsa. Recuerda que defenderemos los valores de todo aquel que necesite ayuda para aprender y eliminaremos comunidades toxicas o de contenido ilegal a toda costa recuerda que debemos limpiar la basura que se lleva acumulando mucho tiempo, hoy luchamos contra los estafadores que han robado tanto dinero y contra los que han abusado de su poder.', category: 'Noticias' },
+        { id: 8, date: '2026-03-19', title: 'Justicia y Union', image: 'https://i.ibb.co/kVxfCvzN/Picsart-26-03-19-11-26-24-899.jpg', text: 'La desinformación puede ser una guerra psicológica. Usuario no caigas en las mentiras que puedan desinformar nuestra comunidad recuerda que no vendemos, no nos beneficiamos y mucho menos engañamos. Lucharemos contra la desinformación y seguiremos ayudando a los usuarios que necesiten ayuda para avanzar en la informática, buscamos una comunidad sin toxicidad y libre de ventas. Recuerda usuario el conocimiento es libre de quien lo busca no dejaremos que lo vendan y mucho menos que manchen nuestra comunidad de mentiras delictivas. Luchamos contra estafas y reportamos a las autoridades redes de cualquier tipo ilegales estamos aquí para crear un nuevo tipo de comunidad unida y libre de comportamientos contagiosos.', category: 'Noticias' },
+        { id: 7, date: '2026-03-12', title: 'Eventos y sorteos semanales', image: 'https://i.ibb.co/3mSjRtLR/IMG-20260312-095746.jpg', text: 'Próximamente eventos y sorteos semanales para los usuarios activos de la comunidad. Se estarán preparando preparativos y más cosas nuevas para todos los usuarios de bien que puedan disfrutar de las ventajas de ser un miembro activo dentro de nuestra comunidad. Recuerda defendemos la libertad de aprender o ayudar sin precio o costo si crees ver algo sospechoso no dudes en reportar a nuestro equipo asignado. Pronto nuevas actualizaciones más constantes.', category: 'Noticias' },
+        { id: 6, date: '2026-03-10', title: 'Actualizaciones y Noticias', image: 'https://i.ibb.co/MDvtH2Zd/IMG-20260306-144625-466.jpg', text: 'Nuestra comunidad florece activamente y sigue operativa para hacer frente a cualquier tipo de actividad que pueda ir en contra de nuestros objetivos y moralidad, ahora aparte de nuestros recursos tambien podras acceder a nuestras herramientas las cuales te podran ayudar a avanzar. Lucharemos contra comunidades toxicas que propaguen la inestabilidad y el miedo a poder aprender libremente.', category: 'Noticias' },
+        { id: 5, date: '2026-03-05', title: 'Limpieza Total sin Descanso', image: 'https://i.ibb.co/wF6rHxVs/defend.jpg', text: 'Toma medidas contra aquellos que venden y promueven la inestabilidad dentro del país, estafan y mienten o promueven contenido explicito. hoy La Unidad de HackPurgatory tomara cartas en el asunto respecto a estos temas ilegales y desenmascarara para despues reportar a las autoridades. Cerraremos canales y llevaremos a los propietarios a las autoridades exponiéndolos de la misma forma. Queremos asegurarnos de que todo esté tipo de cosas no sé repitan y para eso tú puedes reportar si crees haber visto alguna de estas cosas.', category: 'Noticias' },
+        { id: 4, date: '2026-03-04', title: 'Alianza de la Unión Federal del Orden', image: 'https://i.ibb.co/m5kMR7rK/photo-2026-02-15-02-12-36.jpg', text: 'En una llamada de alianza entre tres organizaciones se ha llegado al acuerdo de crear una Union entre ellas para defender los mismos objetivos y expandirlos en el cual se firma entre los fundadores seguir unos objetivos y reglas de las cuales con vital importancia se deberan cumplir en cualquier tipo de cosa o situacion, hoy los fundadores de HackPurgatory, JXLL y Iron Atlas han firmado esta Union tanto de apoyo como respuesta mutua.', category: 'Noticias' },
+        { id: 3, date: '2026-02-28', title: 'Revisa Nuestros Recursos Desde el Sitio Web', image: 'https://i.ibb.co/NBTFrcx/Captura-de-pantalla-2026-07-14-144155.png', text: 'Revisa los recursos de Nuestra Comunidad desde La Propia Web. Ahora ya estan disponibles para que puedas interactuar libremente y descargar nuestros cursos, materiales y herramientas. Recuerda, ninguno de nuestros materiales tiene ningun costo todos son libres de cualquiera que los busque.', category: 'Noticias' },
+        { id: 2, date: '2026-02-20', title: 'Ya tienes Disponible Nuestro Chat en Telegram', image: 'https://www.zdfheute.de/assets/die-neue-terror-gefahr--terrorgram-vom-gruppenchat-zum-attentaeter-102~1280x720?cb=1757944842901', text: 'Ya tienes disponible nuestro chat en Telegram, aqui podras conversar y escribir cualquier duda que tengas, se agradece mucho el apoyo y si se comparte el grupo por otras redes sociales. No debemos de dejar que censuren nuestro material. Unete ahora desde el siguiente enlace: t.me/+oVieMBCHZJ83NDU0', category: 'Noticias' },
+        { id: 1, date: '2026-02-15', title: 'Todos Los Recursos Se Subiran Al Sitio Web', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnYRCZZPTwTfPwIRb4eE4v4oQeWacvZo1aMYziGPwELA&s=10', text: 'Estamos subiendo todos los recursos de nuestra comunidad a nuestro sitio web, de esta forma cualquiera podra tener acceso a ellos sin necesidad de tener una cuenta de telegram, el sindicato se esta ocupando de crear todo este nuevo modelo para que la informacion no pueda ser censurada, recuerda que HackPurgatory siempre buscara la forma seguir adelante para poder crear una comunidad mejor, guarda nuestro sitio web y unete a nuestro canal de referencias de Telegram donde podras estar atento a todas las nuevas novedades.', category: 'Noticias' }
     ];
-    
+
     let currentDate = new Date(2026, 2, 15);
     let currentNewsIndex = 0;
     let newsByDate = {};
-    
-    newsDatabase.forEach((news, index) => {
-        newsByDate[news.date] = news;
-    });
-    
+
+    newsDatabase.forEach((news, index) => { newsByDate[news.date] = news; });
+
     function generateCalendar() {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
-        
+
         const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         document.getElementById('monthTitle').textContent = `${monthNames[month]} ${year}`;
-        
+
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
-        
+
         let startDay = firstDay.getDay();
         const totalDays = lastDay.getDate();
-        
         let startOffset = startDay === 0 ? 6 : startDay - 1;
-        
+
         const calendarGrid = document.getElementById('calendarGrid');
         calendarGrid.innerHTML = '';
-        
+
         for (let i = 0; i < startOffset; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
             calendarGrid.appendChild(emptyDay);
         }
-        
+
         for (let day = 1; day <= totalDays; day++) {
             const dayCell = document.createElement('div');
             dayCell.className = 'calendar-day';
-            
+
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            
+
             if (newsByDate[dateStr]) {
                 dayCell.classList.add('has-post');
                 dayCell.onclick = () => showNewsByDate(dateStr);
-                
                 const indicator = document.createElement('div');
                 indicator.className = 'post-indicator';
                 dayCell.appendChild(indicator);
             }
-            
+
             const dayNumber = document.createElement('span');
             dayNumber.className = 'day-number';
             dayNumber.textContent = day;
             dayCell.appendChild(dayNumber);
-            
+
             calendarGrid.appendChild(dayCell);
         }
     }
-    
+
     function changeMonth(direction) {
         currentDate.setMonth(currentDate.getMonth() + direction);
         generateCalendar();
     }
-    
+
     function showNewsByDate(dateStr) {
         const news = newsByDate[dateStr];
         if (news) {
@@ -884,22 +508,22 @@
             }
         }
     }
-    
+
     function displayNews(index) {
         const news = newsDatabase[index];
         if (!news) return;
-        
+
         const newsContent = document.getElementById('newsContent');
         const currentNewsDate = document.getElementById('currentNewsDate');
-        
+
         const dateObj = new Date(news.date);
         const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
         const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-        
+
         currentNewsDate.textContent = `Noticia - ${formattedDate}`;
-        
+
         newsContent.classList.add('fade-out');
-        
+
         setTimeout(() => {
             newsContent.innerHTML = `
                 <article class="featured-post">
@@ -909,19 +533,15 @@
                     <div class="featured-category">Categoria: ${news.category} · ${formattedDate}</div>
                 </article>
             `;
-            
             newsContent.classList.remove('fade-out');
             newsContent.classList.add('fade-in');
-            
-            setTimeout(() => {
-                newsContent.classList.remove('fade-in');
-            }, 300);
+            setTimeout(() => { newsContent.classList.remove('fade-in'); }, 300);
         }, 300);
-        
+
         document.getElementById('prevNewsBtn').disabled = index === 0;
         document.getElementById('nextNewsBtn').disabled = index === newsDatabase.length - 1;
     }
-    
+
     function changeNews(direction) {
         const newIndex = currentNewsIndex + direction;
         if (newIndex >= 0 && newIndex < newsDatabase.length) {
@@ -929,15 +549,94 @@
             displayNews(currentNewsIndex);
         }
     }
-    
+
+    function mostrarNoticiaMasReciente() {
+        let indiceMasReciente = 0;
+        let fechaMasReciente = null;
+        newsDatabase.forEach((n, i) => {
+            const f = new Date(n.date);
+            if (!fechaMasReciente || f > fechaMasReciente) {
+                fechaMasReciente = f;
+                indiceMasReciente = i;
+            }
+        });
+        currentNewsIndex = indiceMasReciente;
+        if (fechaMasReciente) {
+            currentDate = new Date(fechaMasReciente.getFullYear(), fechaMasReciente.getMonth(), 1);
+        }
+        generateCalendar();
+        displayNews(currentNewsIndex);
+    }
+
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
-        generateCalendar();
-        displayNews(0);
+        mostrarNoticiaMasReciente();
     });
-    
+
     window.changeMonth = changeMonth;
     window.changeNews = changeNews;
+
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const PARTICLE_COUNT = 80;
+        const MAX_SPEED = 2.0;
+        const MIN_SPEED = 0.6;
+        const SIZE_MIN = 2;
+        const SIZE_MAX = 5;
+
+        class Particle {
+            constructor() { this.reset(true); }
+            reset(initial = false) {
+                this.x = Math.random() * width;
+                this.y = initial ? Math.random() * height : -Math.random() * 100;
+                this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
+                this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.drift = (Math.random() - 0.5) * 0.4;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.drift;
+                if (this.y > height + 20) this.reset(false);
+                if (this.x < -20) this.x = width + 20;
+                if (this.x > width + 20) this.x = -20;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
+                ctx.fill();
+                ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';
+                ctx.shadowBlur = 10;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) { p.update(); p.draw(); }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
 </script>
 
 </body>
