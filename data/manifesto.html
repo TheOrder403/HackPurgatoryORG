@@ -14,16 +14,34 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
+        html, body {
             background: #000;
             color: #e0e0e0;
             min-height: 100vh;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             padding: 1rem 0.8rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: transparent;
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 900px;
             width: 100%;
             background: rgba(0,0,0,0.85);
@@ -191,306 +209,69 @@
             margin-top: 0.3rem;
         }
 
-        .player-wrapper {
-            margin-top: 2.5rem;
-            padding-top: 1.8rem;
-            border-top: 1px solid #222;
-        }
-
-        .player-container {
-            background: rgba(255,51,51,0.04);
-            border: 1px solid rgba(255,51,51,0.2);
-            border-radius: 10px;
-            padding: 1.2rem 1.5rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .player-container:hover {
-            border-color: rgba(255,51,51,0.5);
-        }
-
-        .player-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-        }
-
-        .player-title {
-            color: #ff3333;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .player-title span {
-            color: #ff6666;
-            font-weight: 300;
-            letter-spacing: 0;
-            text-transform: none;
-        }
-
-        .player-status {
-            color: #666;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
-
-        .player-status.playing {
-            color: #ff3333;
-        }
-
-        .player-status.error {
-            color: #ff6600;
-        }
-
-        .player-status.loading {
-            color: #ffaa00;
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .player-btn {
-            background: none;
-            border: 1px solid rgba(255,51,51,0.3);
-            color: #ff3333;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s ease;
-            flex-shrink: 0;
-        }
-
-        .player-btn:hover {
-            background: rgba(255,51,51,0.12);
-            border-color: #ff3333;
-            transform: scale(1.05);
-        }
-
-        .player-btn:active {
-            transform: scale(0.95);
-        }
-
-        .player-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        .player-progress-wrap {
-            flex: 1;
-            min-width: 100px;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-
-        .player-time {
-            color: #888;
-            font-size: 0.7rem;
-            font-variant-numeric: tabular-nums;
-            min-width: 38px;
-        }
-
-        .player-progress {
-            flex: 1;
-            height: 4px;
-            background: #222;
-            border-radius: 4px;
-            cursor: pointer;
-            position: relative;
-            transition: height 0.2s ease;
-        }
-
-        .player-progress:hover {
-            height: 6px;
-        }
-
-        .player-progress-fill {
-            height: 100%;
-            background: #ff3333;
-            border-radius: 4px;
-            width: 0%;
-            transition: width 0.1s linear;
-            box-shadow: 0 0 12px rgba(255,51,51,0.25);
-        }
-
-        .player-volume-wrap {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .player-volume-btn {
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 1.1rem;
-            padding: 0.2rem;
-            display: flex;
-            align-items: center;
-            transition: color 0.2s ease;
-        }
-
-        .player-volume-btn:hover {
-            color: #ff3333;
-        }
-
-        .player-volume-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        .player-volume-slider {
-            width: 56px;
-            height: 4px;
-            background: #222;
-            border-radius: 4px;
-            -webkit-appearance: none;
-            appearance: none;
-            cursor: pointer;
-            transition: height 0.2s ease;
-        }
-
-        .player-volume-slider:hover {
-            height: 6px;
-        }
-
-        .player-volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff3333;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255,51,51,0.3);
-        }
-
-        .player-volume-slider::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff3333;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 10px rgba(255,51,51,0.3);
-        }
-
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem 0.3rem;
             }
-            
+
             .container {
                 padding: 0.8rem;
                 border-radius: 8px;
             }
-            
+
             .header h1 {
                 font-size: 1.5rem;
             }
-            
+
             .header .subtitle {
                 font-size: 0.7rem;
                 letter-spacing: 2px;
             }
-            
+
             .manifesto-content h2 {
                 font-size: 1.1rem;
                 padding-left: 0.5rem;
             }
-            
+
             .manifesto-content p {
                 font-size: 0.85rem;
             }
-            
+
             .manifesto-content .principles-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.5rem;
             }
-            
+
             .manifesto-content .principle-item {
                 padding: 0.6rem 0.4rem;
             }
-            
+
             .manifesto-content .principle-item .number {
                 font-size: 1.2rem;
             }
-            
+
             .manifesto-content .principle-item .label {
                 font-size: 0.65rem;
                 letter-spacing: 0.3px;
             }
-            
+
             .manifesto-content .principle-item .desc {
                 font-size: 0.65rem;
                 line-height: 1.3;
             }
-            
+
             .manifesto-content ul {
                 margin-left: 0.8rem;
             }
-            
+
             .manifesto-content ul li {
                 font-size: 0.82rem;
                 padding-left: 1rem;
             }
-            
+
             .manifesto-content .quote {
                 padding: 0.8rem 0.8rem;
                 font-size: 0.85rem;
-            }
-
-            .player-container {
-                padding: 0.8rem 0.8rem;
-            }
-
-            .player-controls {
-                gap: 0.6rem;
-            }
-
-            .player-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 0.9rem;
-            }
-
-            .player-btn svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .player-volume-slider {
-                width: 40px;
-            }
-
-            .player-title {
-                font-size: 0.7rem;
-            }
-
-            .player-progress-wrap {
-                min-width: 60px;
-            }
-
-            .player-time {
-                font-size: 0.6rem;
-                min-width: 30px;
             }
         }
 
@@ -498,30 +279,21 @@
             .manifesto-content .principles-grid {
                 gap: 0.4rem;
             }
-            
+
             .manifesto-content .principle-item {
                 padding: 0.5rem 0.3rem;
             }
-            
+
             .manifesto-content .principle-item .number {
                 font-size: 1rem;
             }
-            
+
             .manifesto-content .principle-item .label {
                 font-size: 0.6rem;
             }
-            
+
             .manifesto-content .principle-item .desc {
                 font-size: 0.6rem;
-            }
-
-            .player-volume-slider {
-                width: 30px;
-            }
-
-            .player-btn {
-                width: 30px;
-                height: 30px;
             }
         }
 
@@ -529,83 +301,203 @@
             body {
                 padding: 2rem 1.5rem;
             }
-            
+
             .container {
                 padding: 2.5rem;
             }
-            
+
             .header h1 {
                 font-size: 2.8rem;
             }
-            
+
             .header .subtitle {
                 font-size: 1rem;
             }
-            
+
             .manifesto-content .principles-grid {
                 gap: 1rem;
             }
-            
+
             .manifesto-content h2 {
                 font-size: 1.6rem;
             }
-            
+
             .manifesto-content p {
                 font-size: 1rem;
             }
-            
+
             .manifesto-content .principle-item .desc {
                 font-size: 0.8rem;
-            }
-
-            .player-container {
-                padding: 1.5rem 2rem;
             }
         }
 
         @media (min-width: 769px) {
             body {
                 padding: 2.5rem;
-            }
-            
-            .container {
-                padding: 3rem;
-            }
-            
-            .manifesto-content .principle-item {
-                padding: 1.2rem;
+                align-items: flex-start;
             }
 
-            .player-container {
-                padding: 1.8rem 2.5rem;
+            .container {
+                max-width: 1400px;
+                padding: 3rem;
+            }
+
+            .header {
+                text-align: left;
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding-bottom: 1.2rem;
+            }
+
+            .header h1 {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+
+            .header .subtitle {
+                margin-top: 0;
+                font-size: 1rem;
+                letter-spacing: 6px;
+            }
+
+            .manifesto-content {
+                column-count: 2;
+                column-gap: 3rem;
+                column-rule: 1px solid rgba(255,51,51,0.2);
+                line-height: 1.8;
+            }
+
+            .manifesto-content p {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .manifesto-content > p:first-of-type {
+                font-size: 1.05rem;
+                color: #ddd;
+                border-left: 3px solid #ff3333;
+                padding-left: 1.2rem;
+                background: rgba(255,51,51,0.03);
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                padding-right: 1rem;
+                border-radius: 0 8px 8px 0;
+                break-inside: avoid;
+            }
+
+            .manifesto-content h2 {
+                font-size: 1.8rem;
+                margin-top: 2rem;
+            }
+
+            .manifesto-content h3 {
+                break-after: avoid;
+            }
+
+            .manifesto-content .section-block {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                display: block;
+                margin-bottom: 1.5rem;
+            }
+
+            .manifesto-content .principles-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .manifesto-content .principle-item {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .manifesto-content .principle-item .number {
+                font-size: 2rem;
+            }
+
+            .manifesto-content .principle-item .label {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            .manifesto-content .principle-item .desc {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .manifesto-content ul {
+                break-inside: avoid;
+            }
+
+            .footer-manifesto {
+                margin-top: 2rem;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .footer-manifesto p {
+                margin: 0;
+            }
+
+            .footer-manifesto .signature {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1500px;
+            }
+
+            .manifesto-content {
+                column-gap: 4rem;
+            }
+
+            .manifesto-content > p {
+                font-size: 1.05rem;
+            }
+
+            .manifesto-content > p:first-of-type {
+                font-size: 1.15rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>MANIFIESTO</h1>
-            <div class="subtitle">HACK [PURGATORY]</div>
-        </div>
 
-        <div class="manifesto-content">
-            <p>
-                <span class="highlight">HackPurgatory</span> nace como una idea alternativa a cualquier tipo de comunidad existente dentro de internet el 27 de marzo de 2024 con unos valores tradicionales y nacionalistas respecto a internet. El usuario fundador RIPNetwork durante las primeras semanas de creacion de la comunidad le dio forma y estructuro una forma de funcionar diferente a muchas comunidades llegando a tener tanto un gran impacto como un odio por las demas.
-                Lo que consta como diferencia es su forma de administrar y funcionar donde los <span class="highlight">Sindicatos</span> toman un rol importante dentro de la comunidad para poder mantenerla correctamente. Dentro del Sindicato se encuentran moderadores los cuales cumplen el rol de <span class="highlight">defender y moderar la comunidad de amenazas externas.</span> Un Sindicato cumple la obligacion de proteger la comunidad de forma autodidacta y voluntad propia.
-                Los accesos a La Unidad constan de tener que entregar informacion personal como un email o numero al moderador encargado de gestionar las solicitudes de esta forma para tener un control y evitar el acceso no autorizado a personas no deseadas dentro del personal de moderacion. <span class="highlight">El regimen normativo</span> de la comunidad se debe cumplir a toda costa sin excepciones tanto por parte de los miembros como del Sindicato de la comunidad.
-                HackPurgatory en sus comienzos comenzo siendo un simple canal de recursos educativo dedicado al compartimiento de recursos libres en las fechas del abril de 2024, en junio de 2024 se crea La Unidad y el Sindicato conjunto a una estructura diferente de moderacion y funcionamiento. Dentro de dicha fecha de 2024 se crean las normativas principales de la comunidad y los <span class="highlight">principios de lucha contra estafadores, toxicos, vendedores ilegales, enfermos y extorsionadores dentro de internet.</span>
-            </p>
-            <p>
-                La importancia del hispanismo es alta para la comunicacion y en planteamiento de estrategias. Dentro del Sindicato unicamente deben existir y deber personas utiles con interes de aportar lo que saben. Pertecencer al Sindicato no es mejorar el aprendizaje o tener mas acceso a conocimiento es la accion de servir y aportar de forma activa para poder limpiar internet. Los miembros de la comunidad se deben cuidar y tratar como audiencia. Una comunidad no es fuerte sin sus miembros activos.
-                La comunidad siempre tendra conflictos contra opositores queriendo fastidiar o destruir el proyecto. La calma solo es una percepcion falsa de la mente que genera cuando no ocurre nada pero no significa que no deba ocurrir nada. Cada lucha o cada conflicto con otra comunidad se debe ver desde un punto de vista estrategico y psicologico ya que cada decision cuenta. <span class="highlight">No deben existir errores.</span> Siempre deben existir varios planes bajo una estrategia tanto A, B o C para poder cumplir el objetivo principal.
-                Los miembros de una comunidad son importantes y su bienestar o moral dentro de la comunidad influye mucho dentro de internet. La toxicidad es el enemigo mas viejo de cualquier grupo, comunidad o canal ya que se genera y se expande como un cancer, por lastima algunas comunidades se llenan de esa gente y acaban girando en la rotonda de su propio ego mientras no ven que estan cayendo. La toxicidad se debe identificar y eliminar dentro de las comunidades sin excepcion.
-                HackPurgatory es y sera una comunidad leal a los principios de internet la cual conseguira unir a comunidades y eliminara ilegalidades dentro de internet asi fue y asi sera mientras se mantenga un orden y haya personal dispuesto a cumplir dicho orden. Dentro de dicho orden se debe implantar tambien al personal moderador y dejar claro los objetivos pues la actividad o el desarrollo de cada Sindicato es importante para el futuro de la comunidad y su moderacion. 
-                El 15 de Agosto de 2026 HackPurgatory crece a gran escala. Dicho dia las organizaciones como <span class="highlight">JXLL y Iron Atlas New Generation</span> firmarian un tratado en el cual se anexarian a HackPurgatory siendo asi colonias de la comunidad bajo nuestro regimen. El 6 de Octubre de 2026 se lanzaria el proyecto de propagacion donde se crearian backups de grupos y expansionismos a otras redes como Signal, Linkedin o Instagram para asi poder crecer como comunidad.
-            </p>
+<canvas id="particles-canvas"></canvas>
 
+<div class="container">
+    <div class="header">
+        <h1>MANIFIESTO</h1>
+        <div class="subtitle">HACK [PURGATORY]</div>
+    </div>
+
+    <div class="manifesto-content">
+        <p>
+            <span class="highlight">HackPurgatory</span> nace como una idea alternativa a cualquier tipo de comunidad existente dentro de internet el 27 de marzo de 2024 con unos valores tradicionales y nacionalistas respecto a internet. El usuario fundador RIPNetwork durante las primeras semanas de creacion de la comunidad le dio forma y estructuro una forma de funcionar diferente a muchas comunidades llegando a tener tanto un gran impacto como un odio por las demas.
+            Lo que consta como diferencia es su forma de administrar y funcionar donde los <span class="highlight">Sindicatos</span> toman un rol importante dentro de la comunidad para poder mantenerla correctamente. Dentro del Sindicato se encuentran moderadores los cuales cumplen el rol de <span class="highlight">defender y moderar la comunidad de amenazas externas.</span> Un Sindicato cumple la obligacion de proteger la comunidad de forma autodidacta y voluntad propia.
+            Los accesos a La Unidad constan de tener que entregar informacion personal como un email o numero al moderador encargado de gestionar las solicitudes de esta forma para tener un control y evitar el acceso no autorizado a personas no deseadas dentro del personal de moderacion. <span class="highlight">El regimen normativo</span> de la comunidad se debe cumplir a toda costa sin excepciones tanto por parte de los miembros como del Sindicato de la comunidad.
+            HackPurgatory en sus comienzos comenzo siendo un simple canal de recursos educativo dedicado al compartimiento de recursos libres en las fechas del abril de 2024, en junio de 2024 se crea La Unidad y el Sindicato conjunto a una estructura diferente de moderacion y funcionamiento. Dentro de dicha fecha de 2024 se crean las normativas principales de la comunidad y los <span class="highlight">principios de lucha contra estafadores, toxicos, vendedores ilegales, enfermos y extorsionadores dentro de internet.</span>
+        </p>
+        <p>
+            La importancia del hispanismo es alta para la comunicacion y en planteamiento de estrategias. Dentro del Sindicato unicamente deben existir y deber personas utiles con interes de aportar lo que saben. Pertecencer al Sindicato no es mejorar el aprendizaje o tener mas acceso a conocimiento es la accion de servir y aportar de forma activa para poder limpiar internet. Los miembros de la comunidad se deben cuidar y tratar como audiencia. Una comunidad no es fuerte sin sus miembros activos.
+            La comunidad siempre tendra conflictos contra opositores queriendo fastidiar o destruir el proyecto. La calma solo es una percepcion falsa de la mente que genera cuando no ocurre nada pero no significa que no deba ocurrir nada. Cada lucha o cada conflicto con otra comunidad se debe ver desde un punto de vista estrategico y psicologico ya que cada decision cuenta. <span class="highlight">No deben existir errores.</span> Siempre deben existir varios planes bajo una estrategia tanto A, B o C para poder cumplir el objetivo principal.
+            Los miembros de una comunidad son importantes y su bienestar o moral dentro de la comunidad influye mucho dentro de internet. La toxicidad es el enemigo mas viejo de cualquier grupo, comunidad o canal ya que se genera y se expande como un cancer, por lastima algunas comunidades se llenan de esa gente y acaban girando en la rotonda de su propio ego mientras no ven que estan cayendo. La toxicidad se debe identificar y eliminar dentro de las comunidades sin excepcion.
+            HackPurgatory es y sera una comunidad leal a los principios de internet la cual conseguira unir a comunidades y eliminara ilegalidades dentro de internet asi fue y asi sera mientras se mantenga un orden y haya personal dispuesto a cumplir dicho orden. Dentro de dicho orden se debe implantar tambien al personal moderador y dejar claro los objetivos pues la actividad o el desarrollo de cada Sindicato es importante para el futuro de la comunidad y su moderacion.
+            El 15 de Agosto de 2026 HackPurgatory crece a gran escala. Dicho dia las organizaciones como <span class="highlight">JXLL y Iron Atlas New Generation</span> firmarian un tratado en el cual se anexarian a HackPurgatory siendo asi colonias de la comunidad bajo nuestro regimen. El 6 de Octubre de 2026 se lanzaria el proyecto de propagacion donde se crearian backups de grupos y expansionismos a otras redes como Signal, Linkedin o Instagram para asi poder crecer como comunidad.
+        </p>
+
+        <div class="section-block">
             <h2>Principios de la Comunidad</h2>
-
             <div class="principles-grid">
                 <div class="principle-item">
                     <span class="number">01</span>
@@ -638,21 +530,25 @@
                     <div class="desc">Nuestra comunidad debe de ser ejemplo para las demas comunidades y poder crear variantes correctas de lo que estamos construyendo en internet para que asi de esta forma en un futuro podamos convivir de forma tranquila y correcta entre todos, debemos defender nuestros valores y principios para poder construir algo mejor entre todos.</div>
                 </div>
             </div>
+        </div>
 
+        <div class="section-block">
             <h2>Nuestros Objetivos</h2>
             <p>
-                Proveer herramientas de acceso a informacion publica y recursos digitales que empoderen a 
+                Proveer herramientas de acceso a informacion publica y recursos digitales que empoderen a
                 investigadores y miembros que quieran aprender de forma segura y sin ningun tipo de bloqueo. Mientras que <span class="highlight">censuramos cualquier tipo de venta</span> existente que intente generar un ingreso en base al desconocimiento de los navegantes.
             </p>
             <p>
-                En un mundo donde el acceso esta permitido para cualquiera en internet, 
+                En un mundo donde el acceso esta permitido para cualquiera en internet,
                 <span class="highlight">censuraremos contenido ilegal</span> que pueda comprometer la seguridad legal y demas cosas en internet, esto con el fin de poder defender nuestros principios como comunidad.
             </p>
             <p>
-                Expandir nuestro mensage a las demas comunidades y hacerlas ver la posibilidad de una nueva forma de ser, 
+                Expandir nuestro mensage a las demas comunidades y hacerlas ver la posibilidad de una nueva forma de ser,
                 <span class="highlight">expandiremos nuestro regimen y objetivos</span> a todas las comunidades, foros y grupos posibles para erradicar nuestra amenaza que atenta contra la mayoria de bienes existentes en internet.
             </p>
+        </div>
 
+        <div class="section-block">
             <h2>Nuestro Compromiso</h2>
             <ul>
                 <li><span class="highlight">No</span> permitiremos ventas o cualquier tipo de incitacion a ellas.</li>
@@ -661,298 +557,105 @@
                 <li><span class="highlight">No</span> permitiremos ilegalidades dentro de internet que afecten a personas.</li>
                 <li><span class="highlight">No</span> permitiremos que personas inocentes sufran o sean perseguidas.</li>
             </ul>
+        </div>
 
+        <div class="section-block">
             <h2>Nuestra Comunidad</h2>
             <p>
-                HackPurgatory <span class="highlight">nunca</span> pedira dinero por el acceso a sus herramientas. 
+                HackPurgatory <span class="highlight">nunca</span> pedira dinero por el acceso a sus herramientas.
                 La informacion es un derecho, no un lujo. Nuestro trabajo es hacer que cualquier persona pueda aprender libremente sin necesidad de que tenga que gastar dinero por algo que existe en internet.
-                
             </p>
             <p>
                 Cualquier usuario podra preguntar dudas sin miedo o sin temor a que pueda pasarle algo ya que promovemos que el aprendizaje sea correcto y seguro.
                 No dejaremos que ningun tipo de acto toxico pueda manchar la comunidad.
             </p>
-             <p>
+            <p>
                 Eliminaremos las ventas y el intento a ellas en nuestra comunidad para asi evitar las estafas y la limitacion al contenido o la informacion.
                 Dentro de nuestra comunidad el derecho a la duda, pregunta o al conocimiento sera totalmente gratuito sin tener que pagar por nada.
             </p>
-
-            <h2>Sobre Nuestras Herramientas</h2>
-            <p>
-                Las herramientas que ofrecemos no se deberan usar con ningun tipo de intencionalidad delictiva dentro de internet en el caso contrario se podra crear una busqueda y censura de dicha persona que haya roto la normativa. 
-                
-            </p>
-            <p>
-                Las automatizaciones y el uso indebido de nuestros modulos estan <span class="highlight">terminantemente prohibidos</span>. 
-                Protegemos la informacion y no buscamos el abuso de ellas. Los modulos estan creados con el objetivo de ayudar en investigaciones no para la recoleccion ilegal de informacion.  
-                
-            </p>
         </div>
 
-        <div class="footer-manifesto">
-            <p>Manifiesto de HackPurgatory</p>
-            <p>Redactado por RIPNetwork.</p>
-            <div class="signature">HACK [PURGATORY]</div>
-            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #444;"></p>
+        <div class="section-block">
+            <h2>Sobre Nuestras Herramientas</h2>
+            <p>
+                Las herramientas que ofrecemos no se deberan usar con ningun tipo de intencionalidad delictiva dentro de internet en el caso contrario se podra crear una busqueda y censura de dicha persona que haya roto la normativa.
+            </p>
+            <p>
+                Las automatizaciones y el uso indebido de nuestros modulos estan <span class="highlight">terminantemente prohibidos</span>.
+                Protegemos la informacion y no buscamos el abuso de ellas. Los modulos estan creados con el objetivo de ayudar en investigaciones no para la recoleccion ilegal de informacion.
+            </p>
         </div>
     </div>
 
-    <script>
-        (function() {
-            var basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-            if (basePath === '') basePath = './';
-            
-            var rutasPosibles = [
-                'WeWillRise.mp3',
-                basePath + 'WeWillRise.mp3',
-                './WeWillRise.mp3',
-                '/WeWillRise.mp3'
-            ];
+    <div class="footer-manifesto">
+        <p>Manifiesto de HackPurgatory</p>
+        <p>Redactado por RIPNetwork.</p>
+        <div class="signature">HACK [PURGATORY]</div>
+    </div>
+</div>
 
-            console.log('Intentando cargar el himno desde:', rutasPosibles);
+<script>
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
 
-            var audio = new Audio();
-            audio.volume = 0.8;
-            audio.loop = false;
-            audio.preload = 'auto';
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
 
-            var rutaActual = 0;
-            audio.src = rutasPosibles[0];
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-            audio.addEventListener('error', function onError() {
-                rutaActual++;
-                if (rutaActual < rutasPosibles.length) {
-                    console.log('Probando ruta alternativa:', rutasPosibles[rutaActual]);
-                    audio.src = rutasPosibles[rutaActual];
-                    audio.load();
-                } else {
-                    console.error('No se pudo cargar el archivo en ninguna ruta');
-                    setErrorStatus('Archivo no encontrado');
-                    audio.removeEventListener('error', onError);
-                }
-            });
+        const PARTICLE_COUNT = 80;
+        const MAX_SPEED = 2.0;
+        const MIN_SPEED = 0.6;
+        const SIZE_MIN = 2;
+        const SIZE_MAX = 5;
 
-            audio.addEventListener('loadedmetadata', function() {
-                console.log('Audio cargado correctamente desde:', audio.src);
-                if (audio.duration > 0) {
-                    isAudioLoaded = true;
-                    statusEl.textContent = 'LISTO';
-                    statusEl.className = 'player-status';
-                    totalTimeEl.textContent = formatTime(audio.duration);
-                }
-            });
-
-            var playBtn = document.getElementById('playBtn');
-            var progressFill = document.getElementById('progressFill');
-            var progressBar = document.getElementById('progressBar');
-            var currentTimeEl = document.getElementById('currentTime');
-            var totalTimeEl = document.getElementById('totalTime');
-            var volumeSlider = document.getElementById('volumeSlider');
-            var volumeBtn = document.getElementById('volumeBtn');
-            var statusEl = document.getElementById('playerStatus');
-
-            var isPlaying = false;
-            var isDragging = false;
-            var isAudioLoaded = false;
-
-            function formatTime(seconds) {
-                if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
-                var mins = Math.floor(seconds / 60);
-                var secs = Math.floor(seconds % 60);
-                return mins + ':' + (secs < 10 ? '0' : '') + secs;
+        class Particle {
+            constructor() { this.reset(true); }
+            reset(initial = false) {
+                this.x = Math.random() * width;
+                this.y = initial ? Math.random() * height : -Math.random() * 100;
+                this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
+                this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.drift = (Math.random() - 0.5) * 0.4;
             }
-
-            function updateProgress() {
-                if (!isDragging && audio.duration) {
-                    var percent = (audio.currentTime / audio.duration) * 100;
-                    progressFill.style.width = Math.min(100, percent) + '%';
-                    currentTimeEl.textContent = formatTime(audio.currentTime);
-                }
+            update() {
+                this.y += this.speedY;
+                this.x += this.drift;
+                if (this.y > height + 20) this.reset(false);
+                if (this.x < -20) this.x = width + 20;
+                if (this.x > width + 20) this.x = -20;
             }
-
-            function updateTotalTime() {
-                if (audio.duration && isFinite(audio.duration)) {
-                    totalTimeEl.textContent = formatTime(audio.duration);
-                    isAudioLoaded = true;
-                } else {
-                    totalTimeEl.textContent = '0:00';
-                }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
+                ctx.fill();
+                ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';
+                ctx.shadowBlur = 10;
+                ctx.fill();
+                ctx.shadowBlur = 0;
             }
+        }
 
-            function updateStatus(playing) {
-                if (playing) {
-                    statusEl.textContent = 'REPRODUCIENDO';
-                    statusEl.className = 'player-status playing';
-                } else {
-                    statusEl.textContent = 'PAUSADO';
-                    statusEl.className = 'player-status';
-                }
-            }
+        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
-            function setErrorStatus(msg) {
-                statusEl.textContent = 'ERROR: ' + msg;
-                statusEl.className = 'player-status error';
-            }
-
-            function updatePlayButton(playing) {
-                if (playing) {
-                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-                } else {
-                    playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
-                }
-            }
-
-            function playAudio() {
-                if (!audio.src || audio.src === '') {
-                    setErrorStatus('No hay archivo');
-                    return;
-                }
-
-                if (audio.readyState >= 2 || audio.duration > 0) {
-                    audio.play().catch(function(err) {
-                        console.warn('Error al reproducir:', err);
-                        setErrorStatus('Error al reproducir');
-                    });
-                    return;
-                }
-
-                setErrorStatus('Cargando...');
-                statusEl.className = 'player-status loading';
-                audio.load();
-                
-                audio.addEventListener('canplaythrough', function onCanPlay() {
-                    audio.removeEventListener('canplaythrough', onCanPlay);
-                    audio.play().catch(function(err) {
-                        console.warn('Error al reproducir despues de cargar:', err);
-                        setErrorStatus('Error al reproducir');
-                    });
-                }, { once: true });
-
-                setTimeout(function() {
-                    if (audio.readyState < 2 && !isPlaying) {
-                        setErrorStatus('No se pudo cargar');
-                    }
-                }, 10000);
-            }
-
-            audio.addEventListener('timeupdate', updateProgress);
-
-            audio.addEventListener('play', function() {
-                isPlaying = true;
-                updateStatus(true);
-                updatePlayButton(true);
-            });
-
-            audio.addEventListener('pause', function() {
-                isPlaying = false;
-                updateStatus(false);
-                updatePlayButton(false);
-            });
-
-            audio.addEventListener('ended', function() {
-                isPlaying = false;
-                updateStatus(false);
-                updatePlayButton(false);
-                progressFill.style.width = '0%';
-                currentTimeEl.textContent = '0:00';
-                audio.currentTime = 0;
-            });
-
-            playBtn.addEventListener('click', function() {
-                if (audio.paused) {
-                    playAudio();
-                } else {
-                    audio.pause();
-                }
-            });
-
-            progressBar.addEventListener('mousedown', function(e) {
-                if (!audio.duration || audio.duration === 0) return;
-                isDragging = true;
-                var rect = progressBar.getBoundingClientRect();
-                var percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-                audio.currentTime = percent * audio.duration;
-                progressFill.style.width = (percent * 100) + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging || !audio.duration) return;
-                var rect = progressBar.getBoundingClientRect();
-                var percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-                audio.currentTime = percent * audio.duration;
-                progressFill.style.width = (percent * 100) + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            });
-
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    updateProgress();
-                }
-            });
-
-            progressBar.addEventListener('touchstart', function(e) {
-                if (!audio.duration || audio.duration === 0) return;
-                e.preventDefault();
-                isDragging = true;
-                var rect = progressBar.getBoundingClientRect();
-                var touch = e.touches[0];
-                var percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
-                audio.currentTime = percent * audio.duration;
-                progressFill.style.width = (percent * 100) + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            }, { passive: false });
-
-            progressBar.addEventListener('touchmove', function(e) {
-                if (!isDragging || !audio.duration) return;
-                e.preventDefault();
-                var rect = progressBar.getBoundingClientRect();
-                var touch = e.touches[0];
-                var percent = Math.min(1, Math.max(0, (touch.clientX - rect.left) / rect.width));
-                audio.currentTime = percent * audio.duration;
-                progressFill.style.width = (percent * 100) + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            }, { passive: false });
-
-            progressBar.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                isDragging = false;
-                updateProgress();
-            }, { passive: false });
-
-            volumeSlider.addEventListener('input', function() {
-                var val = parseFloat(this.value);
-                audio.volume = val;
-                if (val === 0) {
-                    volumeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
-                } else {
-                    volumeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
-                }
-            });
-
-            volumeBtn.addEventListener('click', function() {
-                if (audio.volume > 0) {
-                    audio.volume = 0;
-                    volumeSlider.value = 0;
-                    this.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
-                } else {
-                    audio.volume = 0.8;
-                    volumeSlider.value = 0.8;
-                    this.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
-                }
-            });
-
-            updateStatus(false);
-            updatePlayButton(false);
-            currentTimeEl.textContent = '0:00';
-            totalTimeEl.textContent = '0:00';
-            volumeSlider.value = 0.8;
-
-            audio.load();
-
-            console.log('Reproductor listo. Archivo esperado: WeWillRise.mp3 en la misma carpeta.');
-        })();
-    </script>
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) { p.update(); p.draw(); }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
 </body>
 </html>
