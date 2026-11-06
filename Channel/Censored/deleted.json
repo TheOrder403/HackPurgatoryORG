@@ -1,5 +1,17 @@
 [
   {
+    "id": 196,
+    "pais": "Colombia",
+    "ciudad": "Caramanta",
+    "coordenadas": [5.5478, -75.6442],
+    "fecha": "2026-11-06",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/guerra_universitaria",
+    "categoria": "Censuras"
+  },
+  {
     "id": 195,
     "pais": "Colombia",
     "ciudad": "Caramanta",
