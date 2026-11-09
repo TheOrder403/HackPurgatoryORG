@@ -2,762 +2,93 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - EndPoints</title>
     <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.org/data/logo.png">
     <style>
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html, body {
-            width: 100%;
-            min-height: 100%;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: #000;
-        }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: transparent;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 1rem;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .modal-overlay.hidden {
-            display: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .modal-box {
-            background: #0d0d0d;
-            border: 2px solid #ff3333;
-            border-radius: 20px;
-            padding: 2rem 1.8rem;
-            max-width: 560px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(255, 51, 51, 0.25);
-            position: relative;
-        }
-
-        .modal-box h2 {
-            font-size: 1.5rem;
-            text-align: center;
-            color: #ff3333;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(255, 51, 51, 0.3);
-        }
-
-        .modal-box .subhead {
-            text-align: center;
-            color: #aaa;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #222;
-            padding-bottom: 0.8rem;
-        }
-
-        .terms-scroll {
-            max-height: 200px;
-            overflow-y: auto;
-            background: #111;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            border: 1px solid #2a2a2a;
-            margin-bottom: 1.5rem;
-            font-size: 0.8rem;
-            color: #ccc;
-            line-height: 1.7;
-        }
-
-        .terms-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-        .terms-scroll::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 8px;
-        }
-        .terms-scroll::-webkit-scrollbar-thumb {
-            background: #ff3333;
-            border-radius: 8px;
-        }
-
-        .terms-scroll strong {
-            color: #ff6666;
-        }
-
-        .checkbox-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.6rem;
-            margin-bottom: 1.8rem;
-            cursor: pointer;
-        }
-
-        .checkbox-row input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 3px;
-            accent-color: #ff3333;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .checkbox-row label {
-            font-size: 0.85rem;
-            color: #ddd;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .checkbox-row label a {
-            color: #ff6666;
-            text-decoration: underline;
-        }
-
-        .btn-accept {
-            display: block;
-            width: 100%;
-            padding: 0.9rem;
-            background: #ff3333;
-            color: #000;
-            font-weight: 700;
-            font-size: 1.05rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .btn-accept:hover:not(:disabled) {
-            background: #ff5555;
-            box-shadow: 0 0 24px rgba(255, 51, 51, 0.4);
-            transform: scale(1.01);
-        }
-
-        .btn-accept:disabled {
-            background: #442222;
-            color: #777;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        header {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 0.8rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #fff;
-            justify-content: center;
-            position: relative;
-            width: 100%;
-            z-index: 1;
-        }
-
-        header img {
-            max-width: 50px;
-            height: auto;
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 1.3rem;
-            margin-bottom: 0.2rem;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-            line-height: 1.3;
-            word-break: break-word;
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            color: #ff3333;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        header p {
-            font-size: 0.8rem;
-            color: #ddd;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        nav {
-            background-color: rgba(0, 0, 0, 0.85);
-            position: relative;
-            z-index: 100;
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 1rem;
-            z-index: 1000;
-        }
-
-        .menu-toggle div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 5px 0;
-            transition: 0.4s;
-        }
-
-        .menu-toggle.active div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .menu-toggle.active div:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.active div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            transition: max-height 0.3s ease;
-            background-color: rgba(0, 0, 0, 0.92);
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 1rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 1rem;
-            display: block;
-            transition: color 0.3s, background 0.3s, transform 0.3s;
-        }
-
-        nav ul li a:hover {
-            background-color: #fff;
-            color: #000;
-            border-radius: 5px;
-            transform: translateY(-2px);
-        }
-
-        main {
-            padding: 1rem;
-            max-width: 1200px;
-            width: 100%;
-            margin: 1rem auto;
-            background-color: rgba(0, 0, 0, 0.65);
-            border-radius: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        
-        .tabs-container {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: 2px solid #ff3333;
-            color: #fff;
-            padding: 0.7rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 51, 51, 0.15);
-        }
-
-        .tab-btn.active {
-            background: #ff3333;
-            color: #000;
-            box-shadow: 0 0 24px rgba(255, 51, 51, 0.3);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        
-        .tools-section {
-            margin: 1rem 0;
-            padding: 1.5rem;
-            background: rgba(255, 51, 51, 0.1);
-            border: 1px solid #ff3333;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .tools-section h3 {
-            color: #ff3333;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
-        }
-
-        .tools-section>p {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .tools-container {
-            margin-top: 1.5rem;
-            width: 100%;
-        }
-
-        .tool-item {
-            background: rgba(255, 51, 51, 0.1);
-            border: 1px solid #ff3333;
-            border-radius: 10px;
-            padding: 0.7rem 1rem;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 0.7rem;
-        }
-
-        .tool-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .tool-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 51, 51, 0.1), transparent);
-            transition: left 0.7s;
-        }
-
-        .tool-item.available:hover::before {
-            left: 100%;
-        }
-
-        .tool-item.available:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
-            background: rgba(255, 51, 51, 0.15);
-            border-color: #fff;
-        }
-
-        .tool-item.unavailable {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .tool-icon {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 51, 51, 0.1);
-            border: 1px solid #ff3333;
-            padding: 6px;
-        }
-
-        .tool-icon svg {
-            width: 22px;
-            height: 22px;
-            fill: #ff3333;
-        }
-
-        .tool-info {
-            flex: 1;
-            text-align: left;
-        }
-
-        .tool-info h4 {
-            color: #ff3333;
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
-            text-shadow: 0 0 5px rgba(255, 51, 51, 0.2);
-        }
-
-        .tool-info p {
-            color: #ddd;
-            font-size: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .tool-status {
-            flex-shrink: 0;
-            display: inline-block;
-            padding: 0.25rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .status-available {
-            background: rgba(255, 51, 51, 0.2);
-            color: #ff6666;
-            border: 1px solid #ff6666;
-        }
-
-        .status-unavailable {
-            background: rgba(102, 0, 0, 0.5);
-            color: #990000;
-            border: 1px solid #660000;
-        }
-
-        .loading-container {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 51, 51, 0.3);
-            border-top: 4px solid #ff3333;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .contact-buttons {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            justify-content: center;
-        }
-
-        .contact-buttons a {
-            text-decoration: none;
-            color: #fff;
-            background-color: #111;
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #ff3333;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .contact-buttons a:hover {
-            background-color: #ff3333;
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 51, 51, 0.5);
-        }
-
-        .icon-svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            filter: brightness(0) invert(1);
-            transition: filter 0.3s;
-        }
-
-        .contact-buttons a:hover .icon-svg {
-            filter: brightness(0) invert(0);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.2rem;
-            border-top: 1px solid #fff;
-            color: #ccc;
-            font-size: 0.75rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (min-width: 481px) {
-            header {
-                padding: 1rem 2rem;
-                justify-content: space-between;
-            }
-            header img {
-                max-width: 60px;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
-            header p {
-                font-size: 0.9rem;
-            }
-            .tools-section h3 {
-                font-size: 1.8rem;
-            }
-            .tool-icon {
-                width: 45px;
-                height: 45px;
-            }
-            .tool-icon svg {
-                width: 24px;
-                height: 24px;
-            }
-            .tool-info h4 {
-                font-size: 1rem;
-            }
-            .tool-info p {
-                font-size: 0.8rem;
-            }
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html, body { width: 100%; min-height: 100vh; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; display: flex; flex-direction: column; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 51, 51, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 51, 51, 0.08) 1px, transparent 1px); background-size: 40px 40px; z-index: 0; pointer-events: none; }
+        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; background: transparent; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem; animation: fadeIn 0.4s ease; }
+        .modal-overlay.hidden { display: none; }
+        .modal-box { background: #0a0000; border: 2px solid #ff3333; border-radius: 20px; padding: 1.5rem; max-width: 560px; width: 100%; box-shadow: 0 20px 60px rgba(255, 51, 51, 0.3); position: relative; z-index: 10000; }
+        .modal-box h2 { font-size: 1.3rem; text-align: center; color: #ff3333; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .modal-box .subhead { text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1rem; border-bottom: 1px solid #331111; padding-bottom: 0.8rem; }
+        .terms-scroll { max-height: 200px; overflow-y: auto; background: #111; padding: 1rem; border-radius: 12px; border: 1px solid #2a2a2a; margin-bottom: 1.5rem; font-size: 0.8rem; color: #ccc; line-height: 1.7; }
+        .terms-scroll::-webkit-scrollbar { width: 4px; }
+        .terms-scroll::-webkit-scrollbar-track { background: #1a1a1a; }
+        .terms-scroll::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 4px; }
+        .terms-scroll strong { color: #ff6666; }
+        .checkbox-row { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 1.5rem; cursor: pointer; }
+        .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; accent-color: #ff3333; cursor: pointer; }
+        .checkbox-row label { font-size: 0.85rem; color: #ddd; cursor: pointer; }
+        .btn-accept { display: block; width: 100%; padding: 0.9rem; background: #ff3333; color: #000; font-weight: 700; font-size: 1rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; }
+        .btn-accept:hover:not(:disabled) { background: #ff5555; box-shadow: 0 0 20px rgba(255, 51, 51, 0.5); }
+        .btn-accept:disabled { background: #442222; color: #777; cursor: not-allowed; }
+        header { background-color: rgba(0, 0, 0, 0.6); padding: 0.8rem 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(255, 51, 51, 0.3); position: relative; z-index: 10; backdrop-filter: blur(10px); }
+        .logo-container { display: flex; align-items: center; gap: 0.8rem; }
+        header img { max-width: 40px; }
+        header h1 { font-size: 1rem; color: #fff; letter-spacing: 1px; }
+        .panel-switch { display: flex; gap: 0.3rem; background: rgba(20, 0, 0, 0.8); padding: 0.2rem; border-radius: 50px; border: 1px solid rgba(255, 51, 51, 0.4); }
+        .panel-btn { background: transparent; border: none; color: #aaa; padding: 0.4rem 0.8rem; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.75rem; transition: all 0.3s; }
+        .panel-btn.active { background: #ff3333; color: #000; box-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem; position: relative; z-index: 10; width: 100%; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .hero-text { text-align: center; margin-bottom: 2rem; animation: fadeInDown 0.8s ease; width: 100%; }
+        .hero-text p { font-size: 0.75rem; color: #ff9999; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.8rem; }
+        .hero-text h2 { font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1.2; margin: 0 auto; min-height: 2.4rem; display: inline-block; }
+        .typing-cursor { display: inline-block; color: #00ffcc; animation: blink 1s infinite; font-weight: 300; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .search-container { width: 100%; max-width: 700px; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; animation: fadeInUp 0.8s ease 0.2s both; }
+        .filter-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; width: 100%; }
+        .filter-btn { background: rgba(20, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.3); color: #ccc; padding: 0.5rem 0.8rem; border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; transition: all 0.3s; min-width: 65px; flex: 1; max-width: 100px; }
+        .filter-btn svg { width: 18px; height: 18px; fill: currentColor; transition: fill 0.3s; }
+        .filter-btn span { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .filter-btn:hover { border-color: #ff3333; color: #fff; background: rgba(255, 51, 51, 0.1); }
+        .filter-btn.active { background: #ff3333; color: #000; border-color: #ff3333; box-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
+        .search-box { position: relative; width: 100%; display: flex; align-items: center; background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255, 51, 51, 0.4); border-radius: 12px; padding: 0.4rem; box-shadow: 0 0 30px rgba(255, 51, 51, 0.1); backdrop-filter: blur(10px); transition: border-color 0.3s; }
+        .search-box:focus-within { border-color: #ff3333; box-shadow: 0 0 40px rgba(255, 51, 51, 0.2); }
+        .search-box input { flex: 1; background: transparent; border: none; color: #fff; font-size: 0.95rem; padding: 0.8rem; outline: none; text-align: left; }
+        .search-box input::placeholder { color: #666; }
+        .search-box button { background: #ff3333; border: none; color: #000; padding: 0.8rem 1rem; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s, transform 0.2s; }
+        .search-box button:hover { background: #ff5555; transform: scale(1.02); }
+        .search-box button svg { width: 16px; height: 16px; fill: currentColor; }
+        .results-container { width: 100%; max-width: 800px; margin-top: 1.5rem; display: none; animation: fadeInUp 0.5s ease; text-align: left; }
+        .results-container.show { display: block; }
+        .results-header { font-size: 0.8rem; color: #ff9999; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 51, 51, 0.2); }
+        .results-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .result-card { background: rgba(20, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.3); border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: #fff; transition: all 0.3s; backdrop-filter: blur(5px); }
+        .result-card:hover { background: rgba(255, 51, 51, 0.15); border-color: #ff3333; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3); }
+        .result-icon { width: 35px; height: 35px; background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .result-icon svg { width: 18px; height: 18px; fill: #ff3333; }
+        .result-info h4 { font-size: 0.9rem; color: #ff3333; margin-bottom: 0.2rem; }
+        .result-info p { font-size: 0.75rem; color: #aaa; }
+        .no-results { text-align: center; color: #666; padding: 2rem; display: none; }
+        footer { text-align: center; padding: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #666; font-size: 0.75rem; position: relative; z-index: 10; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @media (min-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            header p {
-                font-size: 1rem;
-            }
-            .tools-section {
-                padding: 2rem;
-            }
-            .tool-item {
-                padding: 0.8rem 1.2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-                position: absolute;
-                right: 15px;
-                top: 15px;
-            }
-
-            nav {
-                background-color: rgba(0, 0, 0, 0.95);
-                padding-top: 0;
-                position: relative;
-                width: 100%;
-            }
-
-            nav ul {
-                flex-direction: column;
-                max-height: 0;
-                overflow: hidden;
-                background-color: rgba(0, 0, 0, 0.98);
-                position: absolute;
-                width: 100%;
-                top: 100%;
-                left: 0;
-                z-index: 999;
-                padding: 0;
-                margin: 0;
-                transition: max-height 0.4s ease;
-                border-top: 1px solid #333;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.9);
-            }
-
-            nav ul.show {
-                max-height: 500px;
-                padding: 0.5rem 0;
-                border-bottom: 2px solid #ff3333;
-            }
-
-            nav ul li {
-                margin: 0;
-                text-align: center;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                width: 100%;
-            }
-
-            nav ul li:last-child {
-                border-bottom: none;
-            }
-
-            nav ul li a {
-                padding: 14px 10px;
-                font-size: 0.9rem;
-                width: 100%;
-                display: block;
-                transition: background 0.2s;
-            }
-
-            nav ul li a:hover {
-                background-color: #ff3333;
-                color: #000;
-                border-radius: 0;
-                transform: none;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-            }
-
-            .contact-buttons a {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 0.6rem 0.8rem;
-            }
-            header img {
-                max-width: 40px;
-            }
-            header h1 {
-                font-size: 1.1rem;
-            }
-            header p {
-                font-size: 0.7rem;
-            }
-            .tools-section {
-                padding: 1rem;
-                margin: 0.5rem 0;
-            }
-            .tools-section h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-            }
-            .tools-section>p {
-                font-size: 0.8rem;
-            }
-            .tool-item {
-                padding: 0.6rem 0.8rem;
-                gap: 0.6rem;
-            }
-            .tool-icon {
-                width: 35px;
-                height: 35px;
-            }
-            .tool-icon svg {
-                width: 18px;
-                height: 18px;
-            }
-            .tool-info h4 {
-                font-size: 0.85rem;
-            }
-            .tool-info p {
-                font-size: 0.65rem;
-            }
-            .tool-status {
-                font-size: 0.6rem;
-                padding: 0.2rem 0.5rem;
-            }
-            .contact-buttons a {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-            footer {
-                padding: 0.8rem;
-                font-size: 0.7rem;
-            }
-
-            .modal-box {
-                padding: 1.5rem 1rem;
-            }
-            .modal-box h2 {
-                font-size: 1.2rem;
-            }
-            .terms-scroll {
-                max-height: 140px;
-                font-size: 0.7rem;
-            }
-            .btn-accept {
-                font-size: 0.9rem;
-                padding: 0.7rem;
-            }
-
-            .tab-btn {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.8rem;
-            }
+            header { padding: 1rem 2rem; }
+            header img { max-width: 50px; }
+            header h1 { font-size: 1.2rem; }
+            .panel-btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
+            main { padding: 3rem 2rem; }
+            .hero-text h2 { font-size: 3.5rem; min-height: 4.2rem; }
+            .hero-text p { font-size: 0.9rem; letter-spacing: 4px; }
+            .search-container { gap: 1.5rem; }
+            .filter-btn { padding: 0.6rem 1rem; min-width: 80px; max-width: 120px; }
+            .filter-btn svg { width: 22px; height: 22px; }
+            .filter-btn span { font-size: 0.75rem; }
+            .search-box input { font-size: 1.1rem; padding: 1rem; }
+            .search-box button { padding: 1rem 1.5rem; font-size: 1rem; }
+            .search-box button svg { width: 18px; height: 18px; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+            .result-card { padding: 1.2rem; gap: 1rem; }
+            .result-icon { width: 40px; height: 40px; }
+            .result-icon svg { width: 20px; height: 20px; }
+            .result-info h4 { font-size: 1rem; }
+            .result-info p { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -765,12 +96,11 @@
 
     <canvas id="particles-canvas"></canvas>
 
-    
+
     <div class="modal-overlay" id="termsModal">
         <div class="modal-box">
-            <h2>Terminos y Condiciones</h2>
+            <h2>Términos y Condiciones</h2>
             <p class="subhead">𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</p>
-
             <div class="terms-scroll">
                 <p><strong>1. Aceptacion de responsabilidad:</strong> El uso de estas herramientas es unicamente para investigaciones legales o entornos controlados. Si estas usandolas con propositos indebidos se te hara culpable de cualquier uso ilegal que le hayas podido sacar.</p>
                 <p><strong>2. Uso Legal:</strong> Estas herramientas están diseñadas para fines educativos y de investigación. No deben utilizarse para actividades ilegales o maliciosas, el uso de ellas es unicamente para propositos de aprendizaje o investigaciones OSINT.</p>
@@ -782,82 +112,46 @@
                 <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: <a href="report@hackpurgatory.org"><span class="__cf_email__" data-cfemail="403225302f3234002821232b3035322721342f32396e2f3227">[email&#160;protected]</span></a>.</p>
                 <p style="margin-top: 0.5rem; color: #ff6666;">Al aceptar, confirmas que has leído y entendido estos términos.</p>
             </div>
-
             <div class="checkbox-row">
                 <input type="checkbox" id="acceptCheck">
-                <label for="acceptCheck">He leído y acepto los <a href="#" onclick="event.preventDefault();">términos y condiciones</a>.</label>
+                <label for="acceptCheck">He leído y acepto los términos y condiciones.</label>
             </div>
-
             <button class="btn-accept" id="acceptBtn" disabled>Aceptar y continuar</button>
         </div>
     </div>
 
-    
+
     <header>
-        <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
-        <div class="header-text">
-            <h1 id="typing-title"></h1>
-            <p>Herramientas Disponibles</p>
+        <div class="logo-container">
+            <img src="https://hackpurgatory.org/data/logo.png" alt="Logo">
+            <h1 id="logoTitle"></h1>
+        </div>
+        <div class="panel-switch">
+            <button class="panel-btn active" data-panel="osint" onclick="switchPanel('osint', this)">OSINT</button>
+            <button class="panel-btn" data-panel="smm" onclick="switchPanel('smm', this)">SMM</button>
         </div>
     </header>
-    
-    <main>
-        <section id="tools">
-            <div class="tools-section">
 
-                
-                <div class="tabs-container">
-                    <button class="tab-btn active" data-tab="osint">EndPoints OSINT</button>
-                    <button class="tab-btn" data-tab="smm">EndPoints SMM</button>
-                </div>
 
-               
-                <div id="tab-osint" class="tab-content active">
-                    <h3>Herramientas OSINT</h3>
-                    <p>Selecciona una herramienta para utilizar:</p>
-
-                    <div id="loadingOsint" class="loading-container" style="display: none;">
-                        <div class="loading-spinner"></div>
-                        <p>Actualizando...</p>
-                    </div>
-
-                    <div id="toolsOsint" class="tools-container" style="display: none;"></div>
-
-                    <div id="noOsint" style="display: none; text-align: center; padding: 1.5rem;">No hay herramientas OSINT disponibles.</div>
-                </div>
-
-               
-                <div id="tab-smm" class="tab-content">
-                    <h3>Herramientas SMM</h3>
-                    <p>Selecciona una herramienta para utilizar:</p>
-
-                    <div id="loadingSmm" class="loading-container" style="display: none;">
-                        <div class="loading-spinner"></div>
-                        <p>Actualizando...</p>
-                    </div>
-
-                    <div id="toolsSmm" class="tools-container" style="display: none;"></div>
-
-                    <div id="noSmm" style="display: none; text-align: center; padding: 1.5rem;">No hay herramientas SMM disponibles.</div>
-                </div>
-
+    <main id="mainContent" style="display: none;">
+        <div class="hero-text">
+            <p id="heroSubtitle">OSINT PURGATORY SEARCH</p>
+            <h2 id="heroTitle"></h2>
+        </div>
+        <div class="search-container">
+            <div class="filter-tabs" id="filterTabs"></div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Introduce tu búsqueda..." autocomplete="off">
+                <button onclick="performSearch()">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Buscar
+                </button>
             </div>
-        </section>
-
-        
-        <div class="contact-buttons">
-            <a href="https://hackpurgatory.org">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                </svg>
-                Volver al Inicio
-            </a>
-            <a href="https://t.me/HackPurgatory" target="_blank">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s4.93 12 12 12 12-4.93 12-12S18.07 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
-                </svg>
-                Reportar a La Unidad
-            </a>
+        </div>
+        <div class="results-container" id="resultsContainer">
+            <div class="results-header" id="resultsHeader"></div>
+            <div class="results-grid" id="resultsGrid"></div>
+            <div class="no-results" id="noResults">No se encontraron herramientas para este tipo de búsqueda.</div>
         </div>
     </main>
 
@@ -865,250 +159,252 @@
         &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
-        (function initTermsModal() {
-            const modal = document.getElementById('termsModal');
-            const check = document.getElementById('acceptCheck');
-            const btn = document.getElementById('acceptBtn');
 
-            check.addEventListener('change', function() {
-                btn.disabled = !this.checked;
-            });
+        const modal = document.getElementById('termsModal');
+        const check = document.getElementById('acceptCheck');
+        const btn = document.getElementById('acceptBtn');
+        const mainContent = document.getElementById('mainContent');
 
-            btn.addEventListener('click', function() {
-                if (this.disabled) return;
-                modal.classList.add('hidden');
-                startApp();
-            });
-        })();
+        check.addEventListener('change', function() { btn.disabled = !this.checked; });
+        btn.addEventListener('click', function() {
+            if (this.disabled) return;
+            modal.classList.add('hidden');
+            mainContent.style.display = 'flex';
+            initApp();
+        });
 
-        function startTypingAnimation() {
-            const typingTitle = document.getElementById('typing-title');
-            const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
-            let charIndex = 0;
 
-            function typeWriter() {
-                if (charIndex < titleText.length) {
-                    typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
-                    charIndex++;
-                    setTimeout(typeWriter, 100);
-                } else {
-                    typingTitle.innerHTML = titleText;
-                }
-            }
-            typeWriter();
-        }
+        let currentPanel = 'osint';
+        let currentCategory = 'email';
+        let typingInterval;
 
 
         const osintTools = [
-            { name: "Email SEON", description: "Busqueda en mas de 600 sitios para posibles registros por email", icon: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>`, filename: "whereisemail.html" },
-            { name: "Phone SEON", description: "Busqueda en mas de 10 sitios para posibles registros por número de teléfono", icon: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>`, filename: "whereisphone.html" },
-            { name: "Username SEON", description: "Busqueda en mas de 30 sitios para posibles registros por username", icon: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>`, filename: "username.html" },
-            { name: "Breach/Logs Search", description: "Busqueda de informacion en base a brechas o logs", icon: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>`, filename: "breach.html" },
-            { name: "Colombia Nequi Phone", description: "Busqueda de informacion en base a números Colombianos registrados en Nequi", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "phonecolombia.html" },
-            { name: "Cuba Phone", description: "Busqueda de informacion en base a números cubanos", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "cubaphone.html" },
-            { name: "Colombia Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "colombiaid.html" },
-            { name: "Colombia Matricula", description: "Busqueda de informacion de una Matricula", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "colombiacar.html" },
-            { name: "Chile RUT", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "chileid.html" },
-            { name: "Peru Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "peruid.html" },
-            { name: "Venezuela Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "venezuelaid.html" },
-            { name: "Argentina Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "argentinaid.html" },
-            { name: "Paraguay Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "paraguayid.html" },
-            { name: "Ecuador Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "ecuadorid.html" },
-            { name: "México CURP", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "mexicoid.html" },
-            { name: "México Matricula", description: "Busqueda de informacion de una Matricula", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "mexicocar.html" },
-            { name: "Bolivia Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "boliviaid.html" },
-            { name: "Uruguay Cedula", description: "Busqueda de informacion de una identificacion", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`, filename: "uruguayid.html" },
-            { name: "Truecaller Phone", description: "Busqueda de información de números usando Truecaller API", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>`, filename: "truecaller.html" },
-            { name: "CallApp Phone", description: "Busqueda de información de números usando CallApp API", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>`, filename: "callapp.html" },
-            { name: "Telegram Phone", description: "Busqueda de Numero de telefono de una cuenta de Telegram", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>`, filename: "telegram.html" },
-            { name: "WhatsApp Phone", description: "Extraccion de informacion en un numero de WhatsApp", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>`, filename: "wadevices.html" },
-            { name: "Linkedin Email", description: "Extraccion de una cuenta de Linkedin en base a un email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "linkedin.html" },
-            { name: "Gravatar Email", description: "Extraccion de una cuenta de Gravatar en base a un email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "gravatar.html" },
-            { name: "Computrabajo Email", description: "Busqueda por email en Computrabajo para extraer informacion", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "computrabajo.html" },
-            { name: "GitHub Email", description: "Busqueda de Email en una cuenta vinculada de GitHub", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "github.html" },
-            { name: "Academia Email", description: "Busqueda de Email en una cuenta vinculada de Academia", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "academia.html" },
-            { name: "Aliexpress Email", description: "Busqueda de Email en una cuenta vinculada de Aliexpress", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`, filename: "aliexpress.html" },
-            { name: "Facebook Email/Phone", description: "Busqueda de email o numero en una cuenta vinculada de Facebook", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>`, filename: "facebook.html" },
-            { name: "Duolingo Email/Phone", description: "Busqueda de email o numero en una cuenta vinculada de Duolingo", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>`, filename: "duolingo.html" },
-            { name: "Life360 Email/Phone", description: "Busqueda por número y email en Life360 para extraer parte del nombre", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>`, filename: "life360.html" }        
+            { name: "Email SEON", description: "Búsqueda en +600 sitios por email", filename: "whereisemail.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>` },
+            { name: "Linkedin Email", description: "Extracción de Linkedin", filename: "linkedin.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Gravatar Email", description: "Extracción de Gravatar", filename: "gravatar.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Computrabajo Email", description: "Búsqueda por email en Computrabajo", filename: "computrabajo.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "GitHub Email", description: "Búsqueda de Email en GitHub", filename: "github.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Academia Email", description: "Búsqueda de Email en Academia", filename: "academia.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Aliexpress Email", description: "Búsqueda de Email en Aliexpress", filename: "aliexpress.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Phone SEON", description: "Búsqueda en +10 sitios por teléfono", filename: "whereisphone.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>` },
+            { name: "Colombia Nequi Phone", description: "Búsqueda por teléfono en Nequi", filename: "phonecolombia.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Cuba Phone", description: "Búsqueda por teléfono en Cuba", filename: "cubaphone.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Truecaller Phone", description: "Búsqueda usando Truecaller", filename: "truecaller.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "CallApp Phone", description: "Búsqueda usando CallApp", filename: "callapp.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Telegram Phone", description: "Búsqueda en Telegram", filename: "telegram.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "WhatsApp Phone", description: "Búsqueda en WhatsApp", filename: "wadevices.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Username SEON", description: "Búsqueda en +30 sitios por username", filename: "username.html", type: "username", icon: `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>` },
+            { name: "Breach/Logs Search", description: "Búsqueda en brechas o logs", filename: "breach.html", type: "breach", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Facebook Email/Phone", description: "Búsqueda en Facebook", filename: "facebook.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+            { name: "Duolingo Email/Phone", description: "Búsqueda en Duolingo", filename: "duolingo.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+            { name: "Life360 Email/Phone", description: "Búsqueda en Life360", filename: "life360.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+            { name: "Colombia Cedula", description: "Búsqueda de identificación", filename: "colombiaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Colombia Matricula", description: "Búsqueda de matrícula", filename: "colombiacar.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Chile RUT", description: "Búsqueda de identificación", filename: "chileid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Peru Cedula", description: "Búsqueda de identificación", filename: "peruid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Venezuela Cedula", description: "Búsqueda de identificación", filename: "venezuelaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Argentina Cedula", description: "Búsqueda de identificación", filename: "argentinaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Paraguay Cedula", description: "Búsqueda de identificación", filename: "paraguayid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Ecuador Cedula", description: "Búsqueda de identificación", filename: "ecuadorid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "México CURP", description: "Búsqueda de identificación", filename: "mexicoid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "México Matricula", description: "Búsqueda de matrícula", filename: "mexicocar.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Bolivia Cedula", description: "Búsqueda de identificación", filename: "boliviaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Uruguay Cedula", description: "Búsqueda de identificación", filename: "uruguayid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` }
         ];
+
 
         const smmTools = [
-            { name: "Instagram Seguidores", description: "Seguidores para Instagram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>`, filename: "instagram_followers.html" },
-            { name: "Instagram Likes", description: "Likes para Instagram", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`, filename: "instagram_likes.html" },
-            { name: "TikTok Seguidores", description: "Seguidores para TikTok", icon: `<svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-2.98 3.37-2.49l.35-2.9c-3.45-.35-6.38 2.37-6.38 5.39 0 3.01 2.44 5.47 5.46 5.47 3.02 0 5.46-2.46 5.46-5.47V8.37A5.788 5.788 0 0016.6 5.82z"/></svg>`, filename: "tiktok_followers.html" },
-            { name: "TikTok Likes", description: "Likes para TikTok", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`, filename: "tiktok_likes.html" },
-            { name: "TikTok Views", description: "Visitas para TikTok", icon: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`, filename: "tiktok_views.html" },
-            { name: "Facebook Seguidores", description: "Seguidores para Facebook", icon: `<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`, filename: "facebook_followers.html" },
-            { name: "Facebook Likes", description: "Likes para Facebook",icon: "<svg viewBox=\"0 0 24 24\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>","filename":"facebook_likes.html"},
-            { name: "Twitter Seguidores", description: "Seguidores para Twitter",icon: "<svg viewBox=\"0 0 24 24\"><path d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z\"/></svg>","filename":"twitter_followers.html"},
-            { name: "Twitter Likes", description: "Likes para Twitter",icon: "<svg viewBox=\"0 0 24 24\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>","filename":"twitter_likes.html"},
-            { name: "YouTube Seguidores", description: "Seguidores para YouTube", icon: `<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`, filename: "youtube_followers.html" },
-            { name: "YouTube Likes", description: "Likes para YouTube", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`, filename: "youtube_likes.html" },
-            { name: "Telegram Reactions Good", description: "Reacciones positivas para Telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`, filename: "telegram_reactions_good.html" },
-            { name: "Telegram Reactions Bad", description: "Reacciones negativas para Telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" transform="rotate(180 12 12)"/></svg>`, filename: "telegram_reactions_bad.html" },
-            { name: "Telegram Post Views", description: "Visitas para Telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`, filename: "telegram_views.html" },
-            { name: "Twitch Seguidores", description: "Seguidores para Twitch", icon: `<svg viewBox="0 0 24 24"><path d="M2.149 0L0 5.071v15.429h5.571V24l4.286-4.286h3.429L22.286 12.857V0H2.149zm17.571 11.571l-3.429 3.429h-3.429l-3 3v-3H5.571V1.714h14.149v9.857zM11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714z"/></svg>`, filename: "twitch_followers.html" },
-            { name: "Kick Followers", description: "Seguidores para Kick", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`, filename: "kick_followers.html" },
-            { name: "Reddit Followers", description: "Seguidores para Reddit", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`, filename: "reddit_followers.html" },
-            { name: "Spotify Followers", description: "Seguidores para Spotify", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`, filename: "spotify_followers.html" },
-            { name: "Threads Followers", description: "Seguidores para Threads", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`, filename: "threads_followers.html" },
-            { name: "VK Follows", description: "Seguidores para VK", icon: `<svg viewBox="0 0 24 24"><path d="M12.785 16.241s.288-.032.436-.193c.136-.148.132-.427.132-.427s-.02-1.304.585-1.496c.596-.19 1.362 1.26 2.174 1.819.614.422 1.08.33 1.08.33l2.17-.03s1.135-.07.596-.963c-.044-.073-.312-.657-1.606-1.858-1.354-1.258-1.172-1.054.458-3.23.995-1.323 1.392-2.13 1.268-2.475-.118-.33-.85-.243-.85-.243l-2.443.015s-.181-.025-.315.055c-.132.078-.216.26-.216.26s-.388 1.03-.903 1.906c-1.087 1.842-1.522 1.94-1.7 1.825-.412-.266-.31-1.07-.31-1.64 0-1.782.27-2.525-.525-2.717-.263-.063-.457-.105-1.13-.112-.863-.008-1.593.003-2.007.206-.275.135-.487.436-.358.453.16.021.522.098.714.36.248.338.24 1.098.24 1.098s.14 2.1-.33 2.36c-.324.18-.77-.188-1.724-1.874-.49-.845-.86-1.78-.86-1.78s-.072-.176-.2-.27c-.156-.115-.373-.151-.373-.151l-2.32.015s-.35.01-.478.16c-.115.135-.01.413-.01.413s1.81 4.235 3.86 6.37c1.88 1.96 4.014 1.83 4.014 1.83z"/></svg>`, filename: "vk_follows.html" },
-            { name: "VK Likes", description: "Likes para VK", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`, filename: "vk_likes.html" },
-            { name: "Discord Members", description: "Miembros para Discord", icon: `<svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>`, filename: "discord_members.html" },
-            { name: "Linkedin Likes", description: "Likes para LinkedIn", icon: `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`, filename: "linkedin_likes.html" }
+            { name: "Instagram Seguidores", description: "Seguidores para Instagram", filename: "instagram_followers.html", type: "instagram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>` },
+            { name: "Instagram Likes", description: "Likes para Instagram", filename: "instagram_likes.html", type: "instagram", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "TikTok Seguidores", description: "Seguidores para TikTok", filename: "tiktok_followers.html", type: "tiktok", icon: `<svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-2.98 3.37-2.49l.35-2.9c-3.45-.35-6.38 2.37-6.38 5.39 0 3.01 2.44 5.47 5.46 5.47 3.02 0 5.46-2.46 5.46-5.47V8.37A5.788 5.788 0 0016.6 5.82z"/></svg>` },
+            { name: "TikTok Likes", description: "Likes para TikTok", filename: "tiktok_likes.html", type: "tiktok", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "TikTok Views", description: "Visitas para TikTok", filename: "tiktok_views.html", type: "tiktok", icon: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>` },
+            { name: "Facebook Seguidores", description: "Seguidores para Facebook", filename: "facebook_followers.html", type: "facebook", icon: `<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>` },
+            { name: "Facebook Likes", description: "Likes para Facebook", filename: "facebook_likes.html", type: "facebook", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "Twitter Seguidores", description: "Seguidores para Twitter", filename: "twitter_followers.html", type: "twitter", icon: `<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>` },
+            { name: "Twitter Likes", description: "Likes para Twitter", filename: "twitter_likes.html", type: "twitter", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "YouTube Seguidores", description: "Seguidores para YouTube", filename: "youtube_followers.html", type: "youtube", icon: `<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>` },
+            { name: "YouTube Likes", description: "Likes para YouTube", filename: "youtube_likes.html", type: "youtube", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "Telegram Reactions Good", description: "Reacciones positivas para Telegram", filename: "telegram_reactions_good.html", type: "telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>` },
+            { name: "Telegram Reactions Bad", description: "Reacciones negativas para Telegram", filename: "telegram_reactions_bad.html", type: "telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" transform="rotate(180 12 12)"/></svg>` },
+            { name: "Telegram Post Views", description: "Visitas para Telegram", filename: "telegram_views.html", type: "telegram", icon: `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>` },
+            { name: "Twitch Seguidores", description: "Seguidores para Twitch", filename: "twitch_followers.html", type: "twitch", icon: `<svg viewBox="0 0 24 24"><path d="M2.149 0L0 5.071v15.429h5.571V24l4.286-4.286h3.429L22.286 12.857V0H2.149zm17.571 11.571l-3.429 3.429h-3.429l-3 3v-3H5.571V1.714h14.149v9.857zM11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714z"/></svg>` },
+            { name: "Kick Followers", description: "Seguidores para Kick", filename: "kick_followers.html", type: "kick", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>` },
+            { name: "Reddit Followers", description: "Seguidores para Reddit", filename: "reddit_followers.html", type: "reddit", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>` },
+            { name: "Spotify Followers", description: "Seguidores para Spotify", filename: "spotify_followers.html", type: "spotify", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>` },
+            { name: "Threads Followers", description: "Seguidores para Threads", filename: "threads_followers.html", type: "threads", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>` },
+            { name: "VK Follows", description: "Seguidores para VK", filename: "vk_follows.html", type: "vk", icon: `<svg viewBox="0 0 24 24"><path d="M12.785 16.241s.288-.032.436-.193c.136-.148.132-.427.132-.427s-.02-1.304.585-1.496c.596-.19 1.362 1.26 2.174 1.819.614.422 1.08.33 1.08.33l2.17-.03s1.135-.07.596-.963c-.044-.073-.312-.657-1.606-1.858-1.354-1.258-1.172-1.054.458-3.23.995-1.323 1.392-2.13 1.268-2.475-.118-.33-.85-.243-.85-.243l-2.443.015s-.181-.025-.315.055c-.132.078-.216.26-.216.26s-.388 1.03-.903 1.906c-1.087 1.842-1.522 1.94-1.7 1.825-.412-.266-.31-1.07-.31-1.64 0-1.782.27-2.525-.525-2.717-.263-.063-.457-.105-1.13-.112-.863-.008-1.593.003-2.007.206-.275.135-.487.436-.358.453.16.021.522.098.714.36.248.338.24 1.098.24 1.098s.14 2.1-.33 2.36c-.324.18-.77-.188-1.724-1.874-.49-.845-.86-1.78-.86-1.78s-.072-.176-.2-.27c-.156-.115-.373-.151-.373-.151l-2.32.015s-.35.01-.478.16c-.115.135-.01.413-.01.413s1.81 4.235 3.86 6.37c1.88 1.96 4.014 1.83 4.014 1.83z"/></svg>` },
+            { name: "VK Likes", description: "Likes para VK", filename: "vk_likes.html", type: "vk", icon: `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>` },
+            { name: "Discord Members", description: "Miembros para Discord", filename: "discord_members.html", type: "discord", icon: `<svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>` },
+            { name: "Linkedin Likes", description: "Likes para LinkedIn", filename: "linkedin_likes.html", type: "linkedin", icon: `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>` }
+        ];
+
+        const osintCategories = [
+            { id: 'email', name: 'Email', icon: '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>' },
+            { id: 'phone', name: 'Phone', icon: '<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>' },
+            { id: 'username', name: 'Username', icon: '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>' },
+            { id: 'breach', name: 'Breach', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>' },
+            { id: 'mixto', name: 'Mixto', icon: '<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>' },
+            { id: 'id', name: 'ID', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>' }
         ];
 
 
-        function checkToolAvailability(tool) {
-            return new Promise((resolve) => {
-                const testUrl = `./${tool.filename}?test=${Date.now()}`;
-                const xhr = new XMLHttpRequest();
-                xhr.timeout = 3500;
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            resolve(true);
-                        } else {
-                            resolve(false);
-                        }
-                    }
-                };
-                xhr.onerror = function() { resolve(false); };
-                xhr.ontimeout = function() { resolve(false); };
-                try {
-                    xhr.open('HEAD', testUrl, true);
-                    xhr.send();
-                } catch (e) { resolve(false); }
+        const smmCategories = [
+            { id: 'instagram', name: 'Instagram', icon: '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>' },
+            { id: 'tiktok', name: 'TikTok', icon: '<svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-2.98 3.37-2.49l.35-2.9c-3.45-.35-6.38 2.37-6.38 5.39 0 3.01 2.44 5.47 5.46 5.47 3.02 0 5.46-2.46 5.46-5.47V8.37A5.788 5.788 0 0016.6 5.82z"/></svg>' },
+            { id: 'twitter', name: 'Twitter', icon: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' },
+            { id: 'youtube', name: 'YouTube', icon: '<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>' },
+            { id: 'telegram', name: 'Telegram', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>' },
+            { id: 'discord', name: 'Discord', icon: '<svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>' },
+            { id: 'linkedin', name: 'LinkedIn', icon: '<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>' },
+            { id: 'kick', name: 'Kick', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+            { id: 'reddit', name: 'Reddit', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+            { id: 'spotify', name: 'Spotify', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+            { id: 'threads', name: 'Threads', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+            { id: 'vk', name: 'VK', icon: '<svg viewBox="0 0 24 24"><path d="M12.785 16.241s.288-.032.436-.193c.136-.148.132-.427.132-.427s-.02-1.304.585-1.496c.596-.19 1.362 1.26 2.174 1.819.614.422 1.08.33 1.08.33l2.17-.03s1.135-.07.596-.963c-.044-.073-.312-.657-1.606-1.858-1.354-1.258-1.172-1.054.458-3.23.995-1.323 1.392-2.13 1.268-2.475-.118-.33-.85-.243-.85-.243l-2.443.015s-.181-.025-.315.055c-.132.078-.216.26-.216.26s-.388 1.03-.903 1.906c-1.087 1.842-1.522 1.94-1.7 1.825-.412-.266-.31-1.07-.31-1.64 0-1.782.27-2.525-.525-2.717-.263-.063-.457-.105-1.13-.112-.863-.008-1.593.003-2.007.206-.275.135-.487.436-.358.453.16.021.522.098.714.36.248.338.24 1.098.24 1.098s.14 2.1-.33 2.36c-.324.18-.77-.188-1.724-1.874-.49-.845-.86-1.78-.86-1.78s-.072-.176-.2-.27c-.156-.115-.373-.151-.373-.151l-2.32.015s-.35.01-.478.16c-.115.135-.01.413-.01.413s1.81 4.235 3.86 6.37c1.88 1.96 4.014 1.83 4.014 1.83z"/></svg>' }
+        ];
+
+
+        function typeLogo(element, text, speed = 80) {
+            element.textContent = '';
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    element.innerHTML += '<span class="typing-cursor">|</span>';
+                }
+            }, speed);
+        }
+
+        function initApp() {
+            initParticles();
+            typeLogo(document.getElementById('logoTitle'), '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™|𝐀𝐏𝐈');
+            switchPanel('osint', document.querySelector('.panel-btn[data-panel="osint"]'));
+        }
+
+        function typeWriter(element, text, i = 0) {
+            clearInterval(typingInterval);
+            element.textContent = '';
+            typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    element.innerHTML += '<span class="typing-cursor">|</span>';
+                }
+            }, 50);
+        }
+
+        function switchPanel(panel, btnElement) {
+            currentPanel = panel;
+            document.querySelectorAll('.panel-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            const heroTitle = document.getElementById('heroTitle');
+
+            if (panel === 'osint') {
+                document.getElementById('heroSubtitle').textContent = 'OSINT PURGATORY SEARCH';
+                typeWriter(heroTitle, 'Investiga lo que hay detrás de cualquier dato al instante');
+                currentCategory = 'email';
+                renderFilters(osintCategories);
+                renderResults(osintTools.filter(t => t.type === 'email'), 'email');
+            } else {
+                document.getElementById('heroSubtitle').textContent = 'SMM PURGATORY BOOST';
+                typeWriter(heroTitle, 'Impulsa tus redes sociales al máximo');
+                currentCategory = 'instagram';
+                renderFilters(smmCategories);
+                renderResults(smmTools.filter(t => t.type === 'instagram'), 'instagram');
+            }
+            document.getElementById('searchInput').value = '';
+        }
+
+        function renderFilters(categoriesArray) {
+            const tabsContainer = document.getElementById('filterTabs');
+            tabsContainer.innerHTML = '';
+            categoriesArray.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${cat.id === currentCategory ? 'active' : ''}`;
+                btn.dataset.id = cat.id;
+                btn.innerHTML = `${cat.icon}<span>${cat.name}</span>`;
+                btn.onclick = () => selectCategory(cat.id, btn);
+                tabsContainer.appendChild(btn);
             });
         }
 
-        async function detectToolsForCategory(toolsArray, containerId, loadingId, noId) {
-            const loadingElement = document.getElementById(loadingId);
-            const container = document.getElementById(containerId);
-            const noElement = document.getElementById(noId);
-
-            loadingElement.style.display = 'block';
-            container.style.display = 'none';
-            noElement.style.display = 'none';
-
-            let availableCount = 0;
-
-            for (let tool of toolsArray) {
-                const isAvailable = await checkToolAvailability(tool);
-                tool.available = isAvailable;
-                if (isAvailable) availableCount++;
+        function selectCategory(id, btnElement) {
+            currentCategory = id;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.value.trim() !== '') {
+                performSearch();
+            } else {
+                const db = currentPanel === 'osint' ? osintTools : smmTools;
+                renderResults(db.filter(t => t.type === id), id);
             }
-
-            loadingElement.style.display = 'none';
-            container.style.display = 'block';
-
-            if (availableCount === 0) {
-                noElement.style.display = 'block';
-            }
-
-            renderTools(toolsArray, container);
         }
 
-        function renderTools(toolsArray, container) {
-            container.innerHTML = '';
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const db = currentPanel === 'osint' ? osintTools : smmTools;
+            let filtered = db.filter(t => t.type === currentCategory);
+            if (query !== '') {
+                filtered = filtered.filter(t =>
+                    t.name.toLowerCase().includes(query) ||
+                    t.description.toLowerCase().includes(query)
+                );
+            }
+            renderResults(filtered, currentCategory, query);
+        }
 
-            toolsArray.forEach(tool => {
-                const item = document.createElement(tool.available ? 'a' : 'div');
-                item.className = 'tool-item';
-                item.classList.add(tool.available ? 'available' : 'unavailable');
+        function renderResults(results, categoryId, query = '') {
+            const container = document.getElementById('resultsContainer');
+            const grid = document.getElementById('resultsGrid');
+            const header = document.getElementById('resultsHeader');
+            const noResults = document.getElementById('noResults');
 
-                if (tool.available) {
-                    item.href = `./${tool.filename}`;
-                }
+            container.classList.add('show');
+            grid.innerHTML = '';
 
-                item.innerHTML = `
-                    <div class="tool-icon">${tool.icon}</div>
-                    <div class="tool-info">
-                        <h4>${tool.name.replace(/[&<>]/g, function(m) {
-                            if (m === '&') return '&amp;';
-                            if (m === '<') return '&lt;';
-                            if (m === '>') return '&gt;';
-                            return m;
-                        })}</h4>
-                        <p>${tool.description.replace(/[&<>]/g, function(m) {
-                            if (m === '&') return '&amp;';
-                            if (m === '<') return '&lt;';
-                            if (m === '>') return '&gt;';
-                            return m;
-                        })}</p>
-                    </div>
-                    <div class="tool-status status-${tool.available ? 'available' : 'unavailable'}">
-                        ${tool.available ? 'Disponible' : 'No disponible'}
+            if (results.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                header.textContent = 'Sin resultados';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            const catName = categoryId;
+            header.textContent = `Mostrando ${results.length} herramienta(s) para "${catName}" ${query ? `| Búsqueda: "${query}"` : ''}`;
+
+            results.forEach(tool => {
+                const card = document.createElement('a');
+                card.href = `./${tool.filename}`;
+                card.className = 'result-card';
+                card.innerHTML = `
+                    <div class="result-icon">${tool.icon}</div>
+                    <div class="result-info">
+                        <h4>${tool.name}</h4>
+                        <p>${tool.description}</p>
                     </div>
                 `;
-
-                container.appendChild(item);
+                grid.appendChild(card);
             });
         }
 
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performSearch();
+        });
 
-
-        function setupTabs() {
-            const tabs = document.querySelectorAll('.tab-btn');
-            const contents = {
-                osint: document.getElementById('tab-osint'),
-                smm: document.getElementById('tab-smm')
-            };
-
-            tabs.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    
-                    tabs.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-
-                    
-                    Object.values(contents).forEach(c => c.classList.remove('active'));
-
-                    
-                    const tab = this.dataset.tab;
-                    if (tab === 'osint') {
-                        contents.osint.classList.add('active');
-                    } else if (tab === 'smm') {
-                        contents.smm.classList.add('active');
-                    }
-                });
-            });
-        }
-
-
-        function startApp() {
-            startTypingAnimation();
-
-            
-            detectToolsForCategory(osintTools, 'toolsOsint', 'loadingOsint', 'noOsint');
-            detectToolsForCategory(smmTools, 'toolsSmm', 'loadingSmm', 'noSmm');
-
-            setupTabs();
-        }
-
-
-        const toggle = document.getElementById('menu-toggle');
-        const menu = document.getElementById('menu');
-        if (toggle) {
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                menu.classList.toggle('show');
-                toggle.classList.toggle('active');
-            });
-
-            
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('nav')) {
-                    menu.classList.remove('show');
-                    toggle.classList.remove('active');
-                }
-            });
-        }
-
-        (function() {
+        function initParticles() {
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let width, height;
@@ -1131,37 +427,27 @@
             const SIZE_MAX = 5;
 
             class Particle {
-                constructor() {
-                    this.reset();
-                }
-
-                reset() {
+                constructor() { this.reset(true); }
+                reset(initial = false) {
                     this.x = Math.random() * width;
-                    this.y = Math.random() * height - height;
+                    this.y = initial ? Math.random() * height : -Math.random() * 100;
                     this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
                     this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
                     this.opacity = Math.random() * 0.7 + 0.3;
                     this.drift = (Math.random() - 0.5) * 0.4;
                 }
-
                 update() {
                     this.y += this.speedY;
                     this.x += this.drift;
-
-                    if (this.y > height + 20) {
-                        this.reset();
-                        this.y = -10;
-                    }
+                    if (this.y > height + 20) this.reset(false);
                     if (this.x < -20) this.x = width + 20;
                     if (this.x > width + 20) this.x = -20;
                 }
-
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
                     ctx.fill();
-
                     ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';
                     ctx.shadowBlur = 10;
                     ctx.fill();
@@ -1169,25 +455,15 @@
                 }
             }
 
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                const p = new Particle();
-                p.y = Math.random() * height;
-                particles.push(p);
-            }
+            for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
             function animate() {
                 ctx.clearRect(0, 0, width, height);
-
-                for (let p of particles) {
-                    p.update();
-                    p.draw();
-                }
-
+                for (let p of particles) { p.update(); p.draw(); }
                 requestAnimationFrame(animate);
             }
-
             animate();
-        })();
+        }
     </script>
 </body>
 </html>
