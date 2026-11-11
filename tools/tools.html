@@ -52,14 +52,8 @@
             background-clip: text;
             animation: shine 3s linear infinite;
         }
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-        .hero-text h2 .typing-cursor {
-            -webkit-text-fill-color: #00ffcc;
-            background: none;
-            color: #00ffcc;
-        }
+        @keyframes shine { to { background-position: 200% center; } }
+        .hero-text h2 .typing-cursor { -webkit-text-fill-color: #00ffcc; background: none; color: #00ffcc; }
         .typing-cursor { display: inline-block; color: #00ffcc; animation: blink 1s infinite; font-weight: 300; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .search-container { width: 100%; max-width: 700px; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; animation: fadeInUp 0.8s ease 0.2s both; }
@@ -80,8 +74,10 @@
         .results-container.show { display: block; }
         .results-header { font-size: 0.8rem; color: #ff9999; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 51, 51, 0.2); }
         .results-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .result-card { background: rgba(20, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.3); border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: #fff; transition: all 0.3s; backdrop-filter: blur(5px); }
+        .result-card { background: rgba(20, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.3); border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: #fff; transition: all 0.3s; backdrop-filter: blur(5px); cursor: pointer; position: relative; }
         .result-card:hover { background: rgba(255, 51, 51, 0.15); border-color: #ff3333; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3); }
+        .result-card.selected { background: rgba(255, 51, 51, 0.25); border-color: #ff5555; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6), inset 0 0 15px rgba(255, 51, 51, 0.15); transform: translateY(-3px); }
+        .result-card.selected::after { content: "✓ SELECCIONADA"; position: absolute; top: -8px; right: 10px; background: #ff3333; color: #000; font-size: 0.6rem; font-weight: bold; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.5px; }
         .result-icon { width: 35px; height: 35px; background: rgba(255, 51, 51, 0.1); border: 1px solid #ff3333; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .result-icon svg { width: 18px; height: 18px; fill: #ff3333; }
         .result-info h4 { font-size: 0.9rem; color: #ff3333; margin-bottom: 0.2rem; }
@@ -112,60 +108,23 @@
             .result-info h4 { font-size: 1rem; }
             .result-info p { font-size: 0.8rem; }
         }
-
-        
         .floating-feedback {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 51, 51, 0.5);
-            border-radius: 50px;
-            padding: 12px 25px;
-            display: flex;
-            gap: 25px;
-            z-index: 10000;
-            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
-            animation: fadeIn 0.5s ease;
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 51, 51, 0.5); border-radius: 50px; padding: 12px 25px;
+            display: flex; gap: 25px; z-index: 10000; box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4); animation: fadeIn 0.5s ease;
         }
-        .floating-feedback a {
-            color: #ff3333;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-        }
-        .floating-feedback a:hover {
-            color: #fff;
-            transform: scale(1.1);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .floating-feedback a { color: #ff3333; text-decoration: none; font-weight: bold; font-size: 1.1rem; letter-spacing: 1px; transition: all 0.3s; text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); }
+        .floating-feedback a:hover { color: #fff; transform: scale(1.1); text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) {
-            .floating-feedback {
-                bottom: 10px;
-                right: 10px;
-                padding: 8px 15px;
-                gap: 15px;
-            }
-            .floating-feedback a {
-                font-size: 0.9rem;
-            }
+            .floating-feedback { bottom: 10px; right: 10px; padding: 8px 15px; gap: 15px; }
+            .floating-feedback a { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-
     <canvas id="particles-canvas"></canvas>
-
-
     <div class="modal-overlay" id="termsModal">
         <div class="modal-box">
             <h2>Términos y Condiciones</h2>
@@ -178,7 +137,7 @@
                 <p><strong>5. Automatizaciones:</strong> Estos endpoints cuentan con proteccion anti-bot, anti-scrapping y demas para evitar el uso indebido o ilegal de recoleccion de informacion de forma masiva. Evadir o hacerlo de igual forma podra ser sancionado por la comunidad.</p>
                 <p><strong>6. Venta Modulos:</strong> La venta de dichos endpoints es totalmente ilegal y se hace responsable al usuario de no venderla, en caso contrario seria considerado estafa y podra ser sancionado, HackPurgatory no vende ni ofrece modulos.</p>
                 <p><strong>7. Autoridades:</strong> En caso de que un uso indebido HackPurgatory podra colaborar con las autoridades locales para la presunta busqueda de dicho infractor llegando a ofrecer soporte en la investigacion legal.</p>
-                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: <a href="report@hackpurgatory.org"><span class="__cf_email__" data-cfemail="403225302f3234002821232b3035322721342f32396e2f3227">[email&#160;protected]</span></a>.</p>
+                <p><strong>8. Contacto:</strong> Nuestro objetivo es crear y facilitar al usuario su aprendizaje en caso de algun tipo de problema legal sugerimos que se pongan en contacto con nosotros desde el siguiente email: report@hackpurgatory.org.</p>
                 <p style="margin-top: 0.5rem; color: #ff6666;">Al aceptar, confirmas que has leído y entendido estos términos.</p>
             </div>
             <div class="checkbox-row">
@@ -188,8 +147,6 @@
             <button class="btn-accept" id="acceptBtn" disabled>Aceptar y continuar</button>
         </div>
     </div>
-
-
     <header>
         <div class="logo-container">
             <img src="https://hackpurgatory.org/data/logo.png" alt="Logo">
@@ -200,8 +157,6 @@
             <button class="panel-btn" data-panel="smm" onclick="switchPanel('smm', this)">SMM</button>
         </div>
     </header>
-
-
     <main id="mainContent" style="display: none;">
         <div class="hero-text">
             <p id="heroSubtitle">OSINT PURGATORY SEARCH</p>
@@ -210,7 +165,7 @@
         <div class="search-container">
             <div class="filter-tabs" id="filterTabs"></div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Introduce tu búsqueda..." autocomplete="off">
+                <input type="text" id="searchInput" placeholder="Selecciona una herramienta y escribe aquí..." autocomplete="off">
                 <button onclick="performSearch()">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     Buscar
@@ -223,23 +178,17 @@
             <div class="no-results" id="noResults">No se encontraron herramientas para este tipo de búsqueda.</div>
         </div>
     </main>
-
     <footer>
         &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
     </footer>
-
-    
     <div class="floating-feedback">
       <a href="mailto:report@hackpurgatory.org?subject=Feedback%20-%20HACK%20PURGATORY&body=Hola%2C%20quiero%20enviar%20el%20siguiente%20feedback%3A%0A%0A" title="Enviar feedback por email">FeedBack</a>
     </div>
-
     <script>
-
         const modal = document.getElementById('termsModal');
         const check = document.getElementById('acceptCheck');
         const btn = document.getElementById('acceptBtn');
         const mainContent = document.getElementById('mainContent');
-
         check.addEventListener('change', function() { btn.disabled = !this.checked; });
         btn.addEventListener('click', function() {
             if (this.disabled) return;
@@ -248,48 +197,60 @@
             initApp();
         });
 
-
         let currentPanel = 'osint';
         let currentCategory = 'email';
         let typingInterval;
-
+        let selectedTool = null;
 
         const osintTools = [
-            { name: "Email SEON", description: "Búsqueda en +600 sitios por email", filename: "whereisemail.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Linkedin Email", description: "Extracción de Linkedin", filename: "linkedin.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Gravatar Email", description: "Extracción de Gravatar", filename: "gravatar.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Computrabajo Email", description: "Búsqueda por email en Computrabajo", filename: "computrabajo.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "GitHub Email", description: "Búsqueda de Email en GitHub", filename: "github.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Academia Email", description: "Búsqueda de Email en Academia", filename: "academia.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Aliexpress Email", description: "Búsqueda de Email en Aliexpress", filename: "aliexpress.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Bible Email", description: "Búsqueda de Email en Bible", filename: "bible.html", type: "email", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
-            { name: "Phone SEON", description: "Búsqueda en +10 sitios por teléfono", filename: "whereisphone.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "Colombia Nequi Phone", description: "Búsqueda por teléfono en Nequi", filename: "phonecolombia.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "Cuba Directory Phone", description: "Búsqueda por teléfono en Cuba", filename: "cubaphone.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "Truecaller Phone", description: "Búsqueda usando Truecaller", filename: "truecaller.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "CallApp Phone", description: "Búsqueda usando CallApp", filename: "callapp.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "Telegram Phone", description: "Búsqueda en Telegram", filename: "telegram.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "WhatsApp Phone", description: "Búsqueda en WhatsApp", filename: "wadevices.html", type: "phone", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
-            { name: "Username SEON", description: "Búsqueda en +30 sitios por username", filename: "username.html", type: "username", icon: `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>` },
-            { name: "Telegram EyeOfGod", description: "Revelar un numero en base a username de Telegram", filename: "eyeofgod.html", type: "username", icon: `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>` },
-            { name: "Breach/Logs Search", description: "Búsqueda en brechas o logs", filename: "breach.html", type: "breach", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Facebook Email/Phone", description: "Búsqueda en Facebook", filename: "facebook.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
-            { name: "Duolingo Email/Phone", description: "Búsqueda en Duolingo", filename: "duolingo.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
-            { name: "Life360 Email/Phone", description: "Búsqueda en Life360", filename: "life360.html", type: "mixto", icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
-            { name: "Colombia Cedula", description: "Búsqueda de identificación", filename: "colombiaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Colombia Matricula", description: "Búsqueda de matrícula", filename: "colombiacar.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Chile RUT", description: "Búsqueda de identificación", filename: "chileid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Peru Cedula", description: "Búsqueda de identificación", filename: "peruid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Venezuela Cedula", description: "Búsqueda de identificación", filename: "venezuelaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Argentina Cedula", description: "Búsqueda de identificación", filename: "argentinaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Paraguay Cedula", description: "Búsqueda de identificación", filename: "paraguayid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Ecuador Cedula", description: "Búsqueda de identificación", filename: "ecuadorid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "México CURP", description: "Búsqueda de identificación", filename: "mexicoid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "México Matricula", description: "Búsqueda de matrícula", filename: "mexicocar.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Bolivia Cedula", description: "Búsqueda de identificación", filename: "boliviaid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Uruguay Cedula", description: "Búsqueda de identificación", filename: "uruguayid.html", type: "id", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` }
-        ];
+            { name: "Email SEON", description: "Búsqueda en +600 sitios por email", endpoint: "https://seon.hackpurgatory.org/raw?value={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Linkedin Email", description: "Extracción de Linkedin", endpoint: "https://linkedin.hackpurgatory.org/linkfinder?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Gravatar Email", description: "Extracción de Gravatar", endpoint: "https://gravatar.hackpurgatory.org/email?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Computrabajo Email", description: "Búsqueda por email en Computrabajo", endpoint: "https://compujob.hackpurgatory.org/computrabajo?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "GitHub Email", description: "Búsqueda de Email en GitHub", endpoint: "https://github.hackpurgatory.org/github?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Academia Email", description: "Búsqueda de Email en Academia", endpoint: "https://academia.hackpurgatory.org/email?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Aliexpress Email", description: "Búsqueda de Email en Aliexpress", endpoint: "https://aliexpress.hackpurgatory.org/email?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
+            { name: "Bible Email", description: "Búsqueda de Email en Bible", endpoint: "https://bible.hackpurgatory.org/email?email={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
 
+            { name: "Phone SEON", description: "Búsqueda en +10 sitios por teléfono", endpoint: "https://seon.hackpurgatory.org/raw?value={value}", type: "phone", inputType: "phone", example: "+34666666666", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Colombia Nequi Phone", description: "Búsqueda por teléfono en Nequi", endpoint: "https://nequi.hackpurgatory.org/nequi?numero={value}", type: "phone", inputType: "phone", example: "3133561627", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Cuba Directory Phone", description: "Búsqueda por teléfono en Cuba", endpoint: "https://cuba.hackpurgatory.org/phone?num={value}", type: "phone", inputType: "phone", example: "52111111", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Truecaller Phone", description: "Búsqueda usando Truecaller", endpoint: "https://truecaller.hackpurgatory.org/truecaller?number={value}", type: "phone", inputType: "phone", example: "34666666666", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "CallApp Phone", description: "Búsqueda usando CallApp", endpoint: "https://callapp.hackpurgatory.org/callapp?number={value}", type: "phone", inputType: "phone", example: "34666666666", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "Telegram Phone", description: "Búsqueda en Telegram", endpoint: "https://telegram.hackpurgatory.org/telegram?numero={value}", type: "phone", inputType: "phone", example: "34666666666", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+            { name: "WhatsApp Phone", description: "Búsqueda en WhatsApp", endpoint: "https://whatsdevice.hackpurgatory.org/whatsdevice?number={value}", type: "phone", inputType: "phone", example: "34666666666", icon: `<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/></svg>` },
+
+            { name: "Username SEON", description: "Búsqueda en +30 sitios por username", endpoint: "https://seon.hackpurgatory.org/username?value={value}", type: "username", inputType: "text", example: "john", icon: `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>` },
+            { name: "Telegram EyeOfGod", description: "Revelar un numero en base a username de Telegram", endpoint: "https://eyeofgod.hackpurgatory.org/eyeofgod?username={value}", type: "username", inputType: "text", example: "@John", icon: `<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>` },
+
+            { name: "Breach/Logs Search", description: "Búsqueda en brechas o logs", endpoint: "https://breach.hackpurgatory.org/search?query={value}", type: "breach", inputType: "text", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+
+            { name: "Facebook Email/Phone", description: "Búsqueda en Facebook", type: "mixto", inputType: "mixto", example: "34666666666 o john@gmail.com",
+                endpointEmail: "https://facebook.hackpurgatory.org/email?email={value}",
+                endpointPhone: "https://facebook.hackpurgatory.org/phone?phone={value}",
+                icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+            { name: "Duolingo Email/Phone", description: "Búsqueda en Duolingo", type: "mixto", inputType: "mixto", example: "34666666666 o john@gmail.com",
+                endpointEmail: "https://duolingo.hackpurgatory.org/email?email={value}",
+                endpointPhone: "https://duolingo.hackpurgatory.org/phone?phone={value}",
+                icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+            { name: "Life360 Email/Phone", description: "Búsqueda en Life360", type: "mixto", inputType: "mixto", example: "+34666666666 o john@gmail.com",
+                endpointEmail: "https://life360.hackpurgatory.org/life360?email={value}",
+                endpointPhone: "https://life360.hackpurgatory.org/life360?numero={value}",
+                icon: `<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>` },
+
+            { name: "Colombia Cedula", description: "Búsqueda de identificación", endpoint: "https://colombia.hackpurgatory.org/colombia?cedula={value}", type: "id", inputType: "text", example: "123456789", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Colombia Matricula", description: "Búsqueda de matrícula", endpoint: "https://colombia.hackpurgatory.org/colombia?matricula={value}", type: "id", inputType: "text", example: "VYM62H", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Chile RUT", description: "Búsqueda de identificación", endpoint: "https://chile.hackpurgatory.org/chile?rut={value}", type: "id", inputType: "text", example: "00.000.000-0", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Peru Cedula", description: "Búsqueda de identificación", endpoint: "https://peru.hackpurgatory.org/peru?dni={value}", type: "id", inputType: "text", example: "44433333", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Venezuela Cedula", description: "Búsqueda de identificación", endpoint: "https://venezuela.hackpurgatory.org/venezuela?cedula={value}", type: "id", inputType: "text", example: "5555555", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Argentina Cedula", description: "Búsqueda de identificación", endpoint: "https://argentina.hackpurgatory.org/cuil?numero={value}", type: "id", inputType: "text", example: "47503159", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Paraguay Cedula", description: "Búsqueda de identificación", endpoint: "https://paraguay.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "5555555", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Ecuador Cedula", description: "Búsqueda de identificación", endpoint: "https://ecuador.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "1712887155", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "México CURP", description: "Búsqueda de identificación", endpoint: "https://mexico.hackpurgatory.org/curp?curp={value}", type: "id", inputType: "text", example: "LOFH580604HGTPRC00", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "México Matricula", description: "Búsqueda de matrícula", endpoint: "https://mexico.hackpurgatory.org/matricula?placa={value}", type: "id", inputType: "text", example: "MSV380C", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Bolivia Cedula", description: "Búsqueda de identificación", endpoint: "https://bolivia.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "123456", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Uruguay Cedula", description: "Búsqueda de identificación", endpoint: "https://uruguay.hackpurgatory.org/cedula?documento={value}", type: "id", inputType: "text", example: "42525351", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` }
+        ];
 
         const smmTools = [
             { name: "Instagram Seguidores", description: "Seguidores para Instagram", filename: "instagram_followers.html", type: "instagram", icon: `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>` },
@@ -326,7 +287,6 @@
             { id: 'id', name: 'ID', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>' }
         ];
 
-
         const smmCategories = [
             { id: 'instagram', name: 'Instagram', icon: '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>' },
             { id: 'tiktok', name: 'TikTok', icon: '<svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0115.54 3h-3.09v12.4a2.592 2.592 0 01-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-2.98 3.37-2.49l.35-2.9c-3.45-.35-6.38 2.37-6.38 5.39 0 3.01 2.44 5.47 5.46 5.47 3.02 0 5.46-2.46 5.46-5.47V8.37A5.788 5.788 0 0016.6 5.82z"/></svg>' },
@@ -341,7 +301,6 @@
             { id: 'threads', name: 'Threads', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
             { id: 'vk', name: 'VK', icon: '<svg viewBox="0 0 24 24"><path d="M12.785 16.241s.288-.032.436-.193c.136-.148.132-.427.132-.427s-.02-1.304.585-1.496c.596-.19 1.362 1.26 2.174 1.819.614.422 1.08.33 1.08.33l2.17-.03s1.135-.07.596-.963c-.044-.073-.312-.657-1.606-1.858-1.354-1.258-1.172-1.054.458-3.23.995-1.323 1.392-2.13 1.268-2.475-.118-.33-.85-.243-.85-.243l-2.443.015s-.181-.025-.315.055c-.132.078-.216.26-.216.26s-.388 1.03-.903 1.906c-1.087 1.842-1.522 1.94-1.7 1.825-.412-.266-.31-1.07-.31-1.64 0-1.782.27-2.525-.525-2.717-.263-.063-.457-.105-1.13-.112-.863-.008-1.593.003-2.007.206-.275.135-.487.436-.358.453.16.021.522.098.714.36.248.338.24 1.098.24 1.098s.14 2.1-.33 2.36c-.324.18-.77-.188-1.724-1.874-.49-.845-.86-1.78-.86-1.78s-.072-.176-.2-.27c-.156-.115-.373-.151-.373-.151l-2.32.015s-.35.01-.478.16c-.115.135-.01.413-.01.413s1.81 4.235 3.86 6.37c1.88 1.96 4.014 1.83 4.014 1.83z"/></svg>' }
         ];
-
 
         function typeLogo(element, text, speed = 80) {
             element.textContent = '';
@@ -381,21 +340,23 @@
             currentPanel = panel;
             document.querySelectorAll('.panel-btn').forEach(btn => btn.classList.remove('active'));
             if (btnElement) btnElement.classList.add('active');
-
             const heroTitle = document.getElementById('heroTitle');
-
+            selectedTool = null;
+            document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
             if (panel === 'osint') {
                 document.getElementById('heroSubtitle').textContent = 'OSINT PURGATORY SEARCH';
                 typeWriter(heroTitle, 'Investiga lo que hay detrás de cualquier dato al instante');
                 currentCategory = 'email';
                 renderFilters(osintCategories);
                 renderResults(osintTools.filter(t => t.type === 'email'), 'email');
+                document.getElementById('searchInput').placeholder = 'Selecciona una herramienta y escribe aquí...';
             } else {
                 document.getElementById('heroSubtitle').textContent = 'SMM PURGATORY BOOST';
                 typeWriter(heroTitle, 'Impulsa tus redes sociales al máximo');
                 currentCategory = 'instagram';
                 renderFilters(smmCategories);
                 renderResults(smmTools.filter(t => t.type === 'instagram'), 'instagram');
+                document.getElementById('searchInput').placeholder = 'Buscar herramienta...';
             }
             document.getElementById('searchInput').value = '';
         }
@@ -415,9 +376,11 @@
 
         function selectCategory(id, btnElement) {
             currentCategory = id;
+            selectedTool = null;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if (btnElement) btnElement.classList.add('active');
             const searchInput = document.getElementById('searchInput');
+            searchInput.placeholder = 'Selecciona una herramienta y escribe aquí...';
             if (searchInput.value.trim() !== '') {
                 performSearch();
             } else {
@@ -426,45 +389,29 @@
             }
         }
 
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const db = currentPanel === 'osint' ? osintTools : smmTools;
-            let filtered = db.filter(t => t.type === currentCategory);
-            if (query !== '') {
-                filtered = filtered.filter(t =>
-                    t.name.toLowerCase().includes(query) ||
-                    t.description.toLowerCase().includes(query)
-                );
-            }
-            renderResults(filtered, currentCategory, query);
-        }
-
         function renderResults(results, categoryId, query = '') {
             const container = document.getElementById('resultsContainer');
             const grid = document.getElementById('resultsGrid');
             const header = document.getElementById('resultsHeader');
             const noResults = document.getElementById('noResults');
-
             container.classList.add('show');
             grid.innerHTML = '';
-
             if (results.length === 0) {
                 grid.style.display = 'none';
                 noResults.style.display = 'block';
                 header.textContent = 'Sin resultados';
                 return;
             }
-
             grid.style.display = 'grid';
             noResults.style.display = 'none';
-
             const catName = categoryId;
             header.textContent = `Mostrando ${results.length} herramienta(s) para "${catName}" ${query ? `| Búsqueda: "${query}"` : ''}`;
-
             results.forEach(tool => {
                 const card = document.createElement('a');
-                card.href = `./${tool.filename}`;
                 card.className = 'result-card';
+                if (selectedTool && selectedTool.name === tool.name) {
+                    card.classList.add('selected');
+                }
                 card.innerHTML = `
                     <div class="result-icon">${tool.icon}</div>
                     <div class="result-info">
@@ -472,8 +419,87 @@
                         <p>${tool.description}</p>
                     </div>
                 `;
+                if (currentPanel === 'osint') {
+                    card.href = 'javascript:void(0)';
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (selectedTool && selectedTool.name === tool.name) {
+                            selectedTool = null;
+                            card.classList.remove('selected');
+                            document.getElementById('searchInput').placeholder = 'Selecciona una herramienta y escribe aquí...';
+                        } else {
+                            selectedTool = tool;
+                            document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            if (tool.example) {
+                                document.getElementById('searchInput').placeholder = 'Ejemplo: ' + tool.example;
+                            }
+                        }
+                    });
+                } else {
+                    card.href = `./${tool.filename}`;
+                }
                 grid.appendChild(card);
             });
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function cleanPhone(phone) {
+            return phone.replace(/\D/g, '');
+        }
+
+        function buildEndpoint(tool, value) {
+            if (tool.inputType === 'mixto') {
+                if (isValidEmail(value)) {
+                    return tool.endpointEmail.replace('{value}', encodeURIComponent(value));
+                }
+                const cleaned = cleanPhone(value);
+                return tool.endpointPhone.replace('{value}', encodeURIComponent(cleaned));
+            }
+            if (tool.inputType === 'email') {
+                if (!isValidEmail(value)) return null;
+                return tool.endpoint.replace('{value}', encodeURIComponent(value));
+            }
+            if (tool.inputType === 'phone') {
+                const cleaned = cleanPhone(value);
+                if (cleaned.length < 8) return null;
+                return tool.endpoint.replace('{value}', encodeURIComponent(cleaned));
+            }
+            return tool.endpoint.replace('{value}', encodeURIComponent(value.trim()));
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const db = currentPanel === 'osint' ? osintTools : smmTools;
+            if (currentPanel === 'osint') {
+                if (selectedTool) {
+                    if (query === '') {
+                        const inp = document.getElementById('searchInput');
+                        inp.focus();
+                        inp.style.borderColor = '#ff5555';
+                        setTimeout(() => { inp.style.borderColor = ''; }, 1500);
+                        return;
+                    }
+                    const endpoint = buildEndpoint(selectedTool, query);
+                    if (!endpoint) {
+                        alert('Formato no válido para esta herramienta.');
+                        return;
+                    }
+                    window.location.href = endpoint;
+                    return;
+                }
+            }
+            let filtered = db.filter(t => t.type === currentCategory);
+            if (query !== '') {
+                filtered = filtered.filter(t =>
+                    t.name.toLowerCase().includes(query.toLowerCase()) ||
+                    t.description.toLowerCase().includes(query.toLowerCase())
+                );
+            }
+            renderResults(filtered, currentCategory, query);
         }
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
@@ -485,23 +511,19 @@
             const ctx = canvas.getContext('2d');
             let width, height;
             let particles = [];
-
             function resizeCanvas() {
                 width = window.innerWidth;
                 height = window.innerHeight;
                 canvas.width = width;
                 canvas.height = height;
             }
-
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
-
             const PARTICLE_COUNT = 80;
             const MAX_SPEED = 2.0;
             const MIN_SPEED = 0.6;
             const SIZE_MIN = 2;
             const SIZE_MAX = 5;
-
             class Particle {
                 constructor() { this.reset(true); }
                 reset(initial = false) {
@@ -530,9 +552,7 @@
                     ctx.shadowBlur = 0;
                 }
             }
-
             for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
             function animate() {
                 ctx.clearRect(0, 0, width, height);
                 for (let p of particles) { p.update(); p.draw(); }
