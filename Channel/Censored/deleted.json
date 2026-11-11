@@ -1,5 +1,17 @@
 [
   {
+    "id": 201,
+    "pais": "Perú",
+    "ciudad": "Arequipa",
+    "coordenadas": [-16.4090, -71.5375],
+    "fecha": "2026-11-11",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "just-for-fun.duckdns.org",
+    "categoria": "Censuras"
+  },
+  {
     "id": 200,
     "pais": "Colombia",
     "ciudad": "Santa Marta",
