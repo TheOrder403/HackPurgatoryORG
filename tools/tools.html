@@ -31,9 +31,14 @@
         .logo-container { display: flex; align-items: center; gap: 0.8rem; }
         header img { max-width: 40px; }
         header h1 { font-size: 1rem; color: #fff; letter-spacing: 1px; }
+        .header-controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
         .panel-switch { display: flex; gap: 0.3rem; background: rgba(20, 0, 0, 0.8); padding: 0.2rem; border-radius: 50px; border: 1px solid rgba(255, 51, 51, 0.4); }
         .panel-btn { background: transparent; border: none; color: #aaa; padding: 0.4rem 0.8rem; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.75rem; transition: all 0.3s; }
         .panel-btn.active { background: #ff3333; color: #000; box-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
+        .updates-btn { background: transparent; border: 1px solid rgba(255, 51, 51, 0.5); color: #ff3333; padding: 0.4rem 0.9rem; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.5px; transition: all 0.3s; display: flex; align-items: center; gap: 0.35rem; position: relative; }
+        .updates-btn:hover { background: rgba(255, 51, 51, 0.15); color: #fff; box-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
+        .updates-btn::before { content: ""; width: 7px; height: 7px; background: #ff3333; border-radius: 50%; box-shadow: 0 0 8px #ff3333; animation: pulseDot 1.5s infinite; }
+        @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem; position: relative; z-index: 10; width: 100%; max-width: 1000px; margin: 0 auto; text-align: center; }
         .hero-text { text-align: center; margin-bottom: 2rem; animation: fadeInDown 0.8s ease; width: 100%; }
         .hero-text p { font-size: 0.75rem; color: #ff9999; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.8rem; }
@@ -70,6 +75,61 @@
         .search-box button { background: #ff3333; border: none; color: #000; padding: 0.8rem 1rem; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s, transform 0.2s; }
         .search-box button:hover { background: #ff5555; transform: scale(1.02); }
         .search-box button svg { width: 16px; height: 16px; fill: currentColor; }
+        .agree-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(20, 0, 0, 0.7);
+            border: 1px solid rgba(255, 51, 51, 0.4);
+            border-radius: 12px;
+            color: #ff9999;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .agree-btn::before {
+            content: "";
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ff3333;
+            border-radius: 4px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        .agree-btn:hover {
+            background: rgba(255, 51, 51, 0.12);
+            border-color: #ff3333;
+            color: #fff;
+        }
+        .agree-btn.agreed {
+            background: rgba(0, 255, 100, 0.1);
+            border-color: #00ff66;
+            color: #00ff66;
+            cursor: default;
+        }
+        .agree-btn.agreed::before {
+            content: "✓";
+            background: #00ff66;
+            border-color: #00ff66;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .agree-btn.agreed:hover {
+            background: rgba(0, 255, 100, 0.1);
+            border-color: #00ff66;
+            color: #00ff66;
+        }
         .results-container { width: 100%; max-width: 800px; margin-top: 1.5rem; display: none; animation: fadeInUp 0.5s ease; text-align: left; }
         .results-container.show { display: block; }
         .results-header { font-size: 0.8rem; color: #ff9999; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 51, 51, 0.2); }
@@ -91,6 +151,7 @@
             header img { max-width: 50px; }
             header h1 { font-size: 1.2rem; }
             .panel-btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
+            .updates-btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
             main { padding: 3rem 2rem; }
             .hero-text h2 { font-size: 3.5rem; min-height: 4.2rem; }
             .hero-text p { font-size: 0.9rem; letter-spacing: 4px; }
@@ -101,6 +162,7 @@
             .search-box input { font-size: 1.1rem; padding: 1rem; }
             .search-box button { padding: 1rem 1.5rem; font-size: 1rem; }
             .search-box button svg { width: 18px; height: 18px; }
+            .agree-btn { font-size: 0.9rem; padding: 0.85rem 1rem; }
             .results-grid { grid-template-columns: 1fr 1fr; }
             .result-card { padding: 1.2rem; gap: 1rem; }
             .result-icon { width: 40px; height: 40px; }
@@ -189,6 +251,137 @@
             .format-toast-content strong { font-size: 0.82rem; }
             .format-toast-content span { font-size: 0.72rem; }
         }
+
+        .updates-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30000;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .updates-overlay.show { opacity: 1; visibility: visible; }
+        .updates-box {
+            background: linear-gradient(160deg, #140000, #0a0000);
+            border: 2px solid #ff3333;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 80px rgba(255, 51, 51, 0.45), 0 0 0 1px rgba(255, 51, 51, 0.2) inset;
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow: hidden;
+        }
+        .updates-overlay.show .updates-box { transform: scale(1) translateY(0); }
+        .updates-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 1.1rem 1.4rem;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.3);
+            background: linear-gradient(90deg, rgba(255, 51, 51, 0.15), transparent);
+        }
+        .updates-header h2 {
+            font-size: 1.15rem;
+            color: #ff3333;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(255, 51, 51, 0.5);
+        }
+        .updates-close {
+            background: rgba(255, 51, 51, 0.15);
+            border: 1px solid #ff3333;
+            color: #ff3333;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+        .updates-close:hover { background: #ff3333; color: #000; transform: rotate(90deg); }
+        .updates-body {
+            padding: 1.4rem;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .updates-body::-webkit-scrollbar { width: 5px; }
+        .updates-body::-webkit-scrollbar-track { background: #1a0a0a; }
+        .updates-body::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 4px; }
+        .updates-section { margin-bottom: 1.2rem; }
+        .updates-section:last-child { margin-bottom: 0; }
+        .updates-section h3 {
+            color: #ff5555;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .updates-section h3::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: #ff3333;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff3333;
+        }
+        .updates-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .updates-list li {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding: 0.4rem 0 0.4rem 1.1rem;
+            position: relative;
+            border-bottom: 1px dashed rgba(255, 51, 51, 0.1);
+        }
+        .updates-list li:last-child { border-bottom: none; }
+        .updates-list li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: #ff3333;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .updates-footer {
+            padding: 0.9rem 1.4rem;
+            border-top: 1px solid rgba(255, 51, 51, 0.3);
+            text-align: center;
+            font-size: 0.72rem;
+            color: #666;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        @media (max-width: 500px) {
+            .updates-header h2 { font-size: 1rem; }
+            .updates-body { padding: 1.1rem; }
+            .updates-list li { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -220,9 +413,12 @@
             <img src="https://hackpurgatory.org/data/logo.png" alt="Logo">
             <h1 id="logoTitle"></h1>
         </div>
-        <div class="panel-switch">
-            <button class="panel-btn active" data-panel="osint" onclick="switchPanel('osint', this)">OSINT</button>
-            <button class="panel-btn" data-panel="smm" onclick="switchPanel('smm', this)">SMM</button>
+        <div class="header-controls">
+            <div class="panel-switch">
+                <button class="panel-btn active" data-panel="osint" onclick="switchPanel('osint', this)">OSINT</button>
+                <button class="panel-btn" data-panel="smm" onclick="switchPanel('smm', this)">SMM</button>
+            </div>
+            <button class="updates-btn" onclick="openUpdates()">Updates</button>
         </div>
     </header>
     <main id="mainContent" style="display: none;">
@@ -239,6 +435,7 @@
                     Buscar
                 </button>
             </div>
+            <button class="agree-btn" id="agreeBtn" onclick="agreeTerms()">I agree to the terms of use</button>
         </div>
         <div class="results-container" id="resultsContainer">
             <div class="results-header" id="resultsHeader"></div>
@@ -261,6 +458,45 @@
         </div>
     </div>
 
+    <div class="updates-overlay" id="updatesOverlay">
+        <div class="updates-box">
+            <div class="updates-header">
+                <h2>Updates</h2>
+                <button class="updates-close" onclick="closeUpdates()">✕</button>
+            </div>
+            <div class="updates-body">
+                <div class="updates-section">
+                    <h3>Nuevas Integraciones</h3>
+                    <ul class="updates-list">
+                        <li>Boton de confirmacion de terminos debajo del buscador para poder realizar consultas.</li>
+                        <li>Boton Updates anadido al header para consultar novedades del panel.</li>
+                        <li>Sistema de seleccion de herramientas en OSINT y SMM con redireccion directa al endpoint.</li>
+                        <li>Placeholder dinamico con el ejemplo de formato al seleccionar cada herramienta.</li>
+                        <li>Validacion de formato en SMM con push toast de aviso durante 5 segundos.</li>
+                        <li>Nueva herramienta Mexico Directory Phone en la categoria Phone.</li>
+                    </ul>
+                </div>
+                <div class="updates-section">
+                    <h3>Correcciones</h3>
+                    <ul class="updates-list">
+                        <li>Redireccion directa al endpoint sin pasar por los archivos individuales en SMM.</li>
+                        <li>Ajuste del layout del header en pantallas pequenas con los nuevos controles.</li>
+                        <li>Mejorada la deteccion de URLs invalidas en herramientas de SMM.</li>
+                    </ul>
+                </div>
+                <div class="updates-section">
+                    <h3>Proximamente</h3>
+                    <ul class="updates-list">
+                        <li>Historial de consultas recientes por herramienta.</li>
+                        <li>Exportacion de resultados en JSON y CSV.</li>
+                        <li>Panel de estadisticas de uso por categoria.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="updates-footer">HACK PURGATORY - Panel de actualizaciones</div>
+        </div>
+    </div>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const modal = document.getElementById('termsModal');
         const check = document.getElementById('acceptCheck');
@@ -279,6 +515,7 @@
         let typingInterval;
         let selectedTool = null;
         let formatToastTimeout = null;
+        let termsAgreed = false;
 
         const osintTools = [
             { name: "Email SEON", description: "Búsqueda en +600 sitios por email", endpoint: "https://seon.hackpurgatory.org/raw?value={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
@@ -562,7 +799,25 @@
             return tool.endpoint.replace('{value}', encodeURIComponent(value.trim()));
         }
 
+        function agreeTerms() {
+            if (termsAgreed) return;
+            termsAgreed = true;
+            const agreeBtn = document.getElementById('agreeBtn');
+            agreeBtn.classList.add('agreed');
+            agreeBtn.textContent = 'Terms accepted';
+        }
+
         function performSearch() {
+            if (!termsAgreed) {
+                const agreeBtn = document.getElementById('agreeBtn');
+                agreeBtn.style.borderColor = '#ff5555';
+                agreeBtn.style.background = 'rgba(255, 51, 51, 0.2)';
+                setTimeout(() => {
+                    agreeBtn.style.borderColor = '';
+                    agreeBtn.style.background = '';
+                }, 1500);
+                return;
+            }
             const query = document.getElementById('searchInput').value.trim();
             const db = currentPanel === 'osint' ? osintTools : smmTools;
             if (selectedTool) {
@@ -601,6 +856,26 @@
 
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') performSearch();
+        });
+
+        function openUpdates() {
+            document.getElementById('updatesOverlay').classList.add('show');
+        }
+
+        function closeUpdates() {
+            document.getElementById('updatesOverlay').classList.remove('show');
+        }
+
+        document.getElementById('updatesOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeUpdates();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeUpdates();
+            }
         });
 
         function initParticles() {
