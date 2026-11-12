@@ -1,5 +1,29 @@
 [
   {
+    "id": 204,
+    "pais": "Venezuela",
+    "ciudad": "Turiacas",
+    "coordenadas": [10.3833, -71.4333],
+    "fecha": "2026-11-12",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/PKGoTacotalpa",
+    "categoria": "Censuras"
+  },
+  {
+    "id": 203,
+    "pais": "Colombia",
+    "ciudad": "Guatapé",
+    "coordenadas": [6.2333, -75.1667],
+    "fecha": "2026-11-12",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/Anon_Colombia1",
+    "categoria": "Censuras"
+  },
+  {
     "id": 202,
     "pais": "Colombia",
     "ciudad": "Santa Marta",
