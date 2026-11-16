@@ -414,14 +414,16 @@
   }
 
 
+  
   .urgent-push-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    padding: 20px;
+    background: rgba(12, 0, 0, 0.58);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,108 +437,190 @@
     visibility: visible;
   }
   .urgent-push-card {
-    max-width: 500px;
-    width: 90%;
-    background: linear-gradient(135deg, #0a0f1a, #0c0e1a);
-    border-radius: 28px;
-    border: 1px solid #ff4444;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,68,68,0.3);
-    overflow: hidden;
-    transform: scale(0.9);
-    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    width: min(560px, 100%);
+    max-height: min(82vh, 760px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    background: linear-gradient(145deg, rgba(105, 8, 15, 0.82), rgba(35, 4, 9, 0.88));
+    -webkit-backdrop-filter: blur(22px) saturate(135%);
+    backdrop-filter: blur(22px) saturate(135%);
+    border: 1px solid rgba(255, 95, 105, 0.68);
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.58),
+                0 0 0 1px rgba(255,70,80,0.16),
+                0 0 38px rgba(255,25,45,0.24),
+                inset 0 1px 0 rgba(255,220,220,0.14);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   }
   .urgent-push-overlay.show .urgent-push-card {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
   .push-header-urgent {
-    background: #cc2200;
-    padding: 1rem 1.5rem;
+    background: linear-gradient(110deg, rgba(205, 25, 42, 0.88), rgba(112, 8, 20, 0.72));
+    border-bottom: 1px solid rgba(255,170,175,0.25);
+    padding: 17px 22px;
     display: flex;
     align-items: center;
     gap: 12px;
-    color: white;
+    color: #fff;
   }
   .push-badge {
-    background: #ffcc00;
-    color: #000;
+    flex: 0 0 auto;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,220,220,0.48);
+    color: #fff;
     border-radius: 30px;
-    padding: 4px 14px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
   }
   .push-header-urgent h3 {
     flex: 1;
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     margin: 0;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
   }
   .close-push-x {
-    background: rgba(0,0,0,0.3);
-    border: none;
-    width: 32px;
-    height: 32px;
+    flex: 0 0 auto;
+    background: rgba(20,0,0,0.28);
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     cursor: pointer;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
   .close-push-x:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.05);
+    background: rgba(0,0,0,0.5);
+    transform: rotate(90deg);
   }
   .push-body-urgent {
-    padding: 1.8rem;
-    color: #eee;
+    padding: 25px 27px 23px;
+    color: rgba(255,245,245,0.94);
   }
   .push-title-urgent {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: #ff8866;
+    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: #fff;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    text-shadow: 0 0 18px rgba(255,65,80,0.48);
+  }
+  .push-title-urgent span {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: #ff5968;
+    box-shadow: 0 0 0 5px rgba(255,70,85,0.14), 0 0 16px #ff394d;
   }
   .push-message {
-    line-height: 1.5;
-    margin: 15px 0 20px;
+    font-size: 0.96rem;
+    line-height: 1.72;
+    margin: 12px 0 22px;
+    color: rgba(255,245,245,0.91);
+    overflow-wrap: anywhere;
+  }
+  .push-message strong {
+    color: #fff;
+    font-weight: 750;
   }
   .push-buttons {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    margin-top: 10px;
+    margin-top: 18px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255,160,170,0.2);
   }
   .push-btn-dismiss {
-    background: #2a2a2a;
-    border: none;
-    padding: 8px 24px;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,210,215,0.38);
+    padding: 10px 27px;
     border-radius: 40px;
     color: white;
     cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .push-btn-dismiss:hover {
-    background: #444;
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.2);
   }
   .push-btn-action {
-    background: #cc2200;
-    border: none;
-    padding: 8px 24px;
+    background: rgba(220,35,55,0.86);
+    border: 1px solid rgba(255,180,185,0.45);
+    padding: 10px 27px;
     border-radius: 40px;
     color: white;
     cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s;
   }
   .push-btn-action:hover {
-    background: #ff3311;
-    transform: scale(0.97);
+    background: rgba(245,45,65,0.96);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 600px) {
+    .urgent-push-overlay {
+      padding: 13px;
+      align-items: center;
+    }
+    .urgent-push-card {
+      width: 100%;
+      max-height: 88vh;
+      border-radius: 19px;
+    }
+    .push-header-urgent {
+      padding: 13px 15px;
+      gap: 9px;
+    }
+    .push-badge {
+      font-size: 0.62rem;
+      padding: 5px 9px;
+      letter-spacing: 0.8px;
+    }
+    .push-header-urgent h3 {
+      font-size: 0.88rem;
+      letter-spacing: 1px;
+    }
+    .close-push-x {
+      width: 31px;
+      height: 31px;
+    }
+    .push-body-urgent {
+      padding: 19px 18px 17px;
+    }
+    .push-title-urgent {
+      font-size: 1.2rem;
+      line-height: 1.3;
+      margin-bottom: 11px;
+    }
+    .push-message {
+      font-size: 0.88rem;
+      line-height: 1.62;
+      margin: 10px 0 17px;
+    }
+    .push-buttons {
+      margin-top: 14px;
+      padding-top: 13px;
+    }
+    .push-btn-dismiss,
+    .push-btn-action {
+      padding: 9px 23px;
+      min-height: 42px;
+    }
   }
 
 @media (min-width: 1024px) {
@@ -996,7 +1080,7 @@
       Enviar Email
     </a>
 
-	
+
     <a href="https://instagram.com/HackPurgatory" target="_blank">
       <svg class="icon-svg" viewBox="0 0 24 24">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
