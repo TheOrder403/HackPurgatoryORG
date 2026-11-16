@@ -752,7 +752,7 @@
                         document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
                         card.classList.add('selected');
                         if (tool.example) {
-                            document.getElementById('searchInput').placeholder = 'Ejemplo: ' + tool.example;
+                            document.getElementById('searchInput').placeholder = tool.example;
                         }
                     }
                 });
