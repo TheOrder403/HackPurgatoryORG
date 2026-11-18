@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/tools/tools.html</loc>
+    <loc>https://hackpurgatory.org/tools/index.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -19,19 +19,19 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/Channel/Tools.html</loc>
+    <loc>https://hackpurgatory.org/Channel/index.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/Channel/News/blog.html</loc>
+    <loc>https://hackpurgatory.org/Channel/News/index.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hackpurgatory.org/Channel/Censored/blog.html</loc>
+    <loc>https://hackpurgatory.org/Channel/Censored/index.html</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
