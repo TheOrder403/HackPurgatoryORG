@@ -1,5 +1,17 @@
 [
   {
+    "id": 213,
+    "pais": "Suiza",
+    "ciudad": "Binn, Valais",
+    "coordenadas": [46.3667, 8.1833],
+    "fecha": "2026-11-19",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/anonymous_switzerlandchat",
+    "categoria": "Censuras"
+  },
+  {
     "id": 212,
     "pais": "Bolivia",
     "ciudad": "Quime, La Paz",
