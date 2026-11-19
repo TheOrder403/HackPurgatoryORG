@@ -144,7 +144,7 @@
         .results-container { width: 100%; max-width: 800px; margin-top: 1.5rem; display: none; animation: fadeInUp 0.5s ease; text-align: left; }
         .results-container.show { display: block; }
         .results-header { font-size: 0.8rem; color: #ff9999; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 51, 51, 0.2); }
-        .results-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .results-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
         .result-card { background: rgba(20, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.3); border-radius: 10px; padding: 1rem; display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: #fff; transition: all 0.3s; backdrop-filter: blur(5px); cursor: pointer; position: relative; }
         .result-card:hover { background: rgba(255, 51, 51, 0.15); border-color: #ff3333; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3); }
         .result-card.selected { background: rgba(255, 51, 51, 0.25); border-color: #ff5555; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6), inset 0 0 15px rgba(255, 51, 51, 0.15); transform: translateY(-3px); }
@@ -174,12 +174,39 @@
             .search-box button { padding: 1rem 1.5rem; font-size: 1rem; }
             .search-box button svg { width: 18px; height: 18px; }
             .agree-btn { font-size: 0.9rem; padding: 0.85rem 1rem; }
-            .results-grid { grid-template-columns: 1fr 1fr; }
-            .result-card { padding: 1.2rem; gap: 1rem; }
+            .results-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+            .result-card { padding: 1rem 0.7rem; gap: 0.7rem; flex-direction: column; text-align: center; min-width: 0; }
+            .result-info { min-width: 0; width: 100%; overflow-wrap: anywhere; }
             .result-icon { width: 40px; height: 40px; }
             .result-icon svg { width: 20px; height: 20px; }
             .result-info h4 { font-size: 1rem; }
             .result-info p { font-size: 0.8rem; }
+        }
+        .results-pagination {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .results-pagination button {
+            background: #ff3333;
+            border: 1px solid #ff3333;
+            color: #000;
+            padding: 0.65rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .results-pagination button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .results-pagination span { color: #aaa; font-size: 0.8rem; }
+        @media (max-width: 767px) {
+            .results-grid { grid-template-columns: 1fr; }
+            .result-card { padding: 0.9rem; }
+            .results-pagination { display: flex; }
         }
         .floating-feedback {
             position: fixed; bottom: 20px; right: 20px;
@@ -464,7 +491,7 @@
             
                 <p><strong>21. Contacto:</strong>
                 Para comunicar abusos, informar de incidencias, realizar consultas relacionadas con estos términos o solicitar información sobre el uso de la plataforma, puedes contactar con nosotros en:
-                <a href="mailto:report@hackpurgatory.org">report@hackpurgatory.org</a>.</p>
+                <a href="/cdn-cgi/l/email-protection#96e4f3e6f9e4e2d6fef7f5fde6e3e4f1f7e2f9e4efb8f9e4f1"><span class="__cf_email__" data-cfemail="d3a1b6a3bca1a793bbb2b0b8a3a6a1b4b2a7bca1aafdbca1b4">[email&#160;protected]</span></a>.</p>
             
                 <p style="margin-top: 0.5rem; color: #ff6666;">
                     Al aceptar, confirmas que tienes al menos 18 años, que has leído y comprendido estos términos y que te comprometes a utilizar HACK [PURGATORY]™ de forma responsable y conforme a la legislación aplicable.
@@ -513,6 +540,7 @@
         <div class="results-container" id="resultsContainer">
             <div class="results-header" id="resultsHeader"></div>
             <div class="results-grid" id="resultsGrid"></div>
+            <div class="results-pagination" id="resultsPagination"></div>
             <div class="no-results" id="noResults">No se encontraron herramientas para este tipo de búsqueda.</div>
         </div>
     </main>
@@ -558,7 +586,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const modal = document.getElementById('termsModal');
         const check = document.getElementById('acceptCheck');
         const btn = document.getElementById('acceptBtn');
@@ -577,6 +605,11 @@
         let selectedTool = null;
         let formatToastTimeout = null;
         let termsAgreed = false;
+        let displayedResults = [];
+        let displayedCategory = 'email';
+        let displayedQuery = '';
+        let resultsPage = 0;
+        const mobilePageSize = 5;
 
         const osintTools = [
             { name: "Email SEON", description: "Búsqueda en +600 sitios por email", endpoint: "https://seon.hackpurgatory.org/raw?value={value}", type: "email", inputType: "email", example: "john@gmail.com", icon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>` },
@@ -796,28 +829,48 @@
         }
 
         function renderResults(results, categoryId, query = '') {
+            displayedResults = results;
+            displayedCategory = categoryId;
+            displayedQuery = query;
+            resultsPage = 0;
+            renderResultsPage();
+        }
+
+        function renderResultsPage() {
             const container = document.getElementById('resultsContainer');
             const grid = document.getElementById('resultsGrid');
             const header = document.getElementById('resultsHeader');
             const noResults = document.getElementById('noResults');
+            const pagination = document.getElementById('resultsPagination');
+            const isMobile = window.matchMedia('(max-width: 767px)').matches;
+            const pageSize = isMobile ? mobilePageSize : displayedResults.length;
+            const totalPages = Math.max(1, Math.ceil(displayedResults.length / Math.max(pageSize, 1)));
+
+            resultsPage = Math.min(resultsPage, totalPages - 1);
             container.classList.add('show');
             grid.innerHTML = '';
-            if (results.length === 0) {
+            pagination.innerHTML = '';
+
+            if (displayedResults.length === 0) {
                 grid.style.display = 'none';
+                pagination.style.display = 'none';
                 noResults.style.display = 'block';
                 header.textContent = 'Sin resultados';
                 return;
             }
+
             grid.style.display = 'grid';
             noResults.style.display = 'none';
-            const catName = categoryId;
-            header.textContent = `Mostrando ${results.length} herramienta(s) para "${catName}" ${query ? `| Búsqueda: "${query}"` : ''}`;
-            results.forEach(tool => {
+            header.textContent = `Mostrando ${displayedResults.length} herramienta(s) para "${displayedCategory}" ${displayedQuery ? `| Búsqueda: "${displayedQuery}"` : ''}`;
+
+            const visibleResults = isMobile
+                ? displayedResults.slice(resultsPage * mobilePageSize, (resultsPage + 1) * mobilePageSize)
+                : displayedResults;
+
+            visibleResults.forEach(tool => {
                 const card = document.createElement('a');
                 card.className = 'result-card';
-                if (selectedTool && selectedTool.name === tool.name) {
-                    card.classList.add('selected');
-                }
+                if (selectedTool && selectedTool.name === tool.name) card.classList.add('selected');
                 card.innerHTML = `
                     <div class="result-icon">${tool.icon}</div>
                     <div class="result-info">
@@ -836,14 +889,48 @@
                         selectedTool = tool;
                         document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
                         card.classList.add('selected');
-                        if (tool.example) {
-                            document.getElementById('searchInput').placeholder = tool.example;
-                        }
+                        if (tool.example) document.getElementById('searchInput').placeholder = tool.example;
                     }
                 });
                 grid.appendChild(card);
             });
+
+            if (isMobile && displayedResults.length > mobilePageSize) {
+                pagination.style.display = 'flex';
+                if (resultsPage > 0) {
+                    const previousButton = document.createElement('button');
+                    previousButton.type = 'button';
+                    previousButton.textContent = 'Anterior';
+                    previousButton.onclick = () => {
+                        resultsPage--;
+                        renderResultsPage();
+                    };
+                    pagination.appendChild(previousButton);
+                }
+                const pageLabel = document.createElement('span');
+                pageLabel.textContent = `Página ${resultsPage + 1} de ${totalPages}`;
+                pagination.appendChild(pageLabel);
+
+                if (resultsPage < totalPages - 1) {
+                    const nextButton = document.createElement('button');
+                    nextButton.type = 'button';
+                    nextButton.textContent = 'Siguiente';
+                    nextButton.onclick = () => {
+                        resultsPage++;
+                        renderResultsPage();
+                    };
+                    pagination.appendChild(nextButton);
+                }
+            } else {
+                pagination.style.display = 'none';
+            }
         }
+
+        window.addEventListener('resize', () => {
+            if (document.getElementById('resultsContainer').classList.contains('show')) {
+                renderResultsPage();
+            }
+        });
 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
