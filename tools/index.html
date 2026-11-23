@@ -78,7 +78,11 @@
         .search-box input { flex: 1; background: transparent; border: none; color: #fff; font-size: 0.95rem; padding: 0.8rem; outline: none; text-align: left; }
         .search-box input::placeholder { color: #666; }
         .search-box .token-input,
-        .search-box .id-input { display: none; min-width: 0; border-left: 1px solid rgba(255, 51, 51, 0.3); }
+        .search-box .id-input, .search-box .country-input { display: none; min-width: 0; border-left: 1px solid rgba(255, 51, 51, 0.3); }
+        .search-box.google-dorking-mode .country-input { display: block; width: 25%; color: #fff; background: #111; padding: 0.8rem; border-top: 0; border-right: 0; border-bottom: 0; }
+        .search-box.google-dorking-mode #searchInput,
+        .search-box.google-dorking-mode .token-input { width: 32%; }
+        .search-box .country-input option { background: #111; color: #fff; }
         .search-box.osint-mode .token-input,
         .search-box.smm-mode .token-input { display: block; }
         .search-box.restricted-mode .id-input { display: block; }
@@ -86,12 +90,15 @@
         .search-box.osint-mode .token-input,
         .search-box.smm-mode #searchInput,
         .search-box.smm-mode .token-input { width: 50%; }
+        .search-box.google-dorking-mode #searchInput,
+        .search-box.google-dorking-mode .token-input { width: 32%; }
         .search-box.restricted-mode #searchInput,
         .search-box.restricted-mode .token-input,
         .search-box.restricted-mode .id-input { width: 33.333%; }
         .search-box button { background: #ff3333; border: none; color: #000; padding: 0.8rem 1rem; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s, transform 0.2s; }
         .search-box button:hover { background: #ff5555; transform: scale(1.02); }
         .search-box button svg { width: 16px; height: 16px; fill: currentColor; }
+
         .agree-btn {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -537,6 +544,15 @@
                 <input type="text" id="searchInput" placeholder="Selecciona una herramienta y escribe aquí..." autocomplete="off">
                 <input type="text" id="tokenInput" class="token-input" placeholder="Token" autocomplete="off">
                 <input type="text" id="accountIdInput" class="id-input" placeholder="ID de acceso" autocomplete="off">
+                <select id="googleCountryInput" class="country-input" aria-label="País para Google Dorking">
+                    <option value="es" selected>España</option>
+                    <optgroup label="Latinoamérica y Caribe">
+                        <option value="ar">Argentina</option><option value="bo">Bolivia</option><option value="br">Brasil</option><option value="cl">Chile</option><option value="co">Colombia</option><option value="cr">Costa Rica</option><option value="cu">Cuba</option><option value="do">República Dominicana</option><option value="ec">Ecuador</option><option value="sv">El Salvador</option><option value="gt">Guatemala</option><option value="hn">Honduras</option><option value="mx">México</option><option value="ni">Nicaragua</option><option value="pa">Panamá</option><option value="py">Paraguay</option><option value="pe">Perú</option><option value="pr">Puerto Rico</option><option value="uy">Uruguay</option><option value="ve">Venezuela</option><option value="ht">Haití</option><option value="jm">Jamaica</option><option value="tt">Trinidad y Tobago</option><option value="bs">Bahamas</option><option value="bb">Barbados</option><option value="bz">Belice</option><option value="gy">Guyana</option><option value="sr">Surinam</option><option value="ag">Antigua y Barbuda</option><option value="dm">Dominica</option><option value="gd">Granada</option><option value="kn">San Cristóbal y Nieves</option><option value="lc">Santa Lucía</option><option value="vc">San Vicente y las Granadinas</option>
+                    </optgroup>
+                    <optgroup label="Europa">
+                        <option value="al">Albania</option><option value="de">Alemania</option><option value="ad">Andorra</option><option value="am">Armenia</option><option value="at">Austria</option><option value="az">Azerbaiyán</option><option value="be">Bélgica</option><option value="by">Bielorrusia</option><option value="ba">Bosnia y Herzegovina</option><option value="bg">Bulgaria</option><option value="cy">Chipre</option><option value="hr">Croacia</option><option value="dk">Dinamarca</option><option value="sk">Eslovaquia</option><option value="si">Eslovenia</option><option value="ee">Estonia</option><option value="fi">Finlandia</option><option value="fr">Francia</option><option value="ge">Georgia</option><option value="gr">Grecia</option><option value="hu">Hungría</option><option value="ie">Irlanda</option><option value="is">Islandia</option><option value="it">Italia</option><option value="kz">Kazajistán</option><option value="xk">Kosovo</option><option value="lv">Letonia</option><option value="li">Liechtenstein</option><option value="lt">Lituania</option><option value="lu">Luxemburgo</option><option value="mt">Malta</option><option value="md">Moldavia</option><option value="mc">Mónaco</option><option value="me">Montenegro</option><option value="no">Noruega</option><option value="nl">Países Bajos</option><option value="pl">Polonia</option><option value="pt">Portugal</option><option value="gb">Reino Unido</option><option value="cz">República Checa</option><option value="ro">Rumanía</option><option value="ru">Rusia</option><option value="sm">San Marino</option><option value="rs">Serbia</option><option value="se">Suecia</option><option value="ch">Suiza</option><option value="tr">Turquía</option><option value="ua">Ucrania</option><option value="va">Ciudad del Vaticano</option>
+                    </optgroup>
+                </select>
                 <button onclick="performSearch()">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     Buscar
@@ -698,7 +714,8 @@
             { name: "Bolivia Matricula", description: "Búsqueda de matrícula", endpoint: "https://bolivia.hackpurgatory.org/vehicle?matricula={value}", type: "matricula", inputType: "text", example: "VVV000V", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
             { name: "Uruguay Cedula", description: "Búsqueda de identificación", endpoint: "https://uruguay.hackpurgatory.org/cedula?documento={value}", type: "id", inputType: "text", example: "00000000", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
             { name: "Panama Cedula", description: "Búsqueda de identificación", endpoint: "https://panama.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "0-0000-0000", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
-            { name: "Honduras Cedula", description: "Búsqueda de identificación", endpoint: "https://honduras.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "000000000", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` }
+            { name: "Honduras Cedula", description: "Búsqueda de identificación", endpoint: "https://honduras.hackpurgatory.org/cedula?numero={value}", type: "id", inputType: "text", example: "000000000", icon: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>` },
+            { name: "Google Dorking", description: "Búsqueda pública de empresas, marcas y organizaciones por país", endpoint: "https://dorking.hackpurgatory.org/search?name={value}", type: "full_name", inputType: "text", example: "Nombre de empresa u organización", icon: `<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 17.93V18h-2v1.93A8.01 8.01 0 0 1 4.07 13H6v-2H4.07A8.01 8.01 0 0 1 11 4.07V6h2V4.07A8.01 8.01 0 0 1 19.93 11H18v2h1.93A8.01 8.01 0 0 1 13 19.93zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>` },
         ];
 
         const smmTools = [
@@ -739,6 +756,7 @@
             { id: 'username', name: 'Username', icon: '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>' },
             { id: 'breach', name: 'Breach', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>' },
             { id: 'mixto', name: 'Mixto', icon: '<svg viewBox="0 0 24 24"><path d="M1.83 22.77 9.46 12.51H5.53L12.43 3h10.39l-6.05 6.01h5.77z"/></svg>' },
+            { id: 'full_name', name: 'Name', icon: '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>' },
             { id: 'id', name: 'ID', icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>' },
             { id: 'matricula', name: 'Matricula', icon: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>' }
         ];
@@ -798,6 +816,7 @@
             currentPanel = panel;
             document.getElementById('searchBox').classList.toggle('smm-mode', panel === 'smm');
             document.getElementById('searchBox').classList.toggle('osint-mode', panel === 'osint');
+            document.getElementById('searchBox').style.display = 'flex';
             document.querySelectorAll('.panel-btn').forEach(btn => btn.classList.remove('active'));
             if (btnElement) btnElement.classList.add('active');
             const heroTitle = document.getElementById('heroTitle');
@@ -906,10 +925,11 @@
                         selectedTool = null;
                         card.classList.remove('selected');
                         document.getElementById('searchInput').placeholder = 'Selecciona una herramienta y escribe aquí...';
-                        document.getElementById('searchBox').classList.remove('restricted-mode');
+                        document.getElementById('searchBox').classList.remove('restricted-mode', 'google-dorking-mode');
                     } else {
                         selectedTool = tool;
                         document.getElementById('searchBox').classList.toggle('restricted-mode', tool.type === 'id' || tool.type === 'matricula');
+                        document.getElementById('searchBox').classList.toggle('google-dorking-mode', tool.type === 'full_name');
                         document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
                         card.classList.add('selected');
                         if (tool.example) document.getElementById('searchInput').placeholder = tool.example;
@@ -980,6 +1000,11 @@
         }
 
         function buildEndpoint(tool, value) {
+            if (tool.type === 'full_name') {
+                const url = new URL(tool.endpoint.replace('{value}', encodeURIComponent(value.trim())));
+                url.searchParams.set('country', document.getElementById('googleCountryInput').value);
+                return url.toString();
+            }
             if (tool.inputType === 'mixto') {
                 if (isValidEmail(value)) {
                     return tool.endpointEmail.replace('{value}', encodeURIComponent(value));
