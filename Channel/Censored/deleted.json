@@ -1,5 +1,17 @@
 [
   {
+    "id": 221,
+    "pais": "Colombia",
+    "ciudad": "Valle de la Samaria, Caldas",
+    "coordenadas": [5.4167, -75.5167],
+    "fecha": "2026-11-26",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/Revocatoria",
+    "categoria": "Censuras"
+  },
+  {
     "id": 220,
     "pais": "Colombia",
     "ciudad": "Jordán, Santander",
