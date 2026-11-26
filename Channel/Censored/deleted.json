@@ -1,5 +1,17 @@
 [
   {
+    "id": 228,
+    "pais": "Colombia",
+    "ciudad": "Nabusimake, Cesar",
+    "coordenadas": [10.5833, -73.5833],
+    "fecha": "2026-11-26",
+    "titulo": "Cerrado Por La Unidad",
+    "video": "https://hackpurgatory.org/data/video_37@21-09-2025_23-57-01.mp4",
+    "texto": "El siguiente contenido ha sido removido ya que promovia acciones en contra de nuestra comunidad y en contra de la seguridad legal, La Unidad de nuestra comunidad se ha ocupado de eliminarlo exitosamente, eliminaremos cualquier contenido que pueda poner en riesgo la comunidad.",
+    "link": "t.me/chavistaschat",
+    "categoria": "Censuras"
+  },
+  {
     "id": 227,
     "pais": "Colombia",
     "ciudad": "Tiribita, Cundinamarca",
