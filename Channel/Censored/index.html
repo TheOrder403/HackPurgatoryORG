@@ -1,633 +1,1195 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Censored</title>
-    <meta name="description" content="𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ | Mapa mundial de sitios eliminados o censurados por nuestra comunidad con el objetivo de crear un internet mas limpio y agradable.">
-    <link rel="icon" type="image/png" href="/data/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/data/favicon.svg" />
-    <link rel="shortcut icon" href="/data/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/data/apple-touch-icon.png" />
-    <link rel="manifest" href="/data/site.webmanifest" />
-    <style>
-        .ticker-wrapper {
-            background-color: #000;
-            color: #fff;
-            overflow: hidden;
-            white-space: nowrap;
-            border-top: 2px solid #00ffcc;
-            border-bottom: 2px solid #00ffcc;
-            padding: 8px 0;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 0 15px rgba(0,255,204,0.3);
-        }
-        .ticker-wrapper::before,
-        .ticker-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 30px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .ticker-wrapper::before { left: 0; background: linear-gradient(to right, #000, transparent); }
-        .ticker-wrapper::after { right: 0; background: linear-gradient(to left, #000, transparent); }
-        .ticker {
-            display: inline-block;
-            animation: tickerMove 15s linear infinite;
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: #fff;
-            padding-left: 100%;
-        }
-        .ticker span {
-            display: inline-block;
-            padding-right: 30px;
-            color: #00ffcc;
-            text-shadow: 0 0 8px rgba(0,255,204,0.8);
-        }
-        @keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+<!DOCTYPE html> <html lang="es"> <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">     <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Censored</title>     <meta name="description" content="𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ | Mapa mundial de sitios eliminados o censurados por nuestra comunidad con el objetivo de crear un internet mas limpio y agradable.">     <link rel="icon" type="image/png" href="/data/favicon-96x96.png" sizes="96x96" />     <link rel="icon" type="image/svg+xml" href="/data/favicon.svg" />     <link rel="shortcut icon" href="/data/favicon.ico" />     <link rel="apple-touch-icon" sizes="180x180" href="/data/apple-touch-icon.png" />     <link rel="manifest" href="/data/site.webmanifest" />     <style>         .ticker-wrapper {             background-color: #000;             color: #fff;             overflow: hidden;             white-space: nowrap;             border-top: 2px solid #00ffcc;             border-bottom: 2px solid #00ffcc;             padding: 8px 0;             width: 100%;             position: relative;             box-shadow: 0 0 15px rgba(0,255,204,0.3);         }         .ticker-wrapper::before,         .ticker-wrapper::after {             content: "";             position: absolute;             top: 0;             width: 30px;             height: 100%;             z-index: 2;             pointer-events: none;         }         .ticker-wrapper::before { left: 0; background: linear-gradient(to right, #000, transparent); }         .ticker-wrapper::after { right: 0; background: linear-gradient(to left, #000, transparent); }         .ticker {             display: inline-block;             animation: tickerMove 15s linear infinite;             font-weight: bold;             font-size: 0.9rem;             color: #fff;             padding-left: 100%;         }         .ticker span {             display: inline-block;             padding-right: 30px;             color: #00ffcc;             text-shadow: 0 0 8px rgba(0,255,204,0.8);         }         @keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }          * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }         html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }         body { display: flex; flex-direction: column; position: relative; }          #particles-canvas {             position: fixed;             top: 0;             left: 0;             width: 100%;             height: 100%;             z-index: 0;             pointer-events: none;             background: transparent;         }          header, nav, main, footer {             position: relative;             z-index: 1;         }          header {             background-color: rgba(0,0,0,0.5); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.8rem;             flex-wrap: wrap; border-bottom: 2px solid #fff; justify-content: center; position: relative; width: 100%;         }         header img { max-width: 50px; height: auto; }         .header-text { flex: 1; min-width: 200px; text-align: center; }         header h1 { font-size: 1.3rem; margin-bottom: 0.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); line-height: 1.3; word-break: break-word; }         .typing-cursor { display: inline-block; color: #ff3333; animation: blink 1s infinite; }         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }         header p { font-size: 0.8rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }          nav { background-color: rgba(0,0,0,0.5); position: relative; width: 100%; }         main { padding: 1rem; max-width: 1200px; width: 100%; margin: 1rem auto; background-color: rgba(0,0,0,0.65); border-radius: 12px; text-align: center; flex: 1 0 auto; }          .map-section {             margin-bottom: 1.5rem; padding: 1rem;             background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);             border: 1px solid #ff3333; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,51,51,0.2);         }          #world-map {             width: 100%; height: 400px; min-height: 400px;             border-radius: 12px; border: 2px solid #ff3333;             box-shadow: 0 0 20px rgba(255,51,51,0.3);             background: #0d0d0d;             display: flex; align-items: center; justify-content: center;         }         #world-map canvas { border-radius: 10px; }          .censor-viewer {             padding: 1rem; background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);             border: 1px solid #ff3333; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,51,51,0.2);         }         .viewer-header { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }         .censor-info {             font-size: 0.9rem; color: #ff9999; text-align: center; background: rgba(255,51,51,0.1);             padding: 0.6rem; border-radius: 50px; border: 1px solid #ff3333; word-break: break-word;         }         .censor-nav { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }         .nav-btn {             background: linear-gradient(135deg, #1a0000 0%, #330000 100%); border: 2px solid #ff3333; color: #fff;             padding: 0.6rem 1rem; border-radius: 50px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s;             display: flex; align-items: center; gap: 0.3rem; justify-content: center;         }         .nav-btn:hover { background: #ff3333; color: #000; }         .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }          .categoria-dropdown {             display: none; position: absolute; top: 100%; right: 0; background: #1a0000; border: 2px solid #ff3333;             border-radius: 10px; padding: 0.5rem; min-width: 180px; z-index: 100; max-height: 300px; overflow-y: auto; margin-top: 5px;         }         .categoria-dropdown.show { display: block; }         .categoria-dropdown::-webkit-scrollbar { width: 3px; }         .categoria-dropdown::-webkit-scrollbar-track { background: rgba(255,51,51,0.1); }         .categoria-dropdown::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 3px; }         .categoria-item {             display: block; width: 100%; text-align: left; padding: 0.5rem 1rem; background: transparent; border: none;             color: #fff; cursor: pointer; border-radius: 5px; font-size: 0.85rem; transition: all 0.2s;         }         .categoria-item:hover { background: #ff3333; color: #000; }         .categoria-item.active { background: #ff3333; color: #000; }         .categoria-btn-wrapper { position: relative; display: inline-block; }          .censor-content { min-height: 250px; transition: opacity 0.3s; }         .censor-content.fade-out { opacity: 0; }         .censor-content.fade-in { opacity: 1; }         .censor-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }         .censor-card { padding: 0.8rem; background: rgba(0,0,0,0.5); border-radius: 10px; text-align: center; }         .censor-title { font-size: 1.1rem; color: #ff3333; margin-bottom: 0.8rem; line-height: 1.4; word-break: break-word; text-align: center; }         .censor-location {             display: inline-block; background: #ff3333; color: #000; padding: 0.2rem 0.8rem; border-radius: 50px;             font-weight: bold; margin-bottom: 0.8rem; font-size: 0.8rem; word-break: break-word;         }         .censor-video { max-width: 100%; width: 100%; max-height: 200px; border-radius: 6px; margin: 0.5rem auto; border: 2px solid #ff3333; object-fit: contain; background: #000; display: block; }         .censor-text {             font-size: 0.9rem; color: #ddd; line-height: 1.5; margin-bottom: 0.8rem; text-align: center;             word-break: break-word; max-height: 150px; overflow-y: auto; padding-right: 5px;         }         .censor-text::-webkit-scrollbar { width: 3px; }         .censor-text::-webkit-scrollbar-track { background: rgba(255,51,51,0.1); }         .censor-text::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 3px; }         .censor-link-container { background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 0.5rem; margin: 0.5rem 0; word-break: break-all; text-align: center; }         .censor-link { color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-all; line-height: 1.4; font-size: 0.8rem; }         .censor-link:hover { color: #fff; text-decoration: underline; }         .censor-category { color: #ff9999; font-weight: bold; font-size: 0.8rem; border-top: 1px solid #ff3333; padding-top: 0.8rem; margin-top: 0.8rem; word-break: break-word; text-align: center; }         .censor-links-container { display: flex; flex-direction: column; gap: 8px; margin: 0.5rem 0; align-items: center; }         .censor-link-item { background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 0.5rem; word-break: break-all; width: 100%; text-align: center; }         .censor-link-item:hover { background: rgba(255,51,51,0.2); }         .sin-resultados { color: #ff9999; padding: 2rem; font-size: 1.2rem; text-align: center; }         footer { text-align: center; padding: 1rem; border-top: 1px solid #fff; color: #ccc; font-size: 0.8rem; width: 100%; margin-top: auto; }          @media (min-width: 768px) { .censor-grid { grid-template-columns: 1fr 1fr; } .categoria-dropdown { right: 0; left: auto; } }         @media (max-width: 767px) { .censor-grid { grid-template-columns: 1fr; } .categoria-dropdown { right: 0; left: auto; min-width: 150px; } }         @media (min-width: 480px) {             header h1 { font-size: 1.5rem; } header img { max-width: 60px; } .censor-info { font-size: 1rem; }             .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; } .censor-nav { justify-content: flex-end; }         }         @media (min-width: 768px) {             header { padding: 1rem 2rem; justify-content: space-between; } header h1 { font-size: 2rem; } header p { font-size: 1rem; }             .map-section { padding: 1.5rem; } #world-map { height: 400px; } .censor-title { font-size: 1.5rem; } .censor-text { font-size: 1rem; max-height: 200px; }         }         @media (max-width: 360px) {             header h1 { font-size: 1.1rem; } header img { max-width: 40px; } .censor-info { font-size: 0.8rem; padding: 0.4rem; }             .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; } .censor-title { font-size: 1rem; } .censor-text { font-size: 0.8rem; max-height: 120px; }             .censor-link { font-size: 0.7rem; } #world-map { height: 200px; }         }          .floating-notification {             position: fixed;             bottom: 20px;             right: 20px;             background: linear-gradient(135deg, #1a0000 0%, #330000 100%);             border: 2px solid #ff3333;             border-radius: 50px;             padding: 12px 22px 12px 18px;             display: flex;             align-items: center;             gap: 10px;             z-index: 10000;             box-shadow: 0 5px 20px rgba(255,51,51,0.4), 0 0 0 3px rgba(255,51,51,0.15);             text-decoration: none;             color: #fff;             font-weight: 700;             font-size: 1rem;             letter-spacing: 0.5px;             transition: all 0.3s;             animation: fadeIn 0.5s ease;         }         .floating-notification:hover {             background: linear-gradient(135deg, #ff3333 0%, #aa0000 100%);             color: #000;             transform: translateY(-3px) scale(1.03);             box-shadow: 0 10px 30px rgba(255,51,51,0.7);         }         .floating-notification svg {             width: 22px;             height: 22px;             fill: #ff3333;             flex-shrink: 0;             transition: fill 0.3s;         }         .floating-notification:hover svg { fill: #000; }         .floating-notification .label { text-shadow: 0 0 10px rgba(255,51,51,0.5); }         .floating-notification:hover .label { text-shadow: none; }         @keyframes fadeIn {             from { opacity: 0; transform: translateY(20px); }             to { opacity: 1; transform: translateY(0); }         }         @media (max-width: 768px) {             .floating-notification {                 bottom: 12px; right: 12px; padding: 10px 16px 10px 13px;                 font-size: 0.85rem; gap: 7px;             }             .floating-notification svg { width: 18px; height: 18px; }         }     
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        html, body { width: 100%; min-height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; background: #000; }
-        body { display: flex; flex-direction: column; position: relative; }
+:root {
+  color-scheme: dark;
+  --hp-red: #ff343d;
+  --hp-red-hot: #ff5159;
+  --hp-red-muted: #ff858a;
+  --hp-bg: #070809;
+  --hp-panel: #101216;
+  --hp-line: rgba(255, 67, 75, .25);
+}
+html, body { background: #070809 !important; color: #f4f5f7; }
+body {
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(130, 8, 16, .24), transparent 48%),
+    linear-gradient(180deg, #090a0c, #060708 75%) !important;
+}
+#particles-canvas { opacity: .5; }
+header {
+  min-height: 98px !important; padding: 16px clamp(18px, 4vw, 58px) !important;
+  justify-content: flex-start !important; gap: 17px !important;
+  background: rgba(7,8,10,.95) !important;
+  border-bottom: 1px solid rgba(255,60,68,.38) !important;
+  box-shadow: 0 12px 35px rgba(0,0,0,.34);
+}
+header img {
+  width: 60px !important; height: 60px !important; max-width: 60px !important;
+  object-fit: contain; padding: 5px; border: 1px solid rgba(255,65,73,.42);
+  border-radius: 13px; background: #10090a; box-shadow: 0 0 24px rgba(255,35,45,.13);
+}
+.header-text { flex: 0 1 auto !important; min-width: 0 !important; text-align: left !important; }
+header h1 { margin: 0 0 3px !important; font-size: clamp(1.1rem,2.5vw,1.65rem) !important; letter-spacing: .035em; }
+header p { color: #aeb0b7 !important; font-size: .72rem !important; letter-spacing: .16em; text-transform: uppercase; }
+.typing-cursor { color: var(--hp-red) !important; }
+nav { background: #08090b !important; }
+.ticker-wrapper {
+  border-top: 1px solid rgba(255,60,68,.42) !important;
+  border-bottom: 1px solid rgba(255,60,68,.42) !important;
+  background: linear-gradient(90deg,#160708,#09090b 45%,#160708) !important;
+  box-shadow: 0 7px 22px rgba(0,0,0,.28) !important; padding: 10px 0 !important;
+}
+.ticker span { color: #ff6269 !important; text-shadow: 0 0 9px rgba(255,50,60,.42) !important; }
+.ticker-wrapper::before { background: linear-gradient(to right,#100708,transparent) !important; }
+.ticker-wrapper::after { background: linear-gradient(to left,#100708,transparent) !important; }
 
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: transparent;
-        }
+main {
+  width: min(100% - 44px, 1380px) !important; max-width: 1380px !important;
+  margin: 34px auto 54px !important; padding: clamp(18px,3vw,34px) !important;
+  display: flex; flex-direction: column; gap: 20px;
+  text-align: left !important; border: 1px solid rgba(255,65,73,.2) !important;
+  border-radius: 19px !important;
+  background: linear-gradient(155deg,rgba(17,18,22,.97),rgba(8,9,11,.98) 68%) !important;
+  box-shadow: 0 24px 75px rgba(0,0,0,.48),0 0 38px rgba(130,0,10,.06) !important;
+}
+.map-section {
+  margin: 0 !important; padding: clamp(12px,2vw,20px) !important;
+  border: 1px solid rgba(255,65,73,.32) !important; border-radius: 15px !important;
+  background: linear-gradient(145deg,rgba(35,7,10,.58),rgba(8,9,11,.96) 70%) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.36),0 0 26px rgba(255,35,45,.06) !important;
+  position: relative; overflow: hidden;
+}
+.map-section::before {
+  content: "GLOBAL CENSORSHIP MAP"; display: block; position: relative; z-index: 1;
+  margin: 2px 4px 12px; color: #ff858a; font-size: .68rem; font-weight: 800;
+  letter-spacing: .2em;
+}
+#world-map {
+  height: clamp(330px,48vw,570px) !important; min-height: 0 !important;
+  border: 1px solid rgba(255,65,73,.32) !important; border-radius: 11px !important;
+  background: radial-gradient(ellipse at center,#16090b 0%,#09090c 67%,#060708 100%) !important;
+  box-shadow: inset 0 0 55px rgba(255,25,35,.08),0 8px 26px rgba(0,0,0,.4) !important;
+  overflow: hidden;
+}
+#world-map canvas { width: 100% !important; height: 100% !important; border-radius: 10px; }
 
-        header, nav, main, footer {
-            position: relative;
-            z-index: 1;
-        }
+.censor-stats {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px;
+}
+.censor-stat {
+  min-width: 0; display: flex; flex-direction: column; gap: 3px;
+  padding: 16px 19px; border: 1px solid rgba(255,65,73,.24); border-radius: 11px;
+  background: linear-gradient(145deg,rgba(27,13,15,.95),rgba(12,13,16,.98));
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+.stat-label { color: #ff858a; font-size: .64rem; font-weight: 800; letter-spacing: .17em; }
+.censor-stat strong { color: #fff; font-size: clamp(1.5rem,3vw,2.1rem); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.stat-note { color: #8f929a; font-size: .72rem; }
 
-        header {
-            background-color: rgba(0,0,0,0.5); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.8rem;
-            flex-wrap: wrap; border-bottom: 2px solid #fff; justify-content: center; position: relative; width: 100%;
-        }
-        header img { max-width: 50px; height: auto; }
-        .header-text { flex: 1; min-width: 200px; text-align: center; }
-        header h1 { font-size: 1.3rem; margin-bottom: 0.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); line-height: 1.3; word-break: break-word; }
-        .typing-cursor { display: inline-block; color: #ff3333; animation: blink 1s infinite; }
-        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-        header p { font-size: 0.8rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+.censor-viewer {
+  padding: clamp(15px,2.5vw,25px) !important;
+  border: 1px solid rgba(255,65,73,.28) !important; border-radius: 14px !important;
+  background: linear-gradient(155deg,rgba(20,14,16,.97),rgba(9,10,12,.98) 72%) !important;
+  box-shadow: 0 13px 36px rgba(0,0,0,.34) !important;
+}
+.viewer-header {
+  display: flex !important; flex-direction: row !important; justify-content: space-between !important;
+  align-items: center !important; flex-wrap: wrap; gap: 13px !important;
+  padding-bottom: 17px; margin-bottom: 18px !important;
+  border-bottom: 1px solid rgba(255,65,73,.2);
+}
+.censor-info {
+  border: 1px solid rgba(255,65,73,.32) !important; border-radius: 7px !important;
+  background: rgba(255,45,55,.08) !important; color: #ff9a9e !important;
+  padding: 9px 13px !important; font-size: .8rem !important; text-align: left !important;
+}
+.censor-nav { justify-content: flex-end !important; gap: 8px !important; }
+.nav-btn {
+  padding: 9px 14px !important; border: 1px solid rgba(255,70,78,.48) !important;
+  border-radius: 7px !important; background: linear-gradient(135deg,#24090c,#13090b) !important;
+  color: #f5f5f6 !important; font-size: .76rem !important; font-weight: 700;
+}
+.nav-btn:hover { background: var(--hp-red) !important; border-color: var(--hp-red) !important; color: #080808 !important; }
+.nav-btn:disabled { opacity: .28 !important; }
+.categoria-dropdown {
+  background: #111216 !important; border: 1px solid rgba(255,70,78,.55) !important;
+  border-radius: 9px !important; box-shadow: 0 15px 40px rgba(0,0,0,.6);
+}
+.categoria-item { color: #ddd !important; border-radius: 5px !important; }
+.categoria-item:hover,.categoria-item.active { background: #b91f29 !important; color: #fff !important; }
 
-        nav { background-color: rgba(0,0,0,0.5); position: relative; width: 100%; }
-        main { padding: 1rem; max-width: 1200px; width: 100%; margin: 1rem auto; background-color: rgba(0,0,0,0.65); border-radius: 12px; text-align: center; flex: 1 0 auto; }
+.censor-content { min-height: 0 !important; }
+.censor-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 16px !important; }
+.censor-card {
+  min-width: 0; padding: 18px !important; text-align: left !important;
+  border: 1px solid rgba(255,65,73,.22); border-radius: 11px !important;
+  background: linear-gradient(155deg,#171114,#0b0c0f 78%) !important;
+  box-shadow: 0 9px 27px rgba(0,0,0,.3);
+}
+.censor-title {
+  color: #fff !important; text-align: left !important; font-size: 1.08rem !important;
+  font-weight: 800; line-height: 1.3 !important; margin-bottom: 10px !important;
+}
+.censor-location {
+  display: inline-flex !important; align-items: center; width: fit-content;
+  margin: 0 0 12px !important; padding: 5px 10px !important;
+  border: 1px solid rgba(255,75,82,.45); border-radius: 5px !important;
+  background: rgba(255,45,55,.12) !important; color: #ff858b !important;
+  font-size: .68rem !important;
+}
+.censor-video {
+  max-height: 230px !important; aspect-ratio: 16/9; object-fit: contain !important;
+  margin: 0 auto 13px !important; border: 1px solid rgba(255,65,73,.38) !important;
+  border-radius: 8px !important; background: #030304 !important;
+}
+.censor-text {
+  max-height: none !important; overflow: visible !important; padding: 0 !important;
+  color: #bfc1c7 !important; text-align: left !important; font-size: .85rem !important;
+  line-height: 1.7 !important;
+}
+.censor-links-container { align-items: stretch !important; }
+.censor-link-item {
+  border: 1px solid rgba(255,65,73,.24) !important; border-radius: 6px !important;
+  background: rgba(255,45,55,.065) !important; text-align: left !important;
+}
+.censor-link { color: #ff747c !important; font-size: .76rem !important; }
+.censor-link:hover { color: #fff !important; }
+.censor-category {
+  border-top: 1px solid rgba(255,65,73,.22) !important; color: #ff8b90 !important;
+  text-align: left !important; font-size: .7rem !important;
+}
+.sin-resultados {
+  padding: 30px !important; border: 1px dashed rgba(255,70,78,.35); border-radius: 10px;
+  color: #ff9a9e !important; background: rgba(255,40,50,.04);
+}
+.floating-notification {
+  right: 22px !important; bottom: 22px !important; padding: 11px 17px !important;
+  border: 1px solid rgba(255,90,96,.7) !important; border-radius: 8px !important;
+  background: linear-gradient(135deg,#a91e28,#5b0c13) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45),0 0 22px rgba(255,35,45,.2) !important;
+}
+.floating-notification svg { fill: #fff !important; }
+.floating-notification .label { text-shadow: none !important; }
+footer {
+  border-top: 1px solid rgba(255,65,73,.26) !important;
+  background: rgba(7,8,10,.92); color: #8f929a !important; padding: 21px 15px !important;
+}
+@media (max-width: 767px) {
+  main { width: calc(100% - 20px) !important; margin: 17px auto 30px !important; padding: 12px !important; gap: 13px !important; }
+  header { min-height: 80px !important; padding: 11px 15px !important; gap: 11px !important; }
+  header img { width: 48px !important; height: 48px !important; max-width: 48px !important; }
+  header p { font-size: .62rem !important; }
+  #world-map { height: clamp(245px,72vw,390px) !important; }
+  .censor-stats { gap: 7px !important; }
+  .censor-stat { padding: 11px 10px !important; border-radius: 8px !important; }
+  .stat-label { font-size: .55rem !important; letter-spacing: .1em !important; }
+  .stat-note { font-size: .61rem !important; }
+  .censor-stat strong { font-size: 1.45rem !important; }
+  .viewer-header { flex-direction: column !important; align-items: stretch !important; }
+  .censor-info { text-align: center !important; }
+  .censor-nav { display: grid !important; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .nav-btn { padding: 9px 6px !important; font-size: .68rem !important; }
+  .censor-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .censor-card { padding: 14px !important; }
+  .censor-title { font-size: 1rem !important; }
+  .censor-video { max-height: 210px !important; }
+  .censor-text { font-size: .81rem !important; }
+  .floating-notification { right: 12px !important; bottom: 12px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
 
-        .map-section {
-            margin-bottom: 1.5rem; padding: 1rem;
-            background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
-            border: 1px solid #ff3333; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,51,51,0.2);
-        }
 
-        #world-map {
-            width: 100%; height: 400px; min-height: 400px;
-            border-radius: 12px; border: 2px solid #ff3333;
-            box-shadow: 0 0 20px rgba(255,51,51,0.3);
-            background: #0d0d0d;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #world-map canvas { border-radius: 10px; }
 
-        .censor-viewer {
-            padding: 1rem; background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
-            border: 1px solid #ff3333; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,51,51,0.2);
-        }
-        .viewer-header { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
-        .censor-info {
-            font-size: 0.9rem; color: #ff9999; text-align: center; background: rgba(255,51,51,0.1);
-            padding: 0.6rem; border-radius: 50px; border: 1px solid #ff3333; word-break: break-word;
-        }
-        .censor-nav { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
-        .nav-btn {
-            background: linear-gradient(135deg, #1a0000 0%, #330000 100%); border: 2px solid #ff3333; color: #fff;
-            padding: 0.6rem 1rem; border-radius: 50px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s;
-            display: flex; align-items: center; gap: 0.3rem; justify-content: center;
-        }
-        .nav-btn:hover { background: #ff3333; color: #000; }
-        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+.censor-zone {
+  width:100%; margin:10px 0 15px; overflow:hidden; border:1px solid rgba(255,65,73,.48);
+  border-radius:10px; background:#08090b;
+  box-shadow:inset 0 0 28px rgba(255,30,40,.08),0 8px 24px rgba(0,0,0,.34);
+}
+.zone-topline,.zone-bottomline {
+  display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 12px;
+  color:#ff858a; font:700 .61rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.11em; text-transform:uppercase; background:#100b0d;
+}
+.zone-topline { border-bottom:1px solid rgba(255,65,73,.23); }
+.zone-bottomline { border-top:1px solid rgba(255,65,73,.23); color:#aeb0b7; letter-spacing:.055em; }
+.zone-visual {
+  height:clamp(235px,29vw,340px); position:relative; overflow:hidden; display:grid; place-items:center; isolation:isolate;
+  background:radial-gradient(ellipse at 50% 48%,rgba(142,18,27,.22),transparent 53%),linear-gradient(135deg,#151012,#08090b 55%,#16090c);
+}
+.zone-grid {
+  position:absolute; inset:-30%; opacity:.34;
+  background-image:linear-gradient(rgba(255,66,74,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,66,74,.18) 1px,transparent 1px);
+  background-size:28px 28px; transform:perspective(440px) rotateX(13deg) scale(1.1);
+  mask-image:radial-gradient(ellipse,black 18%,transparent 74%);
+}
+.zone-crosshair {
+  position:absolute; width:min(58%,290px); aspect-ratio:1; border:1px solid rgba(255,75,82,.35);
+  border-radius:50%; box-shadow:0 0 0 23px rgba(255,55,65,.035),0 0 0 52px rgba(255,55,65,.025);
+}
+.zone-crosshair::before,.zone-crosshair::after { content:""; position:absolute; background:rgba(255,75,82,.3); }
+.zone-crosshair::before { width:140%; height:1px; left:-20%; top:50%; }
+.zone-crosshair::after { height:140%; width:1px; top:-20%; left:50%; }
+.zone-crosshair i,.zone-crosshair b {
+  position:absolute; display:block; width:9px; height:9px; border:1px solid #ff4b54;
+  background:#18090b; border-radius:50%; z-index:2;
+}
+.zone-crosshair i { top:22%; left:27%; } .zone-crosshair b { bottom:25%; right:20%; }
+.zone-redaction {
+  position:relative; z-index:3; width:min(72%,420px); padding:22px 16px; display:flex;
+  flex-direction:column; align-items:center; gap:7px; text-align:center;
+  border:1px solid rgba(255,83,90,.75); background:rgba(7,7,9,.91);
+  box-shadow:0 0 34px rgba(255,35,45,.17),0 0 0 5px rgba(255,45,55,.06);
+}
+.zone-redaction span { color:#ff8b90; font:800 .65rem/1.2 ui-monospace,monospace; letter-spacing:.2em; }
+.zone-redaction strong { color:#ff414b; font-size:clamp(1.4rem,4vw,2.4rem); letter-spacing:.12em; line-height:1.1; }
+.zone-redaction small { color:#8c8e96; font:700 .58rem/1.2 ui-monospace,monospace; letter-spacing:.18em; }
+.zone-coordinate {
+  position:absolute; bottom:12px; left:13px; z-index:4; color:#ff9a9e;
+  font:600 .62rem/1.3 ui-monospace,monospace; letter-spacing:.06em;
+  padding:5px 7px; border:1px solid rgba(255,65,73,.25); background:rgba(5,5,7,.75);
+}
+.zone-corner { position:absolute; z-index:4; width:17px; height:17px; border-color:#ff535b; border-style:solid; opacity:.8; }
+.zone-corner-a { top:12px; left:12px; border-width:1px 0 0 1px; }
+.zone-corner-b { right:12px; bottom:12px; border-width:0 1px 1px 0; }
+@media(max-width:767px) {
+  .zone-visual { height:235px; }
+  .zone-topline,.zone-bottomline { font-size:.53rem; padding:8px; }
+  .zone-coordinate { font-size:.54rem; bottom:8px; left:8px; }
+  .zone-redaction { width:78%; padding:17px 10px; }
+}
 
-        .categoria-dropdown {
-            display: none; position: absolute; top: 100%; right: 0; background: #1a0000; border: 2px solid #ff3333;
-            border-radius: 10px; padding: 0.5rem; min-width: 180px; z-index: 100; max-height: 300px; overflow-y: auto; margin-top: 5px;
-        }
-        .categoria-dropdown.show { display: block; }
-        .categoria-dropdown::-webkit-scrollbar { width: 3px; }
-        .categoria-dropdown::-webkit-scrollbar-track { background: rgba(255,51,51,0.1); }
-        .categoria-dropdown::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 3px; }
-        .categoria-item {
-            display: block; width: 100%; text-align: left; padding: 0.5rem 1rem; background: transparent; border: none;
-            color: #fff; cursor: pointer; border-radius: 5px; font-size: 0.85rem; transition: all 0.2s;
-        }
-        .categoria-item:hover { background: #ff3333; color: #000; }
-        .categoria-item.active { background: #ff3333; color: #000; }
-        .categoria-btn-wrapper { position: relative; display: inline-block; }
 
-        .censor-content { min-height: 250px; transition: opacity 0.3s; }
-        .censor-content.fade-out { opacity: 0; }
-        .censor-content.fade-in { opacity: 1; }
-        .censor-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .censor-card { padding: 0.8rem; background: rgba(0,0,0,0.5); border-radius: 10px; text-align: center; }
-        .censor-title { font-size: 1.1rem; color: #ff3333; margin-bottom: 0.8rem; line-height: 1.4; word-break: break-word; text-align: center; }
-        .censor-location {
-            display: inline-block; background: #ff3333; color: #000; padding: 0.2rem 0.8rem; border-radius: 50px;
-            font-weight: bold; margin-bottom: 0.8rem; font-size: 0.8rem; word-break: break-word;
-        }
-        .censor-video { max-width: 100%; width: 100%; max-height: 200px; border-radius: 6px; margin: 0.5rem auto; border: 2px solid #ff3333; object-fit: contain; background: #000; display: block; }
-        .censor-text {
-            font-size: 0.9rem; color: #ddd; line-height: 1.5; margin-bottom: 0.8rem; text-align: center;
-            word-break: break-word; max-height: 150px; overflow-y: auto; padding-right: 5px;
-        }
-        .censor-text::-webkit-scrollbar { width: 3px; }
-        .censor-text::-webkit-scrollbar-track { background: rgba(255,51,51,0.1); }
-        .censor-text::-webkit-scrollbar-thumb { background: #ff3333; border-radius: 3px; }
-        .censor-link-container { background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 0.5rem; margin: 0.5rem 0; word-break: break-all; text-align: center; }
-        .censor-link { color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-all; line-height: 1.4; font-size: 0.8rem; }
-        .censor-link:hover { color: #fff; text-decoration: underline; }
-        .censor-category { color: #ff9999; font-weight: bold; font-size: 0.8rem; border-top: 1px solid #ff3333; padding-top: 0.8rem; margin-top: 0.8rem; word-break: break-word; text-align: center; }
-        .censor-links-container { display: flex; flex-direction: column; gap: 8px; margin: 0.5rem 0; align-items: center; }
-        .censor-link-item { background: rgba(255,51,51,0.1); border: 1px solid #ff3333; border-radius: 8px; padding: 0.5rem; word-break: break-all; width: 100%; text-align: center; }
-        .censor-link-item:hover { background: rgba(255,51,51,0.2); }
-        .sin-resultados { color: #ff9999; padding: 2rem; font-size: 1.2rem; text-align: center; }
-        footer { text-align: center; padding: 1rem; border-top: 1px solid #fff; color: #ccc; font-size: 0.8rem; width: 100%; margin-top: auto; }
 
-        @media (min-width: 768px) { .censor-grid { grid-template-columns: 1fr 1fr; } .categoria-dropdown { right: 0; left: auto; } }
-        @media (max-width: 767px) { .censor-grid { grid-template-columns: 1fr; } .categoria-dropdown { right: 0; left: auto; min-width: 150px; } }
-        @media (min-width: 480px) {
-            header h1 { font-size: 1.5rem; } header img { max-width: 60px; } .censor-info { font-size: 1rem; }
-            .viewer-header { flex-direction: row; justify-content: space-between; align-items: center; } .censor-nav { justify-content: flex-end; }
-        }
-        @media (min-width: 768px) {
-            header { padding: 1rem 2rem; justify-content: space-between; } header h1 { font-size: 2rem; } header p { font-size: 1rem; }
-            .map-section { padding: 1.5rem; } #world-map { height: 400px; } .censor-title { font-size: 1.5rem; } .censor-text { font-size: 1rem; max-height: 200px; }
-        }
-        @media (max-width: 360px) {
-            header h1 { font-size: 1.1rem; } header img { max-width: 40px; } .censor-info { font-size: 0.8rem; padding: 0.4rem; }
-            .nav-btn { padding: 0.4rem 0.6rem; font-size: 0.7rem; } .censor-title { font-size: 1rem; } .censor-text { font-size: 0.8rem; max-height: 120px; }
-            .censor-link { font-size: 0.7rem; } #world-map { height: 200px; }
-        }
+.censor-zone{height:280px;position:relative;overflow:hidden;background:#171313;border:1px solid rgba(255,55,55,.55);border-radius:8px}
+.censor-zone .zone-map-img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.72) contrast(1.15) saturate(.65) sepia(.12);}
+.censor-zone .zone-topline,.censor-zone .zone-bottomline{position:absolute;left:0;right:0;z-index:3;display:flex;justify-content:space-between;gap:10px;padding:9px 12px;background:rgba(10,8,8,.84);color:#ff5555;font:10px/1.3 monospace;letter-spacing:1px}
+.censor-zone .zone-topline{top:0;border-bottom:1px solid rgba(255,55,55,.45)}
+.censor-zone .zone-bottomline{bottom:0;border-top:1px solid rgba(255,55,55,.45);color:#eee}
+.censor-zone .zone-map-error{height:100%;padding:38px 18px 34px;background:radial-gradient(ellipse at center,rgba(100,0,0,.4),#171313 72%);}
+.censor-zone .zone-visual{height:100%;min-height:180px;display:grid;place-items:center;position:relative;border:1px solid rgba(255,55,55,.22);background-image:linear-gradient(rgba(255,50,50,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,50,50,.08) 1px,transparent 1px);background-size:28px 28px}
+.censor-zone .zone-redaction{display:grid;gap:8px;text-align:center;color:#ff5555;font-family:monospace;letter-spacing:2px}
+.censor-zone .zone-redaction strong{font-size:22px;color:#fff}
+.censor-zone .zone-redaction small{color:#aaa}
+@media(max-width:600px){.censor-zone{height:245px}}
 
-        .floating-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
-            border: 2px solid #ff3333;
-            border-radius: 50px;
-            padding: 12px 22px 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 10000;
-            box-shadow: 0 5px 20px rgba(255,51,51,0.4), 0 0 0 3px rgba(255,51,51,0.15);
-            text-decoration: none;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            animation: fadeIn 0.5s ease;
-        }
-        .floating-notification:hover {
-            background: linear-gradient(135deg, #ff3333 0%, #aa0000 100%);
-            color: #000;
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 30px rgba(255,51,51,0.7);
-        }
-        .floating-notification svg {
-            width: 22px;
-            height: 22px;
-            fill: #ff3333;
-            flex-shrink: 0;
-            transition: fill 0.3s;
-        }
-        .floating-notification:hover svg { fill: #000; }
-        .floating-notification .label { text-shadow: 0 0 10px rgba(255,51,51,0.5); }
-        .floating-notification:hover .label { text-shadow: none; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 768px) {
-            .floating-notification {
-                bottom: 12px; right: 12px; padding: 10px 16px 10px 13px;
-                font-size: 0.85rem; gap: 7px;
-            }
-            .floating-notification svg { width: 18px; height: 18px; }
-        }
-    </style>
-</head>
-<body>
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+.censor-zone .zone-map-leaflet{position:absolute;inset:38px 18px 34px;z-index:1;background:#171313;min-height:190px}
+.censor-zone .zone-map-leaflet .leaflet-tile{filter:brightness(.78) contrast(1.18) sepia(.16) hue-rotate(315deg) saturate(1.35)}
+.censor-zone .zone-map-leaflet .leaflet-control-attribution{display:none}
+.censor-zone .zone-map-leaflet:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:400;background:linear-gradient(rgba(255,35,45,.06),rgba(80,0,0,.12));box-shadow:inset 0 0 55px rgba(100,0,0,.28)}
+.censor-zone .zone-map-error{position:absolute;inset:38px 18px 34px;z-index:1;display:grid;place-items:center;background:#171313}
+</style> 
+<style>
 
-<canvas id="particles-canvas"></canvas>
+.censor-tools,.censor-timeline{width:min(1120px,94%);margin:22px auto;padding:22px;background:linear-gradient(145deg,rgba(22,13,14,.96),rgba(8,8,10,.98));border:1px solid rgba(255,55,65,.34);border-radius:13px;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+.tools-heading h2,.timeline-heading h2{margin:5px 0 4px;color:#f4eeee;font-size:21px;letter-spacing:.02em}
+.tools-heading p{margin:0 0 17px;color:#aaa;font-size:13px}
+.eyebrow{color:#ff555e;font-size:10px;letter-spacing:.17em;font-weight:800}
+.filter-grid{display:grid;grid-template-columns:minmax(220px,2fr) 1fr 1fr 1.1fr auto;gap:10px;align-items:end}
+.filter-grid label{display:flex;flex-direction:column;gap:6px;min-width:0}
+.filter-grid label>span{font-size:9px;letter-spacing:.13em;color:#ff7279;font-weight:800}
+.filter-grid input,.filter-grid select{width:100%;min-width:0;height:42px;padding:0 11px;border:1px solid #512329;border-radius:6px;background:#100d0f;color:#eee;font:inherit;font-size:12px;outline:none;color-scheme:dark}
+.filter-grid input:focus,.filter-grid select:focus{border-color:#ff4651;box-shadow:0 0 0 2px rgba(255,55,65,.12)}
+.filter-reset{height:42px;padding:0 14px;border:1px solid #733039;border-radius:6px;background:#211013;color:#ff737b;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}
+.filter-reset:hover{background:#35151a}
+.filter-status{margin-top:12px;color:#999;font-size:11px}
+.timeline-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:17px}
+.timeline-caption{font-size:10px;color:#999;letter-spacing:.1em;text-transform:uppercase}
+.timeline-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.timeline-item{position:relative;min-width:0;text-align:left;padding:13px 12px 12px 15px;border:1px solid #382024;border-radius:8px;background:#100d0f;color:#ddd;cursor:pointer;transition:border-color .18s,transform .18s}
+.timeline-item:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;background:#ff424d;border-radius:2px}
+.timeline-item:hover{border-color:#ff4651;transform:translateY(-2px)}
+.timeline-date{display:block;color:#ff737b;font-size:10px;font-weight:800;margin-bottom:7px}
+.timeline-title{display:block;font-size:12px;font-weight:750;line-height:1.35;overflow-wrap:anywhere}
+.timeline-place{display:block;margin-top:6px;color:#999;font-size:10px}
+.timeline-empty{grid-column:1/-1;color:#888;font-size:12px;padding:10px 0}
+@media(max-width:850px){.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-search{grid-column:1/-1}.filter-reset{width:100%}.timeline-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.censor-tools,.censor-timeline{padding:16px}.filter-grid{grid-template-columns:1fr 1fr}.filter-search{grid-column:1/-1}.filter-grid label:first-of-type~label{min-width:0}.timeline-track{grid-template-columns:1fr 1fr}.timeline-item{padding:11px 9px 10px 12px}}
+</style>
 
-<header>
-    <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">
-    <div class="header-text">
-        <h1 id="typing-title"></h1>
-        <p>Censuras Globales</p>
+
+<style>
+.ingestion-panel{width:min(1120px,94%);margin:22px auto 14px;padding:18px 20px 14px;background:linear-gradient(145deg,#100e18,#090910);border:1px solid #302638;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.22);color:#ddd}
+.ingestion-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:13px}
+.ingestion-head .eyebrow{color:#b9a2ca;font-size:10px;letter-spacing:.14em}
+.ingestion-range{margin-top:7px;color:#888396;font-size:11px}
+.ingestion-meta{display:flex;gap:14px;color:#8f8998;font-size:10px;text-align:right}
+.ingestion-chart-wrap{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;align-items:stretch}
+.ingestion-ylabels{height:172px;display:flex;flex-direction:column;justify-content:space-between;text-align:right;color:#777181;font-size:10px;padding:3px 0 9px}
+.ingestion-chart{display:block;width:100%;height:172px;overflow:visible}
+.chart-grid line{stroke:rgba(160,145,175,.13);stroke-dasharray:2 6;stroke-width:1}
+#ingestionLine{filter:drop-shadow(0 0 4px rgba(255,65,78,.25))}
+#ingestionPoints circle{fill:#100e18;stroke:#ff6871;stroke-width:2;cursor:help}
+#ingestionPoints circle:hover{fill:#ff6871;r:5}
+.ingestion-xlabels{display:grid;grid-template-columns:repeat(7,1fr);margin-left:50px;color:#777181;font-size:10px;text-align:center}
+.ingestion-xlabels span{padding-top:6px}
+@media(max-width:600px){.ingestion-panel{padding:15px 12px}.ingestion-meta{flex-direction:column;gap:4px}.ingestion-chart-wrap{grid-template-columns:30px minmax(0,1fr);gap:5px}.ingestion-ylabels{font-size:9px;height:145px}.ingestion-chart{height:145px}.ingestion-xlabels{margin-left:35px;font-size:9px}}
+</style>
+
+
+<style>
+.ingestion-xlabels{grid-template-columns:repeat(12,minmax(0,1fr));}
+.ingestion-xlabels span{font-size:10px;white-space:nowrap;}
+@media(max-width:600px){.ingestion-xlabels span{font-size:8px;letter-spacing:-.03em}.ingestion-panel{overflow:hidden}}
+</style>
+
+
+<style>
+
+@media (min-width: 1000px) {
+  .ingestion-panel {
+    width: min(1320px, calc(100% - 64px));
+    padding: 22px 28px 18px;
+    margin: 26px auto 18px;
+  }
+  .ingestion-head { align-items: center; margin-bottom: 18px; }
+  .ingestion-chart-wrap {
+    grid-template-columns: 48px minmax(0,1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+  .ingestion-chart { width: 100%; height: 220px; }
+  .ingestion-ylabels { height: 220px; padding: 4px 0 10px; }
+  .ingestion-xlabels { margin-left: 60px; gap: 0; }
+  .ingestion-xlabels span { font-size: 11px; text-align: center; }
+  .censor-timeline { width: min(1320px, calc(100% - 64px)); }
+  .timeline-track { grid-template-columns: repeat(6, minmax(0,1fr)); gap: 12px; }
+  .timeline-item { min-height: 112px; padding: 15px 12px 13px 16px; }
+  .timeline-title { font-size: 12px; line-height: 1.4; }
+}
+@media (min-width: 700px) and (max-width: 999px) {
+  .timeline-track { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 699px) {
+  .timeline-track { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+</style>
+
+
+<style>
+
+.ingestion-chart-wrap { min-width:0; }
+.ingestion-chart { min-width:0; width:100%; }
+.ingestion-xlabels { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); }
+.ingestion-xlabels span { min-width:0; text-align:center; }
+@media (min-width:1000px) {
+  .ingestion-chart-wrap { grid-template-columns:48px minmax(0,1fr); }
+  .ingestion-xlabels { margin-left:60px; }
+}
+</style>
+
+
+<style>
+.country-analytics{width:min(1320px,94%);margin:22px auto;padding:22px;background:linear-gradient(145deg,#120e12,#09090b);border:1px solid rgba(255,55,65,.34);border-radius:13px;box-shadow:0 12px 34px rgba(0,0,0,.22);color:#e9e2e3}
+.country-analytics-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:20px}
+.country-analytics-head h2{margin:5px 0 4px;font-size:21px;color:#f4eeee}
+.country-analytics-head p{margin:0;color:#999;font-size:12px}
+.country-data-note{color:#8d8588;font-size:10px;padding-top:4px;white-space:nowrap}
+.country-analytics-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:16px}
+.country-ranking-panel,.country-compare-panel{min-width:0;padding:16px;border:1px solid #352025;border-radius:9px;background:rgba(8,8,10,.62)}
+.country-panel-title{display:flex;justify-content:space-between;gap:12px;color:#ff737b;font-size:9px;letter-spacing:.14em;font-weight:800;margin-bottom:16px}
+.country-panel-title span+span{color:#81777a}
+.country-ranking{display:flex;flex-direction:column;gap:11px}
+.country-rank-row{display:grid;grid-template-columns:minmax(92px,145px) minmax(50px,1fr) 38px;gap:10px;align-items:center}
+.country-rank-name{font-size:11px;color:#d5ccce;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.country-rank-track{height:8px;background:#211619;border-radius:20px;overflow:hidden}
+.country-rank-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#a51f2b,#ff5963);box-shadow:0 0 10px rgba(255,65,78,.18)}
+.country-rank-value{text-align:right;color:#ff838a;font-size:11px;font-variant-numeric:tabular-nums}
+.country-empty{font-size:12px;color:#898184;padding:12px 0}
+.country-selects{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.country-selects label{display:flex;flex-direction:column;gap:6px;min-width:0}
+.country-selects label>span{font-size:9px;letter-spacing:.12em;color:#ff737b;font-weight:800}
+.country-selects select{width:100%;height:40px;padding:0 9px;border:1px solid #512329;border-radius:6px;background:#100d0f;color:#eee;font-size:11px;min-width:0;color-scheme:dark}
+.country-compare-results{margin-top:16px;min-height:112px;padding:13px;border:1px solid #2e2023;border-radius:7px;background:#0c0a0c}
+.country-compare-placeholder{display:grid;place-items:center;min-height:82px;color:#8c8386;font-size:11px;text-align:center}
+.country-compare-values{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}
+.country-compare-side strong{display:block;color:#f2e8e9;font-size:25px;font-variant-numeric:tabular-nums}
+.country-compare-side span{display:block;color:#a99da0;font-size:10px;margin-top:5px;overflow-wrap:anywhere}
+.country-compare-vs{font-size:9px;letter-spacing:.1em;color:#ff737b;font-weight:800}
+.country-compare-delta{margin-top:12px;padding-top:10px;border-top:1px solid #2b1d20;text-align:center;color:#aaa;font-size:10px}
+.country-compare-delta strong{color:#ff737b}
+@media(max-width:850px){.country-analytics-grid{grid-template-columns:1fr}.country-analytics{padding:17px}}
+@media(max-width:520px){.country-analytics-head{flex-direction:column;gap:8px}.country-selects{grid-template-columns:1fr}.country-rank-row{grid-template-columns:minmax(75px,110px) minmax(40px,1fr) 32px;gap:7px}.country-ranking-panel,.country-compare-panel{padding:12px}}
+</style>
+
+
+<style>
+
+*,*::before,*::after{box-sizing:border-box}
+html{width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{width:100%;min-width:320px;overflow-x:hidden}
+img,svg,canvas,video{max-width:100%}
+main{max-width:1500px;width:calc(100% - 40px);padding:clamp(12px,2vw,26px);margin:clamp(12px,2vw,24px) auto}
+.map-section,#world-map,.censor-viewer,.ingestion-panel,.censor-stats,.country-analytics,.censor-tools,.censor-timeline{min-width:0}
+.map-section{padding:clamp(10px,1.8vw,22px);margin-bottom:clamp(14px,2vw,24px)}
+#world-map{height:clamp(270px,42vw,560px);min-height:270px;max-height:560px}
+#world-map canvas{width:100%!important;height:100%!important;display:block}
+.censor-stats{width:min(1320px,100%);margin:18px auto;grid-template-columns:repeat(3,minmax(0,1fr))}
+.ingestion-panel,.country-analytics,.censor-tools,.censor-timeline{width:min(1320px,100%);max-width:100%;margin:18px auto}
+.ingestion-panel{padding:clamp(14px,2vw,24px)}
+.ingestion-chart-wrap{min-width:0;grid-template-columns:42px minmax(0,1fr)}
+.ingestion-chart{display:block;width:100%;min-width:0;height:clamp(155px,20vw,230px)}
+.ingestion-ylabels{height:clamp(155px,20vw,230px)}
+.ingestion-xlabels{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));margin-left:50px}
+.ingestion-xlabels span{min-width:0;text-align:center;white-space:nowrap}
+.country-analytics-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.country-ranking-panel,.country-compare-panel{min-width:0}
+.country-rank-row{grid-template-columns:minmax(80px,145px) minmax(35px,1fr) 36px}
+.censor-viewer{padding:clamp(10px,1.8vw,22px)}
+.viewer-header{display:flex;flex-wrap:wrap;gap:12px;min-width:0}
+.censor-nav{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.censor-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.censor-card{min-width:0;overflow:hidden;text-align:left}
+.censor-title{text-align:left;overflow-wrap:anywhere}
+.censor-text{text-align:left;overflow-wrap:anywhere}
+.censor-zone{min-width:0}
+.censor-zone .zone-map-leaflet{inset:38px 12px 34px}
+.zone-topline,.zone-bottomline{flex-wrap:wrap;font-size:clamp(8px,.65vw,10px)}
+.filter-grid{grid-template-columns:minmax(180px,2fr) minmax(110px,1fr) minmax(110px,1fr) minmax(130px,1.1fr) auto}
+.timeline-track{grid-template-columns:repeat(6,minmax(0,1fr))}
+.timeline-item{min-width:0;overflow:hidden}
+.timeline-title,.timeline-place{overflow-wrap:anywhere}
+footer{padding-left:16px;padding-right:16px}
+
+@media(min-width:1200px){
+  main{width:calc(100% - 64px)}
+  .censor-card{padding:clamp(14px,1.4vw,22px)}
+  .censor-zone .zone-map-leaflet{inset:38px 16px 34px}
+}
+@media(min-width:768px) and (max-width:1100px){
+  main{width:calc(100% - 28px)}
+  .country-analytics-grid{grid-template-columns:1fr}
+  .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filter-search{grid-column:1/-1}
+  .filter-reset{width:100%}
+  .timeline-track{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .censor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .censor-nav{justify-content:flex-start}
+}
+@media(max-width:767px){
+  main{width:100%;padding:10px;margin:8px auto;border-radius:0}
+  header{padding:12px 14px;gap:10px}
+  header img{max-width:46px}
+  .header-text{min-width:0;flex:1}
+  header h1{font-size:clamp(1rem,4.6vw,1.35rem);overflow-wrap:anywhere}
+  header p{font-size:.75rem}
+  #world-map{height:clamp(250px,72vw,390px);min-height:250px}
+  .map-section{padding:9px;border-radius:10px}
+  .censor-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .censor-stat{padding:11px 7px;min-width:0}
+  .censor-stat strong{font-size:clamp(17px,5vw,23px)}
+  .stat-label,.stat-note{font-size:9px}
+  .ingestion-panel,.country-analytics,.censor-tools,.censor-timeline{width:100%;margin:14px auto;padding:14px;border-radius:10px}
+  .ingestion-head{gap:8px;align-items:flex-start}
+  .ingestion-meta{font-size:9px;gap:5px;flex-direction:column}
+  .ingestion-chart-wrap{grid-template-columns:29px minmax(0,1fr);gap:5px}
+  .ingestion-chart,.ingestion-ylabels{height:145px}
+  .ingestion-xlabels{margin-left:34px}
+  .ingestion-xlabels span{font-size:8px;letter-spacing:-.04em}
+  .country-analytics-head{gap:8px;flex-direction:column}
+  .country-analytics-grid{grid-template-columns:1fr;gap:10px}
+  .country-ranking-panel,.country-compare-panel{padding:12px}
+  .country-selects{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .filter-search{grid-column:1/-1}
+  .filter-reset{width:100%;grid-column:1/-1}
+  .timeline-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .timeline-item{padding:11px 9px 10px 12px;min-height:96px}
+  .viewer-header{flex-direction:column;align-items:stretch}
+  .censor-nav{justify-content:flex-start}
+  .censor-nav .nav-btn{flex:1 1 auto;min-width:0;padding:9px 10px;font-size:12px}
+  .censor-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .censor-card{padding:12px}
+  .censor-title,.censor-text{text-align:left}
+  .censor-zone .zone-map-leaflet{inset:36px 8px 32px}
+  .zone-topline,.zone-bottomline{padding:8px;font-size:8px;letter-spacing:.04em}
+  .censor-link{overflow-wrap:anywhere}
+}
+@media(max-width:380px){
+  .censor-stats{gap:5px}
+  .censor-stat{padding:9px 5px}
+  .stat-label,.stat-note{font-size:8px}
+  .country-rank-row{grid-template-columns:minmax(72px,95px) minmax(28px,1fr) 28px;gap:6px}
+  .country-rank-name,.country-rank-value{font-size:10px}
+  .country-selects{grid-template-columns:1fr}
+  .ingestion-xlabels span{font-size:7px}
+  .censor-nav .nav-btn{font-size:11px;padding:8px 7px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+
+
+<style>
+
+:root{--hp-red:#ff424c;--hp-red-soft:#ff858b;--hp-line:rgba(255,70,80,.24);--hp-panel:#0e0e12}
+html,body{background:#07080a!important}
+header{min-height:76px!important;padding:10px clamp(18px,3vw,42px)!important;justify-content:flex-start!important;gap:15px!important;background:rgba(7,8,10,.97)!important;border-bottom:1px solid var(--hp-line)!important}
+header img{width:48px!important;height:48px!important;max-width:48px!important;object-fit:contain;border:1px solid var(--hp-line);border-radius:9px;padding:4px;background:#100b0d}
+.header-text{text-align:left!important;min-width:0!important}
+header h1{font-size:clamp(1.05rem,1.8vw,1.5rem)!important;letter-spacing:.06em}
+header p{font-size:.65rem!important;letter-spacing:.14em;text-transform:uppercase;color:#9b969b!important}
+.ticker-wrapper{border-top:1px solid rgba(255,65,75,.3)!important;border-bottom:1px solid rgba(255,65,75,.3)!important}
+main{width:calc(100% - 36px)!important;max-width:1720px!important;margin:18px auto 34px!important;padding:0!important;display:flex;flex-direction:column;gap:16px;text-align:left!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.hp-command-layout{display:grid;grid-template-columns:minmax(235px,275px) minmax(420px,1fr) minmax(260px,305px);gap:14px;align-items:stretch;min-height:650px}
+.hp-side,.hp-map-panel{min-width:0;border:1px solid var(--hp-line);border-radius:12px;background:linear-gradient(155deg,rgba(17,17,21,.98),rgba(8,9,11,.98));box-shadow:0 12px 34px rgba(0,0,0,.25)}
+.hp-side{padding:13px;display:flex;flex-direction:column;gap:13px;overflow:hidden}
+.hp-side-heading{padding:2px 2px 10px;border-bottom:1px solid var(--hp-line);font-size:9px;font-weight:800;letter-spacing:.17em;color:#ff777f}
+.hp-map-panel{padding:13px;display:flex;flex-direction:column;min-height:650px;overflow:hidden}
+.hp-map-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:2px 3px 12px}
+.hp-map-heading>div{min-width:0}
+.hp-eyebrow{display:block;color:#ff737b;font-size:8px;font-weight:800;letter-spacing:.17em;margin-bottom:5px}
+.hp-map-heading h2{font-size:clamp(14px,1.2vw,18px);font-weight:750;color:#f2edef;letter-spacing:.015em}
+.hp-map-status{white-space:nowrap;color:#99949a;font-size:8px;letter-spacing:.1em}
+.hp-map-status i{display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#ff515b;box-shadow:0 0 9px #ff515b}
+#hpMapSlot{flex:1;min-height:0;display:flex}
+#hpMapSlot .map-section{width:100%;height:100%;min-height:0;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+#hpMapSlot .map-section:before{display:none!important}
+#hpMapSlot #world-map{height:100%!important;min-height:590px!important;max-height:none!important;border:1px solid rgba(255,65,75,.24)!important;border-radius:9px!important;background:radial-gradient(ellipse at center,#170a0d,#08090c 72%)!important;box-shadow:inset 0 0 50px rgba(255,35,45,.06)!important}
+#hpMapSlot #world-map canvas{width:100%!important;height:100%!important}
+.hp-map-caption{display:flex;justify-content:space-between;gap:8px;padding:9px 2px 0;color:#77727a;font-size:7px;letter-spacing:.11em}
+#hpStatsSlot .censor-stats{width:100%;margin:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#hpStatsSlot .censor-stat{padding:12px 10px;border-radius:8px;background:linear-gradient(145deg,#191114,#0c0d10);border:1px solid var(--hp-line)}
+#hpStatsSlot .censor-stat:first-child{grid-column:1/-1}
+#hpStatsSlot .censor-stat strong{font-size:clamp(20px,1.8vw,27px)}
+#hpStatsSlot .stat-label{font-size:8px}
+#hpStatsSlot .stat-note{font-size:9px}
+#hpFiltersSlot .censor-tools{width:100%;margin:0;padding:12px;border-radius:8px;background:#0a0b0e;border:1px solid rgba(255,70,80,.18);box-shadow:none}
+#hpFiltersSlot .tools-heading h2{font-size:14px}
+#hpFiltersSlot .tools-heading p{font-size:10px;margin-bottom:10px}
+#hpFiltersSlot .filter-grid{grid-template-columns:1fr;gap:8px}
+#hpFiltersSlot .filter-search{grid-column:auto}
+#hpFiltersSlot .filter-grid label>span{font-size:8px}
+#hpFiltersSlot .filter-grid input,#hpFiltersSlot .filter-grid select{height:36px;font-size:10px}
+#hpFiltersSlot .filter-reset{width:100%;height:35px}
+#hpTimelineSlot .censor-timeline,#hpChartSlot .ingestion-panel{width:100%;margin:0;padding:12px;border-radius:8px;background:#0a0b0e;border:1px solid rgba(255,70,80,.18);box-shadow:none}
+#hpTimelineSlot .timeline-heading{display:block;margin-bottom:10px}
+#hpTimelineSlot .timeline-heading h2{font-size:14px}
+#hpTimelineSlot .timeline-caption{display:block;margin-top:4px;font-size:8px}
+#hpTimelineSlot .timeline-track{grid-template-columns:1fr;gap:7px}
+#hpTimelineSlot .timeline-item{min-height:0;padding:9px 9px 9px 13px}
+#hpTimelineSlot .timeline-date{font-size:9px;margin-bottom:4px}
+#hpTimelineSlot .timeline-title{font-size:10px}
+#hpTimelineSlot .timeline-place{font-size:9px}
+#hpChartSlot .ingestion-head{display:block;margin-bottom:10px}
+#hpChartSlot .ingestion-meta{display:flex;flex-direction:column;gap:3px;text-align:left;font-size:8px;margin-top:7px}
+#hpChartSlot .ingestion-range{font-size:9px}
+#hpChartSlot .ingestion-chart-wrap{grid-template-columns:25px minmax(0,1fr);gap:4px}
+#hpChartSlot .ingestion-chart,#hpChartSlot .ingestion-ylabels{height:145px}
+#hpChartSlot .ingestion-ylabels{font-size:8px}
+#hpChartSlot .ingestion-xlabels{margin-left:29px}
+#hpChartSlot .ingestion-xlabels span{font-size:7px}
+#hpCountrySlot .country-analytics{width:100%;max-width:none;margin:0;padding:18px;border-radius:11px}
+#hpCountrySlot .country-analytics-grid{grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)}
+.hp-archive-heading{display:flex;justify-content:space-between;gap:10px;padding:10px 3px;border-bottom:1px solid var(--hp-line);color:#ff7b83;font-size:9px;font-weight:800;letter-spacing:.16em}
+#hpArchiveSlot .censor-viewer{width:100%;margin:0;padding:18px;border-radius:11px}
+#hpArchiveSlot .censor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#hpArchiveSlot .censor-card{text-align:left}
+#hpArchiveSlot .censor-title,#hpArchiveSlot .censor-text{text-align:left}
+@media(max-width:1180px){
+ .hp-command-layout{grid-template-columns:minmax(210px,245px) minmax(0,1fr);min-height:0}
+ .hp-map-panel{grid-column:2;grid-row:1 / span 2;min-height:620px}
+ .hp-side-left{grid-column:1;grid-row:1}
+ .hp-side-right{grid-column:1;grid-row:2}
+ #hpMapSlot #world-map{min-height:560px!important}
+ #hpCountrySlot .country-analytics-grid{grid-template-columns:1fr}
+ #hpTimelineSlot .timeline-track{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+ main{width:calc(100% - 16px)!important;margin:10px auto 24px!important;gap:12px}
+ .hp-command-layout{display:flex;flex-direction:column;gap:10px;min-height:0}
+ .hp-map-panel{order:0;min-height:0;padding:10px}
+ .hp-side-left{order:1}
+ .hp-side-right{order:2}
+ .hp-map-heading{align-items:flex-start}
+ .hp-map-heading h2{font-size:14px}
+ .hp-map-status{font-size:7px}
+ #hpMapSlot .map-section{height:auto}
+ #hpMapSlot #world-map{height:clamp(290px,88vw,430px)!important;min-height:290px!important}
+ .hp-map-caption{font-size:6px;flex-wrap:wrap}
+ .hp-side{padding:11px;gap:10px}
+ #hpStatsSlot .censor-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #hpStatsSlot .censor-stat:first-child{grid-column:auto}
+ #hpStatsSlot .censor-stat{padding:10px 6px}
+ #hpStatsSlot .censor-stat strong{font-size:clamp(17px,5vw,23px)}
+ #hpStatsSlot .stat-label,#hpStatsSlot .stat-note{font-size:7px}
+ #hpFiltersSlot .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #hpFiltersSlot .filter-search{grid-column:1/-1}
+ #hpFiltersSlot .filter-reset{grid-column:1/-1}
+ #hpTimelineSlot .timeline-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #hpChartSlot .ingestion-chart,#hpChartSlot .ingestion-ylabels{height:150px}
+ #hpChartSlot .ingestion-xlabels span{font-size:8px}
+ #hpCountrySlot .country-analytics{padding:14px}
+ #hpCountrySlot .country-analytics-grid{grid-template-columns:1fr}
+ #hpArchiveSlot .censor-grid{grid-template-columns:1fr}
+ .hp-archive-heading{font-size:8px}
+}
+@media(max-width:420px){
+ header img{width:40px!important;height:40px!important}
+ header h1{font-size:1rem!important}
+ header p{font-size:.56rem!important}
+ #hpStatsSlot .stat-label,#hpStatsSlot .stat-note{font-size:6px}
+ #hpTimelineSlot .timeline-track{grid-template-columns:1fr}
+ #hpFiltersSlot .filter-grid{grid-template-columns:1fr}
+ #hpFiltersSlot .filter-search{grid-column:auto}
+}
+</style>
+
+
+<style>
+
+#hpCountryMiniSlot .hp-mini-panel,
+#hpCoverageSlot .hp-mini-panel{
+  width:100%;padding:12px;border:1px solid rgba(255,70,80,.19);
+  border-radius:8px;background:linear-gradient(145deg,#101014,#090a0c);
+}
+.hp-mini-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:11px}
+.hp-mini-title strong{font-size:9px;letter-spacing:.13em;color:#ff7880}
+.hp-mini-title span{font-size:8px;color:#827b82}
+.hp-country-list{display:flex;flex-direction:column;gap:9px}
+.hp-country-row{display:grid;grid-template-columns:minmax(70px,1fr) minmax(45px,1.1fr) 25px;gap:7px;align-items:center}
+.hp-country-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#c9c2c5;font-size:9px}
+.hp-country-track{height:5px;border-radius:9px;background:#24191c;overflow:hidden}
+.hp-country-fill{height:100%;border-radius:9px;background:linear-gradient(90deg,#8f2029,#ff5963)}
+.hp-country-count{text-align:right;color:#ff8a91;font-size:9px;font-variant-numeric:tabular-nums}
+.hp-coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hp-coverage-cell{padding:9px;border:1px solid rgba(255,70,80,.12);border-radius:6px;background:#0b0b0e}
+.hp-coverage-cell strong{display:block;color:#f0e8ea;font-size:19px;font-variant-numeric:tabular-nums}
+.hp-coverage-cell span{display:block;margin-top:3px;color:#8f878d;font-size:8px;letter-spacing:.06em}
+.hp-coverage-note{margin-top:10px;color:#8f878d;font-size:9px;line-height:1.5}
+.hp-coverage-meter{height:5px;margin-top:8px;border-radius:8px;background:#24191c;overflow:hidden}
+.hp-coverage-meter i{display:block;height:100%;background:linear-gradient(90deg,#8f2029,#ff5963);border-radius:8px}
+@media(min-width:1181px){
+ #hpCountryMiniSlot,#hpCoverageSlot{flex:1 0 auto}
+ #hpCountryMiniSlot .hp-mini-panel,#hpCoverageSlot .hp-mini-panel{min-height:160px}
+}
+@media(max-width:760px){
+ #hpCountryMiniSlot .hp-mini-panel,#hpCoverageSlot .hp-mini-panel{padding:11px}
+ #hpCountryMiniSlot .hp-country-list{display:grid;grid-template-columns:1fr 1fr;column-gap:12px}
+}
+</style>
+
+
+<style>
+.hp-map-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+#hpRefreshData{border:1px solid rgba(255,75,85,.42);border-radius:5px;background:#190d11;color:#ff858b;padding:7px 9px;font-size:8px;font-weight:800;letter-spacing:.08em;cursor:pointer}
+#hpRefreshData:hover{background:#2a1016;border-color:#ff5963}
+#hpRefreshData:disabled{opacity:.55;cursor:wait}
+#hpDataStatus[data-state="error"]{color:#ff6c75}
+#hpDataStatus[data-state="ok"]{color:#8fae9a}
+.hp-map-caption{flex-wrap:wrap}
+@media(max-width:760px){.hp-map-actions{justify-content:flex-start}.hp-map-caption{gap:6px}}
+</style>
+
+</head> <body>  <canvas id="particles-canvas"></canvas>  <header>     <img src="https://hackpurgatory.org/data/logo.png" alt="Logo de la Comunidad">     <div class="header-text">         <h1 id="typing-title"></h1>         <p>Censuras Globales</p>     </div> </header>  <nav>     <div class="ticker-wrapper">         <div class="ticker">             <span>ᛟ Lucha: Mapa global de nuestras operaciones disponibles donde hemos eliminado contenido ilegal y hemos censurado.</span>             <span>ᛉ Elimina: Reporta a La Unidad y avisa de contenido sospechoso o que pueda infrigir las normativas de nuestra comunidad.</span>         </div>     </div> </nav>  <main>
+
+<div class="hp-command-layout" id="hpCommandLayout">
+  <aside class="hp-side hp-side-left" aria-label="Filtros y resumen">
+    <div class="hp-side-heading">INTELIGENCIA / FILTROS</div>
+    <div id="hpStatsSlot"></div>
+    <div id="hpFiltersSlot"></div>
+    <div id="hpCountryMiniSlot"></div>
+  </aside>
+  <section class="hp-map-panel" aria-label="Mapa mundial interactivo">
+    <div class="hp-map-heading">
+      <div>
+        <span class="hp-eyebrow">HACK PURGATORY // GLOBAL CENSORSHIP</span>
+        <h2>Mapa mundial de censuras</h2>
+      </div>
+      <div class="hp-map-actions"><span class="hp-map-status"><i></i> CARTOGRAFÍA ACTIVA</span><button type="button" id="hpRefreshData" onclick="refreshLiveData()">↻ ACTUALIZAR DATOS</button></div>
     </div>
-</header>
+    <div id="hpMapSlot"></div>
+    <div class="hp-map-caption"><span>GLOBO 3D · MARCADORES GEOLOCALIZADOS</span><span id="hpDataStatus">CARGANDO deleted.json…</span><span>ROTACIÓN AUTOMÁTICA · ZOOM INTERACTIVO</span></div>
+  </section>
+  <aside class="hp-side hp-side-right" aria-label="Actividad y evolución">
+    <div class="hp-side-heading">INTELIGENCIA / ACTIVIDAD</div>
+    <div id="hpTimelineSlot"></div>
+    <div id="hpChartSlot"></div>
+    <div id="hpCoverageSlot"></div>
+  </aside>
+</div>
+<div id="hpCountrySlot"></div>
+<div class="hp-archive-heading"><span>ARCHIVO DE CASOS</span><span>REGISTROS DOCUMENTADOS</span></div>
+<div id="hpArchiveSlot"></div>
+     <div class="map-section">         <div id="world-map"></div>     </div>  
+        <section class="ingestion-panel" aria-label="Actividad de registros de los últimos siete días">
+            <div class="ingestion-head">
+                <div><span class="eyebrow">RECORD INGESTION</span><div class="ingestion-range">Año completo</div></div>
+                <div class="ingestion-meta"><span id="ingestionUpdated">Actualizado al cargar</span><span>Valores reales del archivo</span></div>
+            </div>
+            <div class="ingestion-chart-wrap">
+                <div class="ingestion-ylabels" aria-hidden="true"><span id="chartMax">0</span><span id="chartMid">0</span><span>0</span></div>
+                <svg id="ingestionChart" class="ingestion-chart" preserveAspectRatio="none" viewBox="0 0 720 190" role="img" aria-label="Gráfico de registros añadidos por mes durante el año completo">
+                    <defs><linearGradient id="ingestionFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ff4651" stop-opacity=".22"/><stop offset="100%" stop-color="#ff4651" stop-opacity="0"/></linearGradient></defs>
+                    <g class="chart-grid"><line x1="0" y1="18" x2="720" y2="18"/><line x1="0" y1="88" x2="720" y2="88"/><line x1="0" y1="158" x2="720" y2="158"/></g>
+                    <path id="ingestionArea" d="" fill="url(#ingestionFill)"></path>
+                    <path id="ingestionLine" d="" fill="none" stroke="#ff5963" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <g id="ingestionPoints"></g>
+                </svg>
+            </div>
+            <div class="ingestion-xlabels" id="ingestionLabels"></div>
+        </section>
 
-<nav>
-    <div class="ticker-wrapper">
-        <div class="ticker">
-            <span>ᛟ Lucha: Mapa global de nuestras operaciones disponibles donde hemos eliminado contenido ilegal y hemos censurado.</span>
-            <span>ᛉ Elimina: Reporta a La Unidad y avisa de contenido sospechoso o que pueda infrigir las normativas de nuestra comunidad.</span>
-        </div>
-    </div>
-</nav>
+        <section class="censor-stats" aria-label="Resumen de registros">
+            <div class="censor-stat"><span class="stat-label">REGISTROS</span><strong id="statTotal">—</strong><span class="stat-note">en el archivo</span></div>
+            <div class="censor-stat"><span class="stat-label">PAÍSES</span><strong id="statCountries">—</strong><span class="stat-note">representados</span></div>
+            <div class="censor-stat"><span class="stat-label">CATEGORÍAS</span><strong id="statCategories">—</strong><span class="stat-note">disponibles</span></div>
+        </section>
 
-<main>
-    <div class="map-section">
-        <div id="world-map"></div>
-    </div>
-
-    <div class="censor-viewer">
-        <div class="viewer-header">
-            <div class="censor-info" id="censorInfo">Última censura - Colombia, 09 Mar 2025</div>
-            <div class="censor-nav">
-                <button class="nav-btn" onclick="changeCensor(-1)" id="prevCensorBtn">← Anterior</button>
-                <button class="nav-btn" onclick="changeCensor(1)" id="nextCensorBtn">Siguiente →</button>
-                <div class="categoria-btn-wrapper">
-                    <button class="nav-btn" onclick="toggleCategoria()">Categoría</button>
-                    <div class="categoria-dropdown" id="categoriaDropdown"></div>
+        <section class="country-analytics" aria-label="Comparador de actividad por países">
+            <div class="country-analytics-head">
+                <div><span class="eyebrow">ANÁLISIS GEOGRÁFICO</span><h2>Actividad por países</h2><p>Comparación basada en los registros disponibles en el archivo.</p></div>
+                <span class="country-data-note" id="countryDataNote">Datos del archivo</span>
+            </div>
+            <div class="country-analytics-grid">
+                <div class="country-ranking-panel">
+                    <div class="country-panel-title"><span>RANKING DE REGISTROS</span><span>TOP 10</span></div>
+                    <div id="countryRanking" class="country-ranking"><div class="country-empty">Cargando datos…</div></div>
+                </div>
+                <div class="country-compare-panel">
+                    <div class="country-panel-title"><span>COMPARAR PAÍSES</span><span>REGISTROS</span></div>
+                    <div class="country-selects">
+                        <label><span>PAÍS A</span><select id="countrySelectA"><option value="">Selecciona un país</option></select></label>
+                        <label><span>PAÍS B</span><select id="countrySelectB"><option value="">Selecciona un país</option></select></label>
+                    </div>
+                    <div class="country-compare-results" id="countryCompareResults">
+                        <div class="country-compare-placeholder">Selecciona dos países para comparar sus registros.</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="censor-content" id="censorContent"></div>
-    </div>
-</main>
+        <section class="censor-tools" aria-label="Buscar y filtrar censuras">
+            <div class="tools-heading"><span class="eyebrow">ARCHIVO / INTELIGENCIA</span><h2>Explorar registros</h2><p>Busca, filtra y ordena los casos documentados.</p></div>
+            <div class="filter-grid">
+                <label class="filter-search"><span>BUSCAR</span><input id="censorSearch" type="search" placeholder="País, ciudad, título o descripción..." autocomplete="off"></label>
+                <label><span>DESDE</span><input id="dateFrom" type="date"></label>
+                <label><span>HASTA</span><input id="dateTo" type="date"></label>
+                <label><span>ORDEN</span><select id="sortRecords"><option value="newest">Más recientes</option><option value="oldest">Más antiguos</option><option value="country">País (A–Z)</option></select></label>
+                <button type="button" class="filter-reset" id="resetFilters">Limpiar filtros</button>
+            </div>
+            <div class="filter-status" id="filterStatus" aria-live="polite">Cargando registros…</div>
+        </section>
 
-<footer>
-    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados.
-</footer>
+        <section class="censor-timeline" aria-label="Cronología de censuras">
+            <div class="timeline-heading"><div><span class="eyebrow">ACTIVIDAD DOCUMENTADA</span><h2>Línea temporal</h2></div><span class="timeline-caption">Últimos registros</span></div>
+            <div class="timeline-track" id="censorTimeline"><div class="timeline-empty">Cargando cronología…</div></div>
+        </section>
 
-<a class="floating-notification" href="mailto:report@hackpurgatory.org?subject=Reporte%20de%20actividad%20sospechosa&body=Hola%20La%20Unidad%2C%0A%0AQuiero%20reportar%20la%20siguiente%20actividad%20sospechosa%3A%0A%0A-%20Detalles%3A%20%0A-%20Enlaces%20o%20evidencias%3A%20%0A-%20Razones%3A%20%0A%0AGracias." aria-label="Reportar actividad sospechosa">
-    <svg viewBox="0 0 24 24">
-        <path d="M12 2L1 21h22L12 2zm0 4.5l7.5 13h-15L12 6.5zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
-    </svg>
-    <span class="label">Report Now!</span>
-</a>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-globe@1.4.1/dist/canvas-globe.umd.js"></script>
-<script>
-    let censorDatabase = [];
-
-    const categoriaMap = {
-        "Cegados/3-44": [132, 124, 136, 151, 155, 157],
-        "Wasabi Hub": [125, 126, 127, 128, 129, 152],
-        "Guerrilla ELN": [93, 94, 95, 96, 98, 193, 195, 196],
-        "Guerrilla FARC": [100, 197, 198],
-        "Imperio Caos": [74, 75, 76, 77, 79, 187, 188, 189, 190, 191, 192],
-        "Pablo Exodata": [87, 13, 12, 22, 65, 158],
-        "AGORA Latam": [4],
-        "ShieldGram": [1, 61],
-        "Rutify Chile": [59, 60, 62],
-        "OIHEC Security": [89, 90, 167, 168, 169, 170, 171, 172, 173, 174],
-        "Enikop Security": [18, 19, 20, 21, 82, 44, 51, 52, 159],
-        "Legion Nova": [7, 10]
-    };
-
-    let globe = null;
-    let currentCensorIndex = 0;
-    let currentCategory = null;
-
-    function isMobile() { return window.innerWidth < 768; }
-
-    function getCategoriasDisponibles() {
-        return Object.keys(categoriaMap).filter(cat => categoriaMap[cat].length > 0);
+    <div class="censor-viewer">         <div class="viewer-header">             <div class="censor-info" id="censorInfo">Última censura - Colombia, 09 Mar 2025</div>             <div class="censor-nav">                 <button class="nav-btn" onclick="changeCensor(-1)" id="prevCensorBtn">← Anterior</button>                 <button class="nav-btn" onclick="changeCensor(1)" id="nextCensorBtn">Siguiente →</button>                 <div class="categoria-btn-wrapper">                     <button class="nav-btn" onclick="toggleCategoria()">Categoría</button>                     <div class="categoria-dropdown" id="categoriaDropdown"></div>                 </div>             </div>         </div>          <div class="censor-content" id="censorContent"></div>     </div> </main>  <footer>     &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2026. Todos los derechos reservados. </footer>  <a class="floating-notification" href="/cdn-cgi/l/email-protection#7f0d1a0f100d0b3f171e1c140f0a0d181e0b100d0651100d18400c0a1d151a1c0b422d1a0f100d0b1a5a4d4f1b1a5a4d4f1e1c0b1609161b1e1b5a4d4f0c100c0f1a1c17100c1e591d101b06423710131e5a4d4f331e5a4d4f2a11161b1e1b5a4d3c5a4f3e5a4f3e2e0a161a0d105a4d4f0d1a0f100d0b1e0d5a4d4f131e5a4d4f0c16180a161a110b1a5a4d4f1e1c0b1609161b1e1b5a4d4f0c100c0f1a1c17100c1e5a4c3e5a4f3e5a4f3e525a4d4f3b1a0b1e13131a0c5a4c3e5a4d4f5a4f3e525a4d4f3a11131e1c1a0c5a4d4f105a4d4f1a09161b1a111c161e0c5a4c3e5a4d4f5a4f3e525a4d4f2d1e0510111a0c5a4c3e5a4d4f5a4f3e5a4f3e380d1e1c161e0c51" aria-label="Reportar actividad sospechosa">     <svg viewBox="0 0 24 24">         <path d="M12 2L1 21h22L12 2zm0 4.5l7.5 13h-15L12 6.5zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/>     </svg>     <span class="label">Report Now!</span> </a>  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-globe@1.4.1/dist/canvas-globe.umd.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script> <script>     
+    let censorDatabase = [];      const categoriaMap = {         "Cegados/3-44": [132, 124, 136, 151, 155, 157],         "Wasabi Hub": [125, 126, 127, 128, 129, 152],         "Guerrilla ELN": [93, 94, 95, 96, 98, 193, 195, 196],         "Guerrilla FARC": [100, 197, 198],         "Imperio Caos": [74, 75, 76, 77, 79, 187, 188, 189, 190, 191, 192],         "Pablo Exodata": [87, 13, 12, 22, 65, 158],         "AGORA Latam": [4],         "ShieldGram": [1, 61],         "Rutify Chile": [59, 60, 62],         "OIHEC Security": [89, 90, 167, 168, 169, 170, 171, 172, 173, 174],         "Enikop Security": [18, 19, 20, 21, 82, 44, 51, 52, 159],         "Legion Nova": [7, 10]     };      let globe = null;     let currentCensorIndex = 0;     let currentCategory = null;      function isMobile() { return window.innerWidth < 768; }  
+    function updateCensorStats() {
+        const total = censorDatabase.length;
+        const countries = new Set(censorDatabase.map(item => (item.pais || '').trim()).filter(Boolean)).size;
+        const categories = new Set(censorDatabase.map(item => (item.categoria || '').trim()).filter(Boolean)).size;
+        const totalEl = document.getElementById('statTotal');
+        const countriesEl = document.getElementById('statCountries');
+        const categoriesEl = document.getElementById('statCategories');
+        if (totalEl) totalEl.textContent = total.toLocaleString('es-ES');
+        if (countriesEl) countriesEl.textContent = countries.toLocaleString('es-ES');
+        if (categoriesEl) categoriesEl.textContent = categories.toLocaleString('es-ES');
     }
 
-    function getFilteredData() {
-        if (!currentCategory) return censorDatabase;
-        const idsPermitidos = categoriaMap[currentCategory] || [];
-        return censorDatabase.filter(c => idsPermitidos.includes(c.id));
-    }
-
-    function startTypingAnimation() {
-        const typingTitle = document.getElementById('typing-title');
-        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
-        let charIndex = 0;
-        function typeWriter() {
-            if (charIndex < titleText.length) {
-                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            } else {
-                typingTitle.innerHTML = titleText;
+    function getCategoriasDisponibles() {         return Object.keys(categoriaMap).filter(cat => categoriaMap[cat].length > 0);     }      function getFilteredData() {
+        const search = (document.getElementById('censorSearch')?.value || '').trim().toLocaleLowerCase('es');
+        const from = document.getElementById('dateFrom')?.value || '';
+        const to = document.getElementById('dateTo')?.value || '';
+        const sort = document.getElementById('sortRecords')?.value || 'newest';
+        let rows = censorDatabase.filter(c => {
+            if (currentCategory) {
+                const allowed = categoriaMap[currentCategory] || [];
+                if (!allowed.includes(c.id)) return false;
             }
+            const haystack = [c.pais,c.ciudad,c.titulo,c.texto,c.categoria].filter(Boolean).join(' ').toLocaleLowerCase('es');
+            if (search && !haystack.includes(search)) return false;
+            const date = new Date(c.fecha);
+            if (from && (!Number.isFinite(date.getTime()) || date < new Date(from + 'T00:00:00'))) return false;
+            if (to && (!Number.isFinite(date.getTime()) || date > new Date(to + 'T23:59:59'))) return false;
+            return true;
+        });
+        rows.sort((a,b) => {
+            if (sort === 'country') return (a.pais || '').localeCompare(b.pais || '', 'es');
+            const delta = new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+            return sort === 'oldest' ? delta : -delta;
+        });
+        return rows;
+    }      
+    
+    
+    
+    function updateCountryAnalytics() {
+        const counts = new Map();
+        censorDatabase.forEach(item => {
+            const country = String(item.pais || '').trim();
+            if (!country) return;
+            const key = country.toLocaleLowerCase('es');
+            const entry = counts.get(key) || { name: country, count: 0 };
+            entry.count += 1;
+            counts.set(key, entry);
+        });
+        const ranked = [...counts.values()].sort((a,b) => b.count-a.count || a.name.localeCompare(b.name,'es'));
+        const max = Math.max(1, ...ranked.map(x => x.count));
+        const ranking = document.getElementById('countryRanking');
+        if (ranking) {
+            const top = ranked.slice(0,10);
+            ranking.innerHTML = top.length ? top.map((item,index) => {
+                const safeName = item.name.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+                const width = Math.max(2, item.count/max*100);
+                return `<div class="country-rank-row"><span class="country-rank-name" title="${safeName}">${index+1}. ${safeName}</span><div class="country-rank-track"><div class="country-rank-fill" style="width:${width.toFixed(1)}%"></div></div><strong class="country-rank-value">${item.count}</strong></div>`;
+            }).join('') : '<div class="country-empty">No hay países disponibles.</div>';
         }
-        typeWriter();
-    }
-
-    function initMap() {
-        if (globe) return;
-        const container = document.getElementById('world-map');
-        const canvas = document.createElement('canvas');
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.aspectRatio = '1';
-        container.appendChild(canvas);
-
-        globe = CanvasGlobe.createGlobe(canvas, {
-            licenseKey: "GLO-E586A489-0EDD-4C68-911E-03AFD1FEA0EF",
-            preset: "midnight",
-            markers: [],
-            autoRotate: true,
-            tooltip: false,
-            latRange: [90, -90],
-            theme: {
-                ocean: ["#000000", "#0a0000"],
-                land: "#1a0000",
-                border: "#ff3333",
-                graticule: "rgba(255, 51, 51, 0.15)",
-                marker: "#ff3333",
-                atmosphere: "#ff3333"
-            }
+        ['countrySelectA','countrySelectB'].forEach((id,index) => {
+            const select = document.getElementById(id);
+            if (!select) return;
+            const previous = select.value;
+            const defaultCountry = index === 0 ? (ranked[0]?.name || '') : (ranked[1]?.name || ranked[0]?.name || '');
+            select.innerHTML = '<option value="">Selecciona un país</option>' + ranked.map(item => {
+                const safe = item.name.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+                return `<option value="${safe}">${safe} · ${item.count}</option>`;
+            }).join('');
+            select.value = ranked.some(item => item.name === previous) ? previous : defaultCountry;
         });
+        const note = document.getElementById('countryDataNote');
+        if (note) note.textContent = `${ranked.length} países · ${censorDatabase.length} registros`;
+        renderCountryComparison();
     }
 
-    function renderMarkers() {
-        if (!globe) return;
-        const dataToShow = getFilteredData();
-        const markers = dataToShow.map(c => ({
-            lat: c.coordenadas[0],
-            lon: c.coordenadas[1],
-            color: "#ff3333",
-            size: 0.8
-        }));
-        globe.setMarkers(markers);
+    function renderCountryComparison() {
+        const aName = document.getElementById('countrySelectA')?.value || '';
+        const bName = document.getElementById('countrySelectB')?.value || '';
+        const output = document.getElementById('countryCompareResults');
+        if (!output) return;
+        const countFor = name => censorDatabase.filter(item => String(item.pais || '').trim().toLocaleLowerCase('es') === name.toLocaleLowerCase('es')).length;
+        if (!aName || !bName) {
+            output.innerHTML = '<div class="country-compare-placeholder">Selecciona dos países para comparar sus registros.</div>';
+            return;
+        }
+        const a = countFor(aName), b = countFor(bName);
+        const delta = Math.abs(a-b);
+        const leader = a === b ? 'Ambos países tienen el mismo número de registros.' : `${a>b ? aName : bName} tiene <strong>${delta}</strong> registro${delta===1?'':'s'} más.`;
+        const safeA = aName.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        const safeB = bName.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        output.innerHTML = `<div class="country-compare-values"><div class="country-compare-side"><strong>${a}</strong><span>${safeA}</span></div><span class="country-compare-vs">VS</span><div class="country-compare-side"><strong>${b}</strong><span>${safeB}</span></div></div><div class="country-compare-delta">${leader}</div>`;
     }
 
-    function renderCategoriaDropdown() {
-        const dropdown = document.getElementById('categoriaDropdown');
-        const categorias = getCategoriasDisponibles();
-        let html = '<button class="categoria-item active" onclick="setCategoria(null)">Todas</button>';
-        categorias.forEach(cat => {
-            const isActive = currentCategory === cat ? 'active' : '';
-            html += `<button class="categoria-item ${isActive}" onclick="setCategoria('${cat}')">${cat}</button>`;
+    
+    function renderSidebarInsights() {
+        const countrySlot = document.getElementById('hpCountryMiniSlot');
+        const coverageSlot = document.getElementById('hpCoverageSlot');
+        if (!countrySlot || !coverageSlot) return;
+
+        const countryCounts = new Map();
+        censorDatabase.forEach(record => {
+            const name = String(record.pais || '').trim();
+            if (!name) return;
+            const key = name.toLocaleLowerCase('es');
+            const entry = countryCounts.get(key) || {name, count:0};
+            entry.count++;
+            countryCounts.set(key, entry);
         });
-        dropdown.innerHTML = html;
+        const ranked = [...countryCounts.values()].sort((a,b) => b.count-a.count || a.name.localeCompare(b.name,'es'));
+        const max = Math.max(1, ranked[0]?.count || 1);
+        const safe = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        countrySlot.innerHTML = `<section class="hp-mini-panel" aria-label="Países con más registros">
+          <div class="hp-mini-title"><strong>PAÍSES CON MÁS REGISTROS</strong><span>TOP 6</span></div>
+          <div class="hp-country-list">${ranked.slice(0,6).map(item => `<div class="hp-country-row"><span class="hp-country-name" title="${safe(item.name)}">${safe(item.name)}</span><span class="hp-country-track"><i class="hp-country-fill" style="display:block;width:${Math.max(2,item.count/max*100).toFixed(1)}%"></i></span><b class="hp-country-count">${item.count}</b></div>`).join('') || '<span class="hp-coverage-note">No hay datos de países.</span>'}
+          </div></section>`;
+
+        const total = censorDatabase.length;
+        const located = censorDatabase.filter(record => Array.isArray(record.coordenadas) && record.coordenadas.length >= 2 && Number.isFinite(Number(record.coordenadas[0])) && Number.isFinite(Number(record.coordenadas[1]))).length;
+        const withoutLocation = total - located;
+        const dates = censorDatabase.map(record => new Date(record.fecha)).filter(date => Number.isFinite(date.getTime())).sort((a,b)=>a-b);
+        const first = dates.length ? dates[0].toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+        const last = dates.length ? dates[dates.length-1].toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+        const percent = total ? Math.round(located/total*100) : 0;
+        coverageSlot.innerHTML = `<section class="hp-mini-panel" aria-label="Cobertura del archivo">
+          <div class="hp-mini-title"><strong>COBERTURA DEL ARCHIVO</strong><span>${percent}% GEOLOCALIZADO</span></div>
+          <div class="hp-coverage-grid">
+            <div class="hp-coverage-cell"><strong>${located.toLocaleString('es-ES')}</strong><span>CON COORDENADAS</span></div>
+            <div class="hp-coverage-cell"><strong>${withoutLocation.toLocaleString('es-ES')}</strong><span>SIN COORDENADAS</span></div>
+          </div>
+          <div class="hp-coverage-meter"><i style="width:${percent}%"></i></div>
+          <div class="hp-coverage-note">Periodo documentado: ${first} — ${last}<br>Basado en los datos disponibles en el archivo.</div>
+        </section>`;
     }
 
-    function setCategoria(cat) {
-        currentCategory = cat;
-        renderCategoriaDropdown();
-        document.getElementById('categoriaDropdown').classList.remove('show');
-        const filtered = getFilteredData();
-        if (filtered.length === 0) {
-            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;
+    function renderIngestionChart() {
+        const svg = document.getElementById('ingestionChart');
+        if (!svg) return;
+        const now = new Date();
+        const year = now.getFullYear();
+        const monthNames = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        const counts = monthNames.map((_, month) => {
+            const start = new Date(year, month, 1).getTime();
+            const end = new Date(year, month + 1, 1).getTime();
+            return censorDatabase.filter(item => {
+                const t = new Date(item.fecha).getTime();
+                return Number.isFinite(t) && t >= start && t < end;
+            }).length;
+        });
+
+        const maxValue = Math.max(1, ...counts);
+        const niceMax = maxValue <= 4 ? 4 : Math.ceil(maxValue / 4) * 4;
+        const mid = Math.ceil(niceMax / 2);
+        document.getElementById('chartMax').textContent = niceMax.toLocaleString('es-ES');
+        document.getElementById('chartMid').textContent = mid.toLocaleString('es-ES');
+
+        const left = 8, right = 712, top = 18, bottom = 158;
+        const x = i => left + (right-left) * i / 11;
+        const y = v => bottom - (v / niceMax) * (bottom-top);
+        const pts = counts.map((v,i) => [x(i), y(v)]);
+        const smooth = pts.reduce((acc,p,i) => {
+            if (!i) return `M ${p[0].toFixed(1)} ${p[1].toFixed(1)}`;
+            const prev = pts[i-1], cx = (prev[0]+p[0])/2;
+            return acc + ` C ${cx.toFixed(1)} ${prev[1].toFixed(1)}, ${cx.toFixed(1)} ${p[1].toFixed(1)}, ${p[0].toFixed(1)} ${p[1].toFixed(1)}`;
+        }, '');
+
+        document.getElementById('ingestionLine').setAttribute('d', smooth);
+        document.getElementById('ingestionArea').setAttribute('d', `${smooth} L ${right} ${bottom} L ${left} ${bottom} Z`);
+        document.getElementById('ingestionPoints').innerHTML = pts.map((point,i) => {
+            const title = `${monthNames[i]} ${year}: ${counts[i].toLocaleString('es-ES')} registros`;
+            return `<circle cx="${point[0]}" cy="${point[1]}" r="3.8"><title>${title}</title></circle>`;
+        }).join('');
+        document.getElementById('ingestionLabels').innerHTML = monthNames.map(m => `<span>${m}</span>`).join('');
+        document.getElementById('ingestionUpdated').textContent = `Año ${year} · ${censorDatabase.length.toLocaleString('es-ES')} registros en archivo`;
+    }
+
+    function formatTimelineDate(value) {
+        const d = new Date(value);
+        if (!Number.isFinite(d.getTime())) return 'Fecha no disponible';
+        return d.toLocaleDateString('es-ES', {day:'2-digit',month:'short',year:'numeric'});
+    }
+    function refreshExplorer() {
+        const rows = getFilteredData();
+        const status = document.getElementById('filterStatus');
+        if (status) status.textContent = `${rows.length.toLocaleString('es-ES')} de ${censorDatabase.length.toLocaleString('es-ES')} registros coinciden con los filtros`;
+        const timeline = document.getElementById('censorTimeline');
+        if (timeline) {
+            const recent = [...rows].sort((a,b) => new Date(b.fecha)-new Date(a.fecha)).slice(0,6);
+            timeline.innerHTML = recent.length ? recent.map(c => {
+                const title = String(c.titulo || 'Registro sin título').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+                const place = `${c.ciudad || ''}${c.ciudad && c.pais ? ', ' : ''}${c.pais || ''}`.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+                return `<button type="button" class="timeline-item" data-record-id="${c.id}"><span class="timeline-date">${formatTimelineDate(c.fecha)}</span><span class="timeline-title">${title}</span><span class="timeline-place">${place}</span></button>`;
+            }).join('') : '<div class="timeline-empty">No hay registros para los filtros seleccionados.</div>';
+            timeline.querySelectorAll('[data-record-id]').forEach(button => button.addEventListener('click', () => {
+                const item = censorDatabase.find(c => String(c.id) === button.dataset.recordId);
+                if (!item) return;
+                currentCensorIndex = censorDatabase.indexOf(item);
+                displayCensor(currentCensorIndex);
+                if (globe && validCoords(item)) globe.flyTo(item.coordenadas[1], item.coordenadas[0], {zoom:2.5});
+                document.getElementById('censorContent')?.scrollIntoView({behavior:'smooth',block:'start'});
+            }));
+        }
+    }
+    function applyExplorerFilters() {
+        refreshExplorer();
+        const rows = getFilteredData();
+        if (!rows.length) {
+            document.getElementById('censorContent').innerHTML = '<div class="sin-resultados">No hay censuras que coincidan con estos filtros</div>';
             document.getElementById('censorInfo').textContent = 'Sin resultados';
             document.getElementById('prevCensorBtn').disabled = true;
             document.getElementById('nextCensorBtn').disabled = true;
+            renderMarkers();
             return;
         }
-        const firstMatch = censorDatabase.indexOf(filtered[0]);
-        currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;
+        currentCensorIndex = censorDatabase.indexOf(rows[0]);
         displayCensor(currentCensorIndex);
         renderMarkers();
     }
-
-    function toggleCategoria() {
-        const dropdown = document.getElementById('categoriaDropdown');
-        dropdown.classList.toggle('show');
-        renderCategoriaDropdown();
+    function initCountryAnalytics() {
+        ['countrySelectA','countrySelectB'].forEach(id => {
+            document.getElementById(id)?.addEventListener('change', renderCountryComparison);
+        });
+        updateCountryAnalytics();
     }
 
-    function displayCensor(index) {
-        const censor = censorDatabase[index];
-        if (!censor) return;
+    function initExplorer() {
+        ['censorSearch','dateFrom','dateTo','sortRecords'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener(id === 'censorSearch' ? 'input' : 'change', applyExplorerFilters);
+        });
+        document.getElementById('resetFilters')?.addEventListener('click', () => {
+            ['censorSearch','dateFrom','dateTo'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+            const sort = document.getElementById('sortRecords'); if(sort) sort.value='newest';
+            currentCategory = null;
+            renderCategoriaDropdown();
+            applyExplorerFilters();
+        });
+        refreshExplorer();
+    }
 
-        if (currentCategory) {
-            const idsPermitidos = categoriaMap[currentCategory] || [];
-            if (!idsPermitidos.includes(censor.id)) {
-                const filtered = getFilteredData();
-                if (filtered.length === 0) {
-                    document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;
-                    document.getElementById('censorInfo').textContent = 'Sin resultados';
-                    document.getElementById('prevCensorBtn').disabled = true;
-                    document.getElementById('nextCensorBtn').disabled = true;
-                    return;
-                }
-                const firstMatch = censorDatabase.indexOf(filtered[0]);
-                currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;
-                displayCensor(currentCensorIndex);
+    function startTypingAnimation() {         const typingTitle = document.getElementById('typing-title');         const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';         let charIndex = 0;         function typeWriter() {             if (charIndex < titleText.length) {                 typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';                 charIndex++;                 setTimeout(typeWriter, 100);             } else {                 typingTitle.innerHTML = titleText;             }         }         typeWriter();     }      function initMap() {         if (globe) return;         const container = document.getElementById('world-map');         const canvas = document.createElement('canvas');         canvas.style.width = '100%';         canvas.style.height = '100%';         canvas.style.aspectRatio = '1';         container.appendChild(canvas);          globe = CanvasGlobe.createGlobe(canvas, {             licenseKey: "GLO-E586A489-0EDD-4C68-911E-03AFD1FEA0EF",             preset: "midnight",             markers: [],             autoRotate: true,             tooltip: false,             latRange: [90, -90],             theme: {                 ocean: ["#000000", "#0a0000"],                 land: "#1a0000",                 border: "#ff3333",                 graticule: "rgba(255, 51, 51, 0.15)",                 marker: "#ff3333",                 atmosphere: "#ff3333"             }         });     }      function renderMarkers() {         if (!globe) return;         const dataToShow = getFilteredData();         const markers = dataToShow.map(c => ({             lat: c.coordenadas[0],             lon: c.coordenadas[1],             color: "#ff3333",             size: 0.8         }));         globe.setMarkers(markers);     }      function renderCategoriaDropdown() {         const dropdown = document.getElementById('categoriaDropdown');         const categorias = getCategoriasDisponibles();         let html = '<button class="categoria-item active" onclick="setCategoria(null)">Todas</button>';         categorias.forEach(cat => {             const isActive = currentCategory === cat ? 'active' : '';             html += `<button class="categoria-item ${isActive}" onclick="setCategoria('${cat}')">${cat}</button>`;         });         dropdown.innerHTML = html;     }      function setCategoria(cat) {         currentCategory = cat;         renderCategoriaDropdown();         refreshExplorer();         document.getElementById('categoriaDropdown').classList.remove('show');         const filtered = getFilteredData();         if (filtered.length === 0) {             document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;             document.getElementById('censorInfo').textContent = 'Sin resultados';             document.getElementById('prevCensorBtn').disabled = true;             document.getElementById('nextCensorBtn').disabled = true;             return;         }         const firstMatch = censorDatabase.indexOf(filtered[0]);         currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;         displayCensor(currentCensorIndex);         renderMarkers();     }      function toggleCategoria() {         const dropdown = document.getElementById('categoriaDropdown');         dropdown.classList.toggle('show');         renderCategoriaDropdown();     }      function validCoords(c) {
+        if (!Array.isArray(c.coordenadas) || c.coordenadas.length < 2) return null;
+        const lat = Number(c.coordenadas[0]), lon = Number(c.coordenadas[1]);
+        return Number.isFinite(lat) && Number.isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180 ? [lat, lon] : null;
+    }
+    function buildMapMarkup(c) {
+        const coords = validCoords(c);
+        if (!coords) return `<div class="zone-map-error"><div class="zone-visual"><div class="zone-redaction"><span>COORDENADAS NO DISPONIBLES</span><strong>ÁREA CENSURADA</strong><small>${c.ciudad}, ${c.pais}</small></div></div></div>`;
+        return `<div class="zone-map-leaflet" data-lat="${coords[0]}" data-lon="${coords[1]}" aria-label="Globo ampliado de ${c.ciudad}, ${c.pais}"><canvas class="zone-globe-canvas"></canvas></div>`;
+    }
+    function initCardMaps() {
+        document.querySelectorAll('.zone-map-leaflet:not([data-map-ready])').forEach(el => {
+            el.dataset.mapReady = '1';
+            const lat = Number(el.dataset.lat), lon = Number(el.dataset.lon);
+            const canvas = el.querySelector('canvas');
+            if (!window.CanvasGlobe || !canvas) {
+                el.innerHTML = '<div class="zone-map-error"><div class="zone-redaction"><span>GLOBO NO DISPONIBLE</span><strong>ÁREA CENSURADA</strong><small>No se pudo cargar CanvasGlobe</small></div></div>';
                 return;
             }
-        }
-
-        const censorContent = document.getElementById('censorContent');
-        const censorInfo = document.getElementById('censorInfo');
-        const dateObj = new Date(censor.fecha);
-        const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-        const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-        censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;
-        censorContent.classList.add('fade-out');
-
-        setTimeout(() => {
-            const filtered = getFilteredData();
-            const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);
-            let itemsToShow = [];
-            if (currentIdxInFilter !== -1) {
-                if (isMobile()) {
-                    itemsToShow.push(filtered[currentIdxInFilter]);
-                } else {
-                    itemsToShow.push(filtered[currentIdxInFilter]);
-                    if (currentIdxInFilter + 1 < filtered.length) itemsToShow.push(filtered[currentIdxInFilter + 1]);
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            try {
+                const cardGlobe = CanvasGlobe.createGlobe(canvas, {
+                    licenseKey: "GLO-E586A489-0EDD-4C68-911E-03AFD1FEA0EF",
+                    preset: "midnight",
+                    markers: [{ lat, lon, color: "#ff3333", size: 1.8 }],
+                    autoRotate: false,
+                    tooltip: false,
+                    latRange: [90, -90],
+                    theme: {
+                        ocean: ["#080303", "#180606"],
+                        land: "#260909",
+                        border: "#ff4545",
+                        graticule: "rgba(255, 55, 55, 0.22)",
+                        marker: "#ff3333",
+                        atmosphere: "#ff3333"
+                    }
+                });
+                if (cardGlobe && typeof cardGlobe.flyTo === 'function') {
+                    setTimeout(() => cardGlobe.flyTo(lon, lat, { zoom: 2.5 }), 120);
                 }
-            } else {
-                itemsToShow = [censor];
+            } catch (err) {
+                console.error('No se pudo inicializar el globo de la censura:', err);
+                el.innerHTML = '<div class="zone-map-error"><div class="zone-redaction"><span>GLOBO NO DISPONIBLE</span><strong>ÁREA CENSURADA</strong><small>Error al iniciar la vista</small></div></div>';
             }
-
-            let gridHtml = '';
-            itemsToShow.forEach((c) => {
-                const dateObjCard = new Date(c.fecha);
-                const formattedDateCard = `${dateObjCard.getDate()} ${monthNames[dateObjCard.getMonth()]} ${dateObjCard.getFullYear()}`;
-                let linksHtml = '';
-                if (c.link) {
-                    let linkUrl = c.link.startsWith('http') ? c.link : 'https://' + c.link;
-                    linksHtml += `<div class="censor-link-item"><a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="censor-link">${c.link}</a></div>`;
-                }
-                if (c.link2) {
-                    let link2Url = c.link2.startsWith('http') ? c.link2 : 'https://' + c.link2;
-                    linksHtml += `<div class="censor-link-item"><a href="${link2Url}" target="_blank" rel="noopener noreferrer" class="censor-link">${c.link2}</a></div>`;
-                }
-                gridHtml += `
-                    <div class="censor-card">
-                        <h3 class="censor-title">${c.titulo}</h3>
-                        <span class="censor-location">${c.pais} - ${c.ciudad}</span>
-                        <video class="censor-video" autoplay loop muted playsinline preload="metadata">
-                            <source src="${c.video}" type="video/mp4">
-                            Tu navegador no soporta la reproduccion de video.
-                        </video>
-                        <p class="censor-text">${c.texto}</p>
-                        <div class="censor-links-container">${linksHtml}</div>
-                        <div class="censor-category">${c.categoria} · ${formattedDateCard}</div>
-                    </div>
-                `;
-            });
-
-            censorContent.innerHTML = `<div class="censor-grid">${gridHtml}</div>`;
-            censorContent.classList.remove('fade-out');
-            censorContent.classList.add('fade-in');
-            setTimeout(() => censorContent.classList.remove('fade-in'), 300);
-        }, 300);
-
-        const filtered = getFilteredData();
-        const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);
-        document.getElementById('prevCensorBtn').disabled = currentIdxInFilter <= 0 || filtered.length === 0;
-        document.getElementById('nextCensorBtn').disabled = currentIdxInFilter >= filtered.length - 1 || filtered.length === 0;
+        });
     }
 
-    function changeCensor(direction) {
-        const filtered = getFilteredData();
-        if (filtered.length === 0) return;
-        const currentCensor = censorDatabase[currentCensorIndex];
-        const currentIdxInFilter = filtered.findIndex(c => c.id === currentCensor.id);
-        let newIdxInFilter = currentIdxInFilter + direction;
-        if (newIdxInFilter < 0) newIdxInFilter = 0;
-        if (newIdxInFilter >= filtered.length) newIdxInFilter = filtered.length - 1;
-        const targetCensor = filtered[newIdxInFilter];
-        const globalIndex = censorDatabase.indexOf(targetCensor);
-        if (globalIndex !== -1) {
-            currentCensorIndex = globalIndex;
-            displayCensor(currentCensorIndex);
-            if (globe) globe.flyTo(targetCensor.coordenadas[1], targetCensor.coordenadas[0], { zoom: 2.5 });
+
+    function displayCensor(index) {         const censor = censorDatabase[index];         if (!censor) return;          if (currentCategory) {             const idsPermitidos = categoriaMap[currentCategory] || [];             if (!idsPermitidos.includes(censor.id)) {                 const filtered = getFilteredData();                 if (filtered.length === 0) {                     document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay censuras en esta categoría</div>`;                     document.getElementById('censorInfo').textContent = 'Sin resultados';                     document.getElementById('prevCensorBtn').disabled = true;                     document.getElementById('nextCensorBtn').disabled = true;                     return;                 }                 const firstMatch = censorDatabase.indexOf(filtered[0]);                 currentCensorIndex = firstMatch !== -1 ? firstMatch : 0;                 displayCensor(currentCensorIndex);                 return;             }         }          const censorContent = document.getElementById('censorContent');         const censorInfo = document.getElementById('censorInfo');         const dateObj = new Date(censor.fecha);         const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];         const formattedDate = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;         censorInfo.textContent = `Censura - ${censor.pais}, ${formattedDate}`;         censorContent.classList.add('fade-out');          setTimeout(() => {             const filtered = getFilteredData();             const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);             let itemsToShow = [];             if (currentIdxInFilter !== -1) {                 if (isMobile()) {                     itemsToShow.push(filtered[currentIdxInFilter]);                 } else {                     itemsToShow.push(filtered[currentIdxInFilter]);                     if (currentIdxInFilter + 1 < filtered.length) itemsToShow.push(filtered[currentIdxInFilter + 1]);                 }             } else {                 itemsToShow = [censor];             }              let gridHtml = '';             itemsToShow.forEach((c) => {                 const dateObjCard = new Date(c.fecha);                 const formattedDateCard = `${dateObjCard.getDate()} ${monthNames[dateObjCard.getMonth()]} ${dateObjCard.getFullYear()}`;                 let linksHtml = '';                 if (c.link) {                     let linkUrl = c.link.startsWith('http') ? c.link : 'https://' + c.link;                     linksHtml += `<div class="censor-link-item"><a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="censor-link">${c.link}</a></div>`;                 }                 if (c.link2) {                     let link2Url = c.link2.startsWith('http') ? c.link2 : 'https://' + c.link2;                     linksHtml += `<div class="censor-link-item"><a href="${link2Url}" target="_blank" rel="noopener noreferrer" class="censor-link">${c.link2}</a></div>`;                 }                 gridHtml += `                     <div class="censor-card">                         <h3 class="censor-title">${c.titulo}</h3>                         <span class="censor-location">${c.pais} - ${c.ciudad}</span>                         <div class="censor-zone" role="img" aria-label="Mapa ampliado de ${c.ciudad}, ${c.pais}">
+                            <div class="zone-topline"><span>HACK PURGATORY / MAP VIEW</span><span>REGISTRO #${c.id}</span></div>
+${buildMapMarkup(c)}
+                            <div class="zone-bottomline"><span>${c.ciudad}, ${c.pais}</span><span>VISTA AMPLIADA · ${formattedDateCard}</span></div>
+                        </div>                         <p class="censor-text">${c.texto}</p>                         <div class="censor-links-container">${linksHtml}</div>                         <div class="censor-category">${c.categoria} · ${formattedDateCard}</div>                     </div>                 `;             });              censorContent.innerHTML = `<div class="censor-grid">${gridHtml}</div>`;             requestAnimationFrame(() => { initCardMaps(); });             censorContent.classList.remove('fade-out');             censorContent.classList.add('fade-in');             setTimeout(() => censorContent.classList.remove('fade-in'), 300);         }, 300);          const filtered = getFilteredData();         const currentIdxInFilter = filtered.findIndex(c => c.id === censor.id);         document.getElementById('prevCensorBtn').disabled = currentIdxInFilter <= 0 || filtered.length === 0;         document.getElementById('nextCensorBtn').disabled = currentIdxInFilter >= filtered.length - 1 || filtered.length === 0;     }      function changeCensor(direction) {         const filtered = getFilteredData();         if (filtered.length === 0) return;         const currentCensor = censorDatabase[currentCensorIndex];         const currentIdxInFilter = filtered.findIndex(c => c.id === currentCensor.id);         let newIdxInFilter = currentIdxInFilter + direction;         if (newIdxInFilter < 0) newIdxInFilter = 0;         if (newIdxInFilter >= filtered.length) newIdxInFilter = filtered.length - 1;         const targetCensor = filtered[newIdxInFilter];         const globalIndex = censorDatabase.indexOf(targetCensor);         if (globalIndex !== -1) {             currentCensorIndex = globalIndex;             displayCensor(currentCensorIndex);             if (globe) globe.flyTo(targetCensor.coordenadas[1], targetCensor.coordenadas[0], { zoom: 2.5 });         }     }      window.addEventListener('resize', function() {         if (censorDatabase.length > 0) displayCensor(currentCensorIndex);     });      document.addEventListener('click', function(e) {         const wrapper = document.querySelector('.categoria-btn-wrapper');         if (wrapper && !wrapper.contains(e.target)) {             document.getElementById('categoriaDropdown').classList.remove('show');         }     });      async function cargarDatos() {
+        const relativeUrl = new URL('./deleted.json', window.location.href).href;
+        const candidates = [
+            relativeUrl,
+            'https://hackpurgatory.org/Channel/Censored/deleted.json'
+        ].filter((url, index, all) => all.indexOf(url) === index);
+        let lastError = null;
+        let incoming = null;
+        let loadedFrom = '';
+
+        for (const url of candidates) {
+            try {
+                const response = await fetch(url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now(), {
+                    cache: 'no-store',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status} (${url})`);
+                const parsed = await response.json();
+                if (!Array.isArray(parsed)) throw new Error(`El contenido de ${url} no es un array JSON.`);
+                incoming = parsed;
+                loadedFrom = url;
+                break;
+            } catch (error) {
+                lastError = error;
+                console.warn('No se pudo cargar deleted.json desde:', url, error);
+            }
         }
+
+        if (!incoming) throw lastError || new Error('No se pudo localizar deleted.json.');
+        censorDatabase = incoming.filter(item => item && typeof item === 'object');
+        updateCensorStats();
+        initCountryAnalytics();
+        renderSidebarInsights();
+        renderIngestionChart();
+        refreshExplorer();
+
+        const status = document.getElementById('hpDataStatus');
+        if (status) {
+            status.dataset.state = 'ok';
+            status.textContent = `${censorDatabase.length.toLocaleString('es-ES')} registros · fuente: deleted.json`;
+            status.title = `Datos cargados desde ${loadedFrom}`;
+        }
+        return true;
     }
 
-    window.addEventListener('resize', function() {
-        if (censorDatabase.length > 0) displayCensor(currentCensorIndex);
-    });
-
-    document.addEventListener('click', function(e) {
-        const wrapper = document.querySelector('.categoria-btn-wrapper');
-        if (wrapper && !wrapper.contains(e.target)) {
-            document.getElementById('categoriaDropdown').classList.remove('show');
-        }
-    });
-
-    async function cargarDatos() {
+    async function refreshLiveData() {
+        const button = document.getElementById('hpRefreshData');
+        const status = document.getElementById('hpDataStatus');
+        const previousId = censorDatabase[currentCensorIndex]?.id;
+        if (button) { button.disabled = true; button.textContent = 'ACTUALIZANDO…'; }
         try {
-            const response = await fetch('https://hackpurgatory.org/Channel/Censored/deleted.json?v=' + Date.now());
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            censorDatabase = await response.json();
-            return true;
-        } catch (err) {
-            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">Error al cargar datos: ${err.message}</div>`;
-            document.getElementById('censorInfo').textContent = 'Error de carga';
-            return false;
+            await cargarDatos();
+            if (censorDatabase.length) {
+                const nextIndex = previousId == null ? 0 : censorDatabase.findIndex(item => String(item.id) === String(previousId));
+                currentCensorIndex = nextIndex >= 0 ? nextIndex : 0;
+                displayCensor(currentCensorIndex);
+                renderMarkers();
+            } else {
+                document.getElementById('censorContent').innerHTML = '<div class="sin-resultados">deleted.json se ha cargado, pero no contiene registros.</div>';
+                document.getElementById('censorInfo').textContent = 'Archivo vacío';
+                if (globe) globe.setMarkers([]);
+            }
+        } catch (error) {
+            console.error('Error cargando deleted.json:', error);
+            if (status) {
+                status.dataset.state = 'error';
+                status.textContent = 'ERROR: no se pudo cargar deleted.json';
+                status.title = error?.message || String(error);
+            }
+            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No se pudo cargar <b>deleted.json</b>. Comprueba que esté en la carpeta /Channel/Censored/ o junto al HTML y que el servidor permita acceder al archivo.</div>`;
+            document.getElementById('censorInfo').textContent = 'Error de datos';
+        } finally {
+            if (button) { button.disabled = false; button.textContent = '↻ ACTUALIZAR DATOS'; }
         }
     }
 
-    window.addEventListener("load", async () => {
-        setTimeout(startTypingAnimation, 300);
-        initMap();
-        renderCategoriaDropdown();
-        const ok = await cargarDatos();
-        if (ok && censorDatabase.length > 0) {
-            displayCensor(0);
-            renderMarkers();
-        } else if (ok) {
-            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay datos disponibles</div>`;
-            document.getElementById('censorInfo').textContent = 'Sin datos';
-        }
-    });
+    function arrangeProfessionalLayout() {
+        const place = (selector, targetId) => {
+            const element = document.querySelector(selector);
+            const target = document.getElementById(targetId);
+            if (element && target && element.parentElement !== target) target.appendChild(element);
+        };
+        place('.map-section', 'hpMapSlot');
+        place('.censor-stats', 'hpStatsSlot');
+        place('.censor-tools', 'hpFiltersSlot');
+        place('.censor-timeline', 'hpTimelineSlot');
+        place('.ingestion-panel', 'hpChartSlot');
+        place('.country-analytics', 'hpCountrySlot');
+        place('.censor-viewer', 'hpArchiveSlot');
+    }
 
-    window.changeCensor = changeCensor;
-    window.toggleCategoria = toggleCategoria;
-    window.setCategoria = setCategoria;
 
-    (function() {
-        const canvas = document.getElementById('particles-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const PARTICLE_COUNT = 80;
-        const MAX_SPEED = 2.0;
-        const MIN_SPEED = 0.6;
-        const SIZE_MIN = 2;
-        const SIZE_MAX = 5;
-
-        class Particle {
-            constructor() {
-                this.reset(true);
+    window.addEventListener("load", async () => {         setTimeout(startTypingAnimation, 300);         arrangeProfessionalLayout();         initMap();         renderCategoriaDropdown();         initExplorer();         try {
+            await cargarDatos();
+            if (censorDatabase.length > 0) {
+                displayCensor(0);
+                renderMarkers();
+            } else {
+                document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No hay datos disponibles</div>`;
+                document.getElementById('censorInfo').textContent = 'Sin datos';
             }
-
-            reset(initial = false) {
-                this.x = Math.random() * width;
-                this.y = initial ? Math.random() * height : -Math.random() * 100;
-                this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
-                this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
-                this.opacity = Math.random() * 0.7 + 0.3;
-                this.drift = (Math.random() - 0.5) * 0.4;
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.drift;
-
-                if (this.y > height + 20) {
-                    this.reset(false);
-                }
-                if (this.x < -20) this.x = width + 20;
-                if (this.x > width + 20) this.x = -20;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
-                ctx.fill();
-
-                ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';
-                ctx.shadowBlur = 10;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
+            const status = document.getElementById('hpDataStatus');
+            if (status) status.dataset.state = 'ok';
+        } catch (error) {
+            console.error('Error cargando deleted.json:', error);
+            const status = document.getElementById('hpDataStatus');
+            if (status) { status.dataset.state = 'error'; status.textContent = 'ERROR: no se pudo cargar deleted.json'; }
+            document.getElementById('censorContent').innerHTML = `<div class="sin-resultados">No se pudo cargar deleted.json. Comprueba que esté en /Channel/Censored/ o junto al HTML.</div>`;
+            document.getElementById('censorInfo').textContent = 'Error de datos';
         }
-
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            for (let p of particles) {
-                p.update();
-                p.draw();
-            }
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    })();
-</script>
-
-</body>
-</html>
+        window.setInterval(refreshLiveData, 60000);     });      window.changeCensor = changeCensor;     window.toggleCategoria = toggleCategoria;     window.setCategoria = setCategoria;      (function() {         const canvas = document.getElementById('particles-canvas');         if (!canvas) return;         const ctx = canvas.getContext('2d');         let width, height;         let particles = [];          function resizeCanvas() {             width = window.innerWidth;             height = window.innerHeight;             canvas.width = width;             canvas.height = height;         }          window.addEventListener('resize', resizeCanvas);         resizeCanvas();          const PARTICLE_COUNT = 80;         const MAX_SPEED = 2.0;         const MIN_SPEED = 0.6;         const SIZE_MIN = 2;         const SIZE_MAX = 5;          class Particle {             constructor() {                 this.reset(true);             }              reset(initial = false) {                 this.x = Math.random() * width;                 this.y = initial ? Math.random() * height : -Math.random() * 100;                 this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;                 this.speedY = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;                 this.opacity = Math.random() * 0.7 + 0.3;                 this.drift = (Math.random() - 0.5) * 0.4;             }              update() {                 this.y += this.speedY;                 this.x += this.drift;                  if (this.y > height + 20) {                     this.reset(false);                 }                 if (this.x < -20) this.x = width + 20;                 if (this.x > width + 20) this.x = -20;             }              draw() {                 ctx.beginPath();                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);                 ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;                 ctx.fill();                  ctx.shadowColor = 'rgba(255, 0, 0, 0.2)';                 ctx.shadowBlur = 10;                 ctx.fill();                 ctx.shadowBlur = 0;             }         }          for (let i = 0; i < PARTICLE_COUNT; i++) {             particles.push(new Particle());         }          function animate() {             ctx.clearRect(0, 0, width, height);             for (let p of particles) {                 p.update();                 p.draw();             }             requestAnimationFrame(animate);         }          animate();     })(); </script>  </body> </html> 
+<style>
+.censor-zone .zone-map-leaflet { position:absolute; inset:38px 18px 34px; z-index:1; overflow:hidden; background:radial-gradient(ellipse at center, #260909 0%, #100707 75%); }
+.censor-zone .zone-map-leaflet canvas, .censor-zone .zone-globe-canvas { display:block; width:100% !important; height:100% !important; }
+.censor-zone .zone-map-leaflet .zone-map-error { position:absolute; inset:0; display:grid; place-items:center; background:#160808; color:#ff6666; text-align:center; }
+</style>
