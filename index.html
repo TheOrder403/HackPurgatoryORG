@@ -194,7 +194,6 @@
 
   * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
   html{width:100%;height:100%;background:#000;color-scheme:dark;}body{width:100%;height:100%;color:#fff;line-height:1.6;overflow-x:hidden;color-scheme:dark;}
-  #bg-video {position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; transform: scale(1.35) translateY(-5%);}
 
   .ticker-wrapper {
     background-color: #000;
@@ -869,7 +868,6 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--bg)}
 body{min-height:100%;height:auto;background:radial-gradient(ellipse at 75% 0%,rgba(30,93,111,.18),transparent 36%),linear-gradient(180deg,#080b11,#07090d 60%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65;overflow-x:clip}
-#bg-video{opacity:.09;filter:grayscale(1) brightness(.5);transform:none}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
 header{max-width:var(--max);margin:auto;padding:20px 26px;background:transparent;border:0;gap:16px}
 header img{width:54px;height:54px;object-fit:contain;border-radius:14px}
@@ -1453,6 +1451,31 @@ header, main, footer, nav { position: relative; z-index: 2; }
 }
 </style>
 
+
+<style id="hp-mobile-menu-stacking-fix">
+@media (max-width: 600px) {
+  /* El menú crea su propia capa por encima del bloque visual y del radar. */
+  nav {
+    position: relative !important;
+    z-index: 20000 !important;
+    isolation: isolate !important;
+  }
+  nav .menu-toggle {
+    position: relative !important;
+    z-index: 20002 !important;
+  }
+  nav #menu,
+  nav #menu.show {
+    z-index: 20001 !important;
+  }
+  .command-deck,
+  .deck-visual,
+  .radar-shell {
+    z-index: auto !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <canvas aria-hidden="true" id="hp-particles"></canvas>
@@ -1498,9 +1521,6 @@ header, main, footer, nav { position: relative; z-index: 2; }
 <div class="floating-notification">
 <a href="https://t.me/HackPurgatory" target="_blank">Join Telegram!</a>
 </div>
-<video autoplay="" id="bg-video" loop="" muted="" playsinline="">
-<source src="https://hackpurgatory.org/data/fondo.webm" type="video/webm"/>
-</video>
 <header>
 <img alt="HACK PURGATORY" src="https://hackpurgatory.org/data/logo.png"/>
 <div class="header-text">
