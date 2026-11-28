@@ -1476,6 +1476,25 @@ header, main, footer, nav { position: relative; z-index: 2; }
 }
 </style>
 
+
+<style id="hp-red-fading-grid">
+/* Cuadrícula roja visible sin capas detrás del fondo del body */
+html { background: #09090d !important; }
+body {
+  background-color: #09090d !important;
+  background-image:
+    radial-gradient(ellipse 78% 70% at 50% 45%, transparent 18%, rgba(9,9,13,.24) 52%, #09090d 100%),
+    linear-gradient(to right, rgba(255,48,60,.26) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,48,60,.26) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 40%, #18090e 0%, #09090d 75%) !important;
+  background-size: 100% 100%, 105px 105px, 105px 105px, 100% 100% !important;
+  background-position: center, center, center, center !important;
+  background-attachment: fixed !important;
+}
+/* Desactivar la antigua rejilla que quedaba oculta tras el body */
+body::before { display: none !important; }
+</style>
+
 </head>
 <body>
 <canvas aria-hidden="true" id="hp-particles"></canvas>
@@ -1575,6 +1594,21 @@ header, main, footer, nav { position: relative; z-index: 2; }
 <span class="radar-ring ring-one"></span><span class="radar-ring ring-two"></span>
 <span class="radar-center"></span>
 <i class="radar-blip blip-one"></i><i class="radar-blip blip-two"></i><i class="radar-blip blip-three"></i>
+<div class="radar-callout callout-telegram">
+  <span class="callout-line"></span>
+  <span class="callout-content">
+    <svg class="callout-icon telegram-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 4.35 18.6 19c-.23 1.03-.84 1.28-1.7.8l-4.7-3.47-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.73-7.89c.38-.34-.08-.53-.59-.19L6.68 13.02 2.05 11.57c-1.01-.32-1.03-1.01.21-1.5L20.37 3.1c.84-.31 1.58.2 1.33 1.25Z"/></svg>
+    <span><strong>4,404</strong><small>Canales en Revision</small></span>
+  </span>
+</div>
+<div class="radar-callout callout-network">
+  <span class="callout-line"></span>
+  <span class="callout-content"><span class="callout-mini-icon">◎</span><span><strong>1250</strong><small>Identidades en Verificacion</small></span></span>
+</div>
+<div class="radar-callout callout-web">
+  <span class="callout-line"></span>
+  <span class="callout-content"><span class="callout-mini-icon">⌘</span><span><strong>625</strong><small>Paginas Investigadas</small></span></span>
+</div>
 <span class="radar-crosshair horizontal"></span><span class="radar-crosshair vertical"></span>
 </div>
 <div aria-label="Estadísticas de la comunidad" class="ascii-panel stats-panel">
@@ -2101,7 +2135,7 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline:2
 }
 </style>
 <style id="final-button-layout">
-/* Botones: alineación consistente y zonas táctiles cómodas. */
+
 .deck-actions,.channel-buttons,.app-buttons,.push-buttons {
   align-items:stretch;
   min-width:0;
@@ -2152,7 +2186,7 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline:2
 }
 </style>
 <style id="heading-rule-overflow-fix">
-/* Regla final: los subrayados de títulos nunca deben exceder su tarjeta. */
+
 main,
 main > section,
 main > section *,
@@ -2170,7 +2204,7 @@ main section h2,
   min-width: 0 !important;
   inline-size: auto !important;
   margin-inline: 0 !important;
-  padding-left: 14px !important; /* reserva espacio para la barra roja */
+  padding-left: 14px !important; 
   padding-right: 0 !important;
   position: relative !important;
   border-bottom: 1px solid var(--hp-border, rgba(255,78,88,.22)) !important;
@@ -2265,5 +2299,588 @@ if (document.readyState === 'loading') {
   initHPPParticles();
 }
 </script>
+
+<style id="hp-grid-final-override">
+
+html {
+  min-height: 100%;
+  background-color: #08070a !important;
+  background-image:
+    radial-gradient(ellipse at center, rgba(8,7,10,0) 20%, rgba(8,7,10,.32) 65%, #08070a 100%),
+    repeating-linear-gradient(90deg, transparent 0 103px, rgba(255,45,58,.30) 104px, transparent 105px),
+    repeating-linear-gradient(0deg, transparent 0 103px, rgba(255,45,58,.30) 104px, transparent 105px),
+    radial-gradient(ellipse at 50% 45%, #18090d 0%, #08070a 78%) !important;
+  background-attachment: fixed !important;
+}
+body {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+</style>
+
+
+<style id="hp-red-black-navigation-refresh">
+
+nav {
+  position: sticky !important;
+  top: 0;
+  z-index: 20000 !important;
+  padding: 8px clamp(12px, 3vw, 34px) 10px !important;
+  background: rgba(5,5,8,.78) !important;
+  border-top: 1px solid rgba(255,45,55,.28) !important;
+  border-bottom: 1px solid rgba(255,45,55,.22) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+nav .ticker-wrapper {
+  margin: 0 auto 8px !important;
+  max-width: 1280px;
+  border: 0 !important;
+  background: transparent !important;
+}
+nav ul#menu {
+  width: min(100%, 1280px);
+  min-height: 52px;
+  margin: 0 auto !important;
+  padding: 5px 12px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+  border: 1px solid rgba(255,55,65,.28);
+  border-radius: 15px;
+  background: linear-gradient(110deg, rgba(19,8,11,.96), rgba(7,7,10,.97));
+  box-shadow: 0 8px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.035), 0 0 18px rgba(255,25,35,.055);
+}
+nav ul#menu li { margin: 0 !important; }
+nav ul#menu li a {
+  display: block;
+  padding: 9px 13px !important;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #d8d2d4 !important;
+  font-size: .84rem;
+  text-decoration: none;
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+nav ul#menu li a:hover,
+nav ul#menu li a:focus-visible {
+  color: #fff !important;
+  background: rgba(210,20,32,.16) !important;
+  border-color: rgba(255,55,65,.32);
+  box-shadow: 0 0 16px rgba(255,25,35,.10);
+  transform: translateY(-1px);
+  outline: none;
+}
+nav .menu-toggle { display: none !important; }
+
+
+@media (max-width: 768px) {
+  nav {
+    position: sticky !important;
+    top: 0;
+    padding: 8px 12px 10px !important;
+    background: rgba(5,5,8,.92) !important;
+    isolation: isolate;
+  }
+  nav .ticker-wrapper { margin-bottom: 8px !important; }
+  nav .menu-toggle {
+    display: flex !important;
+    position: relative !important;
+    width: 100%;
+    min-height: 48px;
+    margin: 0 auto !important;
+    padding: 0 16px !important;
+    align-items: center;
+    justify-content: flex-end;
+    border: 1px solid rgba(255,55,65,.34);
+    border-radius: 13px;
+    background: linear-gradient(110deg, rgba(24,7,11,.98), rgba(8,8,11,.98));
+    box-shadow: 0 5px 18px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
+    cursor: pointer;
+  }
+  nav .menu-toggle::before {
+    content: "MENÚ";
+    margin-right: auto;
+    color: #f1e8e9;
+    font-size: .78rem;
+    font-weight: 750;
+    letter-spacing: .16em;
+  }
+  nav .menu-toggle div {
+    left: auto !important;
+    right: 16px;
+    width: 20px !important;
+    height: 2px !important;
+    border-radius: 2px;
+    background: #ff3945 !important;
+    box-shadow: 0 0 8px rgba(255,45,55,.45);
+  }
+  nav .menu-toggle div:nth-child(1) { transform: translateY(-7px) !important; }
+  nav .menu-toggle div:nth-child(2) { transform: none !important; }
+  nav .menu-toggle div:nth-child(3) { transform: translateY(7px) !important; }
+  nav .menu-toggle.active div:nth-child(1) { transform: rotate(45deg) !important; }
+  nav .menu-toggle.active div:nth-child(2) { opacity: 0 !important; }
+  nav .menu-toggle.active div:nth-child(3) { transform: rotate(-45deg) !important; }
+
+  nav ul#menu,
+  nav ul#menu.show {
+    position: absolute !important;
+    top: calc(100% - 2px);
+    left: 12px;
+    right: 12px;
+    width: auto !important;
+    max-height: min(70vh, 520px) !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 5px;
+    margin: 0 !important;
+    padding: 10px !important;
+    border: 1px solid rgba(255,55,65,.38);
+    border-radius: 15px;
+    background: linear-gradient(155deg, rgba(20,7,11,.99), rgba(7,7,10,.99) 70%);
+    box-shadow: 0 18px 42px rgba(0,0,0,.58), 0 0 22px rgba(255,25,35,.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-7px);
+    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+    z-index: 20001 !important;
+  }
+  nav ul#menu.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  nav ul#menu li {
+    width: 100%;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  nav ul#menu li a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 11px 14px !important;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    color: #e8dfe1 !important;
+    background: rgba(255,255,255,.025);
+    font-size: .92rem;
+  }
+  nav ul#menu li a:hover,
+  nav ul#menu li a:focus-visible {
+    color: #fff !important;
+    background: rgba(190,16,29,.18) !important;
+    border-color: rgba(255,55,65,.3);
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav ul#menu, nav ul#menu li a, nav .menu-toggle div { transition: none !important; }
+}
+</style>
+
+
+<style id="hp-mobile-menu-label-alignment-fix">
+@media (max-width: 768px) {
+  nav .menu-toggle {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    line-height: 1 !important;
+  }
+  nav .menu-toggle::before {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    line-height: 1 !important;
+    margin: 0 auto 0 0 !important;
+    transform: none !important;
+    position: static !important;
+  }
+  nav .menu-toggle div {
+    position: absolute !important;
+    top: 50% !important;
+    right: 16px !important;
+    left: auto !important;
+    margin: 0 !important;
+  }
+  nav .menu-toggle div:nth-child(1) { transform: translateY(calc(-50% - 7px)) !important; }
+  nav .menu-toggle div:nth-child(2) { transform: translateY(-50%) !important; }
+  nav .menu-toggle div:nth-child(3) { transform: translateY(calc(-50% + 7px)) !important; }
+  nav .menu-toggle.active div:nth-child(1) { transform: translateY(-50%) rotate(45deg) !important; }
+  nav .menu-toggle.active div:nth-child(2) { opacity: 0 !important; }
+  nav .menu-toggle.active div:nth-child(3) { transform: translateY(-50%) rotate(-45deg) !important; }
+}
+</style>
+
+
+<style id="hp-mobile-menu-dropdown-forward-fix">
+@media (max-width: 768px) {
+ 
+  nav {
+    position: sticky !important;
+    top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+    z-index: 30000 !important;
+  }
+  nav .ticker-wrapper {
+    order: 0 !important;
+    flex: 0 0 auto !important;
+  }
+  nav .menu-toggle {
+    order: 1 !important;
+    flex: 0 0 48px !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  nav ul#menu,
+  nav ul#menu.show {
+    order: 2 !important;
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-height: 0 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    border: 0 !important;
+    border-radius: 0 0 15px 15px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: none !important;
+    transition: max-height .28s ease, opacity .2s ease, padding .28s ease !important;
+    z-index: 1 !important;
+  }
+  nav ul#menu.show {
+    max-height: min(70vh, 560px) !important;
+    padding: 10px !important;
+    border: 1px solid rgba(255,55,65,.38) !important;
+    border-top: 0 !important;
+    background: linear-gradient(155deg, rgba(20,7,11,.99), rgba(7,7,10,.99) 70%) !important;
+    box-shadow: 0 18px 42px rgba(0,0,0,.58), 0 0 22px rgba(255,25,35,.12) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  nav ul#menu li {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  nav ul#menu li a {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 11px 14px !important;
+    border: 1px solid rgba(255,55,65,.12) !important;
+    border-radius: 9px !important;
+    background: rgba(255,255,255,.025) !important;
+  }
+}
+</style>
+
+
+<style id="hp-mobile-menu-overlay-reference-layout">
+@media (max-width: 768px) {
+  
+  nav {
+    position: sticky !important;
+    top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+    isolation: isolate !important;
+    z-index: 40000 !important;
+    padding: 8px 12px 10px !important;
+  }
+  nav .ticker-wrapper {
+    order: 0 !important;
+    flex: 0 0 auto !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  nav .menu-toggle {
+    order: 1 !important;
+    flex: 0 0 48px !important;
+    position: relative !important;
+    z-index: 40002 !important;
+  }
+
+ 
+  nav ul#menu,
+  nav ul#menu.show {
+    position: absolute !important;
+    top: 100% !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-height: min(72vh, 560px) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 3px !important;
+    margin: 7px 0 0 !important;
+    padding: 10px !important;
+    border: 1px solid rgba(255,55,65,.36) !important;
+    border-radius: 16px !important;
+    background: linear-gradient(155deg, rgba(19,8,11,.985), rgba(7,7,10,.99) 72%) !important;
+    box-shadow: 0 18px 44px rgba(0,0,0,.68), 0 0 24px rgba(255,25,35,.12) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-8px) !important;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease !important;
+    z-index: 40001 !important;
+  }
+  nav ul#menu.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+  nav ul#menu li {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  nav ul#menu li a {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 43px !important;
+    padding: 10px 14px !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    background: transparent !important;
+    color: #e4dadd !important;
+    font-size: .9rem !important;
+    line-height: 1.35 !important;
+    text-decoration: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  nav ul#menu li a:hover,
+  nav ul#menu li a:focus-visible {
+    color: #fff !important;
+    background: rgba(190,16,29,.17) !important;
+    border-color: rgba(255,55,65,.25) !important;
+    outline: none !important;
+  }
+}
+</style>
+
+
+<style id="hp-radar-signal-callouts">
+
+.radar-shell {
+  overflow: visible !important;
+  isolation: isolate;
+}
+.radar-grid, .radar-sweep, .radar-ring, .radar-crosshair {
+  border-radius: 50%;
+  pointer-events: none;
+}
+.radar-callout {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  color: #f4e9eb;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+.radar-callout .callout-line {
+  position: absolute;
+  height: 1px;
+  display: block;
+  background: linear-gradient(90deg, rgba(255,62,75,.95), rgba(255,62,75,.12));
+  transform-origin: left center;
+  box-shadow: 0 0 7px rgba(255,45,58,.55);
+}
+.radar-callout .callout-content {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255,55,68,.38);
+  border-radius: 7px;
+  background: rgba(9,6,10,.92);
+  box-shadow: 0 5px 16px rgba(0,0,0,.38), 0 0 13px rgba(255,30,45,.09);
+  white-space: nowrap;
+  backdrop-filter: blur(7px);
+}
+.callout-content strong {
+  display: block;
+  color: #ff5965;
+  font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .04em;
+}
+.callout-content small {
+  display: block;
+  margin-top: 2px;
+  color: #c8b9bd;
+  font-size: 8px;
+  line-height: 1.25;
+  letter-spacing: .025em;
+}
+.callout-icon { width: 16px; height: 16px; flex: 0 0 16px; fill: #ff5965; }
+.callout-mini-icon {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(255,75,88,.65);
+  border-radius: 50%;
+  color: #ff5965;
+  font-size: 10px;
+  line-height: 1;
+}
+.callout-telegram { left: 59%; top: 18%; }
+.callout-telegram .callout-line { width: 40px; left: -35px; top: 31px; transform: rotate(132deg); }
+.callout-network { left: -15%; top: 65%; }
+.callout-network .callout-line { width: 48px; right: -43px; top: 14px; transform: rotate(-10deg); transform-origin: right center; }
+.callout-web { left: 54%; top: 83%; }
+.callout-web .callout-line { width: 34px; left: -29px; top: 1px; transform: rotate(-128deg); }
+.radar-blip { z-index: 5; }
+.radar-center { z-index: 6; }
+
+@media (max-width: 850px) {
+  .radar-callout .callout-content { padding: 5px 6px; gap: 5px; }
+  .callout-content strong { font-size: 8px; }
+  .callout-content small { font-size: 7px; }
+  .callout-icon { width: 13px; height: 13px; flex-basis: 13px; }
+  .callout-telegram { left: 55%; top: 12%; }
+  .callout-network { left: -9%; top: 66%; }
+  .callout-web { left: 51%; top: 86%; }
+}
+@media (max-width: 600px) {
+  .radar-shell { width: min(100%, 180px) !important; }
+  .callout-telegram { left: 50%; top: 9%; }
+  .callout-network { left: -5%; top: 67%; }
+  .callout-web { left: 46%; top: 88%; }
+  .radar-callout .callout-content { padding: 4px 5px; }
+  .callout-content small { max-width: 88px; white-space: normal; }
+}
+</style>
+
+
+<style id="hp-radar-callout-layout-fix">
+
+.radar-shell {
+  overflow: visible !important;
+}
+.radar-callout {
+  z-index: 12 !important;
+  max-width: 48% !important;
+}
+.radar-callout .callout-content {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  gap: 6px !important;
+  padding: 6px 7px !important;
+}
+.radar-callout .callout-content > span:last-child {
+  min-width: 0 !important;
+}
+.radar-callout .callout-content strong {
+  white-space: nowrap !important;
+}
+.radar-callout .callout-content small {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  max-width: 100% !important;
+  line-height: 1.2 !important;
+}
+
+
+.callout-telegram {
+  left: 4% !important;
+  top: 8% !important;
+  width: 47% !important;
+}
+.callout-telegram .callout-line {
+  left: 88% !important;
+  top: 100% !important;
+  right: auto !important;
+  width: 34px !important;
+  transform: rotate(48deg) !important;
+  transform-origin: left center !important;
+}
+
+/* Network: etiqueta en el borde izquierdo, unida a su eco */
+.callout-network {
+  left: -13% !important;
+  top: 61% !important;
+  width: 43% !important;
+}
+.callout-network .callout-line {
+  left: 100% !important;
+  right: auto !important;
+  top: 48% !important;
+  width: 42px !important;
+  transform: rotate(-8deg) !important;
+  transform-origin: left center !important;
+}
+
+
+.callout-web {
+  left: 43% !important;
+  top: 82% !important;
+  width: 45% !important;
+}
+.callout-web .callout-line {
+  left: 22% !important;
+  top: 0 !important;
+  width: 30px !important;
+  transform: rotate(-112deg) !important;
+  transform-origin: left center !important;
+}
+
+
+.radar-grid, .radar-sweep, .radar-ring, .radar-crosshair {
+  z-index: 1 !important;
+}
+.radar-blip { z-index: 5 !important; }
+.radar-center { z-index: 6 !important; }
+.radar-callout { z-index: 10 !important; }
+
+@media (max-width: 850px) {
+  .callout-telegram { left: 2% !important; top: 7% !important; width: 49% !important; }
+  .callout-network { left: -10% !important; top: 62% !important; width: 45% !important; }
+  .callout-web { left: 42% !important; top: 83% !important; width: 47% !important; }
+  .radar-callout .callout-content { padding: 5px 6px !important; }
+  .callout-content strong { font-size: 8px !important; }
+  .callout-content small { font-size: 7px !important; }
+}
+@media (max-width: 600px) {
+  .radar-callout { max-width: 50% !important; }
+  .callout-telegram { left: 1% !important; top: 5% !important; width: 49% !important; }
+  .callout-network { left: -7% !important; top: 62% !important; width: 45% !important; }
+  .callout-web { left: 42% !important; top: 84% !important; width: 47% !important; }
+}
+</style>
+
 </body>
 </html>
